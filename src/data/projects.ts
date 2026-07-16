@@ -21,7 +21,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "FLORA is a botanical identity study for a stationery studio shaped around cards, wrapping paper, and gift notes. The system uses pressed-paper texture, soft sage, dusty rose, and a generous serif voice to make the brand feel handmade but precise.",
-      ar: "FLORA دراسة هوية نباتية لاستوديو قرطاسية يقدم بطاقات وورق تغليف وملاحظات هدايا. يعتمد النظام على ملمس الورق المضغوط، الأخضر الهادئ، الوردي الترابي، وخط تحريري رحب ليبدو العمل يدوياً ودقيقاً في الوقت نفسه.",
+      ar: "تقدم FLORA دراسة هوية نباتية لاستوديو قرطاسية يصمم بطاقات وورق تغليف وملاحظات هدايا. يعتمد النظام على ملمس الورق المضغوط، الأخضر الهادئ، الوردي الترابي، وخط تحريري رحب ليبدو العمل يدوياً ودقيقاً في الوقت نفسه.",
     },
     services: ["brandIdentity", "printDesign", "packagingDesign"],
     credits: conceptCredits,
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "AURORA is a skincare packaging study built around luxury product storytelling. It pairs frosted glass, refill sleeves, quiet gradients of rose and mineral green, and editorial product cards for a calm morning-routine brand world.",
-      ar: "AURORA دراسة تغليف للعناية بالبشرة مبنية حول سرد المنتج الفاخر. تجمع بين الزجاج المعتّم، أغلفة إعادة التعبئة، تدرجات وردية وخضراء معدنية هادئة، وبطاقات منتج تحريرية لعالم صباحي رقيق.",
+      ar: "تقدم AURORA دراسة تغليف للعناية بالبشرة مبنية حول سرد المنتج الفاخر. تجمع بين الزجاج المعتّم، أغلفة إعادة التعبئة، تدرجات وردية وخضراء معدنية هادئة، وبطاقات منتج تحريرية لعالم صباحي رقيق.",
     },
     services: ["packagingDesign", "creativeDirection", "printDesign"],
     credits: conceptCredits,
@@ -163,7 +163,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "ELYSIAN is a magazine design study for culture, interiors, and slow travel. It presents long-form editorial hierarchy through covers, feature openings, pull quotes, and small print inserts.",
-      ar: "ELYSIAN دراسة تصميم مجلة للثقافة والمساحات الداخلية والسفر الهادئ. تعرض هرمية تحريرية طويلة عبر الأغلفة وافتتاحيات المقالات والاقتباسات البارزة والإدخالات المطبوعة الصغيرة.",
+      ar: "تقدم ELYSIAN دراسة تصميم مجلة للثقافة والمساحات الداخلية والسفر الهادئ. تعرض هرمية تحريرية طويلة عبر الأغلفة وافتتاحيات المقالات والاقتباسات البارزة والإدخالات المطبوعة الصغيرة.",
     },
     services: ["editorialDesign", "printDesign", "graphicDesign"],
     credits: conceptCredits,
@@ -192,7 +192,7 @@ export const projects: Project[] = [
     caseStudy: {
       context: {
         en: "The project studies magazine hierarchy at multiple scales: cover, feature, department pages, print inserts, and digital promotion.",
-        ar: "تدرس الحالة هرمية المجلة على مستويات متعددة: الغلاف، المقال، صفحات الأقسام، الإدخالات المطبوعة، والترويج الرقمي.",
+        ar: "تدرس الحالة هرمية المجلة عبر مستويات متعددة، من الغلاف والمقال إلى صفحات الأقسام والإدخالات المطبوعة والترويج الرقمي.",
       },
       direction: {
         en: "The layout system balances large serif headlines, quiet columns, warm paper, and editorial image windows simulated through locally drawn composition.",
@@ -234,7 +234,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "KINFOLK CONCEPT is a lifestyle campaign study shaped around domestic rituals, print pacing, campaign sleeves, and calm social sequencing.",
-      ar: "KINFOLK CONCEPT دراسة حملة أسلوب حياة تستند إلى طقوس المكان وإيقاع الطباعة وأغلفة الحملة وتسلسل اجتماعي هادئ.",
+      ar: "تقدم KINFOLK CONCEPT دراسة حملة أسلوب حياة تستند إلى طقوس المكان وإيقاع الطباعة وأغلفة الحملة وتسلسل اجتماعي هادئ.",
     },
     services: ["creativeDirection", "printDesign", "socialMediaDesign"],
     credits: conceptCredits,
@@ -305,7 +305,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "LUNA is a social media system for a soft lifestyle brand. It shows how a visual language can move through feed modules, stories, reels covers, and campaign cards while staying recognizable without repeating one layout.",
-      ar: "LUNA نظام تواصل اجتماعي لعلامة أسلوب حياة ناعمة. يوضح كيف تنتقل اللغة البصرية عبر وحدات المنشورات والقصص وأغلفة الريلز وبطاقات الحملة مع الحفاظ على التعرّف دون تكرار تخطيط واحد.",
+      ar: "تقدم LUNA نظام تواصل اجتماعي لعلامة أسلوب حياة ناعمة. يوضح كيف تنتقل اللغة البصرية عبر وحدات المنشورات والقصص وأغلفة الريلز وبطاقات الحملة مع الحفاظ على التعرّف دون تكرار تخطيط واحد.",
     },
     services: ["socialMediaDesign", "graphicDesign", "creativeDirection"],
     credits: conceptCredits,
@@ -376,7 +376,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "ATELIER is a fashion identity study for a quiet boutique world. The system uses garment labels, soft charcoal, blush tissue, and disciplined lookbook layouts.",
-      ar: "ATELIER دراسة هوية أزياء لعالم بوتيك هادئ. يستخدم النظام بطاقات الملابس، فحماً ناعماً، ورقاً وردياً، وتخطيطات لوك بوك منضبطة.",
+      ar: "تقدم ATELIER دراسة هوية أزياء لعالم بوتيك هادئ. يستخدم النظام بطاقات الملابس، فحماً ناعماً، ورقاً وردياً، وتخطيطات لوك بوك منضبطة.",
     },
     services: ["brandIdentity", "creativeDirection", "printDesign"],
     credits: conceptCredits,
@@ -447,7 +447,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "MONOLITH is an architecture studio identity study with a grounded visual voice: stone-toned paper, precise signage, project folders, and presentation boards for built-environment work.",
-      ar: "MONOLITH دراسة هوية لاستوديو معماري بصوت بصري ثابت: ورق بدرجات حجرية، لافتات دقيقة، ملفات مشاريع، وألواح عرض لأعمال البيئة المبنية.",
+      ar: "تقدم MONOLITH دراسة هوية لاستوديو معماري بصوت بصري ثابت يجمع ورقاً بدرجات حجرية، لافتات دقيقة، ملفات مشاريع، وألواح عرض لأعمال البيئة المبنية.",
     },
     services: ["brandIdentity", "graphicDesign", "printDesign"],
     credits: conceptCredits,
@@ -518,7 +518,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "SORA is a cafe identity study built around hospitality touchpoints. It combines soft morning colors, menu hierarchy, coffee packaging, loyalty print, and a warm social launch system.",
-      ar: "SORA دراسة هوية مقهى مبنية حول نقاط الضيافة. تجمع بين ألوان صباحية ناعمة، هرمية قائمة، تغليف قهوة، مطبوعات ولاء، ونظام إطلاق اجتماعي دافئ.",
+      ar: "تقدم SORA دراسة هوية مقهى مبنية حول نقاط الضيافة. تجمع بين ألوان صباحية ناعمة، هرمية قائمة، تغليف قهوة، مطبوعات ولاء، ونظام إطلاق اجتماعي دافئ.",
     },
     services: ["brandIdentity", "packagingDesign", "socialMediaDesign"],
     credits: conceptCredits,
@@ -589,7 +589,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "FORMA is a furniture identity study for quiet modular objects. It brings a product-led perspective through material cards, catalog systems, assembly inserts, and restrained social layouts.",
-      ar: "FORMA دراسة هوية أثاث لقطع معيارية هادئة. تقدم منظوراً موجهاً بالمنتج عبر بطاقات مواد وأنظمة كتالوج وإدخالات تركيب وتخطيطات اجتماعية هادئة.",
+      ar: "تقدم FORMA دراسة هوية أثاث لقطع معيارية هادئة. تعرض منظوراً موجهاً بالمنتج عبر بطاقات مواد وأنظمة كتالوج وإدخالات تركيب وتخطيطات اجتماعية هادئة.",
     },
     services: ["brandIdentity", "editorialDesign", "printDesign"],
     credits: conceptCredits,
@@ -660,7 +660,7 @@ export const projects: Project[] = [
     },
     fullDescription: {
       en: "NOMA is an artisan packaging study for small-batch pantry goods. It focuses on label hierarchy, batch numbering, gift cartons, shelf presence, and printed wrap.",
-      ar: "NOMA دراسة تغليف حرفي لمنتجات مخزن صغيرة الدفعات. تركز على هرمية الملصقات، ترقيم الدفعات، علب الهدايا، الحضور على الرف، وورق التغليف.",
+      ar: "تقدم NOMA دراسة تغليف حرفي لمنتجات مخزن صغيرة الدفعات. تركز على هرمية الملصقات، ترقيم الدفعات، علب الهدايا، الحضور على الرف، وورق التغليف.",
     },
     services: ["packagingDesign", "brandIdentity", "printDesign"],
     credits: conceptCredits,

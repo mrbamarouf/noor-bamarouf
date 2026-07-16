@@ -95,9 +95,8 @@ export function ProjectPage() {
         <div className="project-system__type">
           <span className="section__index">{dictionary.sections.typography}</span>
           <p>
-            {project.typography.display}
-            <br />
-            {project.typography.body}
+            <span>{project.typography.display}</span>
+            <span>{project.typography.body}</span>
           </p>
         </div>
         <div className="project-applications">

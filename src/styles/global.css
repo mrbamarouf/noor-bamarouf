@@ -72,6 +72,11 @@ html[dir="rtl"] p {
   font-size: clamp(1.03rem, 0.28vw + 0.97rem, 1.18rem);
   line-height: 2;
   font-weight: 500;
+  direction: rtl;
+  text-align: right;
+  text-wrap: pretty;
+  unicode-bidi: plaintext;
+  overflow-wrap: normal;
 }
 
 main {
@@ -203,6 +208,10 @@ body::before {
   mask-image: linear-gradient(180deg, transparent 0%, black 18%, black 72%, transparent 100%);
 }
 
+html[dir="rtl"] body::before {
+  display: none;
+}
+
 img,
 svg {
   display: block;
@@ -263,6 +272,10 @@ a {
   height: 100%;
   background: var(--color-rose-deep);
   transform-origin: top;
+}
+
+html[dir="rtl"] .scroll-progress {
+  display: none;
 }
 
 [data-reveal] {
@@ -437,6 +450,27 @@ p {
   font-size: clamp(0.98rem, 0.25vw + 0.9rem, 1.12rem);
   line-height: 1.85;
   text-wrap: pretty;
+}
+
+html[dir="rtl"] :where(
+  p,
+  li,
+  dt,
+  dd,
+  address,
+  .button,
+  .text-link,
+  .filter-button,
+  .section__index,
+  .hero__descriptor,
+  .hero__caption,
+  .project-feature__meta,
+  .archive-item > span,
+  .footer-list a,
+  .footer-list span
+) {
+  letter-spacing: 0;
+  unicode-bidi: plaintext;
 }
 
 .button,
@@ -962,12 +996,14 @@ html[dir="rtl"] .hero__topline {
 }
 
 html[dir="rtl"] .hero__topline p {
-  font-size: clamp(0.84rem, 0.14vw + 0.8rem, 0.96rem);
+  font-size: clamp(0.92rem, 0.1vw + 0.9rem, 1rem);
   line-height: 1.65;
 }
 
 html[dir="rtl"] .hero__caption {
   justify-self: start;
+  font-size: clamp(0.92rem, 0.1vw + 0.88rem, 0.98rem);
+  line-height: 1.7;
   text-align: right;
 }
 
@@ -998,6 +1034,11 @@ html[dir="rtl"] .hero__studio-note {
   justify-self: start;
   grid-template-columns: minmax(0, 260px) 64px;
   margin-left: clamp(12px, 1.4vw, 24px);
+}
+
+html[dir="rtl"] .hero__studio-note p {
+  font-size: clamp(0.94rem, 0.1vw + 0.9rem, 1rem);
+  line-height: 1.8;
 }
 
 html[dir="rtl"] .hero__studio-note span {
@@ -3293,36 +3334,6 @@ html[dir="rtl"] .service-row p {
   scroll-margin-top: calc(var(--header-height) + 28px);
 }
 
-.philosophy-section::before,
-.philosophy-section::after {
-  position: absolute;
-  content: "";
-  pointer-events: none;
-}
-
-.philosophy-section::before {
-  inset: 11% 7% auto auto;
-  width: min(28vw, 410px);
-  aspect-ratio: 1.15;
-  border: 1px solid color-mix(in oklch, var(--color-ivory) 16%, transparent);
-  transform: rotate(-8deg);
-}
-
-.philosophy-section::after {
-  left: 8%;
-  bottom: 14%;
-  width: min(20vw, 280px);
-  height: 1px;
-  background: color-mix(in oklch, var(--color-rose) 46%, transparent);
-}
-
-.philosophy-section__line {
-  width: min(42vw, 520px);
-  height: 1px;
-  margin-bottom: clamp(28px, 4vw, 42px);
-  background: color-mix(in oklch, var(--color-ivory) 42%, transparent);
-}
-
 .philosophy-section h2 {
   max-width: 1040px;
   color: var(--color-ivory);
@@ -3340,6 +3351,17 @@ html[dir="rtl"] .philosophy-section p {
   color: color-mix(in oklch, var(--color-ivory) 86%, var(--color-sage-soft));
   font-size: clamp(1.18rem, 0.72vw + 1rem, 1.58rem);
   line-height: 2;
+}
+
+html[dir="rtl"] .philosophy-section {
+  justify-items: end;
+  padding-inline: max(var(--page-gutter), calc((100vw - var(--content-narrow)) / 2));
+}
+
+html[dir="rtl"] .philosophy-section h2,
+html[dir="rtl"] .philosophy-section p {
+  max-width: min(900px, 72vw);
+  text-align: right;
 }
 
 .process-section {
@@ -3461,6 +3483,13 @@ html[dir="rtl"] .process-stage {
   text-align: right;
 }
 
+html[dir="rtl"] .process-stage p {
+  max-width: 30ch;
+  color: color-mix(in oklch, var(--color-ink) 76%, var(--color-muted));
+  font-size: clamp(1rem, 0.14vw + 0.96rem, 1.08rem);
+  line-height: 1.95;
+}
+
 .featured-story {
   position: relative;
   display: grid;
@@ -3504,6 +3533,13 @@ html[dir="rtl"] .process-stage {
 html[dir="rtl"] .featured-story__content {
   margin-inline-start: clamp(-48px, -3vw, -28px);
   text-align: right;
+}
+
+html[dir="rtl"] .featured-story__content p,
+html[dir="rtl"] .story-details dd {
+  color: color-mix(in oklch, var(--color-ink) 76%, var(--color-muted));
+  font-size: clamp(1rem, 0.14vw + 0.96rem, 1.08rem);
+  line-height: 1.9;
 }
 
 .palette-row {
@@ -3627,6 +3663,7 @@ html[dir="rtl"] .archive-preview > div:first-child {
   grid-column: 2;
   grid-row: 1;
   justify-self: end;
+  padding-inline-end: clamp(18px, 2vw, 34px);
   text-align: right;
 }
 
@@ -3634,9 +3671,15 @@ html[dir="rtl"] .archive-preview > div:first-child .section__index {
   justify-content: flex-end;
 }
 
+html[dir="rtl"] .archive-preview h2 {
+  font-size: clamp(3rem, 4.1vw, 5.2rem);
+  white-space: nowrap;
+}
+
 html[dir="rtl"] .archive-strip {
   grid-column: 1;
   grid-row: 1;
+  padding-inline-start: clamp(18px, 2vw, 34px);
 }
 
 html[dir="rtl"] .archive-strip a {
@@ -3663,7 +3706,9 @@ html[dir="rtl"] .archive-strip a {
   top: -22%;
   width: min(26vw, 410px);
   aspect-ratio: 1;
+  z-index: 0;
   content: "";
+  pointer-events: none;
   border: 1px solid color-mix(in oklch, var(--color-ivory) 20%, transparent);
   border-radius: 50%;
 }
@@ -3674,8 +3719,15 @@ html[dir="rtl"] .archive-strip a {
   bottom: clamp(30px, 4vw, 58px);
   width: min(34vw, 560px);
   height: 1px;
+  z-index: 0;
   content: "";
+  pointer-events: none;
   background: color-mix(in oklch, var(--color-ivory) 32%, transparent);
+}
+
+.contact-cta > * {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-cta h2 {
@@ -3707,6 +3759,10 @@ html[dir="rtl"] .contact-cta p {
 
 html[dir="rtl"] .contact-cta {
   grid-template-columns: auto 1fr;
+}
+
+html[dir="rtl"] .contact-cta::after {
+  display: none;
 }
 
 html[dir="rtl"] .contact-cta > div:first-child {
@@ -3827,6 +3883,9 @@ html[dir="rtl"] .filter-bar {
 html[dir="rtl"] .work-note {
   margin-right: auto;
   text-align: right;
+  color: color-mix(in oklch, var(--color-ink) 76%, var(--color-muted));
+  font-size: clamp(0.98rem, 0.14vw + 0.94rem, 1.06rem);
+  line-height: 1.9;
 }
 
 /* Project page */
@@ -3898,6 +3957,13 @@ html[dir="rtl"] .project-hero {
   text-align: right;
 }
 
+html[dir="rtl"] .project-hero__title p,
+html[dir="rtl"] .project-meta dd {
+  color: color-mix(in oklch, var(--color-ink) 76%, var(--color-muted));
+  font-size: clamp(1rem, 0.16vw + 0.96rem, 1.1rem);
+  line-height: 1.9;
+}
+
 html[dir="rtl"] .project-hero > .text-link {
   grid-column: 2;
   grid-row: 1;
@@ -3960,6 +4026,15 @@ html[dir="rtl"] .project-system {
   text-align: right;
 }
 
+html[dir="rtl"] .project-narrative > p,
+html[dir="rtl"] .project-direction p,
+html[dir="rtl"] .project-applications li,
+html[dir="rtl"] .project-outcome-note p {
+  color: color-mix(in oklch, var(--color-ink) 76%, var(--color-muted));
+  font-size: clamp(1rem, 0.14vw + 0.96rem, 1.08rem);
+  line-height: 1.9;
+}
+
 html[dir="rtl"] .project-narrative > div:first-child {
   grid-column: 2;
 }
@@ -3999,11 +4074,18 @@ html[dir="rtl"] .project-direction > div {
 }
 
 .project-system {
-  grid-template-columns: minmax(180px, 0.8fr) minmax(170px, 0.52fr) minmax(230px, 0.9fr) minmax(220px, 0.82fr);
+  grid-template-columns: minmax(140px, 0.62fr) minmax(140px, 0.48fr) minmax(210px, 0.86fr) minmax(210px, 0.72fr);
+  gap: clamp(22px, 2.8vw, 52px);
   align-items: start;
 }
 
+.project-system > * {
+  min-width: 0;
+}
+
 .project-system__type p {
+  display: grid;
+  gap: 0.08em;
   color: var(--color-ink);
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 2.7vw, 3.4rem);
@@ -4123,6 +4205,16 @@ html[dir="rtl"] .about-hero > p {
   grid-column: 2;
   justify-self: end;
   max-width: 620px;
+}
+
+html[dir="rtl"] .about-hero > p,
+html[dir="rtl"] .about-editorial__statement p,
+html[dir="rtl"] .capabilities-list p,
+html[dir="rtl"] .contact-hero p,
+html[dir="rtl"] .contact-panel p,
+html[dir="rtl"] .contact-details dd {
+  color: color-mix(in oklch, var(--color-ink) 76%, var(--color-muted));
+  line-height: 1.9;
 }
 
 html[dir="rtl"] .about-editorial {

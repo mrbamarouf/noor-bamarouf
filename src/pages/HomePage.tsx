@@ -304,7 +304,6 @@ export function HomePage() {
       <ServicesSection />
 
       <section className="philosophy-section" aria-labelledby="philosophy-title" data-reveal>
-        <div className="philosophy-section__line" />
         <h2 id="philosophy-title">{dictionary.home.philosophyTitle}</h2>
         <p>{dictionary.home.philosophyBody}</p>
       </section>
