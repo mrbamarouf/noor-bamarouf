@@ -154,7 +154,10 @@ export function HomePage() {
           <BrandMark variant="compact" />
         </div>
         <div className="hero__content">
-          <p className="hero__descriptor">{dictionary.hero.descriptor}</p>
+          <div className="hero__topline">
+            <p className="hero__descriptor">{dictionary.hero.descriptor}</p>
+            <p>{dictionary.hero.edition}</p>
+          </div>
           <h1 id="hero-title">
             <span>NOUR</span>
             <span>BAMAROUF</span>
@@ -173,16 +176,39 @@ export function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="hero__visual">
-          <ArtFrame
-            variant="flora"
-            alt={{
-              en: "Editorial still life with paper, botanical stems, and soft green glass.",
-              ar: "تكوين تحريري بأوراق وسيقان نباتية وزجاج أخضر ناعم.",
-            }}
-            ratio="portrait"
-            loading="eager"
-          />
+        <div className="hero__visual" aria-hidden="true">
+          <div className="hero__visual-stage">
+            <ArtFrame
+              className="hero__main-frame"
+              variant="flora"
+              alt={{
+                en: "Editorial still life with paper, botanical stems, and soft green glass.",
+                ar: "تكوين تحريري بأوراق وسيقان نباتية وزجاج أخضر ناعم.",
+              }}
+              ratio="portrait"
+              loading="eager"
+            />
+            <div className="hero__book">
+              <span>NOUR</span>
+              <span>BAMAROUF</span>
+            </div>
+            <div className="hero__stationery">
+              <span>NB</span>
+            </div>
+            <div className="hero__glass">
+              <span />
+            </div>
+            <div className="hero__flower flower-a" />
+            <div className="hero__flower flower-b" />
+            <div className="hero__flower flower-c" />
+            <div className="hero__caption">
+              <span>{dictionary.hero.materialNote}</span>
+            </div>
+          </div>
+          <div className="hero__studio-note">
+            <span />
+            <p>{dictionary.hero.studioNote}</p>
+          </div>
         </div>
         <div className="hero__side-note">
           <span>{dictionary.hero.cue}</span>

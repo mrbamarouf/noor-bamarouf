@@ -63,6 +63,9 @@ export const copy = {
     },
     hero: {
       descriptor: "Graphic Designer",
+      edition: "Portfolio / Desktop Edition",
+      materialNote: "Identity, print, packaging, editorial systems",
+      studioNote: "Soft structure, tactile detail, intentional rhythm.",
       lineOne: "Design with intention.",
       lineTwo: "Create with purpose.",
       body: "Visual identities, printed objects, and editorial systems shaped with quiet confidence and a careful sense of feeling.",
@@ -233,6 +236,9 @@ export const copy = {
     },
     hero: {
       descriptor: "مصممة جرافيك",
+      edition: "Portfolio / نسخة سطح المكتب",
+      materialNote: "هوية، مطبوعات، تغليف، وأنظمة تحريرية",
+      studioNote: "بنية ناعمة، تفصيل ملموس، وإيقاع مقصود.",
       lineOne: "تصميم بنيّة واضحة.",
       lineTwo: "وصناعة لها معنى.",
       body: "هويات بصرية، مواد مطبوعة، وأنظمة تحريرية تتشكل بهدوء وثقة وإحساس دقيق.",
