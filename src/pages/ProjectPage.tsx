@@ -47,6 +47,7 @@ export function ProjectPage() {
         projectSlug={project.slug}
         asset="hero"
         ratio="wide"
+        loading="eager"
       />
 
       <section className="project-narrative" aria-label={dictionary.sections.overview} data-reveal>
