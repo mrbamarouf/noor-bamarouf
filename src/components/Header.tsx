@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { navItems } from "../data/content";
 import { useLanguage } from "../context/LanguageContext";
-import { BrandMark } from "./BrandMark";
+import { LogoAsset } from "./LogoAsset";
 
 function isHashLink(to: string) {
   return to.includes("#");
@@ -34,7 +34,7 @@ export function Header() {
   return (
     <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
       <div className="site-header__inner">
-        <BrandMark variant="compact" asLink />
+        <LogoAsset variant="header" asLink priority />
         <nav className="site-nav" aria-label="Primary navigation">
           {navItems.map((item) => {
             const label = dictionary.nav[item.labelKey];

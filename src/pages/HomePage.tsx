@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent } from "react";
 import { ArtFrame } from "../components/ArtFrame";
-import { BrandMark } from "../components/BrandMark";
+import { LogoAsset } from "../components/LogoAsset";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { serviceOrder } from "../data/content";
 import { projects } from "../data/projects";
@@ -214,17 +214,13 @@ export function HomePage() {
         onMouseLeave={resetHeroDepth}
       >
         <div className="hero__backdrop" />
-        <div className="hero__identity">
-          <BrandMark variant="compact" />
-        </div>
         <div className="hero__content">
           <div className="hero__topline">
             <p className="hero__descriptor">{dictionary.hero.descriptor}</p>
             <p>{dictionary.hero.edition}</p>
           </div>
-          <h1 id="hero-title">
-            <span>NOUR</span>
-            <span>BAMAROUF</span>
+          <h1 className="hero__logo-title" id="hero-title">
+            <LogoAsset variant="hero" priority />
           </h1>
           <p className="hero__statement">
             <span>{dictionary.hero.lineOne}</span>

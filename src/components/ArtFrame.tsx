@@ -53,7 +53,7 @@ const variantInitials: Record<ArtVariant, string> = {
   sora: "SO",
   forma: "FO",
   noma: "NO",
-  studio: "NB",
+  studio: "ST",
   materials: "MT",
   archive: "AR",
 };

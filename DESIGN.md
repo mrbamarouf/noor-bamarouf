@@ -34,8 +34,8 @@ Motion is calm and title-sequence inspired: intro reveal, text masks, subtle ima
 
 ## Components
 
-- `BrandMark`: temporary web implementation of the NB monogram, wordmark, descriptor, and botanical branch.
-- `Intro`: first-session logo reveal with skip and reduced-motion handling.
+- `LogoAsset`: image-only rendering of the official Nour Bamarouf logo crop derived from `public/brand-reference/nour-logo-reference.png`.
+- `Intro`: first-session official logo reveal with skip and reduced-motion handling.
 - `Header`: minimal desktop navigation with language switcher and scroll refinement.
 - `ProjectVisual`: file-based raster portfolio imagery renderer for local Behance-style demonstration presentations stored in `public/demo-projects`.
 - `ArtFrame`: supporting studio/service atmosphere only. Do not use it as the primary visual for fictional project work.

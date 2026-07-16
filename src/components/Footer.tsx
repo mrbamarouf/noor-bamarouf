@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { navItems, serviceOrder } from "../data/content";
 import { useLanguage } from "../context/LanguageContext";
-import { BrandMark } from "./BrandMark";
+import { LogoAsset } from "./LogoAsset";
 
 export function Footer() {
   const { dictionary } = useLanguage();
@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="site-footer__inner">
         <div className="site-footer__brand">
-          <BrandMark variant="compact" />
+          <LogoAsset variant="footer" />
           <p>{dictionary.footer.line}</p>
         </div>
         <nav className="footer-list" aria-label={dictionary.ui.footerNavigation}>
