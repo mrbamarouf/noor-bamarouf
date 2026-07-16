@@ -28,7 +28,7 @@ npm run build
 - Project content is centralized in `src/data/projects.ts`.
 - English and Arabic interface copy is centralized in `src/data/content.ts`.
 - Project visuals are local raster case-study assets stored in `public/concept-projects`.
-- Official logo assets are transparent PNGs generated from `public/brand-reference/noor-logo-reference.png`.
+- The approved logo asset is stored at `public/brand/noor-bamarouf-approved-logo.png` and rendered through `LogoAsset`.
 - The contact form prepares a mail draft with the submitted project details.
 
 ## Deployment

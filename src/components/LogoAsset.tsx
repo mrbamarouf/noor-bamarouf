@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
-const FULL_LOGO_SRC = "/brand/noor-logo-full-transparent.png";
-const FOOTER_LOGO_SRC = "/brand/noor-logo-footer-transparent.png";
-const MONOGRAM_LOGO_SRC = "/brand/noor-logo-monogram-transparent.png";
+const APPROVED_LOGO_SRC = "/brand/noor-bamarouf-approved-logo.png";
 
 type LogoAssetVariant = "header" | "intro" | "footer" | "hero";
 
@@ -15,21 +13,17 @@ interface LogoAssetProps {
 
 function LogoImage({ variant, priority = false }: Pick<LogoAssetProps, "variant" | "priority">) {
   const logoVariant = variant ?? "header";
-  const source = logoVariant === "footer" ? FOOTER_LOGO_SRC : FULL_LOGO_SRC;
 
   return (
-    <picture>
-      {logoVariant === "header" || logoVariant === "hero" || logoVariant === "footer" ? (
-        <source media="(max-width: 900px)" srcSet={MONOGRAM_LOGO_SRC} />
-      ) : null}
-      <img
-        className={`official-logo official-logo--${logoVariant}`}
-        src={source}
-        alt="Noor Bamarouf official logo"
-        decoding="async"
-        loading={priority ? "eager" : "lazy"}
-      />
-    </picture>
+    <img
+      className={`official-logo official-logo--${logoVariant}`}
+      src={APPROVED_LOGO_SRC}
+      alt="Noor Bamarouf official logo"
+      width="2172"
+      height="724"
+      decoding="async"
+      loading={priority ? "eager" : "lazy"}
+    />
   );
 }
 

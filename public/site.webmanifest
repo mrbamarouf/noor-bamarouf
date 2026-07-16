@@ -8,9 +8,9 @@
   "theme_color": "#66745f",
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "64x64",
-      "type": "image/svg+xml",
+      "src": "/brand/noor-bamarouf-approved-logo.png",
+      "sizes": "2172x724",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

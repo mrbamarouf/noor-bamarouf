@@ -586,16 +586,16 @@ html[dir="rtl"] .text-link::after {
 }
 
 .official-logo--header {
-  width: clamp(150px, 11vw, 190px);
+  width: clamp(172px, 13vw, 232px);
 }
 
 .official-logo--hero {
-  width: clamp(310px, 32vw, 560px);
+  width: clamp(330px, 34vw, 620px);
   max-width: 100%;
 }
 
 .official-logo--footer {
-  width: clamp(220px, 18vw, 300px);
+  width: clamp(210px, 18vw, 320px);
 }
 
 .official-logo-wrap--intro {
@@ -4771,15 +4771,15 @@ html[dir="rtl"] .site-footer .back-to-top {
   }
 
   .official-logo--header {
-    width: clamp(42px, 12vw, 54px);
+    width: clamp(132px, 40vw, 172px);
   }
 
   .official-logo--hero {
-    width: clamp(72px, 21vw, 96px);
+    width: clamp(164px, 52vw, 224px);
   }
 
   .official-logo--footer {
-    width: clamp(72px, 22vw, 96px);
+    width: clamp(154px, 46vw, 204px);
   }
 
   .project-visual {
@@ -4984,7 +4984,7 @@ html[dir="rtl"] .site-footer .back-to-top {
   }
 
   .mobile-menu__top .official-logo--header {
-    width: clamp(48px, 14vw, 58px);
+    width: clamp(148px, 44vw, 190px);
   }
 
   .mobile-menu__close {
@@ -5252,7 +5252,7 @@ html[dir="rtl"] .site-footer .back-to-top {
   }
 
   html[dir="rtl"] .hero__logo-title .official-logo--hero {
-    width: clamp(72px, 21vw, 96px);
+    width: clamp(164px, 52vw, 224px);
   }
 
   html[dir="rtl"] .hero__topline {
