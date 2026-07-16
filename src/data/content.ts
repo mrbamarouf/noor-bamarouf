@@ -73,7 +73,7 @@ export const copy = {
     },
     home: {
       selectedTitle: "Selected work",
-      selectedIntro: "A curated placeholder archive for identities, campaigns, packaging, print, and social direction. Each story is structured for real project content later.",
+      selectedIntro: "A complete fictional demo archive for evaluating the portfolio design. These projects are temporary visual concepts only and will be replaced with Nour’s real work.",
       aboutTitle: "Hello, I’m Nour",
       aboutQuote: "Thoughtful design can feel quiet and still leave a lasting mark.",
       aboutBody: "I create visual identities, graphic systems, and editorial materials shaped by clarity, emotion, and purpose. This temporary biography is ready to replace with Nour’s real story.",
@@ -82,7 +82,7 @@ export const copy = {
       processTitle: "Process",
       processIntro: "A measured path from first conversation to final files, built to protect the idea and refine every detail.",
       featuredTitle: "Featured project story",
-      archiveTitle: "Portfolio archive preview",
+      archiveTitle: "Demonstration portfolio archive",
       contactTitle: "Let’s shape something considered.",
       contactBody: "For identities, printed matter, packaging, social systems, or art direction, begin with a short project note.",
     },
@@ -94,6 +94,9 @@ export const copy = {
       typography: "Typography",
       system: "Graphic system",
       outcome: "Outcome",
+      applications: "Applications",
+      demoProject: "Demonstration project",
+      replacementPlan: "Replacement plan",
       capabilities: "Capabilities",
       values: "Values",
       invitation: "Invitation",
@@ -105,7 +108,7 @@ export const copy = {
       projectCategories: "Project categories",
       selectPlaceholder: "Select",
       socialPlaceholder: "placeholder",
-      outcomeNote: "This placeholder case-study structure is ready for real project notes, final assets, and production context when available.",
+      outcomeNote: "This demonstration case-study structure is ready for real project notes, final assets, and production context when available.",
     },
     services: {
       brandIdentity: {
@@ -246,7 +249,7 @@ export const copy = {
     },
     home: {
       selectedTitle: "أعمال مختارة",
-      selectedIntro: "أرشيف مؤقت ومنسق للهويات، الحملات، التغليف، المطبوعات، والتوجيه الاجتماعي. كل قصة جاهزة لاستبدالها بمحتوى مشروع حقيقي.",
+      selectedIntro: "أرشيف تجريبي خيالي مكتمل لتقييم تصميم المحفظة. هذه المشاريع مفاهيم بصرية مؤقتة فقط وستستبدل بأعمال نور الحقيقية.",
       aboutTitle: "مرحباً، أنا نور",
       aboutQuote: "يمكن للتصميم الهادئ أن يترك أثراً لا يغيب.",
       aboutBody: "أصمم هويات بصرية، أنظمة جرافيكية، ومواد تحريرية تتشكل من الوضوح والشعور والهدف. هذه السيرة مؤقتة وجاهزة للاستبدال بقصة نور الحقيقية.",
@@ -255,7 +258,7 @@ export const copy = {
       processTitle: "المنهجية",
       processIntro: "مسار هادئ من أول محادثة إلى الملفات النهائية، يحمي الفكرة ويصقل كل تفصيل.",
       featuredTitle: "قصة مشروع بارز",
-      archiveTitle: "لمحة من الأرشيف",
+      archiveTitle: "أرشيف محفظة تجريبي",
       contactTitle: "لنصنع شيئاً مدروساً.",
       contactBody: "للهويات، المطبوعات، التغليف، أنظمة التواصل، أو التوجيه الفني، ابدئي بملاحظة قصيرة عن المشروع.",
     },
@@ -267,6 +270,9 @@ export const copy = {
       typography: "الطباعة",
       system: "النظام الجرافيكي",
       outcome: "الخلاصة",
+      applications: "التطبيقات",
+      demoProject: "مشروع تجريبي",
+      replacementPlan: "خطة الاستبدال",
       capabilities: "القدرات",
       values: "القيم",
       invitation: "الدعوة",
@@ -278,7 +284,7 @@ export const copy = {
       projectCategories: "تصنيفات الأعمال",
       selectPlaceholder: "اختاري",
       socialPlaceholder: "مؤقت",
-      outcomeNote: "هذه بنية دراسة حالة مؤقتة وجاهزة لملاحظات المشروع الحقيقية، الأصول النهائية، وسياق الإنتاج عند توفرها.",
+      outcomeNote: "هذه بنية دراسة حالة تجريبية وجاهزة لملاحظات المشروع الحقيقية، الأصول النهائية، وسياق الإنتاج عند توفرها.",
     },
     services: {
       brandIdentity: {

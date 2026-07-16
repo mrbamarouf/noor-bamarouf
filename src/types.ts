@@ -25,16 +25,40 @@ export type ArtVariant =
   | "flora"
   | "aurora"
   | "elysian"
-  | "nude"
   | "luna"
   | "kinfolk"
+  | "atelier"
+  | "monolith"
+  | "sora"
+  | "forma"
+  | "noma"
   | "studio"
   | "materials"
   | "archive";
 
+export type ArtScene =
+  | "cover"
+  | "hero"
+  | "stationery"
+  | "packaging"
+  | "editorial"
+  | "social"
+  | "print"
+  | "materials"
+  | "signage"
+  | "campaign";
+
 export interface ProjectImage {
   variant: ArtVariant;
+  scene?: ArtScene;
   alt: LocalizedString;
+}
+
+export interface ProjectCaseStudy {
+  context: LocalizedString;
+  direction: LocalizedString;
+  applications: LocalizedString[];
+  replacementNote: LocalizedString;
 }
 
 export interface Project {
@@ -42,12 +66,15 @@ export interface Project {
   slug: string;
   year: string;
   category: CategoryKey;
+  projectType: LocalizedString;
   shortDescription: LocalizedString;
   fullDescription: LocalizedString;
   services: ServiceKey[];
   credits: LocalizedString;
+  coverImage: ProjectImage;
   heroImage: ProjectImage;
   gallery: ProjectImage[];
+  caseStudy: ProjectCaseStudy;
   colorPalette: string[];
   typography: {
     display: string;

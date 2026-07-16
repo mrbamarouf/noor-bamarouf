@@ -5,7 +5,7 @@ import { BrandMark } from "../components/BrandMark";
 import { serviceOrder } from "../data/content";
 import { projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
-import type { ArtVariant, Project, ServiceKey } from "../types";
+import type { ArtScene, ArtVariant, Project, ServiceKey } from "../types";
 
 function Arrow() {
   return <span aria-hidden="true">→</span>;
@@ -18,8 +18,9 @@ function ProjectFeature({ project, index }: { project: Project; index: number })
     <Link className="project-feature" to={`/work/${project.slug}`} data-cursor="view">
       <span className="project-feature__number">{String(index + 1).padStart(2, "0")}</span>
       <ArtFrame
-        variant={project.heroImage.variant}
-        alt={project.heroImage.alt}
+        variant={project.coverImage.variant}
+        scene={project.coverImage.scene}
+        alt={project.coverImage.alt}
         ratio={index === 0 ? "wide" : index % 2 === 0 ? "landscape" : "portrait"}
       />
       <span className="project-feature__meta">
@@ -36,12 +37,21 @@ function ServicesSection() {
   const [activeService, setActiveService] = useState<ServiceKey>("brandIdentity");
   const serviceVisuals: Record<ServiceKey, ArtVariant> = {
     brandIdentity: "flora",
-    graphicDesign: "aurora",
-    packagingDesign: "nude",
+    graphicDesign: "monolith",
+    packagingDesign: "noma",
     printDesign: "kinfolk",
     socialMediaDesign: "luna",
     editorialDesign: "elysian",
-    creativeDirection: "studio",
+    creativeDirection: "atelier",
+  };
+  const serviceScenes: Record<ServiceKey, ArtScene> = {
+    brandIdentity: "stationery",
+    graphicDesign: "signage",
+    packagingDesign: "packaging",
+    printDesign: "print",
+    socialMediaDesign: "social",
+    editorialDesign: "editorial",
+    creativeDirection: "campaign",
   };
 
   return (
@@ -55,6 +65,7 @@ function ServicesSection() {
         <div className="service-preview" aria-hidden="true">
           <ArtFrame
             variant={serviceVisuals[activeService]}
+            scene={serviceScenes[activeService]}
             alt={{
               en: "Service art direction preview.",
               ar: "معاينة بصرية للخدمة.",
@@ -113,7 +124,12 @@ function FeaturedStory() {
   return (
     <section className="featured-story" aria-labelledby="featured-title" data-reveal>
       <div className="featured-story__visual">
-        <ArtFrame variant={featured.heroImage.variant} alt={featured.heroImage.alt} ratio="wide" />
+        <ArtFrame
+          variant={featured.heroImage.variant}
+          scene={featured.heroImage.scene}
+          alt={featured.heroImage.alt}
+          ratio="wide"
+        />
       </div>
       <div className="featured-story__content">
         <span className="section__index">{dictionary.home.featuredTitle}</span>
@@ -240,6 +256,7 @@ export function HomePage() {
             <ArtFrame
               className="hero__main-frame"
               variant="flora"
+              scene="hero"
               alt={{
                 en: "Editorial still life with paper, botanical stems, and soft green glass.",
                 ar: "تكوين تحريري بأوراق وسيقان نباتية وزجاج أخضر ناعم.",
@@ -304,6 +321,7 @@ export function HomePage() {
         </div>
         <ArtFrame
           variant="materials"
+          scene="materials"
           alt={{
             en: "Studio material study with paper, blush ceramics, and soft shadows.",
             ar: "دراسة مواد في الاستوديو مع ورق وخزف وردي وظلال ناعمة.",
@@ -331,7 +349,12 @@ export function HomePage() {
         <div className="archive-strip">
           {projects.slice(2).map((project) => (
             <Link key={project.slug} to={`/work/${project.slug}`} data-cursor="view">
-              <ArtFrame variant={project.heroImage.variant} alt={project.heroImage.alt} ratio="square" />
+              <ArtFrame
+                variant={project.coverImage.variant}
+                scene={project.coverImage.scene}
+                alt={project.coverImage.alt}
+                ratio="square"
+              />
               <span>{project.title}</span>
             </Link>
           ))}

@@ -21,7 +21,8 @@ export function ProjectPage() {
           ← {dictionary.actions.backToWork}
         </Link>
         <div className="project-hero__title">
-          <span>{project.year} / {dictionary.categories[project.category]}</span>
+          <span>{project.year} / {dictionary.categories[project.category]} / {project.projectType[language]}</span>
+          <span className="project-demo-badge">{dictionary.sections.demoProject}</span>
           <h1>{project.title}</h1>
           <p>{project.fullDescription[language]}</p>
         </div>
@@ -37,22 +38,33 @@ export function ProjectPage() {
         </dl>
       </header>
 
-      <ArtFrame className="project-main-image" variant={project.heroImage.variant} alt={project.heroImage.alt} ratio="wide" />
+      <ArtFrame
+        className="project-main-image"
+        variant={project.heroImage.variant}
+        scene={project.heroImage.scene}
+        alt={project.heroImage.alt}
+        ratio="wide"
+      />
 
       <section className="project-narrative" aria-label={dictionary.sections.overview} data-reveal>
         <div>
           <span className="section__index">{dictionary.sections.overview}</span>
           <h2>{project.shortDescription[language]}</h2>
         </div>
-        <p>{project.fullDescription[language]}</p>
+        <p>{project.caseStudy.context[language]}</p>
       </section>
 
       <section className="project-direction" aria-label={dictionary.sections.creativeDirection} data-reveal>
-        <ArtFrame variant={project.gallery[0].variant} alt={project.gallery[0].alt} ratio="portrait" />
+        <ArtFrame
+          variant={project.gallery[0].variant}
+          scene={project.gallery[0].scene}
+          alt={project.gallery[0].alt}
+          ratio="portrait"
+        />
         <div>
           <span className="section__index">{dictionary.sections.creativeDirection}</span>
-          <h2>{dictionary.home.philosophyTitle}</h2>
-          <p>{project.quote?.[language] ?? dictionary.home.philosophyBody}</p>
+          <h2>{project.quote?.[language] ?? project.projectType[language]}</h2>
+          <p>{project.caseStudy.direction[language]}</p>
         </div>
       </section>
 
@@ -61,8 +73,9 @@ export function ProjectPage() {
           <ArtFrame
             key={`${image.variant}-${index}`}
             variant={image.variant}
+            scene={image.scene}
             alt={image.alt}
-            ratio={index === 1 ? "landscape" : "square"}
+            ratio={index === 0 ? "portrait" : index === 1 ? "landscape" : index === 2 ? "square" : "portrait"}
           />
         ))}
       </section>
@@ -76,7 +89,7 @@ export function ProjectPage() {
             ))}
           </div>
         </div>
-        <div>
+        <div className="project-system__type">
           <span className="section__index">{dictionary.sections.typography}</span>
           <p>
             {project.typography.display}
@@ -84,9 +97,17 @@ export function ProjectPage() {
             {project.typography.body}
           </p>
         </div>
-        <div>
-          <span className="section__index">{dictionary.sections.outcome}</span>
-          <p>{dictionary.ui.outcomeNote}</p>
+        <div className="project-applications">
+          <span className="section__index">{dictionary.sections.applications}</span>
+          <ul>
+            {project.caseStudy.applications.map((application) => (
+              <li key={application.en}>{application[language]}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="project-replacement-note">
+          <span className="section__index">{dictionary.sections.replacementPlan}</span>
+          <p>{project.caseStudy.replacementNote[language]}</p>
         </div>
       </section>
 

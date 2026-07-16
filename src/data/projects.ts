@@ -1,156 +1,293 @@
 import type { Project } from "../types";
 
+const demoCredits = {
+  en: "Demonstration portfolio concept only. Created as temporary visual demo content for this website, not client work.",
+  ar: "مفهوم عرض تجريبي للمحفظة فقط. صمم كمحتوى بصري مؤقت لهذا الموقع، وليس عملاً لعميل.",
+};
+
 export const projects: Project[] = [
   {
     title: "FLORA",
     slug: "flora",
     year: "2026",
     category: "branding",
+    projectType: {
+      en: "Botanical Brand Identity",
+      ar: "هوية علامة نباتية",
+    },
     shortDescription: {
-      en: "A soft identity system for a botanical stationery concept.",
-      ar: "نظام هوية ناعم لمفهوم قرطاسية نباتي.",
+      en: "A botanical identity for a paper goods studio, built from pressed flowers, soft stationery, and quiet packaging.",
+      ar: "هوية نباتية لاستوديو قرطاسية، مبنية من الزهور المضغوطة، القرطاسية الناعمة، والتغليف الهادئ.",
     },
     fullDescription: {
-      en: "FLORA explores a quiet brand world built from pressed paper, fine botanical forms, and a muted palette that can move from packaging to print with ease.",
-      ar: "يستكشف FLORA عالماً بصرياً هادئاً مبنياً من الورق المضغوط، الأشكال النباتية الدقيقة، ولوحة ألوان مكتومة تنتقل بسلاسة من التغليف إلى المطبوعات.",
+      en: "FLORA is a fictional demonstration identity for a stationery studio that sells botanical cards, wrapping paper, and gift notes. The system uses pressed-paper texture, soft sage, dusty rose, and a generous serif voice to make the brand feel handmade but precise.",
+      ar: "FLORA هو مفهوم هوية تجريبي لاستوديو قرطاسية خيالي يبيع البطاقات النباتية، ورق التغليف، وملاحظات الهدايا. يستخدم النظام خامة الورق المضغوط، الأخضر الناعم، الوردي الترابي، وخطاً تحريرياً واسعاً ليبدو العمل يدوياً ودقيقاً في الوقت نفسه.",
     },
     services: ["brandIdentity", "printDesign", "packagingDesign"],
-    credits: {
-      en: "Temporary concept content and art direction placeholder.",
-      ar: "محتوى مفاهيمي مؤقت واتجاه فني بديل.",
+    credits: demoCredits,
+    coverImage: {
+      variant: "flora",
+      scene: "cover",
+      alt: {
+        en: "FLORA cover mockup with botanical stationery, embossed cards, and pressed paper.",
+        ar: "غلاف FLORA مع قرطاسية نباتية، بطاقات بارزة، وورق مضغوط.",
+      },
     },
     heroImage: {
       variant: "flora",
+      scene: "hero",
       alt: {
-        en: "Botanical stationery arrangement in blush and sage tones.",
-        ar: "ترتيب قرطاسية نباتي بدرجات وردية ومريمية.",
+        en: "FLORA hero still life with stationery, floral marks, ribbon, and paper packaging.",
+        ar: "مشهد رئيسي لـ FLORA مع قرطاسية، علامات نباتية، شريط، وتغليف ورقي.",
       },
     },
     gallery: [
-      { variant: "studio", alt: { en: "Letterhead and envelope system.", ar: "نظام أوراق ومغلفات." } },
-      { variant: "materials", alt: { en: "Paper textures and botanical stems.", ar: "خامات ورقية وسيقان نباتية." } },
-      { variant: "archive", alt: { en: "Printed identity archive view.", ar: "عرض أرشيف مطبوع للهوية." } },
+      { variant: "flora", scene: "stationery", alt: { en: "Letterhead, note cards, and envelope system.", ar: "نظام أوراق، بطاقات، ومغلفات." } },
+      { variant: "flora", scene: "packaging", alt: { en: "Botanical wrap, label, and gift sleeve packaging.", ar: "تغليف نباتي، ملصق، وغلاف هدية." } },
+      { variant: "flora", scene: "print", alt: { en: "Printed cards and small paper insert set.", ar: "بطاقات مطبوعة ومجموعة إدخالات ورقية صغيرة." } },
+      { variant: "flora", scene: "materials", alt: { en: "Paper stock, pressed-petal color swatches, and tactile details.", ar: "خامات ورق، عينات ألوان بتلات، وتفاصيل ملموسة." } },
     ],
-    colorPalette: ["#F6EFEA", "#EAC6C6", "#D69085", "#A5AA96", "#6E7F6F"],
+    caseStudy: {
+      context: {
+        en: "This demo project tests how a gentle botanical identity can feel finished across stationery, product packaging, and print touchpoints without becoming ornamental.",
+        ar: "يختبر هذا المشروع التجريبي كيف يمكن لهوية نباتية هادئة أن تبدو مكتملة عبر القرطاسية، التغليف، ونقاط التلامس المطبوعة دون أن تصبح زخرفية.",
+      },
+      direction: {
+        en: "The visual language centers on pressed-paper edges, a soft monogram, herbarium-inspired layouts, and a calm relationship between blush and sage.",
+        ar: "ترتكز اللغة البصرية على حواف الورق المضغوط، مونوغرام ناعم، تخطيطات مستوحاة من الأعشاب، وعلاقة هادئة بين الوردي والأخضر.",
+      },
+      applications: [
+        { en: "Embossed stationery and envelope suite", ar: "قرطاسية ومغلفات بتفاصيل بارزة" },
+        { en: "Gift wrap, sleeve labels, and hang tags", ar: "ورق تغليف، ملصقات، وبطاقات تعليق" },
+        { en: "Mini print catalog and care cards", ar: "كتالوج مطبوع صغير وبطاقات عناية" },
+        { en: "Launch social templates with botanical crop details", ar: "قوالب إطلاق للتواصل مع تفاصيل نباتية مقربة" },
+      ],
+      replacementNote: {
+        en: "Replace with Nour's real brand identity work, production photography, client context, and final files when available.",
+        ar: "يستبدل لاحقاً بعمل هوية حقيقي لنور، صور إنتاج، سياق العميل، والملفات النهائية عند توفرها.",
+      },
+    },
+    colorPalette: ["#F7EFE9", "#E9C7C6", "#C97F7A", "#A9B39B", "#5D715F"],
     typography: {
       display: "Bodoni Moda",
       body: "Manrope",
     },
     quote: {
-      en: "A delicate identity that lets the material do part of the speaking.",
-      ar: "هوية رقيقة تسمح للمادة أن تتحدث جزئياً.",
+      en: "A botanical identity where the paper, not decoration, carries the softness.",
+      ar: "هوية نباتية تحمل نعومتها من الورق لا من الزخرفة.",
     },
   },
   {
     title: "AURORA",
     slug: "aurora",
     year: "2026",
-    category: "creativeDirection",
+    category: "packaging",
+    projectType: {
+      en: "Luxury Skincare Packaging",
+      ar: "تغليف عناية فاخرة",
+    },
     shortDescription: {
-      en: "Art direction for a calm campaign system with warm editorial pacing.",
-      ar: "توجيه فني لنظام حملة هادئ بإيقاع تحريري دافئ.",
+      en: "A skincare packaging system with glass jars, refill cartons, ritual cards, and a soft launch campaign.",
+      ar: "نظام تغليف للعناية بالبشرة مع عبوات زجاجية، علب إعادة تعبئة، بطاقات طقوس، وحملة إطلاق ناعمة.",
     },
     fullDescription: {
-      en: "AURORA frames soft product moments through layered paper, delicate marks, and a balanced relationship between blush light and grounded green.",
-      ar: "يعرض AURORA لحظات منتج ناعمة عبر الورق المتراكب، العلامات الدقيقة، وعلاقة متوازنة بين الضوء الوردي والأخضر الهادئ.",
+      en: "AURORA is a fictional skincare packaging concept designed to evaluate luxury product storytelling. It pairs frosted glass, refill sleeves, quiet gradients of rose and mineral green, and editorial product cards for a calm morning-routine brand world.",
+      ar: "AURORA هو مفهوم تغليف تجريبي للعناية بالبشرة صمم لاختبار سرد المنتجات الفاخرة. يجمع بين الزجاج المعتّم، أغلفة إعادة التعبئة، درجات وردية وخضراء معدنية هادئة، وبطاقات منتج تحريرية لعالم صباحي رقيق.",
     },
-    services: ["creativeDirection", "graphicDesign", "socialMediaDesign"],
-    credits: {
-      en: "Temporary concept content and art direction placeholder.",
-      ar: "محتوى مفاهيمي مؤقت واتجاه فني بديل.",
+    services: ["packagingDesign", "creativeDirection", "printDesign"],
+    credits: demoCredits,
+    coverImage: {
+      variant: "aurora",
+      scene: "packaging",
+      alt: {
+        en: "AURORA cover with skincare carton, jar seal, and refill packaging.",
+        ar: "غلاف AURORA مع علبة عناية، ختم عبوة، وتغليف إعادة تعبئة.",
+      },
     },
     heroImage: {
       variant: "aurora",
+      scene: "hero",
       alt: {
-        en: "Layered campaign boards with rose paper and soft shadows.",
-        ar: "ألواح حملة متراكبة بورق وردي وظلال ناعمة.",
+        en: "AURORA luxury skincare hero mockup with cartons, label cards, and glass forms.",
+        ar: "مشهد AURORA الرئيسي بتغليف عناية فاخر، بطاقات ملصقات، وأشكال زجاجية.",
       },
     },
     gallery: [
-      { variant: "flora", alt: { en: "Botanical launch visual.", ar: "مرئية إطلاق نباتية." } },
-      { variant: "luna", alt: { en: "Social layout sequence.", ar: "تسلسل تخطيطات للتواصل." } },
-      { variant: "materials", alt: { en: "Material palette study.", ar: "دراسة لوحة المواد." } },
+      { variant: "aurora", scene: "packaging", alt: { en: "Serum carton, jar label, and refill sleeve system.", ar: "علبة سيروم، ملصق عبوة، ونظام أغلفة إعادة التعبئة." } },
+      { variant: "aurora", scene: "editorial", alt: { en: "Ingredient story cards and product education spread.", ar: "بطاقات قصة المكونات وصفحة تعريف بالمنتج." } },
+      { variant: "aurora", scene: "social", alt: { en: "Soft ritual social launch grid.", ar: "شبكة إطلاق اجتماعية بطابع طقوس ناعم." } },
+      { variant: "aurora", scene: "materials", alt: { en: "Frosted glass, label stock, and carton color study.", ar: "زجاج معتّم، خامة ملصق، ودراسة ألوان العلب." } },
     ],
-    colorPalette: ["#F7F0EA", "#D99A96", "#C9B8A2", "#A9B29D", "#4E574A"],
-    typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
-    },
-  },
-  {
-    title: "ELYSIAN",
-    slug: "elysian",
-    year: "2025",
-    category: "editorial",
-    shortDescription: {
-      en: "A publication concept balancing generous type, image rhythm, and paper tone.",
-      ar: "مفهوم منشور يوازن بين الخط الواسع، إيقاع الصورة، ونبرة الورق.",
-    },
-    fullDescription: {
-      en: "ELYSIAN is a placeholder editorial system for calm spreads, considered captions, and print layouts that hold a story without visual noise.",
-      ar: "ELYSIAN نظام تحريري مؤقت لصفحات هادئة، تعليقات مدروسة، وتخطيطات مطبوعة تحمل القصة دون ضجيج بصري.",
-    },
-    services: ["editorialDesign", "printDesign", "graphicDesign"],
-    credits: {
-      en: "Temporary concept content and art direction placeholder.",
-      ar: "محتوى مفاهيمي مؤقت واتجاه فني بديل.",
-    },
-    heroImage: {
-      variant: "elysian",
-      alt: {
-        en: "Open editorial spreads with botanical detail.",
-        ar: "صفحات تحريرية مفتوحة مع تفصيل نباتي.",
+    caseStudy: {
+      context: {
+        en: "The demo case study explores a premium product system that needs to feel quiet, clean, and tactile across small packaging surfaces.",
+        ar: "تستكشف دراسة الحالة التجريبية نظام منتج فاخر يحتاج أن يبدو هادئاً، نظيفاً، وملموساً عبر مساحات تغليف صغيرة.",
+      },
+      direction: {
+        en: "The direction uses pale rose light, mineral green, fine product rules, and a jar seal that can scale from packaging to campaign layouts.",
+        ar: "يستخدم الاتجاه ضوءاً وردياً شاحباً، أخضر معدنياً، خطوط منتج دقيقة، وختم عبوة يمكن توسيعه من التغليف إلى تخطيطات الحملة.",
+      },
+      applications: [
+        { en: "Primary carton, refill sleeve, and jar label", ar: "علبة رئيسية، غلاف إعادة تعبئة، وملصق عبوة" },
+        { en: "Ingredient education cards", ar: "بطاقات تعريف بالمكونات" },
+        { en: "Launch campaign story panels", ar: "لوحات سرد لحملة الإطلاق" },
+        { en: "Social templates for routine and product pairings", ar: "قوالب اجتماعية للروتين وتركيبات المنتج" },
+      ],
+      replacementNote: {
+        en: "Replace with real packaging dielines, photography, formulation notes, and vendor specifications later.",
+        ar: "يستبدل لاحقاً بقوالب تغليف حقيقية، تصوير، ملاحظات تركيبة، ومواصفات الموردين.",
       },
     },
-    gallery: [
-      { variant: "archive", alt: { en: "Archive publication stack.", ar: "مجموعة منشورات أرشيفية." } },
-      { variant: "studio", alt: { en: "Editorial layout samples.", ar: "عينات تخطيط تحريري." } },
-      { variant: "kinfolk", alt: { en: "Campaign booklet concept.", ar: "مفهوم كتيب حملة." } },
-    ],
-    colorPalette: ["#FAF7F1", "#D7C4AF", "#D3A3A1", "#949C83", "#35362F"],
+    colorPalette: ["#FAF1ED", "#E7B8B9", "#D58A81", "#B8C0A9", "#516254"],
     typography: {
       display: "Bodoni Moda",
       body: "Manrope",
     },
     quote: {
-      en: "The page is treated as a pause, not a container.",
-      ar: "تتعامل الصفحة كوقفة، لا كحاوية فقط.",
+      en: "A skincare world built from restraint, surface, and a sense of morning light.",
+      ar: "عالم عناية مبني من الهدوء، السطح، وإحساس ضوء الصباح.",
     },
   },
   {
-    title: "NUDE",
-    slug: "nude",
-    year: "2025",
-    category: "packaging",
+    title: "ELYSIAN",
+    slug: "elysian",
+    year: "2026",
+    category: "editorial",
+    projectType: {
+      en: "Editorial Magazine Design",
+      ar: "تصميم مجلة تحريرية",
+    },
     shortDescription: {
-      en: "A packaging direction shaped around quiet material contrast.",
-      ar: "اتجاه تغليف مبني حول تباين مادي هادئ.",
+      en: "A culture magazine demo with cover systems, feature spreads, column rhythm, and print inserts.",
+      ar: "مفهوم مجلة ثقافية مع أنظمة أغلفة، صفحات مقالات، إيقاع أعمدة، وإدخالات مطبوعة.",
     },
     fullDescription: {
-      en: "NUDE is a placeholder packaging study with sleeve systems, restrained labels, and a muted palette that makes softness feel precise.",
-      ar: "NUDE دراسة تغليف مؤقتة مع أنظمة أغلفة، ملصقات هادئة، ولوحة مكتومة تجعل النعومة دقيقة.",
+      en: "ELYSIAN is a fictional magazine design study for culture, interiors, and slow travel. It tests how Nour's portfolio can present long-form editorial hierarchy with covers, feature openings, pull quotes, and small print inserts.",
+      ar: "ELYSIAN دراسة تصميم مجلة خيالية للثقافة، المساحات الداخلية، والسفر الهادئ. تختبر كيف يمكن لمحفظة نور عرض هرمية تحريرية طويلة مع أغلفة، افتتاحيات مقالات، اقتباسات بارزة، وإدخالات مطبوعة صغيرة.",
     },
-    services: ["packagingDesign", "brandIdentity", "creativeDirection"],
-    credits: {
-      en: "Temporary concept content and art direction placeholder.",
-      ar: "محتوى مفاهيمي مؤقت واتجاه فني بديل.",
+    services: ["editorialDesign", "printDesign", "graphicDesign"],
+    credits: demoCredits,
+    coverImage: {
+      variant: "elysian",
+      scene: "editorial",
+      alt: {
+        en: "ELYSIAN magazine cover and feature spread mockup.",
+        ar: "غلاف مجلة ELYSIAN ونموذج صفحة مقال.",
+      },
     },
     heroImage: {
-      variant: "nude",
+      variant: "elysian",
+      scene: "hero",
       alt: {
-        en: "Minimal packaging forms in blush and paper tones.",
-        ar: "أشكال تغليف بسيطة بدرجات وردية وورقية.",
+        en: "ELYSIAN editorial hero with open spreads, cover boards, and column layouts.",
+        ar: "مشهد ELYSIAN الرئيسي مع صفحات مفتوحة، ألواح أغلفة، وتخطيطات أعمدة.",
       },
     },
     gallery: [
-      { variant: "flora", alt: { en: "Botanical label detail.", ar: "تفصيل ملصق نباتي." } },
-      { variant: "aurora", alt: { en: "Packaging campaign board.", ar: "لوح حملة للتغليف." } },
-      { variant: "materials", alt: { en: "Sleeves and paper texture.", ar: "أغلفة وخامات ورقية." } },
+      { variant: "elysian", scene: "editorial", alt: { en: "Feature spread and table-of-contents layout.", ar: "صفحة مقال وتخطيط فهرس." } },
+      { variant: "elysian", scene: "print", alt: { en: "Printed inserts, subscription cards, and issue belly band.", ar: "إدخالات مطبوعة، بطاقات اشتراك، وشريط عدد." } },
+      { variant: "elysian", scene: "social", alt: { en: "Digital issue announcement and quote templates.", ar: "إعلان عدد رقمي وقوالب اقتباسات." } },
+      { variant: "elysian", scene: "materials", alt: { en: "Paper finish, ink palette, and editorial grid study.", ar: "تشطيب ورقي، لوحة حبر، ودراسة شبكة تحريرية." } },
     ],
-    colorPalette: ["#F4ECE5", "#E0BBB0", "#C88E87", "#B6AA98", "#767765"],
+    caseStudy: {
+      context: {
+        en: "This demo project tests magazine hierarchy at multiple scales: cover, feature, department pages, print inserts, and digital promotion.",
+        ar: "يختبر هذا المشروع التجريبي هرمية المجلة على مقاسات متعددة: الغلاف، المقال، صفحات الأقسام، الإدخالات المطبوعة، والترويج الرقمي.",
+      },
+      direction: {
+        en: "The layout system balances large serif headlines, quiet columns, warm paper, and editorial image windows simulated through locally drawn composition.",
+        ar: "يوازن النظام بين عناوين كبيرة، أعمدة هادئة، ورق دافئ، ونوافذ صور تحريرية مرسومة محلياً.",
+      },
+      applications: [
+        { en: "Issue cover architecture", ar: "بنية أغلفة الأعداد" },
+        { en: "Feature opener and body spread", ar: "افتتاحية مقال وصفحة محتوى" },
+        { en: "Subscription card and printed insert", ar: "بطاقة اشتراك وإدخال مطبوع" },
+        { en: "Digital quote and launch templates", ar: "قوالب اقتباس وإطلاق رقمية" },
+      ],
+      replacementNote: {
+        en: "Replace with real editorial assignments, photography credits, article context, and print specifications.",
+        ar: "يستبدل لاحقاً بمهام تحريرية حقيقية، اعتمادات تصوير، سياق المقالات، ومواصفات الطباعة.",
+      },
+    },
+    colorPalette: ["#F8F4EC", "#DDD2BD", "#C99D94", "#8F987D", "#31342E"],
     typography: {
       display: "Bodoni Moda",
       body: "Manrope",
+    },
+    quote: {
+      en: "A magazine system that treats pacing as carefully as the cover.",
+      ar: "نظام مجلة يتعامل مع الإيقاع بعناية الغلاف نفسها.",
+    },
+  },
+  {
+    title: "KINFOLK CONCEPT",
+    slug: "kinfolk-concept",
+    year: "2025",
+    category: "creativeDirection",
+    projectType: {
+      en: "Lifestyle Campaign",
+      ar: "حملة أسلوب حياة",
+    },
+    shortDescription: {
+      en: "A lifestyle campaign concept with poster pacing, invitation print, social story cards, and tactile campaign packaging.",
+      ar: "مفهوم حملة أسلوب حياة مع إيقاع ملصقات، دعوات مطبوعة، بطاقات قصص اجتماعية، وتغليف حملة ملموس.",
+    },
+    fullDescription: {
+      en: "KINFOLK CONCEPT is a fictional lifestyle campaign created as temporary portfolio content. The art direction explores domestic rituals, print pacing, campaign sleeves, and calm social sequencing without referencing a real commercial client.",
+      ar: "KINFOLK CONCEPT مفهوم حملة أسلوب حياة خيالي صمم كمحتوى مؤقت للمحفظة. يستكشف التوجيه الفني طقوس المكان، إيقاع الطباعة، أغلفة الحملة، وتسلسل اجتماعي هادئ دون الإشارة إلى عميل تجاري حقيقي.",
+    },
+    services: ["creativeDirection", "printDesign", "socialMediaDesign"],
+    credits: demoCredits,
+    coverImage: {
+      variant: "kinfolk",
+      scene: "campaign",
+      alt: {
+        en: "KINFOLK CONCEPT campaign cover with poster, invitation, and sleeve mockups.",
+        ar: "غلاف KINFOLK CONCEPT مع ملصق، دعوة، ونماذج أغلفة.",
+      },
+    },
+    heroImage: {
+      variant: "kinfolk",
+      scene: "hero",
+      alt: {
+        en: "Lifestyle campaign hero with layered print pieces and campaign cards.",
+        ar: "مشهد حملة أسلوب حياة مع قطع مطبوعة متراكبة وبطاقات حملة.",
+      },
+    },
+    gallery: [
+      { variant: "kinfolk", scene: "print", alt: { en: "Campaign poster and invitation print suite.", ar: "ملصق حملة ومجموعة دعوات مطبوعة." } },
+      { variant: "kinfolk", scene: "editorial", alt: { en: "Lookbook opening and feature spread.", ar: "افتتاحية كتيب وصفحة مميزة." } },
+      { variant: "kinfolk", scene: "social", alt: { en: "Story cards and calm launch sequence.", ar: "بطاقات قصص وتسلسل إطلاق هادئ." } },
+      { variant: "kinfolk", scene: "packaging", alt: { en: "Campaign sleeve, printed wrap, and insert cards.", ar: "غلاف حملة، ورق تغليف، وبطاقات إدخال." } },
+    ],
+    caseStudy: {
+      context: {
+        en: "The demo case structure evaluates how campaign design can connect print, lifestyle imagery placeholders, and social rhythm.",
+        ar: "تقيّم بنية الحالة التجريبية كيف يمكن لتصميم الحملة ربط الطباعة، بدائل الصور الحياتية، والإيقاع الاجتماعي.",
+      },
+      direction: {
+        en: "The system uses collected paper, a quiet poster grid, moss-green fields, and soft rose campaign marks for a composed domestic mood.",
+        ar: "يستخدم النظام ورقاً متراكماً، شبكة ملصقات هادئة، مساحات خضراء داكنة، وعلامات وردية ناعمة لمزاج منزلي منسق.",
+      },
+      applications: [
+        { en: "Campaign poster and invitation", ar: "ملصق ودعوة الحملة" },
+        { en: "Lookbook spread and story opener", ar: "صفحة كتيب وافتتاحية قصة" },
+        { en: "Social story sequence", ar: "تسلسل قصص اجتماعية" },
+        { en: "Printed campaign sleeve", ar: "غلاف حملة مطبوع" },
+      ],
+      replacementNote: {
+        en: "Replace with real campaign photography, final copy, channel planning, and launch metrics if needed.",
+        ar: "يستبدل لاحقاً بتصوير حملة حقيقي، نص نهائي، تخطيط قنوات، ومؤشرات إطلاق عند الحاجة.",
+      },
+    },
+    colorPalette: ["#F1EAE1", "#D0BCA4", "#B88A80", "#6E7B62", "#30362E"],
+    typography: {
+      display: "Bodoni Moda",
+      body: "Manrope",
+    },
+    quote: {
+      en: "A campaign world designed to feel collected, not crowded.",
+      ar: "عالم حملة يبدو منسقاً لا مزدحماً.",
     },
   },
   {
@@ -158,71 +295,425 @@ export const projects: Project[] = [
     slug: "luna",
     year: "2025",
     category: "socialMedia",
+    projectType: {
+      en: "Social Media System",
+      ar: "نظام تواصل اجتماعي",
+    },
     shortDescription: {
-      en: "A modular social direction with gentle structure and room for imagery.",
-      ar: "اتجاه اجتماعي مرن ببنية ناعمة ومساحة للصورة.",
+      en: "A social identity system with modular launch posts, story frames, profile graphics, and campaign rhythm.",
+      ar: "نظام هوية اجتماعي مع منشورات إطلاق مرنة، إطارات قصص، رسومات ملف، وإيقاع حملة.",
     },
     fullDescription: {
-      en: "LUNA sets up a social media language with calm templates, clear hierarchy, and small details that keep each post connected without feeling repeated.",
-      ar: "يبني LUNA لغة للتواصل الاجتماعي بقوالب هادئة، تسلسل واضح، وتفاصيل صغيرة تربط كل منشور دون إحساس بالتكرار.",
+      en: "LUNA is a fictional social media system for a soft lifestyle brand. It shows how a visual language can move through feed modules, stories, reels covers, and campaign cards while staying recognizable without copying the same layout.",
+      ar: "LUNA نظام تواصل اجتماعي خيالي لعلامة أسلوب حياة ناعمة. يوضح كيف تنتقل اللغة البصرية عبر وحدات المنشورات، القصص، أغلفة الريلز، وبطاقات الحملة مع الحفاظ على التعرّف دون تكرار التخطيط نفسه.",
     },
     services: ["socialMediaDesign", "graphicDesign", "creativeDirection"],
-    credits: {
-      en: "Temporary concept content and art direction placeholder.",
-      ar: "محتوى مفاهيمي مؤقت واتجاه فني بديل.",
+    credits: demoCredits,
+    coverImage: {
+      variant: "luna",
+      scene: "social",
+      alt: {
+        en: "LUNA cover showing a modular social grid and story templates.",
+        ar: "غلاف LUNA يعرض شبكة اجتماعية مرنة وقوالب قصص.",
+      },
     },
     heroImage: {
       variant: "luna",
+      scene: "hero",
       alt: {
-        en: "Social media grid concept with blush and sage modules.",
-        ar: "مفهوم شبكة تواصل بدرجات وردية ومريمية.",
+        en: "LUNA hero with social media modules, profile cards, and campaign tiles.",
+        ar: "مشهد LUNA الرئيسي مع وحدات تواصل، بطاقات ملف، وبلاطات حملة.",
       },
     },
     gallery: [
-      { variant: "studio", alt: { en: "Content system boards.", ar: "ألواح نظام المحتوى." } },
-      { variant: "aurora", alt: { en: "Campaign preview frames.", ar: "إطارات معاينة الحملة." } },
-      { variant: "archive", alt: { en: "Template archive.", ar: "أرشيف القوالب." } },
+      { variant: "luna", scene: "social", alt: { en: "Feed grid, story templates, and reel cover system.", ar: "شبكة منشورات، قوالب قصص، ونظام أغلفة ريلز." } },
+      { variant: "luna", scene: "campaign", alt: { en: "Launch campaign cards and seasonal content set.", ar: "بطاقات حملة إطلاق ومجموعة محتوى موسمية." } },
+      { variant: "luna", scene: "editorial", alt: { en: "Content guide spread with hierarchy and caption rules.", ar: "صفحة دليل محتوى مع هرمية وقواعد تعليقات." } },
+      { variant: "luna", scene: "materials", alt: { en: "Template library and visual asset tokens.", ar: "مكتبة قوالب ورموز أصول بصرية." } },
     ],
-    colorPalette: ["#F8F1EC", "#D8A5A0", "#BFC6B3", "#87937E", "#44453E"],
+    caseStudy: {
+      context: {
+        en: "This demo project tests a social system that can stay flexible across formats while preserving a recognizable visual rhythm.",
+        ar: "يختبر هذا المشروع التجريبي نظاماً اجتماعياً مرناً عبر الصيغ مع الحفاظ على إيقاع بصري واضح.",
+      },
+      direction: {
+        en: "The system is built from soft modules, profile seals, large quiet fields, and a feed grid that shifts proportion instead of repeating one template.",
+        ar: "يبنى النظام من وحدات ناعمة، أختام ملف، مساحات هادئة كبيرة، وشبكة منشورات تغيّر النسب بدلاً من تكرار قالب واحد.",
+      },
+      applications: [
+        { en: "Feed post and carousel templates", ar: "قوالب منشورات وسلاسل" },
+        { en: "Story frames and highlight covers", ar: "إطارات قصص وأغلفة هايلايت" },
+        { en: "Profile graphics and reel covers", ar: "رسومات ملف وأغلفة ريلز" },
+        { en: "Launch campaign grid", ar: "شبكة حملة إطلاق" },
+      ],
+      replacementNote: {
+        en: "Replace with real content pillars, captions, platform specs, and final social assets.",
+        ar: "يستبدل لاحقاً بمحاور محتوى حقيقية، تعليقات، مواصفات المنصات، وأصول اجتماعية نهائية.",
+      },
+    },
+    colorPalette: ["#F8F0EA", "#E0A8A2", "#C6D0BD", "#7D8C75", "#3F443C"],
     typography: {
       display: "Bodoni Moda",
       body: "Manrope",
+    },
+    quote: {
+      en: "A social system with enough structure to feel branded and enough air to stay alive.",
+      ar: "نظام اجتماعي يملك بنية تكفي للتميّز وهواءً يكفي للحياة.",
     },
   },
   {
-    title: "KINFOLK CONCEPT",
-    slug: "kinfolk-concept",
-    year: "2024",
-    category: "print",
+    title: "ATELIER",
+    slug: "atelier",
+    year: "2025",
+    category: "branding",
+    projectType: {
+      en: "Fashion Identity",
+      ar: "هوية أزياء",
+    },
     shortDescription: {
-      en: "A campaign print concept using layered objects, calm type, and editorial pacing.",
-      ar: "مفهوم حملة مطبوعة يستخدم عناصر متراكبة، خطاً هادئاً، وإيقاعاً تحريرياً.",
+      en: "A fashion identity demo with garment tags, lookbook spreads, invitation cards, and boutique packaging.",
+      ar: "مفهوم هوية أزياء مع بطاقات ملابس، صفحات لوك بوك، دعوات، وتغليف بوتيك.",
     },
     fullDescription: {
-      en: "KINFOLK CONCEPT is a temporary campaign study for tactile print pieces, simple sequencing, and a visual system that feels collected rather than crowded.",
-      ar: "KINFOLK CONCEPT دراسة حملة مؤقتة لقطع مطبوعة ملموسة، تسلسل بسيط، ونظام بصري يبدو منسقاً لا مزدحماً.",
+      en: "ATELIER is a fictional fashion identity created to make the portfolio feel complete without claiming real client work. The system uses garment labels, soft charcoal, blush tissue, and disciplined lookbook layouts for a quiet boutique world.",
+      ar: "ATELIER هو مفهوم هوية أزياء خيالي صمم ليجعل المحفظة مكتملة دون ادعاء عمل عميل حقيقي. يستخدم النظام بطاقات الملابس، فحماً ناعماً، مناديل وردية، وتخطيطات لوك بوك منضبطة لعالم بوتيك هادئ.",
     },
-    services: ["printDesign", "editorialDesign", "creativeDirection"],
-    credits: {
-      en: "Temporary concept content and art direction placeholder.",
-      ar: "محتوى مفاهيمي مؤقت واتجاه فني بديل.",
+    services: ["brandIdentity", "creativeDirection", "printDesign"],
+    credits: demoCredits,
+    coverImage: {
+      variant: "atelier",
+      scene: "stationery",
+      alt: {
+        en: "ATELIER cover with garment tags, boutique cards, and tissue wrap.",
+        ar: "غلاف ATELIER مع بطاقات ملابس، بطاقات بوتيك، وورق تغليف.",
+      },
     },
     heroImage: {
-      variant: "kinfolk",
+      variant: "atelier",
+      scene: "hero",
       alt: {
-        en: "Editorial campaign materials arranged with soft light.",
-        ar: "مواد حملة تحريرية مرتبة بضوء ناعم.",
+        en: "ATELIER hero with fashion identity cards, lookbook, tags, and packaging.",
+        ar: "مشهد ATELIER الرئيسي مع بطاقات هوية أزياء، لوك بوك، علامات، وتغليف.",
       },
     },
     gallery: [
-      { variant: "elysian", alt: { en: "Printed story spreads.", ar: "صفحات قصة مطبوعة." } },
-      { variant: "materials", alt: { en: "Paper and binding detail.", ar: "تفصيل الورق والتجليد." } },
-      { variant: "nude", alt: { en: "Campaign package sleeve.", ar: "غلاف حزمة الحملة." } },
+      { variant: "atelier", scene: "stationery", alt: { en: "Garment tags, appointment cards, and boutique stationery.", ar: "بطاقات ملابس، بطاقات مواعيد، وقرطاسية بوتيك." } },
+      { variant: "atelier", scene: "editorial", alt: { en: "Lookbook spread and collection notes.", ar: "صفحة لوك بوك وملاحظات مجموعة." } },
+      { variant: "atelier", scene: "packaging", alt: { en: "Tissue wrap, garment sleeve, and receipt folder.", ar: "ورق تغليف، غلاف ملابس، وملف إيصال." } },
+      { variant: "atelier", scene: "social", alt: { en: "Collection launch social cards.", ar: "بطاقات اجتماعية لإطلاق المجموعة." } },
     ],
-    colorPalette: ["#F3ECE4", "#D1BCA5", "#B88E86", "#7C896F", "#2F332C"],
+    caseStudy: {
+      context: {
+        en: "This demo project tests a fashion identity that needs to feel tactile, precise, and editorial across small branded objects.",
+        ar: "يختبر هذا المشروع التجريبي هوية أزياء تحتاج أن تبدو ملموسة، دقيقة، وتحريرية عبر أشياء صغيرة تحمل العلامة.",
+      },
+      direction: {
+        en: "The direction contrasts charcoal garment marks with rose tissue, fine label rules, and restrained lookbook spreads.",
+        ar: "يقارن الاتجاه بين علامات ملابس فحمية وورق وردي، خطوط ملصقات دقيقة، وصفحات لوك بوك هادئة.",
+      },
+      applications: [
+        { en: "Garment label and hang tag suite", ar: "ملصق ملابس ومجموعة بطاقات تعليق" },
+        { en: "Lookbook spread and collection invitation", ar: "صفحة لوك بوك ودعوة مجموعة" },
+        { en: "Boutique wrap and sleeve packaging", ar: "تغليف بوتيك وغلاف ملابس" },
+        { en: "Collection social launch set", ar: "مجموعة إطلاق اجتماعية للمجموعة" },
+      ],
+      replacementNote: {
+        en: "Replace with real collection imagery, garment photography, sizing details, and boutique production specs.",
+        ar: "يستبدل لاحقاً بصور مجموعة حقيقية، تصوير ملابس، تفاصيل مقاسات، ومواصفات إنتاج بوتيك.",
+      },
+    },
+    colorPalette: ["#F4ECE9", "#DAB4B1", "#9F6865", "#596153", "#24251F"],
     typography: {
       display: "Bodoni Moda",
       body: "Manrope",
+    },
+    quote: {
+      en: "A fashion identity that behaves like a garment detail, quiet until it is close.",
+      ar: "هوية أزياء تتصرف كتفصيل في الثوب، هادئة حتى تقترب.",
+    },
+  },
+  {
+    title: "MONOLITH",
+    slug: "monolith",
+    year: "2025",
+    category: "branding",
+    projectType: {
+      en: "Architectural Branding",
+      ar: "هوية معمارية",
+    },
+    shortDescription: {
+      en: "An architectural identity with facade signage, planning documents, wayfinding cards, and presentation boards.",
+      ar: "هوية معمارية مع لافتات واجهات، وثائق تخطيط، بطاقات إرشاد، وألواح عرض.",
+    },
+    fullDescription: {
+      en: "MONOLITH is a fictional architecture studio identity. It brings a more grounded visual voice into the portfolio through stone-toned paper, precise signage, project folders, and presentation boards for built-environment work.",
+      ar: "MONOLITH هو مفهوم هوية خيالي لاستوديو معماري. يضيف صوتاً بصرياً أكثر ثباتاً إلى المحفظة عبر ورق بدرجات حجرية، لافتات دقيقة، ملفات مشاريع، وألواح عرض لأعمال البيئة المبنية.",
+    },
+    services: ["brandIdentity", "graphicDesign", "printDesign"],
+    credits: demoCredits,
+    coverImage: {
+      variant: "monolith",
+      scene: "signage",
+      alt: {
+        en: "MONOLITH cover with architectural signage, folder, and grid boards.",
+        ar: "غلاف MONOLITH مع لافتة معمارية، ملف، وألواح شبكية.",
+      },
+    },
+    heroImage: {
+      variant: "monolith",
+      scene: "hero",
+      alt: {
+        en: "MONOLITH architectural branding hero with signage panels and presentation documents.",
+        ar: "مشهد MONOLITH الرئيسي مع لوحات لافتات ووثائق عرض.",
+      },
+    },
+    gallery: [
+      { variant: "monolith", scene: "signage", alt: { en: "Facade signage, wayfinding plate, and grid system.", ar: "لافتة واجهة، لوحة إرشاد، ونظام شبكة." } },
+      { variant: "monolith", scene: "print", alt: { en: "Project folder, specification sheet, and presentation board.", ar: "ملف مشروع، ورقة مواصفات، ولوحة عرض." } },
+      { variant: "monolith", scene: "editorial", alt: { en: "Architecture profile spread and project index.", ar: "صفحة ملف معماري وفهرس مشروع." } },
+      { variant: "monolith", scene: "materials", alt: { en: "Stone paper, graphite ink, and signage material study.", ar: "ورق حجري، حبر جرافيتي، ودراسة خامات لافتات." } },
+    ],
+    caseStudy: {
+      context: {
+        en: "The demo case studies how a graphic identity can support architectural precision without becoming cold or corporate.",
+        ar: "تدرس الحالة التجريبية كيف يمكن لهوية جرافيكية دعم الدقة المعمارية دون أن تصبح باردة أو مؤسسية.",
+      },
+      direction: {
+        en: "The system uses slab-like fields, measured rules, architectural grids, and a muted stone palette balanced by soft paper warmth.",
+        ar: "يستخدم النظام مساحات تشبه الكتل، خطوطاً مقاسة، شبكات معمارية، ولوحة حجرية مكتومة متوازنة مع دفء الورق.",
+      },
+      applications: [
+        { en: "Facade sign and wayfinding plate", ar: "لافتة واجهة ولوحة إرشاد" },
+        { en: "Project folder and specification sheet", ar: "ملف مشروع وورقة مواصفات" },
+        { en: "Presentation board system", ar: "نظام ألواح عرض" },
+        { en: "Studio profile spread", ar: "صفحة ملف الاستوديو" },
+      ],
+      replacementNote: {
+        en: "Replace with real architectural project photography, signage vendors, floor plans, and studio messaging.",
+        ar: "يستبدل لاحقاً بتصوير مشاريع معمارية حقيقي، موردي لافتات، مخططات، ورسائل الاستوديو.",
+      },
+    },
+    colorPalette: ["#EFEAE2", "#C7BBAA", "#A0746D", "#6B7466", "#2C302A"],
+    typography: {
+      display: "Bodoni Moda",
+      body: "Manrope",
+    },
+    quote: {
+      en: "A grounded identity where rules, paper, and signage carry the architecture.",
+      ar: "هوية ثابتة تحمل فيها الخطوط، الورق، واللافتات روح العمارة.",
+    },
+  },
+  {
+    title: "SORA",
+    slug: "sora",
+    year: "2024",
+    category: "branding",
+    projectType: {
+      en: "Cafe Branding",
+      ar: "هوية مقهى",
+    },
+    shortDescription: {
+      en: "A cafe identity with menu design, coffee bag labels, takeaway packaging, loyalty cards, and social launch pieces.",
+      ar: "هوية مقهى مع تصميم قائمة، ملصقات أكياس قهوة، تغليف طلبات خارجية، بطاقات ولاء، وقطع إطلاق اجتماعية.",
+    },
+    fullDescription: {
+      en: "SORA is a fictional cafe brand concept made to test hospitality touchpoints inside the portfolio. It combines soft morning colors, menu hierarchy, coffee packaging, loyalty print, and a warm social launch system.",
+      ar: "SORA مفهوم هوية مقهى خيالي صمم لاختبار نقاط ضيافة داخل المحفظة. يجمع بين ألوان صباحية ناعمة، هرمية قائمة، تغليف قهوة، مطبوعات ولاء، ونظام إطلاق اجتماعي دافئ.",
+    },
+    services: ["brandIdentity", "packagingDesign", "socialMediaDesign"],
+    credits: demoCredits,
+    coverImage: {
+      variant: "sora",
+      scene: "packaging",
+      alt: {
+        en: "SORA cafe cover with coffee bag, menu card, and takeaway label.",
+        ar: "غلاف SORA مع كيس قهوة، بطاقة قائمة، وملصق طلبات خارجية.",
+      },
+    },
+    heroImage: {
+      variant: "sora",
+      scene: "hero",
+      alt: {
+        en: "SORA cafe branding hero with menu, packaging, loyalty card, and social tile.",
+        ar: "مشهد SORA الرئيسي مع قائمة، تغليف، بطاقة ولاء، وبلاطة اجتماعية.",
+      },
+    },
+    gallery: [
+      { variant: "sora", scene: "packaging", alt: { en: "Coffee bag label, cup sleeve, and takeaway seal.", ar: "ملصق كيس قهوة، غلاف كوب، وختم طلب خارجي." } },
+      { variant: "sora", scene: "print", alt: { en: "Menu card, loyalty stamp card, and receipt folder.", ar: "بطاقة قائمة، بطاقة ولاء، وملف إيصال." } },
+      { variant: "sora", scene: "social", alt: { en: "Cafe opening announcement and seasonal social grid.", ar: "إعلان افتتاح مقهى وشبكة اجتماعية موسمية." } },
+      { variant: "sora", scene: "materials", alt: { en: "Label stock, cup paper, and warm color swatches.", ar: "خامة ملصق، ورق كوب، وعينات ألوان دافئة." } },
+    ],
+    caseStudy: {
+      context: {
+        en: "This demo project tests a hospitality brand system that has to work quickly across menu, packaging, and social details.",
+        ar: "يختبر هذا المشروع التجريبي نظام علامة ضيافة يجب أن يعمل بسرعة عبر القائمة، التغليف، والتفاصيل الاجتماعية.",
+      },
+      direction: {
+        en: "The identity uses a soft cafe seal, warm printed labels, clear menu rhythm, and small repeatable marks for daily use.",
+        ar: "تستخدم الهوية ختم مقهى ناعماً، ملصقات مطبوعة دافئة، إيقاع قائمة واضح، وعلامات صغيرة قابلة للتكرار للاستخدام اليومي.",
+      },
+      applications: [
+        { en: "Menu and loyalty print suite", ar: "قائمة ومجموعة مطبوعات ولاء" },
+        { en: "Coffee bag and cup sleeve packaging", ar: "تغليف أكياس قهوة وأغلفة أكواب" },
+        { en: "Takeaway sticker and receipt card", ar: "ملصق طلب خارجي وبطاقة إيصال" },
+        { en: "Opening social system", ar: "نظام اجتماعي للافتتاح" },
+      ],
+      replacementNote: {
+        en: "Replace with real cafe photography, menu items, packaging suppliers, and launch dates.",
+        ar: "يستبدل لاحقاً بتصوير مقهى حقيقي، عناصر قائمة، موردي تغليف، وتواريخ إطلاق.",
+      },
+    },
+    colorPalette: ["#F5ECE4", "#DDB59F", "#B77768", "#9DA98B", "#4C5948"],
+    typography: {
+      display: "Bodoni Moda",
+      body: "Manrope",
+    },
+    quote: {
+      en: "A cafe identity that feels calm before the first cup is poured.",
+      ar: "هوية مقهى تبدو هادئة قبل صب أول كوب.",
+    },
+  },
+  {
+    title: "FORMA",
+    slug: "forma",
+    year: "2024",
+    category: "branding",
+    projectType: {
+      en: "Furniture Identity",
+      ar: "هوية أثاث",
+    },
+    shortDescription: {
+      en: "A furniture identity with product cards, material swatches, assembly notes, and catalog spreads.",
+      ar: "هوية أثاث مع بطاقات منتج، عينات مواد، ملاحظات تركيب، وصفحات كتالوج.",
+    },
+    fullDescription: {
+      en: "FORMA is a fictional furniture identity for quiet modular objects. It gives the portfolio a more product-led case study through material cards, catalog systems, assembly inserts, and restrained social layouts.",
+      ar: "FORMA مفهوم هوية أثاث خيالي لقطع معيارية هادئة. يضيف للمحفظة دراسة حالة موجهة بالمنتج عبر بطاقات مواد، أنظمة كتالوج، إدخالات تركيب، وتخطيطات اجتماعية هادئة.",
+    },
+    services: ["brandIdentity", "editorialDesign", "printDesign"],
+    credits: demoCredits,
+    coverImage: {
+      variant: "forma",
+      scene: "materials",
+      alt: {
+        en: "FORMA cover with furniture material cards, catalog page, and object label.",
+        ar: "غلاف FORMA مع بطاقات مواد أثاث، صفحة كتالوج، وملصق قطعة.",
+      },
+    },
+    heroImage: {
+      variant: "forma",
+      scene: "hero",
+      alt: {
+        en: "FORMA furniture identity hero with material swatches, catalog layouts, and product cards.",
+        ar: "مشهد FORMA الرئيسي مع عينات مواد، تخطيطات كتالوج، وبطاقات منتج.",
+      },
+    },
+    gallery: [
+      { variant: "forma", scene: "materials", alt: { en: "Wood, textile, and finish swatch cards.", ar: "بطاقات عينات خشب، قماش، وتشطيبات." } },
+      { variant: "forma", scene: "editorial", alt: { en: "Furniture catalog spread and product index.", ar: "صفحة كتالوج أثاث وفهرس منتجات." } },
+      { variant: "forma", scene: "print", alt: { en: "Assembly note, care card, and product certificate.", ar: "ملاحظة تركيب، بطاقة عناية، وشهادة منتج." } },
+      { variant: "forma", scene: "social", alt: { en: "Product launch social cards and room-detail crop system.", ar: "بطاقات إطلاق منتج ونظام لقطات تفاصيل غرفة." } },
+    ],
+    caseStudy: {
+      context: {
+        en: "This demo project explores a furniture identity that needs to translate material, proportion, and product information clearly.",
+        ar: "يستكشف هذا المشروع التجريبي هوية أثاث تحتاج إلى ترجمة المادة، النسبة، ومعلومات المنتج بوضوح.",
+      },
+      direction: {
+        en: "The direction uses warm neutral stock, modular product cards, material swatch geometry, and a calm catalog grid.",
+        ar: "يستخدم الاتجاه ورقاً دافئاً، بطاقات منتج معيارية، هندسة عينات مواد، وشبكة كتالوج هادئة.",
+      },
+      applications: [
+        { en: "Product card and material swatches", ar: "بطاقة منتج وعينات مواد" },
+        { en: "Catalog spread and index", ar: "صفحة كتالوج وفهرس" },
+        { en: "Assembly and care inserts", ar: "إدخالات تركيب وعناية" },
+        { en: "Launch social templates", ar: "قوالب إطلاق اجتماعية" },
+      ],
+      replacementNote: {
+        en: "Replace with real product photography, dimensions, materials, and production documentation.",
+        ar: "يستبدل لاحقاً بتصوير منتجات حقيقي، أبعاد، مواد، ووثائق إنتاج.",
+      },
+    },
+    colorPalette: ["#F3EDE5", "#D1BCA6", "#B98276", "#87927A", "#343832"],
+    typography: {
+      display: "Bodoni Moda",
+      body: "Manrope",
+    },
+    quote: {
+      en: "A furniture system where material samples become the identity language.",
+      ar: "نظام أثاث تتحول فيه عينات المادة إلى لغة الهوية.",
+    },
+  },
+  {
+    title: "NOMA",
+    slug: "noma",
+    year: "2024",
+    category: "packaging",
+    projectType: {
+      en: "Artisan Packaging",
+      ar: "تغليف حرفي",
+    },
+    shortDescription: {
+      en: "An artisan packaging demo with jar labels, batch cards, wrap paper, shelf tags, and gift cartons.",
+      ar: "مفهوم تغليف حرفي مع ملصقات عبوات، بطاقات دفعات، ورق تغليف، بطاقات رف، وعلب هدايا.",
+    },
+    fullDescription: {
+      en: "NOMA is a fictional artisan packaging concept for small-batch pantry goods. It tests label hierarchy, batch numbering, gift cartons, shelf presence, and printed wrap without using any real commercial product claim.",
+      ar: "NOMA مفهوم تغليف حرفي خيالي لمنتجات مخزن صغيرة الدفعات. يختبر هرمية الملصقات، ترقيم الدفعات، علب الهدايا، الحضور على الرف، وورق التغليف دون أي ادعاء تجاري حقيقي.",
+    },
+    services: ["packagingDesign", "brandIdentity", "printDesign"],
+    credits: demoCredits,
+    coverImage: {
+      variant: "noma",
+      scene: "packaging",
+      alt: {
+        en: "NOMA cover with jar label, batch card, carton, and wrap paper.",
+        ar: "غلاف NOMA مع ملصق عبوة، بطاقة دفعة، علبة، وورق تغليف.",
+      },
+    },
+    heroImage: {
+      variant: "noma",
+      scene: "hero",
+      alt: {
+        en: "NOMA artisan packaging hero with jar labels, cartons, batch cards, and printed wrap.",
+        ar: "مشهد NOMA الرئيسي مع ملصقات عبوات، علب، بطاقات دفعات، وورق مطبوع.",
+      },
+    },
+    gallery: [
+      { variant: "noma", scene: "packaging", alt: { en: "Jar label, batch card, and gift carton packaging.", ar: "ملصق عبوة، بطاقة دفعة، وتغليف علبة هدية." } },
+      { variant: "noma", scene: "print", alt: { en: "Shelf tag, receipt card, and tasting note insert.", ar: "بطاقة رف، بطاقة إيصال، وإدخال ملاحظات تذوق." } },
+      { variant: "noma", scene: "materials", alt: { en: "Kraft paper, label stock, and seal color study.", ar: "ورق كرافت، خامة ملصق، ودراسة لون ختم." } },
+      { variant: "noma", scene: "social", alt: { en: "Small-batch launch posts and pantry story cards.", ar: "منشورات إطلاق دفعات صغيرة وبطاقات قصة مخزن." } },
+    ],
+    caseStudy: {
+      context: {
+        en: "The demo case explores packaging for small-batch goods, where label hierarchy and tactile trust matter more than loud shelf graphics.",
+        ar: "تستكشف الحالة التجريبية تغليف منتجات صغيرة الدفعات، حيث تهم هرمية الملصق والثقة الملموسة أكثر من الرسومات الصاخبة على الرف.",
+      },
+      direction: {
+        en: "The identity uses batch labels, muted clay, olive ink, wrap-paper rhythm, and small seals that make the packaging feel handled.",
+        ar: "تستخدم الهوية ملصقات دفعات، لون طين مكتوم، حبر زيتوني، إيقاع ورق تغليف، وأختاماً صغيرة تجعل التغليف محسوساً.",
+      },
+      applications: [
+        { en: "Jar label and batch numbering", ar: "ملصق عبوة وترقيم دفعات" },
+        { en: "Gift carton and printed wrap", ar: "علبة هدية وورق تغليف مطبوع" },
+        { en: "Shelf tag and tasting card", ar: "بطاقة رف وبطاقة تذوق" },
+        { en: "Small-batch social launch set", ar: "مجموعة إطلاق اجتماعية للدفعات الصغيرة" },
+      ],
+      replacementNote: {
+        en: "Replace with real product names, regulatory copy, photography, dielines, and supplier specs.",
+        ar: "يستبدل لاحقاً بأسماء منتجات حقيقية، نصوص تنظيمية، تصوير، قوالب قص، ومواصفات الموردين.",
+      },
+    },
+    colorPalette: ["#F2E7DC", "#CFAF96", "#B36F62", "#718066", "#2F342D"],
+    typography: {
+      display: "Bodoni Moda",
+      body: "Manrope",
+    },
+    quote: {
+      en: "A packaging system that makes small-batch production feel careful and collected.",
+      ar: "نظام تغليف يجعل الإنتاج الصغير يبدو دقيقاً ومنسقاً.",
     },
   },
 ];

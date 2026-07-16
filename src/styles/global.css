@@ -207,7 +207,7 @@ a {
 }
 
 [data-reveal] {
-  opacity: 0;
+  opacity: 0.96;
   transform: translateY(28px);
   transition:
     opacity var(--duration-cinematic) var(--ease-out),
@@ -220,7 +220,7 @@ a {
 }
 
 [data-reveal] :is(h1, h2) {
-  clip-path: inset(0 0 100% 0);
+  clip-path: inset(0 0 0 0);
   transform: translateY(24px);
   transition:
     clip-path 1240ms var(--ease-out),
@@ -242,7 +242,7 @@ a {
 [data-reveal] .process-stage,
 [data-reveal] .story-details div,
 [data-reveal] .archive-strip a {
-  opacity: 0;
+  opacity: 0.9;
   transform: translateY(22px);
   transition:
     opacity 960ms var(--ease-out),
@@ -1147,13 +1147,13 @@ html[dir="rtl"] .hero__statement {
 }
 
 [data-reveal] .art-frame {
-  opacity: 0;
+  opacity: 0.98;
   filter: saturate(0.92);
   transform: translateY(28px) scale(1.018);
 }
 
 [data-reveal] .art-frame::after {
-  transform: translateY(0);
+  transform: translateY(-102%);
 }
 
 [data-reveal].is-visible .art-frame {
@@ -2264,6 +2264,652 @@ a:hover .art-frame .art-frame__caption-strip {
   transform: translateY(-8px) scale(0.992);
 }
 
+.art-frame--atelier {
+  --frame-bg: oklch(0.91 0.024 43);
+  --frame-main: oklch(0.31 0.022 86);
+  --frame-accent: oklch(0.69 0.062 23);
+  --frame-ink: oklch(0.22 0.014 82);
+}
+
+.art-frame--monolith {
+  --frame-bg: oklch(0.88 0.018 76);
+  --frame-main: oklch(0.43 0.024 128);
+  --frame-accent: oklch(0.58 0.052 26);
+  --frame-ink: oklch(0.23 0.016 94);
+}
+
+.art-frame--sora {
+  --frame-bg: oklch(0.9 0.029 55);
+  --frame-main: oklch(0.63 0.046 126);
+  --frame-accent: oklch(0.66 0.071 31);
+  --frame-ink: oklch(0.31 0.02 107);
+}
+
+.art-frame--forma {
+  --frame-bg: oklch(0.89 0.025 72);
+  --frame-main: oklch(0.58 0.031 128);
+  --frame-accent: oklch(0.62 0.059 27);
+  --frame-ink: oklch(0.26 0.016 91);
+}
+
+.art-frame--noma {
+  --frame-bg: oklch(0.86 0.038 61);
+  --frame-main: oklch(0.5 0.04 127);
+  --frame-accent: oklch(0.59 0.069 30);
+  --frame-ink: oklch(0.25 0.018 91);
+}
+
+.art-frame--scene-hero {
+  background:
+    radial-gradient(circle at 74% 25%, color-mix(in oklch, var(--frame-accent) 19%, transparent), transparent 24%),
+    linear-gradient(132deg, color-mix(in oklch, var(--frame-bg) 88%, white), color-mix(in oklch, var(--frame-main) 18%, var(--frame-bg)) 100%);
+}
+
+.art-frame--scene-hero .object-main {
+  left: 14%;
+  bottom: 13%;
+  width: 42%;
+  height: 50%;
+  transform: rotate(-3deg);
+}
+
+.art-frame--scene-hero .object-paper {
+  right: 10%;
+  bottom: 18%;
+  width: 34%;
+  height: 44%;
+  transform: rotate(6deg);
+}
+
+.art-frame--scene-hero .artifact-one {
+  left: 13%;
+  top: 13%;
+  width: 30%;
+  height: 26%;
+  transform: rotate(-4deg);
+}
+
+.art-frame--scene-hero .artifact-two {
+  right: 15%;
+  top: 14%;
+  width: 28%;
+  height: 30%;
+}
+
+.art-frame--scene-hero .artifact-three {
+  right: 22%;
+  bottom: 11%;
+  width: 22%;
+  height: 22%;
+  border-radius: 50%;
+  background: color-mix(in oklch, var(--frame-accent) 28%, white);
+}
+
+.art-frame--scene-stationery .art-frame__package,
+.art-frame--scene-stationery .art-frame__editorial-spread,
+.art-frame--scene-stationery .art-frame__social-grid {
+  display: none;
+}
+
+.art-frame--scene-stationery .object-main {
+  left: 13%;
+  bottom: 14%;
+  width: 49%;
+  height: 58%;
+  color: var(--frame-ink);
+  background: color-mix(in oklch, var(--frame-bg) 84%, white);
+  transform: rotate(-3deg);
+}
+
+.art-frame--scene-stationery .object-main::before,
+.art-frame--scene-stationery .object-main::after {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  content: "";
+  background: color-mix(in oklch, var(--frame-ink) 20%, transparent);
+}
+
+.art-frame--scene-stationery .object-main::before {
+  top: 23%;
+}
+
+.art-frame--scene-stationery .object-main::after {
+  bottom: 18%;
+}
+
+.art-frame--scene-stationery .object-paper {
+  right: 12%;
+  bottom: 13%;
+  width: 38%;
+  height: 32%;
+  transform: rotate(5deg);
+}
+
+.art-frame--scene-stationery .artifact-one {
+  left: 17%;
+  top: 14%;
+  width: 31%;
+  height: 20%;
+}
+
+.art-frame--scene-stationery .artifact-two {
+  right: 13%;
+  top: 14%;
+  width: 24%;
+  height: 35%;
+}
+
+.art-frame--scene-stationery .art-frame__seal {
+  right: 18%;
+  bottom: 18%;
+  display: grid;
+}
+
+.art-frame--scene-packaging .art-frame__stem,
+.art-frame--scene-packaging .art-frame__dot,
+.art-frame--scene-packaging .art-frame__editorial-spread,
+.art-frame--scene-packaging .art-frame__social-grid,
+.art-frame--scene-packaging .object-vase {
+  display: none;
+}
+
+.art-frame--scene-packaging .object-main,
+.art-frame--scene-packaging .object-paper {
+  display: none;
+}
+
+.art-frame--scene-packaging .art-frame__package {
+  left: 17%;
+  bottom: 14%;
+  z-index: 3;
+  display: block;
+  width: 48%;
+  height: 58%;
+  transform: perspective(720px) rotateY(-13deg) rotateZ(-2deg);
+}
+
+.art-frame--scene-packaging .artifact-one {
+  right: 12%;
+  bottom: 15%;
+  z-index: 4;
+  width: 28%;
+  height: 50%;
+  color: var(--frame-ink);
+  background: color-mix(in oklch, var(--frame-bg) 82%, white);
+  transform: rotate(8deg);
+}
+
+.art-frame--scene-packaging .artifact-two {
+  left: 10%;
+  top: 14%;
+  width: 32%;
+  height: 20%;
+  background: color-mix(in oklch, var(--frame-accent) 24%, white);
+  transform: rotate(-4deg);
+}
+
+.art-frame--scene-packaging .artifact-three {
+  right: 20%;
+  top: 18%;
+  z-index: 5;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: color-mix(in oklch, var(--frame-bg) 74%, white);
+}
+
+.art-frame--scene-packaging .art-frame__caption-strip {
+  left: 21%;
+  bottom: 12%;
+  z-index: 6;
+}
+
+.art-frame--scene-editorial .object-main,
+.art-frame--scene-editorial .object-paper,
+.art-frame--scene-editorial .art-frame__package,
+.art-frame--scene-editorial .art-frame__social-grid,
+.art-frame--scene-editorial .object-vase {
+  display: none;
+}
+
+.art-frame--scene-editorial .art-frame__editorial-spread {
+  left: 12%;
+  top: 17%;
+  display: grid;
+  width: 70%;
+  height: 60%;
+  transform: rotate(-2deg);
+}
+
+.art-frame--scene-editorial .artifact-one {
+  left: 10%;
+  bottom: 12%;
+  width: 25%;
+  height: 30%;
+  color: color-mix(in oklch, white 82%, var(--frame-main));
+  background: var(--frame-main);
+  transform: rotate(-8deg);
+}
+
+.art-frame--scene-editorial .artifact-two {
+  right: 11%;
+  top: 11%;
+  width: 22%;
+  height: 24%;
+  background: color-mix(in oklch, var(--frame-accent) 22%, white);
+  transform: rotate(7deg);
+}
+
+.art-frame--scene-editorial .art-frame__ribbon {
+  left: 31%;
+  top: 50%;
+  display: block;
+}
+
+.art-frame--scene-social .object-main,
+.art-frame--scene-social .object-paper,
+.art-frame--scene-social .art-frame__package,
+.art-frame--scene-social .art-frame__editorial-spread {
+  display: none;
+}
+
+.art-frame--scene-social .art-frame__social-grid {
+  left: 12%;
+  top: 13%;
+  display: grid;
+  width: 58%;
+  height: 60%;
+  transform: rotate(-2deg);
+}
+
+.art-frame--scene-social .artifact-one {
+  right: 10%;
+  bottom: 12%;
+  width: 28%;
+  height: 49%;
+  color: color-mix(in oklch, white 80%, var(--frame-main));
+  background: var(--frame-main);
+  transform: rotate(6deg);
+}
+
+.art-frame--scene-social .art-frame__seal {
+  right: 17%;
+  top: 12%;
+  display: grid;
+  color: color-mix(in oklch, var(--frame-bg) 78%, white);
+  background: var(--frame-ink);
+}
+
+.art-frame--scene-print .art-frame__package,
+.art-frame--scene-print .art-frame__social-grid,
+.art-frame--scene-print .object-vase {
+  display: none;
+}
+
+.art-frame--scene-print .object-main {
+  left: 15%;
+  bottom: 13%;
+  width: 36%;
+  height: 62%;
+  color: color-mix(in oklch, white 82%, var(--frame-main));
+  background: color-mix(in oklch, var(--frame-main) 88%, black);
+  transform: rotate(-5deg);
+}
+
+.art-frame--scene-print .object-paper {
+  right: 14%;
+  bottom: 17%;
+  width: 36%;
+  height: 54%;
+  background: color-mix(in oklch, var(--frame-bg) 84%, white);
+  transform: rotate(5deg);
+}
+
+.art-frame--scene-print .artifact-one {
+  left: 27%;
+  bottom: 9%;
+  width: 38%;
+  height: 20%;
+  background: color-mix(in oklch, var(--frame-accent) 24%, white);
+}
+
+.art-frame--scene-print .art-frame__ribbon {
+  right: 15%;
+  bottom: 43%;
+  display: block;
+  width: 35%;
+}
+
+.art-frame--scene-materials .object-vase,
+.art-frame--scene-materials .art-frame__package,
+.art-frame--scene-materials .art-frame__editorial-spread,
+.art-frame--scene-materials .art-frame__social-grid {
+  display: none;
+}
+
+.art-frame--scene-materials .object-main {
+  left: 10%;
+  bottom: 17%;
+  width: 38%;
+  height: 24%;
+  color: var(--frame-ink);
+  background: color-mix(in oklch, var(--frame-bg) 82%, white);
+  transform: rotate(-5deg);
+}
+
+.art-frame--scene-materials .object-paper {
+  right: 13%;
+  bottom: 18%;
+  width: 26%;
+  height: 48%;
+  transform: rotate(6deg);
+}
+
+.art-frame--scene-materials .artifact-one {
+  left: 15%;
+  top: 14%;
+  width: 25%;
+  height: 32%;
+  transform: rotate(-6deg);
+}
+
+.art-frame--scene-materials .artifact-two {
+  left: 32%;
+  top: 20%;
+  width: 25%;
+  height: 33%;
+  background: color-mix(in oklch, var(--frame-main) 24%, white);
+  transform: rotate(4deg);
+}
+
+.art-frame--scene-materials .artifact-three {
+  right: 20%;
+  top: 15%;
+  width: 19%;
+  height: 19%;
+  border-radius: 50%;
+  background: color-mix(in oklch, var(--frame-accent) 34%, white);
+}
+
+.art-frame--scene-materials .art-frame__ribbon {
+  left: 23%;
+  bottom: 33%;
+  display: block;
+  width: 45%;
+  transform: rotate(-5deg);
+}
+
+.art-frame--scene-signage .art-frame__stem,
+.art-frame--scene-signage .art-frame__dot,
+.art-frame--scene-signage .object-vase,
+.art-frame--scene-signage .art-frame__package,
+.art-frame--scene-signage .art-frame__social-grid {
+  display: none;
+}
+
+.art-frame--scene-signage .object-main {
+  left: 10%;
+  bottom: 16%;
+  width: 62%;
+  height: 30%;
+  color: color-mix(in oklch, white 86%, var(--frame-main));
+  background: var(--frame-main);
+  transform: rotate(-1deg);
+}
+
+.art-frame--scene-signage .object-paper {
+  right: 11%;
+  top: 17%;
+  width: 38%;
+  height: 28%;
+  background: color-mix(in oklch, var(--frame-bg) 82%, white);
+  transform: rotate(4deg);
+}
+
+.art-frame--scene-signage .artifact-one {
+  left: 14%;
+  top: 16%;
+  width: 34%;
+  height: 24%;
+  background: color-mix(in oklch, var(--frame-ink) 14%, white);
+}
+
+.art-frame--scene-signage .artifact-two {
+  right: 13%;
+  bottom: 13%;
+  width: 26%;
+  height: 40%;
+  background: color-mix(in oklch, var(--frame-accent) 18%, white);
+}
+
+.art-frame--scene-signage .rule-one {
+  top: 50%;
+}
+
+.art-frame--scene-signage .rule-two {
+  bottom: 30%;
+}
+
+.art-frame--scene-campaign .art-frame__package,
+.art-frame--scene-campaign .art-frame__social-grid,
+.art-frame--scene-campaign .object-vase {
+  display: none;
+}
+
+.art-frame--scene-campaign .object-main {
+  left: 13%;
+  bottom: 13%;
+  width: 39%;
+  height: 57%;
+  color: color-mix(in oklch, white 86%, var(--frame-main));
+  background: var(--frame-main);
+  transform: rotate(-6deg);
+}
+
+.art-frame--scene-campaign .object-paper {
+  right: 12%;
+  bottom: 16%;
+  width: 36%;
+  height: 48%;
+  transform: rotate(5deg);
+}
+
+.art-frame--scene-campaign .artifact-one {
+  left: 19%;
+  top: 12%;
+  width: 34%;
+  height: 20%;
+  transform: rotate(-3deg);
+}
+
+.art-frame--scene-campaign .artifact-two {
+  right: 13%;
+  top: 14%;
+  width: 28%;
+  height: 24%;
+  transform: rotate(7deg);
+}
+
+.art-frame--scene-campaign .art-frame__ribbon {
+  right: 16%;
+  bottom: 41%;
+  display: block;
+  width: 36%;
+}
+
+.art-frame--atelier .object-main span,
+.art-frame--monolith .object-main span,
+.art-frame--sora .object-main span,
+.art-frame--forma .object-main span,
+.art-frame--noma .object-main span {
+  font-size: clamp(1.05rem, 2vw, 2.8rem);
+}
+
+.art-frame--monolith .art-frame__texture {
+  opacity: 0.34;
+}
+
+.art-frame--monolith .object-main {
+  letter-spacing: 0;
+}
+
+.art-frame--sora .art-frame__seal {
+  color: var(--frame-accent);
+  background: color-mix(in oklch, var(--frame-bg) 78%, white);
+}
+
+.art-frame--forma .artifact-three {
+  border-radius: 0;
+  transform: rotate(8deg);
+}
+
+.art-frame--noma .art-frame__package::before {
+  background: color-mix(in oklch, var(--frame-bg) 72%, white);
+}
+
+.art-frame--aurora.art-frame--scene-packaging .art-frame__package {
+  left: 20%;
+  bottom: 13%;
+  width: 32%;
+  height: 66%;
+  transform: perspective(720px) rotateY(-8deg) rotateZ(-4deg);
+}
+
+.art-frame--aurora.art-frame--scene-packaging .artifact-one {
+  right: 14%;
+  bottom: 13%;
+  width: 30%;
+  height: 54%;
+  transform: rotate(4deg);
+}
+
+.art-frame--aurora.art-frame--scene-packaging .artifact-three {
+  right: 28%;
+  top: 17%;
+  width: 96px;
+  height: 96px;
+  background:
+    radial-gradient(circle, color-mix(in oklch, var(--frame-accent) 36%, white) 0 46%, transparent 47%),
+    color-mix(in oklch, var(--frame-bg) 78%, white);
+  box-shadow: 0 22px 38px color-mix(in oklch, var(--frame-accent) 14%, transparent);
+}
+
+.art-frame--aurora.art-frame--scene-packaging .artifact-four {
+  left: 11%;
+  bottom: 18%;
+  width: 24%;
+  height: 30%;
+  background: color-mix(in oklch, white 72%, var(--frame-main));
+  transform: rotate(-6deg);
+}
+
+.art-frame--sora.art-frame--scene-packaging .art-frame__package {
+  left: 15%;
+  bottom: 12%;
+  width: 36%;
+  height: 63%;
+  transform: perspective(680px) rotateY(-18deg) rotateZ(-2deg);
+}
+
+.art-frame--sora.art-frame--scene-packaging .art-frame__package::before {
+  clip-path: polygon(0 7%, 100% 0, 95% 100%, 4% 94%);
+}
+
+.art-frame--sora.art-frame--scene-packaging .artifact-one {
+  right: 10%;
+  top: 18%;
+  width: 38%;
+  height: 42%;
+  color: var(--frame-ink);
+  background: color-mix(in oklch, var(--frame-bg) 86%, white);
+  transform: rotate(2deg);
+}
+
+.art-frame--sora.art-frame--scene-packaging .artifact-one::before,
+.art-frame--sora.art-frame--scene-packaging .artifact-one::after {
+  position: absolute;
+  left: 14%;
+  right: 14%;
+  height: 1px;
+  content: "";
+  background: color-mix(in oklch, var(--frame-ink) 21%, transparent);
+}
+
+.art-frame--sora.art-frame--scene-packaging .artifact-one::before {
+  top: 34%;
+}
+
+.art-frame--sora.art-frame--scene-packaging .artifact-one::after {
+  top: 56%;
+  box-shadow: 0 18px 0 color-mix(in oklch, var(--frame-ink) 12%, transparent);
+}
+
+.art-frame--sora.art-frame--scene-packaging .artifact-two {
+  left: 9%;
+  top: 13%;
+  width: 24%;
+  height: 22%;
+  border-radius: 50%;
+  background: color-mix(in oklch, var(--frame-accent) 26%, white);
+}
+
+.art-frame--sora.art-frame--scene-packaging .artifact-three {
+  right: 17%;
+  bottom: 16%;
+  width: 28%;
+  height: 18%;
+  border-radius: 999px 999px 12px 12px;
+  background: color-mix(in oklch, var(--frame-main) 28%, white);
+}
+
+.art-frame--noma.art-frame--scene-packaging .art-frame__package {
+  left: 13%;
+  bottom: 16%;
+  width: 40%;
+  height: 46%;
+  transform: perspective(620px) rotateY(-10deg) rotateZ(-5deg);
+}
+
+.art-frame--noma.art-frame--scene-packaging .artifact-one {
+  right: 13%;
+  bottom: 15%;
+  width: 30%;
+  height: 42%;
+  color: color-mix(in oklch, var(--frame-bg) 80%, white);
+  background: var(--frame-main);
+  transform: rotate(5deg);
+}
+
+.art-frame--noma.art-frame--scene-packaging .artifact-two {
+  left: 20%;
+  top: 13%;
+  width: 32%;
+  height: 18%;
+  background: color-mix(in oklch, var(--frame-accent) 30%, white);
+}
+
+.art-frame--noma.art-frame--scene-packaging .artifact-three {
+  right: 17%;
+  top: 15%;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, transparent 0 42%, color-mix(in oklch, var(--frame-accent) 24%, white) 43% 100%),
+    color-mix(in oklch, var(--frame-bg) 82%, white);
+}
+
+.art-frame--noma.art-frame--scene-packaging .artifact-four {
+  left: 10%;
+  bottom: 10%;
+  width: 30%;
+  height: 22%;
+  background: color-mix(in oklch, var(--frame-bg) 80%, white);
+  transform: rotate(-3deg);
+}
+
 /* Home sections */
 .selected-work {
   display: grid;
@@ -2963,6 +3609,14 @@ html[dir="rtl"] [data-reveal].is-visible .service-row:hover {
   font-weight: 800;
 }
 
+.project-demo-badge {
+  width: fit-content;
+  padding: 8px 12px;
+  color: var(--color-olive-dark);
+  background: color-mix(in oklch, var(--color-sage-soft) 24%, transparent);
+  border: 1px solid var(--color-line);
+}
+
 .project-hero h1 {
   font-size: clamp(4.4rem, 8vw, 10rem);
 }
@@ -3025,16 +3679,49 @@ html[dir="rtl"] [data-reveal].is-visible .service-row:hover {
   align-self: center;
 }
 
+.project-gallery .art-frame:nth-child(4) {
+  grid-column: 2 / -1;
+  aspect-ratio: 1.55;
+  min-height: 420px;
+}
+
 .project-system {
-  grid-template-columns: 1.1fr 0.6fr 0.8fr;
+  grid-template-columns: 0.9fr 0.52fr 0.95fr 0.82fr;
   align-items: start;
 }
 
-.project-system p {
+.project-system__type p {
   color: var(--color-ink);
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 2.7vw, 3.4rem);
   line-height: 1.16;
+}
+
+.project-applications ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-applications li {
+  padding-top: 12px;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-line);
+  line-height: 1.55;
+}
+
+.project-replacement-note {
+  padding: clamp(22px, 2vw, 34px);
+  background: color-mix(in oklch, var(--color-paper) 56%, transparent);
+  border: 1px solid var(--color-line);
+}
+
+.project-replacement-note p {
+  color: var(--color-muted);
+  font-size: 0.96rem;
+  line-height: 1.68;
 }
 
 .next-project {

@@ -50,8 +50,9 @@ export function WorkPage() {
               data-cursor="view"
             >
               <ArtFrame
-                variant={project.heroImage.variant}
-                alt={project.heroImage.alt}
+                variant={project.coverImage.variant}
+                scene={project.coverImage.scene}
+                alt={project.coverImage.alt}
                 ratio={index % 3 === 0 ? "landscape" : index % 3 === 1 ? "portrait" : "square"}
               />
               <span>{project.year} / {dictionary.categories[project.category]}</span>

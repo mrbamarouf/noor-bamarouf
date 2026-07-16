@@ -1,9 +1,10 @@
-import type { ArtVariant, LocalizedString } from "../types";
+import type { ArtScene, ArtVariant, LocalizedString } from "../types";
 import { useLanguage } from "../context/LanguageContext";
 
 interface ArtFrameProps {
   variant: ArtVariant;
   alt: LocalizedString;
+  scene?: ArtScene;
   ratio?: "portrait" | "landscape" | "square" | "wide";
   className?: string;
   loading?: "lazy" | "eager";
@@ -13,9 +14,13 @@ const variantLabels: Record<ArtVariant, string> = {
   flora: "FLORA",
   aurora: "AURORA",
   elysian: "ELYSIAN",
-  nude: "NUDE",
   luna: "LUNA",
   kinfolk: "KINFOLK",
+  atelier: "ATELIER",
+  monolith: "MONOLITH",
+  sora: "SORA",
+  forma: "FORMA",
+  noma: "NOMA",
   studio: "STUDIO",
   materials: "MATERIAL",
   archive: "ARCHIVE",
@@ -23,25 +28,53 @@ const variantLabels: Record<ArtVariant, string> = {
 
 const variantMarks: Record<ArtVariant, string> = {
   flora: "Pressed paper",
-  aurora: "Campaign board",
+  aurora: "Skin ritual",
   elysian: "Issue 01",
-  nude: "Sleeve system",
   luna: "Social suite",
   kinfolk: "Print story",
+  atelier: "Garment mark",
+  monolith: "Site system",
+  sora: "Cafe service",
+  forma: "Object study",
+  noma: "Batch label",
   studio: "Studio marks",
   materials: "Material study",
   archive: "Archive folio",
 };
 
-export function ArtFrame({ variant, alt, ratio = "portrait", className = "", loading = "lazy" }: ArtFrameProps) {
+const variantInitials: Record<ArtVariant, string> = {
+  flora: "FL",
+  aurora: "AU",
+  elysian: "EL",
+  luna: "LU",
+  kinfolk: "KC",
+  atelier: "AT",
+  monolith: "MO",
+  sora: "SO",
+  forma: "FO",
+  noma: "NO",
+  studio: "NB",
+  materials: "MT",
+  archive: "AR",
+};
+
+export function ArtFrame({
+  variant,
+  alt,
+  scene = "cover",
+  ratio = "portrait",
+  className = "",
+  loading = "lazy",
+}: ArtFrameProps) {
   const { language } = useLanguage();
 
   return (
     <figure
-      className={`art-frame art-frame--${variant} art-frame--${ratio} ${className}`}
+      className={`art-frame art-frame--${variant} art-frame--scene-${scene} art-frame--${ratio} ${className}`}
       role="img"
       aria-label={alt[language]}
       data-loading={loading}
+      data-scene={scene}
     >
       <div className="art-frame__texture" />
       <div className="art-frame__wash" />
@@ -90,7 +123,7 @@ export function ArtFrame({ variant, alt, ratio = "portrait", className = "", loa
         <span />
       </div>
       <div className="art-frame__seal">
-        <span>NB</span>
+        <span>{variantInitials[variant]}</span>
       </div>
       <div className="art-frame__ribbon" />
       <div className="art-frame__caption-strip">
