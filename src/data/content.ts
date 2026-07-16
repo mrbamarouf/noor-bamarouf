@@ -55,6 +55,7 @@ export const copy = {
       sendDraft: "Prepare message",
       clearForm: "Clear form",
       skipIntro: "Skip intro",
+      skipToContent: "Skip to content",
     },
     intro: {
       descriptor: "مصممة جرافيك",
@@ -213,6 +214,7 @@ export const copy = {
       sendDraft: "تجهيز الرسالة",
       clearForm: "مسح النموذج",
       skipIntro: "تخطي المقدمة",
+      skipToContent: "تخطي إلى المحتوى",
     },
     intro: {
       descriptor: "Graphic Designer",

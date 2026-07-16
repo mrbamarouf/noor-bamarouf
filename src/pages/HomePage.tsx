@@ -34,7 +34,7 @@ function ServicesSection() {
   const { dictionary } = useLanguage();
 
   return (
-    <section className="section services-section" id="services" aria-labelledby="services-title">
+    <section className="section services-section" id="services" aria-labelledby="services-title" data-reveal>
       <div className="section__index">Services</div>
       <div className="services-section__header">
         <h2 id="services-title">{dictionary.nav.services}</h2>
@@ -59,7 +59,7 @@ function ProcessSection() {
   const { dictionary } = useLanguage();
 
   return (
-    <section className="section process-section" aria-labelledby="process-title">
+    <section className="section process-section" aria-labelledby="process-title" data-reveal>
       <div className="section__index">{dictionary.home.processTitle}</div>
       <div className="process-section__intro">
         <h2 id="process-title">{dictionary.home.processTitle}</h2>
@@ -83,7 +83,7 @@ function FeaturedStory() {
   const featured = projects[0];
 
   return (
-    <section className="featured-story" aria-labelledby="featured-title">
+    <section className="featured-story" aria-labelledby="featured-title" data-reveal>
       <div className="featured-story__visual">
         <ArtFrame variant={featured.heroImage.variant} alt={featured.heroImage.alt} ratio="wide" />
       </div>
@@ -120,7 +120,7 @@ export function HomePage() {
 
   return (
     <div className="page page--home">
-      <section className="hero" aria-labelledby="hero-title">
+      <section className="hero" aria-labelledby="hero-title" data-reveal>
         <div className="hero__backdrop" />
         <div className="hero__identity">
           <BrandMark variant="compact" />
@@ -161,7 +161,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="section selected-work" aria-labelledby="selected-title">
+      <section className="section selected-work" aria-labelledby="selected-title" data-reveal>
         <div className="selected-work__intro">
           <span className="section__index">{dictionary.home.selectedTitle}</span>
           <h2 id="selected-title">{dictionary.home.selectedTitle}</h2>
@@ -177,7 +177,7 @@ export function HomePage() {
         </Link>
       </section>
 
-      <section className="about-slice" aria-labelledby="about-title">
+      <section className="about-slice" aria-labelledby="about-title" data-reveal>
         <div className="about-slice__quote">
           <p>{dictionary.home.aboutQuote}</p>
         </div>
@@ -201,7 +201,7 @@ export function HomePage() {
 
       <ServicesSection />
 
-      <section className="philosophy-section" aria-labelledby="philosophy-title">
+      <section className="philosophy-section" aria-labelledby="philosophy-title" data-reveal>
         <div className="philosophy-section__line" />
         <h2 id="philosophy-title">{dictionary.home.philosophyTitle}</h2>
         <p>{dictionary.home.philosophyBody}</p>
@@ -210,7 +210,7 @@ export function HomePage() {
       <ProcessSection />
       <FeaturedStory />
 
-      <section className="archive-preview" aria-labelledby="archive-title">
+      <section className="archive-preview" aria-labelledby="archive-title" data-reveal>
         <div>
           <span className="section__index">{dictionary.home.archiveTitle}</span>
           <h2 id="archive-title">{dictionary.home.archiveTitle}</h2>
@@ -225,7 +225,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="contact-cta" aria-labelledby="home-contact-title">
+      <section className="contact-cta" aria-labelledby="home-contact-title" data-reveal>
         <div>
           <h2 id="home-contact-title">{dictionary.home.contactTitle}</h2>
           <p>{dictionary.home.contactBody}</p>

@@ -16,7 +16,7 @@ export function ProjectPage() {
 
   return (
     <article className="page project-page">
-      <header className="project-hero">
+      <header className="project-hero" data-reveal>
         <Link className="text-link" to="/work">
           ← {dictionary.actions.backToWork}
         </Link>
@@ -39,7 +39,7 @@ export function ProjectPage() {
 
       <ArtFrame className="project-main-image" variant={project.heroImage.variant} alt={project.heroImage.alt} ratio="wide" />
 
-      <section className="project-narrative" aria-label={dictionary.sections.overview}>
+      <section className="project-narrative" aria-label={dictionary.sections.overview} data-reveal>
         <div>
           <span className="section__index">{dictionary.sections.overview}</span>
           <h2>{project.shortDescription[language]}</h2>
@@ -47,7 +47,7 @@ export function ProjectPage() {
         <p>{project.fullDescription[language]}</p>
       </section>
 
-      <section className="project-direction" aria-label={dictionary.sections.creativeDirection}>
+      <section className="project-direction" aria-label={dictionary.sections.creativeDirection} data-reveal>
         <ArtFrame variant={project.gallery[0].variant} alt={project.gallery[0].alt} ratio="portrait" />
         <div>
           <span className="section__index">{dictionary.sections.creativeDirection}</span>
@@ -56,7 +56,7 @@ export function ProjectPage() {
         </div>
       </section>
 
-      <section className="project-gallery" aria-label={dictionary.sections.gallery}>
+      <section className="project-gallery" aria-label={dictionary.sections.gallery} data-reveal>
         {project.gallery.map((image, index) => (
           <ArtFrame
             key={`${image.variant}-${index}`}
@@ -67,7 +67,7 @@ export function ProjectPage() {
         ))}
       </section>
 
-      <section className="project-system" aria-label={dictionary.sections.system}>
+      <section className="project-system" aria-label={dictionary.sections.system} data-reveal>
         <div>
           <span className="section__index">{dictionary.sections.palette}</span>
           <div className="palette-row palette-row--large">
@@ -90,7 +90,7 @@ export function ProjectPage() {
         </div>
       </section>
 
-      <nav className="next-project" aria-label={dictionary.actions.nextProject}>
+      <nav className="next-project" aria-label={dictionary.actions.nextProject} data-reveal>
         <span>{dictionary.actions.nextProject}</span>
         <Link to={`/work/${nextProject.slug}`} data-cursor="view">
           {nextProject.title}

@@ -8,7 +8,7 @@ export function AboutPage() {
 
   return (
     <div className="page about-page">
-      <section className="about-hero" aria-labelledby="about-page-title">
+      <section className="about-hero" aria-labelledby="about-page-title" data-reveal>
         <div>
           <span className="section__index">{dictionary.nav.about}</span>
           <h1 id="about-page-title">{dictionary.aboutPage.title}</h1>
@@ -16,7 +16,7 @@ export function AboutPage() {
         <p>{dictionary.aboutPage.body}</p>
       </section>
 
-      <section className="about-editorial">
+      <section className="about-editorial" data-reveal>
         <ArtFrame
           variant="studio"
           alt={{
@@ -32,7 +32,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="values-section" aria-labelledby="values-title">
+      <section className="values-section" aria-labelledby="values-title" data-reveal>
         <h2 id="values-title">{dictionary.sections.values}</h2>
         <div className="values-list">
           {dictionary.values.map((value) => (
@@ -41,7 +41,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="capabilities-section" aria-labelledby="capabilities-title">
+      <section className="capabilities-section" aria-labelledby="capabilities-title" data-reveal>
         <div>
           <span className="section__index">{dictionary.sections.capabilities}</span>
           <h2 id="capabilities-title">{dictionary.nav.services}</h2>
@@ -56,7 +56,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="about-invitation" aria-labelledby="about-invite-title">
+      <section className="about-invitation" aria-labelledby="about-invite-title" data-reveal>
         <span className="section__index">{dictionary.sections.invitation}</span>
         <h2 id="about-invite-title">{dictionary.aboutPage.invite}</h2>
         <Link className="button button--primary" to="/contact">

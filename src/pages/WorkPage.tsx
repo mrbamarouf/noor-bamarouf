@@ -20,13 +20,13 @@ export function WorkPage() {
 
   return (
     <div className="page page--work">
-      <section className="page-hero page-hero--work" aria-labelledby="work-title">
+      <section className="page-hero page-hero--work" aria-labelledby="work-title" data-reveal>
         <span className="section__index">{dictionary.nav.work}</span>
         <h1 id="work-title">{dictionary.nav.work}</h1>
         <p>{dictionary.home.selectedIntro}</p>
       </section>
 
-      <section className="work-archive" aria-label={dictionary.home.archiveTitle}>
+      <section className="work-archive" aria-label={dictionary.home.archiveTitle} data-reveal>
         <div className="filter-bar" role="list" aria-label="Project categories">
           {categoryOrder.map((category) => (
             <button

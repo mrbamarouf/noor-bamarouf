@@ -72,7 +72,7 @@ export function ContactPage() {
 
   return (
     <div className="page contact-page">
-      <section className="contact-hero" aria-labelledby="contact-title">
+      <section className="contact-hero" aria-labelledby="contact-title" data-reveal>
         <div>
           <span className="section__index">{dictionary.nav.contact}</span>
           <h1 id="contact-title">{dictionary.contactPage.title}</h1>
@@ -85,7 +85,7 @@ export function ContactPage() {
         </address>
       </section>
 
-      <section className="contact-layout">
+      <section className="contact-layout" data-reveal>
         <ArtFrame
           variant="flora"
           alt={{
