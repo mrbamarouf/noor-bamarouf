@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent } from "react";
 import { ArtFrame } from "../components/ArtFrame";
 import { BrandMark } from "../components/BrandMark";
 import { serviceOrder } from "../data/content";
@@ -145,10 +145,69 @@ function FeaturedStory() {
 export function HomePage() {
   const { dictionary, language } = useLanguage();
   const selected = projects.slice(0, 4);
+  const heroRef = useRef<HTMLElement>(null);
+
+  const setHeroDepthFromPoint = (clientX: number, clientY: number) => {
+    const hero = heroRef.current;
+    if (!hero) {
+      return;
+    }
+
+    const rect = hero.getBoundingClientRect();
+    const x = (clientX - rect.left) / rect.width - 0.5;
+    const y = (clientY - rect.top) / rect.height - 0.5;
+    hero.style.setProperty("--hero-drift-x", `${x * 18}px`);
+    hero.style.setProperty("--hero-drift-y", `${y * 12}px`);
+    hero.style.setProperty("--hero-book-x", `${x * -16}px`);
+    hero.style.setProperty("--hero-book-y", `${y * -10}px`);
+    hero.style.setProperty("--hero-card-x", `${x * 14}px`);
+    hero.style.setProperty("--hero-card-y", `${y * 9}px`);
+    hero.style.setProperty("--hero-glass-x", `${x * -10}px`);
+    hero.style.setProperty("--hero-glass-y", `${y * 14}px`);
+  };
+
+  const setHeroDepth = (event: PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== "mouse" && event.pointerType !== "pen") {
+      return;
+    }
+
+    setHeroDepthFromPoint(event.clientX, event.clientY);
+  };
+
+  const setHeroDepthFromMouse = (event: ReactMouseEvent<HTMLElement>) => {
+    setHeroDepthFromPoint(event.clientX, event.clientY);
+  };
+
+  const resetHeroDepth = () => {
+    const hero = heroRef.current;
+    if (!hero) {
+      return;
+    }
+
+    [
+      "--hero-drift-x",
+      "--hero-drift-y",
+      "--hero-book-x",
+      "--hero-book-y",
+      "--hero-card-x",
+      "--hero-card-y",
+      "--hero-glass-x",
+      "--hero-glass-y",
+    ].forEach((property) => hero.style.setProperty(property, "0px"));
+  };
 
   return (
     <div className="page page--home">
-      <section className="hero" aria-labelledby="hero-title" data-reveal>
+      <section
+        className="hero"
+        aria-labelledby="hero-title"
+        data-reveal
+        ref={heroRef}
+        onPointerMove={setHeroDepth}
+        onMouseMove={setHeroDepthFromMouse}
+        onPointerLeave={resetHeroDepth}
+        onMouseLeave={resetHeroDepth}
+      >
         <div className="hero__backdrop" />
         <div className="hero__identity">
           <BrandMark variant="compact" />

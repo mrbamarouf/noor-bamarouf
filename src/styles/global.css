@@ -23,6 +23,7 @@
   --header-height: 86px;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-soft: 620ms;
+  --duration-cinematic: 1120ms;
 }
 
 * {
@@ -206,16 +207,104 @@ a {
 }
 
 [data-reveal] {
-  opacity: 0.76;
-  transform: translateY(22px);
+  opacity: 0;
+  transform: translateY(28px);
   transition:
-    opacity 860ms var(--ease-out),
-    transform 860ms var(--ease-out);
+    opacity var(--duration-cinematic) var(--ease-out),
+    transform var(--duration-cinematic) var(--ease-out);
 }
 
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+[data-reveal] :is(h1, h2) {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(24px);
+  transition:
+    clip-path 1240ms var(--ease-out),
+    transform 1240ms var(--ease-out);
+}
+
+[data-reveal].is-visible :is(h1, h2) {
+  clip-path: inset(0 0 0 0);
+  transform: translateY(0);
+}
+
+[data-reveal] .section__index,
+[data-reveal] .hero__topline,
+[data-reveal] .hero__statement,
+[data-reveal] .hero__body,
+[data-reveal] .hero__actions,
+[data-reveal] .project-feature,
+[data-reveal] .service-row,
+[data-reveal] .process-stage,
+[data-reveal] .story-details div,
+[data-reveal] .archive-strip a {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 960ms var(--ease-out),
+    transform 960ms var(--ease-out);
+}
+
+[data-reveal].is-visible .section__index,
+[data-reveal].is-visible .hero__topline,
+[data-reveal].is-visible .hero__statement,
+[data-reveal].is-visible .hero__body,
+[data-reveal].is-visible .hero__actions,
+[data-reveal].is-visible .project-feature,
+[data-reveal].is-visible .service-row,
+[data-reveal].is-visible .process-stage,
+[data-reveal].is-visible .story-details div,
+[data-reveal].is-visible .archive-strip a {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal].is-visible .hero__statement,
+[data-reveal].is-visible .hero__body {
+  transition-delay: 130ms;
+}
+
+[data-reveal].is-visible .hero__actions {
+  transition-delay: 220ms;
+}
+
+[data-reveal].is-visible .project-feature:nth-child(2),
+[data-reveal].is-visible .service-row:nth-child(2),
+[data-reveal].is-visible .process-stage:nth-child(2),
+[data-reveal].is-visible .archive-strip a:nth-child(2),
+[data-reveal].is-visible .story-details div:nth-child(2) {
+  transition-delay: 100ms;
+}
+
+[data-reveal].is-visible .project-feature:nth-child(3),
+[data-reveal].is-visible .service-row:nth-child(3),
+[data-reveal].is-visible .process-stage:nth-child(3),
+[data-reveal].is-visible .archive-strip a:nth-child(3) {
+  transition-delay: 180ms;
+}
+
+[data-reveal].is-visible .project-feature:nth-child(4),
+[data-reveal].is-visible .service-row:nth-child(4),
+[data-reveal].is-visible .process-stage:nth-child(4),
+[data-reveal].is-visible .archive-strip a:nth-child(4) {
+  transition-delay: 260ms;
+}
+
+[data-reveal].is-visible .service-row:nth-child(5),
+[data-reveal].is-visible .process-stage:nth-child(5) {
+  transition-delay: 340ms;
+}
+
+[data-reveal].is-visible .service-row:nth-child(6) {
+  transition-delay: 420ms;
+}
+
+[data-reveal].is-visible .service-row:nth-child(7) {
+  transition-delay: 500ms;
 }
 
 ::selection {
@@ -306,6 +395,8 @@ p {
 }
 
 .button {
+  position: relative;
+  overflow: hidden;
   min-height: 48px;
   padding: 0 22px;
   gap: 12px;
@@ -317,8 +408,36 @@ p {
     transform var(--duration-soft) var(--ease-out);
 }
 
+.button::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: color-mix(in oklch, white 18%, transparent);
+  transform: translateX(-110%) skewX(-16deg);
+  transition: transform 820ms var(--ease-out);
+}
+
+.button > * {
+  position: relative;
+  z-index: 1;
+}
+
 .button:hover {
   transform: translateY(-2px);
+}
+
+.button:hover::before {
+  transform: translateX(110%) skewX(-16deg);
+}
+
+.button span[aria-hidden],
+.text-link span[aria-hidden] {
+  transition: transform var(--duration-soft) var(--ease-out);
+}
+
+.button:hover span[aria-hidden],
+.text-link:hover span[aria-hidden] {
+  transform: translateX(5px);
 }
 
 .button--primary {
@@ -566,6 +685,16 @@ html[dir="rtl"] .text-link::after {
   backdrop-filter: blur(12px);
 }
 
+.site-header .brand-link {
+  transition:
+    opacity var(--duration-soft) var(--ease-out),
+    transform var(--duration-soft) var(--ease-out);
+}
+
+.site-header--scrolled .brand-link {
+  transform: translateY(-1px) scale(0.94);
+}
+
 .site-header__inner {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -622,12 +751,14 @@ html[dir="rtl"] .text-link::after {
   border: 1px solid var(--color-line);
   transition:
     border-color var(--duration-soft) var(--ease-out),
-    color var(--duration-soft) var(--ease-out);
+    color var(--duration-soft) var(--ease-out),
+    transform var(--duration-soft) var(--ease-out);
 }
 
 .language-toggle:hover {
   color: var(--color-rose-deep);
   border-color: var(--color-rose);
+  transform: translateY(-2px);
 }
 
 .language-toggle span {
@@ -786,6 +917,9 @@ html[dir="rtl"] .hero__statement {
 .hero__visual-stage {
   position: absolute;
   inset: 0;
+  transform: translate3d(var(--hero-drift-x, 0px), var(--hero-drift-y, 0px), 0);
+  transition: transform 980ms var(--ease-out);
+  will-change: transform;
 }
 
 .hero__main-frame {
@@ -820,7 +954,11 @@ html[dir="rtl"] .hero__statement {
     linear-gradient(100deg, color-mix(in oklch, var(--color-olive) 86%, black), color-mix(in oklch, var(--color-sage) 72%, var(--color-olive-dark)));
   border: 1px solid color-mix(in oklch, white 20%, var(--color-olive));
   box-shadow: 0 22px 42px color-mix(in oklch, var(--color-ink) 18%, transparent);
-  transform: rotate(-7deg);
+  transform: translate3d(var(--hero-book-x, 0px), var(--hero-book-y, 0px), 0) rotate(-7deg);
+  transition:
+    box-shadow 900ms var(--ease-out),
+    transform 980ms var(--ease-out);
+  will-change: transform;
 }
 
 .hero__book::before {
@@ -853,7 +991,11 @@ html[dir="rtl"] .hero__statement {
     linear-gradient(135deg, color-mix(in oklch, var(--color-rose) 16%, white), color-mix(in oklch, var(--color-paper) 86%, white));
   border: 1px solid color-mix(in oklch, var(--color-rose) 28%, transparent);
   box-shadow: 0 18px 34px color-mix(in oklch, var(--color-rose-deep) 14%, transparent);
-  transform: rotate(8deg);
+  transform: translate3d(var(--hero-card-x, 0px), var(--hero-card-y, 0px), 0) rotate(8deg);
+  transition:
+    box-shadow 900ms var(--ease-out),
+    transform 980ms var(--ease-out);
+  will-change: transform;
 }
 
 .hero__stationery span {
@@ -873,6 +1015,9 @@ html[dir="rtl"] .hero__statement {
   border-radius: 999px 999px 42% 42%;
   background: color-mix(in oklch, var(--color-sage-soft) 31%, transparent);
   backdrop-filter: blur(2px);
+  transform: translate3d(var(--hero-glass-x, 0px), var(--hero-glass-y, 0px), 0);
+  transition: transform 980ms var(--ease-out);
+  will-change: transform;
 }
 
 .hero__glass span {
@@ -897,6 +1042,8 @@ html[dir="rtl"] .hero__statement {
     0 0 0 7px color-mix(in oklch, var(--color-rose) 14%, transparent),
     28px 30px 0 -3px color-mix(in oklch, var(--color-rose) 82%, white),
     -24px 26px 0 -4px color-mix(in oklch, var(--color-rose) 72%, white);
+  transform: translate3d(var(--hero-glass-x, 0px), var(--hero-glass-y, 0px), 0);
+  transition: transform 980ms var(--ease-out);
 }
 
 .flower-a {
@@ -980,6 +1127,43 @@ html[dir="rtl"] .hero__statement {
     linear-gradient(140deg, color-mix(in oklch, var(--frame-bg) 92%, white) 0%, var(--frame-bg) 60%, var(--frame-muted) 100%);
   box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--frame-ink) 7%, transparent);
   isolation: isolate;
+  transition:
+    filter 980ms var(--ease-out),
+    opacity 980ms var(--ease-out),
+    transform 980ms var(--ease-out);
+  will-change: transform;
+}
+
+.art-frame::after {
+  position: absolute;
+  inset: -1px;
+  z-index: 20;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(100deg, color-mix(in oklch, var(--frame-bg) 92%, white), color-mix(in oklch, var(--frame-accent) 18%, var(--frame-bg)));
+  transform: translateY(-102%);
+  transition: transform 1180ms var(--ease-out);
+}
+
+[data-reveal] .art-frame {
+  opacity: 0;
+  filter: saturate(0.92);
+  transform: translateY(28px) scale(1.018);
+}
+
+[data-reveal] .art-frame::after {
+  transform: translateY(0);
+}
+
+[data-reveal].is-visible .art-frame {
+  opacity: 1;
+  filter: saturate(1);
+  transform: translateY(0) scale(1);
+}
+
+[data-reveal].is-visible .art-frame::after {
+  transform: translateY(-102%);
 }
 
 .art-frame--portrait {
@@ -2073,6 +2257,13 @@ a:hover .art-frame .art-frame__caption-strip {
   filter: saturate(1.03);
 }
 
+[data-reveal].is-visible a:hover .art-frame,
+.archive-item:hover .art-frame,
+.project-feature:hover .art-frame {
+  filter: saturate(1.04) contrast(1.01);
+  transform: translateY(-8px) scale(0.992);
+}
+
 /* Home sections */
 .selected-work {
   display: grid;
@@ -2111,6 +2302,9 @@ a:hover .art-frame .art-frame__caption-strip {
   display: grid;
   gap: 14px;
   min-width: 0;
+  transition:
+    color var(--duration-soft) var(--ease-out),
+    transform var(--duration-soft) var(--ease-out);
 }
 
 .project-feature:first-child {
@@ -2123,6 +2317,7 @@ a:hover .art-frame .art-frame__caption-strip {
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 4vw, 5.2rem);
   line-height: 0.9;
+  transition: transform var(--duration-soft) var(--ease-out);
 }
 
 .project-feature__meta,
@@ -2139,6 +2334,7 @@ a:hover .art-frame .art-frame__caption-strip {
   font-size: clamp(1.65rem, 2.2vw, 2.7rem);
   font-weight: 500;
   line-height: 1;
+  transition: color var(--duration-soft) var(--ease-out);
 }
 
 .project-feature > span:last-child,
@@ -2152,6 +2348,20 @@ a:hover .art-frame .art-frame__caption-strip {
 .selected-work__link {
   grid-column: 2;
   margin-top: 22px;
+}
+
+[data-reveal].is-visible .project-feature:hover,
+.archive-item:hover {
+  transform: translateY(-8px);
+}
+
+.project-feature:hover .project-feature__number {
+  transform: translateX(8px);
+}
+
+.project-feature:hover strong,
+.archive-item:hover strong {
+  color: var(--color-rose-deep);
 }
 
 .about-slice {
@@ -2267,6 +2477,8 @@ a:hover .art-frame .art-frame__caption-strip {
   cursor: pointer;
   transition:
     background var(--duration-soft) var(--ease-out),
+    box-shadow var(--duration-soft) var(--ease-out),
+    transform var(--duration-soft) var(--ease-out),
     padding-inline var(--duration-soft) var(--ease-out);
 }
 
@@ -2274,6 +2486,10 @@ a:hover .art-frame .art-frame__caption-strip {
 .service-row--active {
   background: color-mix(in oklch, var(--color-sage-soft) 18%, transparent);
   box-shadow: inset 3px 0 0 color-mix(in oklch, var(--color-rose-deep) 72%, transparent);
+}
+
+[data-reveal].is-visible .service-row:hover {
+  transform: translateX(10px);
 }
 
 .service-row span {
@@ -2286,6 +2502,7 @@ a:hover .art-frame .art-frame__caption-strip {
 .service-row h3 {
   max-width: 9ch;
   font-size: clamp(1.42rem, 2vw, 2.55rem);
+  transition: color var(--duration-soft) var(--ease-out);
 }
 
 .service-row p {
@@ -2294,8 +2511,17 @@ a:hover .art-frame .art-frame__caption-strip {
   line-height: 1.68;
 }
 
+.service-row:hover h3,
+.service-row--active h3 {
+  color: var(--color-rose-deep);
+}
+
 html[dir="rtl"] .service-row {
   text-align: left;
+}
+
+html[dir="rtl"] [data-reveal].is-visible .service-row:hover {
+  transform: translateX(-10px);
 }
 
 .philosophy-section {
@@ -2554,6 +2780,7 @@ html[dir="rtl"] .service-row {
 .archive-strip a {
   display: grid;
   gap: 14px;
+  transition: transform var(--duration-soft) var(--ease-out);
 }
 
 .archive-strip a:nth-child(even) {
@@ -2572,6 +2799,15 @@ html[dir="rtl"] .service-row {
 .archive-strip span {
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 1.4vw, 1.8rem);
+  transition: color var(--duration-soft) var(--ease-out);
+}
+
+[data-reveal].is-visible .archive-strip a:hover {
+  transform: translateY(-6px);
+}
+
+.archive-strip a:hover span {
+  color: var(--color-rose-deep);
 }
 
 .contact-cta {
@@ -2685,6 +2921,7 @@ html[dir="rtl"] .service-row {
   display: grid;
   gap: 14px;
   animation: archiveIn 520ms var(--ease-out) both;
+  transition: transform var(--duration-soft) var(--ease-out);
 }
 
 .archive-item--0 {
