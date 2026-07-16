@@ -3,6 +3,7 @@ import { useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent
 import { ArtFrame } from "../components/ArtFrame";
 import { LogoAsset } from "../components/LogoAsset";
 import { ProjectVisual } from "../components/ProjectVisual";
+import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { serviceOrder } from "../data/content";
 import { projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
@@ -336,9 +337,19 @@ export function HomePage() {
           <h2 id="home-contact-title">{dictionary.home.contactTitle}</h2>
           <p>{dictionary.home.contactBody}</p>
         </div>
-        <Link className="button button--primary" to="/contact">
-          {dictionary.actions.startProject} <Arrow />
-        </Link>
+        <div className="contact-cta__actions">
+          <a
+            className="button button--primary"
+            href={getWhatsAppHref(language)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {dictionary.actions.contactByWhatsApp} <Arrow />
+          </a>
+          <a className="button button--quiet" href={getEmailHref(language)}>
+            {dictionary.actions.sendEmail}
+          </a>
+        </div>
       </section>
       <span className="sr-only" lang={language}>
         {dictionary.nav.home}

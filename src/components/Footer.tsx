@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
+import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { navItems, serviceOrder } from "../data/content";
 import { useLanguage } from "../context/LanguageContext";
 import { LogoAsset } from "./LogoAsset";
 
 export function Footer() {
-  const { dictionary } = useLanguage();
-  const emailLabel = dictionary.footer.emailLabel;
+  const { dictionary, language } = useLanguage();
 
   return (
     <footer className="site-footer">
@@ -29,16 +29,13 @@ export function Footer() {
           ))}
         </div>
         <div className="footer-list">
-          <h2>{dictionary.ui.connect}</h2>
-          {dictionary.footer.socials.map((social) =>
-            social === emailLabel ? (
-              <a key={social} href="mailto:hello@nourbamarouf.com">
-                {social}
-              </a>
-            ) : (
-              <span key={social}>{social}</span>
-            ),
-          )}
+          <h2>{dictionary.nav.contact}</h2>
+          <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
+            {dictionary.actions.contactByWhatsApp}
+          </a>
+          <a href={getEmailHref(language)}>
+            {dictionary.actions.sendEmail}
+          </a>
         </div>
         <button className="back-to-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           {dictionary.actions.backToTop}
