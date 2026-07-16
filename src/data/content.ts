@@ -57,10 +57,10 @@ export const copy = {
       skipIntro: "Skip intro",
     },
     intro: {
-      descriptor: "Graphic Designer",
+      descriptor: "مصممة جرافيك",
     },
     hero: {
-      descriptor: "Graphic Designer",
+      descriptor: "مصممة جرافيك",
       lineOne: "Design with intention.",
       lineTwo: "Create with purpose.",
       body: "Visual identities, printed objects, and editorial systems shaped with quiet confidence and a careful sense of feeling.",

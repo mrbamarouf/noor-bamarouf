@@ -51,6 +51,84 @@ html[dir="rtl"] body {
   font-family: var(--font-arabic);
 }
 
+.site-header__inner,
+.hero,
+.selected-work,
+.selected-work__grid,
+.about-slice,
+.services-section,
+.process-section__intro,
+.process-track,
+.featured-story,
+.archive-preview,
+.archive-strip,
+.contact-cta,
+.page-hero,
+.work-archive,
+.archive-layout,
+.project-hero,
+.project-narrative,
+.project-direction,
+.project-gallery,
+.project-system,
+.about-hero,
+.about-editorial,
+.values-section,
+.capabilities-section,
+.capabilities-list,
+.about-invitation,
+.contact-hero,
+.contact-layout,
+.form-grid,
+.site-footer__inner {
+  direction: ltr;
+}
+
+html[dir="rtl"] .hero__content,
+html[dir="rtl"] .selected-work__intro,
+html[dir="rtl"] .project-feature,
+html[dir="rtl"] .about-slice__quote,
+html[dir="rtl"] .about-slice__text,
+html[dir="rtl"] .services-section__header,
+html[dir="rtl"] .philosophy-section,
+html[dir="rtl"] .process-stage,
+html[dir="rtl"] .featured-story__content,
+html[dir="rtl"] .archive-preview > div:first-child,
+html[dir="rtl"] .archive-strip a,
+html[dir="rtl"] .contact-cta > div,
+html[dir="rtl"] .page-hero,
+html[dir="rtl"] .archive-item,
+html[dir="rtl"] .project-hero__title,
+html[dir="rtl"] .project-meta,
+html[dir="rtl"] .project-narrative > div,
+html[dir="rtl"] .project-narrative > p,
+html[dir="rtl"] .project-direction > div,
+html[dir="rtl"] .project-system > div,
+html[dir="rtl"] .next-project,
+html[dir="rtl"] .about-hero > div,
+html[dir="rtl"] .about-hero > p,
+html[dir="rtl"] .about-editorial__statement,
+html[dir="rtl"] .capabilities-section > div:first-child,
+html[dir="rtl"] .capabilities-list article,
+html[dir="rtl"] .about-invitation,
+html[dir="rtl"] .contact-hero > div,
+html[dir="rtl"] .contact-hero address,
+html[dir="rtl"] .contact-form,
+html[dir="rtl"] .footer-list,
+html[dir="rtl"] .site-footer__brand {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .service-row h3,
+html[dir="rtl"] .service-row p,
+html[dir="rtl"] .process-section__intro > *,
+html[dir="rtl"] .values-section h2,
+html[dir="rtl"] .values-list {
+  direction: rtl;
+  text-align: right;
+}
+
 body::before {
   position: fixed;
   inset: 0;
@@ -614,8 +692,8 @@ html[dir="rtl"] .hero__statement {
 
 .hero__side-note {
   position: absolute;
-  right: 0;
-  bottom: 34px;
+  right: 10px;
+  bottom: 88px;
   color: var(--color-muted);
   font-size: 0.82rem;
   transform: rotate(-90deg);
@@ -1062,17 +1140,8 @@ a:hover .art-frame .object-paper,
   border-right: 1px solid var(--color-line);
 }
 
-html[dir="rtl"] .process-stage {
-  border-right: 0;
-  border-left: 1px solid var(--color-line);
-}
-
 .process-stage:last-child {
   border-right: 0;
-}
-
-html[dir="rtl"] .process-stage:last-child {
-  border-left: 0;
 }
 
 .process-stage span {
@@ -1209,9 +1278,9 @@ html[dir="rtl"] .process-stage:last-child {
   display: grid;
   align-content: end;
   width: var(--container);
-  min-height: 56vh;
+  min-height: 46vh;
   margin-inline: auto;
-  padding-block: clamp(86px, 8vw, 146px) clamp(58px, 6vw, 110px);
+  padding-block: clamp(66px, 6vw, 110px) clamp(50px, 5vw, 92px);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -1294,8 +1363,8 @@ html[dir="rtl"] .process-stage:last-child {
   grid-template-columns: 0.18fr 0.55fr 0.27fr;
   align-items: end;
   gap: clamp(34px, 5vw, 90px);
-  min-height: 56vh;
-  padding-block: clamp(80px, 8vw, 144px) clamp(50px, 5vw, 90px);
+  min-height: 48vh;
+  padding-block: clamp(68px, 6vw, 118px) clamp(46px, 5vw, 82px);
 }
 
 .project-hero__title {
@@ -1410,9 +1479,9 @@ html[dir="rtl"] .process-stage:last-child {
   gap: clamp(42px, 6vw, 110px);
   align-items: end;
   width: var(--container);
-  min-height: 60vh;
+  min-height: 48vh;
   margin-inline: auto;
-  padding-block: clamp(90px, 8vw, 150px) clamp(56px, 6vw, 104px);
+  padding-block: clamp(70px, 6vw, 120px) clamp(50px, 5vw, 92px);
   border-bottom: 1px solid var(--color-line);
 }
 
