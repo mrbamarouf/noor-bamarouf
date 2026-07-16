@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
-const OFFICIAL_LOGO_SRC = "/brand-reference/nour-logo-official-crop.png";
+const FULL_LOGO_SRC = "/brand/nour-logo-full-transparent.png";
+const FOOTER_LOGO_SRC = "/brand/nour-logo-footer-transparent.png";
+const MONOGRAM_LOGO_SRC = "/brand/nour-logo-monogram-transparent.png";
 
 type LogoAssetVariant = "header" | "intro" | "footer" | "hero";
 
@@ -12,14 +14,20 @@ interface LogoAssetProps {
 }
 
 function LogoImage({ variant, priority = false }: Pick<LogoAssetProps, "variant" | "priority">) {
+  const logoVariant = variant ?? "header";
+  const source = logoVariant === "footer" ? FOOTER_LOGO_SRC : FULL_LOGO_SRC;
+
   return (
-    <img
-      className={`official-logo official-logo--${variant ?? "header"}`}
-      src={OFFICIAL_LOGO_SRC}
-      alt="Nour Bamarouf official logo"
-      decoding="async"
-      loading={priority ? "eager" : "lazy"}
-    />
+    <picture>
+      {logoVariant === "header" ? <source media="(max-width: 720px)" srcSet={MONOGRAM_LOGO_SRC} /> : null}
+      <img
+        className={`official-logo official-logo--${logoVariant}`}
+        src={source}
+        alt="Nour Bamarouf official logo"
+        decoding="async"
+        loading={priority ? "eager" : "lazy"}
+      />
+    </picture>
   );
 }
 

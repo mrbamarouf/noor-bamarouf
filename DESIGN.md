@@ -34,7 +34,7 @@ Motion is calm and title-sequence inspired: intro reveal, text masks, subtle ima
 
 ## Components
 
-- `LogoAsset`: image-only rendering of the official Nour Bamarouf logo crop derived from `public/brand-reference/nour-logo-reference.png`.
+- `LogoAsset`: image-only rendering of transparent production assets generated from `public/brand-reference/nour-logo-reference.png`.
 - `Intro`: first-session official logo reveal with skip and reduced-motion handling.
 - `Header`: minimal desktop navigation with language switcher and scroll refinement.
 - `ProjectVisual`: file-based raster portfolio imagery renderer for local Behance-style demonstration presentations stored in `public/demo-projects`.

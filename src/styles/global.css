@@ -511,7 +511,7 @@ html[dir="rtl"] .text-link::after {
 }
 
 .official-logo--header {
-  width: clamp(112px, 10vw, 156px);
+  width: clamp(150px, 11vw, 190px);
 }
 
 .official-logo--hero {
@@ -520,7 +520,7 @@ html[dir="rtl"] .text-link::after {
 }
 
 .official-logo--footer {
-  width: clamp(170px, 15vw, 246px);
+  width: clamp(220px, 18vw, 300px);
 }
 
 .official-logo-wrap--intro {
@@ -744,7 +744,6 @@ html[dir="rtl"] .intro__composition {
 .hero__logo-title {
   width: fit-content;
   max-width: 100%;
-  filter: drop-shadow(0 14px 24px color-mix(in oklch, var(--color-ink) 6%, transparent));
 }
 
 .hero__logo-title .official-logo-wrap--hero {
@@ -3886,17 +3885,17 @@ html[dir="rtl"] .process-stage::after {
 
 .site-footer__inner {
   display: grid;
-  grid-template-columns: minmax(260px, 1.1fr) repeat(3, minmax(150px, 0.58fr));
-  gap: clamp(34px, 5vw, 90px);
+  grid-template-columns: minmax(280px, 1.08fr) repeat(3, minmax(150px, 0.56fr));
+  gap: clamp(30px, 4.4vw, 72px);
   width: var(--container);
   margin-inline: auto;
-  padding-block: clamp(60px, 6vw, 104px) 34px;
+  padding-block: clamp(52px, 5vw, 84px) 32px;
 }
 
 .site-footer__brand {
   display: grid;
   align-content: start;
-  gap: 24px;
+  gap: 16px;
 }
 
 .site-footer__brand .official-logo-wrap--footer {
@@ -3906,6 +3905,12 @@ html[dir="rtl"] .process-stage::after {
 .site-footer__brand p,
 .site-footer__copyright {
   color: color-mix(in oklch, var(--color-ivory) 78%, var(--color-sage-soft));
+}
+
+.site-footer__brand p {
+  max-width: 22ch;
+  font-size: 0.96rem;
+  line-height: 1.6;
 }
 
 .footer-list {
