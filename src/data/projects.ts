@@ -13,7 +13,7 @@ export const projects: Project[] = [
     category: "branding",
     projectType: {
       en: "Botanical Brand Identity",
-      ar: "هوية علامة نباتية",
+      ar: "هوية بصرية نباتية",
     },
     shortDescription: {
       en: "A botanical identity for a paper goods studio, built from pressed flowers, soft stationery, and quiet packaging.",
@@ -250,8 +250,8 @@ export const projects: Project[] = [
       variant: "kinfolk",
       scene: "hero",
       alt: {
-        en: "Lifestyle campaign hero with layered print pieces and campaign cards.",
-        ar: "مشهد حملة أسلوب حياة مع قطع مطبوعة متراكبة وبطاقات حملة.",
+        en: "KINFOLK CONCEPT lifestyle campaign hero with layered print pieces and campaign cards.",
+        ar: "مشهد KINFOLK CONCEPT لحملة أسلوب حياة مع قطع مطبوعة متراكبة وبطاقات حملة.",
       },
     },
     gallery: [
