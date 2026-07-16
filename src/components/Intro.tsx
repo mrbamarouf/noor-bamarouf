@@ -13,6 +13,11 @@ function isPageReload() {
   return navigation instanceof PerformanceNavigationTiming && navigation.type === "reload";
 }
 
+function getIntroTiming() {
+  const isMobile = window.matchMedia("(max-width: 900px)").matches;
+  return isMobile ? { leave: 2050, done: 2400 } : { leave: 2600, done: 3000 };
+}
+
 export function Intro() {
   const { dictionary } = useLanguage();
   const [visible, setVisible] = useState(false);
@@ -29,12 +34,13 @@ export function Intro() {
       return;
     }
 
+    const timing = getIntroTiming();
     setVisible(true);
-    const leaveTimer = window.setTimeout(() => setLeaving(true), 2600);
+    const leaveTimer = window.setTimeout(() => setLeaving(true), timing.leave);
     const doneTimer = window.setTimeout(() => {
       window.sessionStorage.setItem(INTRO_KEY, "true");
       setVisible(false);
-    }, 3000);
+    }, timing.done);
 
     return () => {
       window.clearTimeout(leaveTimer);
