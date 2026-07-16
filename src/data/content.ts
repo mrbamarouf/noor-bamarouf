@@ -44,6 +44,7 @@ export const copy = {
       contact: "Contact",
     },
     actions: {
+      viewLabel: "View",
       viewWork: "View work",
       startProject: "Start a project",
       viewAllProjects: "View all projects",
@@ -58,10 +59,10 @@ export const copy = {
       skipToContent: "Skip to content",
     },
     intro: {
-      descriptor: "مصممة جرافيك",
+      descriptor: "Graphic Designer",
     },
     hero: {
-      descriptor: "مصممة جرافيك",
+      descriptor: "Graphic Designer",
       lineOne: "Design with intention.",
       lineTwo: "Create with purpose.",
       body: "Visual identities, printed objects, and editorial systems shaped with quiet confidence and a careful sense of feeling.",
@@ -93,6 +94,15 @@ export const copy = {
       capabilities: "Capabilities",
       values: "Values",
       invitation: "Invitation",
+    },
+    ui: {
+      credits: "Credits",
+      connect: "Connect",
+      footerNavigation: "Footer navigation",
+      projectCategories: "Project categories",
+      selectPlaceholder: "Select",
+      socialPlaceholder: "placeholder",
+      outcomeNote: "This placeholder case-study structure is ready for real project notes, final assets, and production context when available.",
     },
     services: {
       brandIdentity: {
@@ -191,6 +201,7 @@ export const copy = {
     footer: {
       line: "Design with purpose.",
       socials: ["Instagram", "Behance", "Pinterest", "Email"],
+      emailLabel: "Email",
       copyright: "Nour Bamarouf. All rights reserved.",
     },
   },
@@ -203,6 +214,7 @@ export const copy = {
       contact: "التواصل",
     },
     actions: {
+      viewLabel: "عرض",
       viewWork: "استعرضي الأعمال",
       startProject: "ابدئي مشروعاً",
       viewAllProjects: "استعراض كل الأعمال",
@@ -217,10 +229,10 @@ export const copy = {
       skipToContent: "تخطي إلى المحتوى",
     },
     intro: {
-      descriptor: "Graphic Designer",
+      descriptor: "مصممة جرافيك",
     },
     hero: {
-      descriptor: "Graphic Designer",
+      descriptor: "مصممة جرافيك",
       lineOne: "تصميم بنيّة واضحة.",
       lineTwo: "وصناعة لها معنى.",
       body: "هويات بصرية، مواد مطبوعة، وأنظمة تحريرية تتشكل بهدوء وثقة وإحساس دقيق.",
@@ -252,6 +264,15 @@ export const copy = {
       capabilities: "القدرات",
       values: "القيم",
       invitation: "الدعوة",
+    },
+    ui: {
+      credits: "الاعتمادات",
+      connect: "التواصل",
+      footerNavigation: "روابط التذييل",
+      projectCategories: "تصنيفات الأعمال",
+      selectPlaceholder: "اختاري",
+      socialPlaceholder: "مؤقت",
+      outcomeNote: "هذه بنية دراسة حالة مؤقتة وجاهزة لملاحظات المشروع الحقيقية، الأصول النهائية، وسياق الإنتاج عند توفرها.",
     },
     services: {
       brandIdentity: {
@@ -316,9 +337,9 @@ export const copy = {
     contactPage: {
       title: "لنعمل بعناية.",
       body: "استخدمي هذا النموذج كمسودة أمامية. يتحقق محلياً وهو جاهز للربط الخلفي لاحقاً.",
-      email: "hello@nourbamarouf.com (placeholder)",
-      instagram: "@nourbamarouf (placeholder)",
-      behance: "behance.net/nourbamarouf (placeholder)",
+      email: "hello@nourbamarouf.com (مؤقت)",
+      instagram: "@nourbamarouf (مؤقت)",
+      behance: "behance.net/nourbamarouf (مؤقت)",
       success: "مسودتك جاهزة. الإرسال معطل حتى يتم ربط نظام خلفي.",
       errors: {
         name: "يرجى إدخال الاسم.",
@@ -349,7 +370,8 @@ export const copy = {
     },
     footer: {
       line: "تصميم له معنى.",
-      socials: ["Instagram", "Behance", "Pinterest", "Email"],
+      socials: ["Instagram", "Behance", "Pinterest", "البريد الإلكتروني"],
+      emailLabel: "البريد الإلكتروني",
       copyright: "Nour Bamarouf. All rights reserved.",
     },
   },

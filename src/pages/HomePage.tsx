@@ -35,7 +35,7 @@ function ServicesSection() {
 
   return (
     <section className="section services-section" id="services" aria-labelledby="services-title" data-reveal>
-      <div className="section__index">Services</div>
+      <div className="section__index">{dictionary.nav.services}</div>
       <div className="services-section__header">
         <h2 id="services-title">{dictionary.nav.services}</h2>
         <p>

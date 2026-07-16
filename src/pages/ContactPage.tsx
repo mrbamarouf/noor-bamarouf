@@ -133,7 +133,7 @@ export function ContactPage() {
                 aria-invalid={Boolean(errors.interest)}
                 aria-describedby={errors.interest ? "contact-interest-error" : undefined}
               >
-                <option value="">Select</option>
+                <option value="">{dictionary.ui.selectPlaceholder}</option>
                 {options.interest.map((option) => (
                   <option key={option} value={option}>{option}</option>
                 ))}
@@ -150,7 +150,7 @@ export function ContactPage() {
                 aria-invalid={Boolean(errors.timeline)}
                 aria-describedby={errors.timeline ? "contact-timeline-error" : undefined}
               >
-                <option value="">Select</option>
+                <option value="">{dictionary.ui.selectPlaceholder}</option>
                 {options.timeline.map((option) => (
                   <option key={option} value={option}>{option}</option>
                 ))}
@@ -168,7 +168,7 @@ export function ContactPage() {
               aria-invalid={Boolean(errors.budget)}
               aria-describedby={errors.budget ? "contact-budget-error" : undefined}
             >
-              <option value="">Select</option>
+              <option value="">{dictionary.ui.selectPlaceholder}</option>
               {options.budget.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}

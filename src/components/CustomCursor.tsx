@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 
 export function CustomCursor() {
+  const { dictionary } = useLanguage();
   const [enabled, setEnabled] = useState(false);
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [active, setActive] = useState(false);
@@ -36,7 +38,7 @@ export function CustomCursor() {
       style={{ transform: `translate3d(${position.x}px, ${position.y}px, 0)` }}
       aria-hidden="true"
     >
-      <span>View</span>
+      <span>{dictionary.actions.viewLabel}</span>
     </div>
   );
 }

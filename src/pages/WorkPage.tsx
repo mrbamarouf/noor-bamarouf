@@ -27,7 +27,7 @@ export function WorkPage() {
       </section>
 
       <section className="work-archive" aria-label={dictionary.home.archiveTitle} data-reveal>
-        <div className="filter-bar" role="list" aria-label="Project categories">
+        <div className="filter-bar" role="list" aria-label={dictionary.ui.projectCategories}>
           {categoryOrder.map((category) => (
             <button
               key={category}

@@ -34,14 +34,14 @@ function ScrollManager() {
     const projectSlug = location.pathname.startsWith("/work/") ? projectPathParts[1] : undefined;
     const project = getProject(projectSlug);
     const pageTitleMap: Record<string, string> = {
-      "/": "Nour Bamarouf | Graphic Designer",
+      "/": `Nour Bamarouf | ${dictionary.hero.descriptor}`,
       "/about": `${dictionary.nav.about} | Nour Bamarouf`,
       "/work": `${dictionary.nav.work} | Nour Bamarouf`,
       "/contact": `${dictionary.nav.contact} | Nour Bamarouf`,
     };
     document.title = project
       ? `${project.title} | Nour Bamarouf`
-      : pageTitleMap[location.pathname] ?? "Nour Bamarouf | Graphic Designer";
+      : pageTitleMap[location.pathname] ?? `Nour Bamarouf | ${dictionary.hero.descriptor}`;
 
     const description = project
       ? project.shortDescription[language]

@@ -5,6 +5,7 @@ import { BrandMark } from "./BrandMark";
 
 export function Footer() {
   const { dictionary } = useLanguage();
+  const emailLabel = dictionary.footer.emailLabel;
 
   return (
     <footer className="site-footer">
@@ -13,7 +14,7 @@ export function Footer() {
           <BrandMark variant="compact" />
           <p>{dictionary.footer.line}</p>
         </div>
-        <nav className="footer-list" aria-label="Footer navigation">
+        <nav className="footer-list" aria-label={dictionary.ui.footerNavigation}>
           <h2>{dictionary.nav.home}</h2>
           {navItems.map((item) => (
             <Link key={item.to} to={item.to}>
@@ -28,14 +29,14 @@ export function Footer() {
           ))}
         </div>
         <div className="footer-list">
-          <h2>Connect</h2>
+          <h2>{dictionary.ui.connect}</h2>
           {dictionary.footer.socials.map((social) =>
-            social === "Email" ? (
+            social === emailLabel ? (
               <a key={social} href="mailto:hello@nourbamarouf.com">
                 {social}
               </a>
             ) : (
-              <span key={social}>{social} placeholder</span>
+              <span key={social}>{social} {dictionary.ui.socialPlaceholder}</span>
             ),
           )}
         </div>

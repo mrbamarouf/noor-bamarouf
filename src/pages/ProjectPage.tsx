@@ -31,7 +31,7 @@ export function ProjectPage() {
             <dd>{project.services.map((service) => dictionary.services[service].title).join(", ")}</dd>
           </div>
           <div>
-            <dt>Credits</dt>
+            <dt>{dictionary.ui.credits}</dt>
             <dd>{project.credits[language]}</dd>
           </div>
         </dl>
@@ -86,7 +86,7 @@ export function ProjectPage() {
         </div>
         <div>
           <span className="section__index">{dictionary.sections.outcome}</span>
-          <p>{dictionary.home.selectedIntro}</p>
+          <p>{dictionary.ui.outcomeNote}</p>
         </div>
       </section>
 
