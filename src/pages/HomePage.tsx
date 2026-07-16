@@ -85,11 +85,13 @@ function ServicesSection() {
             type="button"
             onMouseEnter={() => setActiveService(service)}
             onFocus={() => setActiveService(service)}
-            aria-pressed={activeService === service}
+            onClick={() => setActiveService(service)}
+            aria-expanded={activeService === service}
+            aria-controls={`service-panel-${service}`}
           >
             <span>{String(index + 1).padStart(2, "0")}</span>
             <h3>{dictionary.services[service].title}</h3>
-            <p>{dictionary.services[service].description}</p>
+            <p id={`service-panel-${service}`}>{dictionary.services[service].description}</p>
           </button>
         ))}
       </div>
