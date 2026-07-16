@@ -8,6 +8,11 @@ function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+function isPageReload() {
+  const navigation = performance.getEntriesByType("navigation")[0];
+  return navigation instanceof PerformanceNavigationTiming && navigation.type === "reload";
+}
+
 export function Intro() {
   const { dictionary } = useLanguage();
   const [visible, setVisible] = useState(false);
@@ -18,7 +23,8 @@ export function Intro() {
       return;
     }
 
-    if (window.sessionStorage.getItem(INTRO_KEY) === "true" || prefersReducedMotion()) {
+    const hasPlayedInSession = window.sessionStorage.getItem(INTRO_KEY) === "true";
+    if ((!isPageReload() && hasPlayedInSession) || prefersReducedMotion()) {
       window.sessionStorage.setItem(INTRO_KEY, "true");
       return;
     }
