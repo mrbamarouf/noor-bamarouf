@@ -1,7 +1,11 @@
 import { Link, Navigate, useParams } from "react-router-dom";
-import { ArtFrame } from "../components/ArtFrame";
+import { ProjectVisual, type ProjectVisualAsset } from "../components/ProjectVisual";
 import { getNextProject, getProject } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
+
+function galleryAsset(index: number): ProjectVisualAsset {
+  return `gallery-${index + 1}` as ProjectVisualAsset;
+}
 
 export function ProjectPage() {
   const { slug } = useParams();
@@ -38,11 +42,11 @@ export function ProjectPage() {
         </dl>
       </header>
 
-      <ArtFrame
+      <ProjectVisual
         className="project-main-image"
-        variant={project.heroImage.variant}
-        scene={project.heroImage.scene}
-        alt={project.heroImage.alt}
+        image={project.heroImage}
+        projectSlug={project.slug}
+        asset="hero"
         ratio="wide"
       />
 
@@ -55,10 +59,10 @@ export function ProjectPage() {
       </section>
 
       <section className="project-direction" aria-label={dictionary.sections.creativeDirection} data-reveal>
-        <ArtFrame
-          variant={project.gallery[0].variant}
-          scene={project.gallery[0].scene}
-          alt={project.gallery[0].alt}
+        <ProjectVisual
+          image={project.gallery[0]}
+          projectSlug={project.slug}
+          asset="gallery-1"
           ratio="portrait"
         />
         <div>
@@ -70,11 +74,11 @@ export function ProjectPage() {
 
       <section className="project-gallery" aria-label={dictionary.sections.gallery} data-reveal>
         {project.gallery.map((image, index) => (
-          <ArtFrame
+          <ProjectVisual
             key={`${image.variant}-${index}`}
-            variant={image.variant}
-            scene={image.scene}
-            alt={image.alt}
+            image={image}
+            projectSlug={project.slug}
+            asset={galleryAsset(index)}
             ratio={index === 0 ? "portrait" : index === 1 ? "landscape" : index === 2 ? "square" : "portrait"}
           />
         ))}

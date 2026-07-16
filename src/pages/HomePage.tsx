@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent } from "react";
 import { ArtFrame } from "../components/ArtFrame";
 import { BrandMark } from "../components/BrandMark";
+import { ProjectVisual } from "../components/ProjectVisual";
 import { serviceOrder } from "../data/content";
 import { projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
@@ -17,10 +18,10 @@ function ProjectFeature({ project, index }: { project: Project; index: number })
   return (
     <Link className="project-feature" to={`/work/${project.slug}`} data-cursor="view">
       <span className="project-feature__number">{String(index + 1).padStart(2, "0")}</span>
-      <ArtFrame
-        variant={project.coverImage.variant}
-        scene={project.coverImage.scene}
-        alt={project.coverImage.alt}
+      <ProjectVisual
+        image={project.coverImage}
+        projectSlug={project.slug}
+        asset="cover"
         ratio={index === 0 ? "wide" : index % 2 === 0 ? "landscape" : "portrait"}
       />
       <span className="project-feature__meta">
@@ -124,10 +125,10 @@ function FeaturedStory() {
   return (
     <section className="featured-story" aria-labelledby="featured-title" data-reveal>
       <div className="featured-story__visual">
-        <ArtFrame
-          variant={featured.heroImage.variant}
-          scene={featured.heroImage.scene}
-          alt={featured.heroImage.alt}
+        <ProjectVisual
+          image={featured.heroImage}
+          projectSlug={featured.slug}
+          asset="hero"
           ratio="wide"
         />
       </div>
@@ -253,14 +254,11 @@ export function HomePage() {
         </div>
         <div className="hero__visual" aria-hidden="true">
           <div className="hero__visual-stage">
-            <ArtFrame
+            <ProjectVisual
               className="hero__main-frame"
-              variant="flora"
-              scene="hero"
-              alt={{
-                en: "Editorial still life with paper, botanical stems, and soft green glass.",
-                ar: "تكوين تحريري بأوراق وسيقان نباتية وزجاج أخضر ناعم.",
-              }}
+              image={projects[0].heroImage}
+              projectSlug={projects[0].slug}
+              asset="hero"
               ratio="portrait"
               loading="eager"
             />
@@ -349,10 +347,10 @@ export function HomePage() {
         <div className="archive-strip">
           {projects.slice(2).map((project) => (
             <Link key={project.slug} to={`/work/${project.slug}`} data-cursor="view">
-              <ArtFrame
-                variant={project.coverImage.variant}
-                scene={project.coverImage.scene}
-                alt={project.coverImage.alt}
+              <ProjectVisual
+                image={project.coverImage}
+                projectSlug={project.slug}
+                asset="cover"
                 ratio="square"
               />
               <span>{project.title}</span>

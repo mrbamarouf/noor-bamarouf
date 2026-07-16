@@ -69,8 +69,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#F7EFE9", "#E9C7C6", "#C97F7A", "#A9B39B", "#5D715F"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "Reckless Neue",
+      body: "Avenir Next",
     },
     quote: {
       en: "A botanical identity where the paper, not decoration, carries the softness.",
@@ -140,8 +140,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#FAF1ED", "#E7B8B9", "#D58A81", "#B8C0A9", "#516254"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "Optima",
+      body: "Neue Haas Grotesk",
     },
     quote: {
       en: "A skincare world built from restraint, surface, and a sense of morning light.",
@@ -211,8 +211,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#F8F4EC", "#DDD2BD", "#C99D94", "#8F987D", "#31342E"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "Tiempos Headline",
+      body: "Maison Neue",
     },
     quote: {
       en: "A magazine system that treats pacing as carefully as the cover.",
@@ -282,8 +282,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#F1EAE1", "#D0BCA4", "#B88A80", "#6E7B62", "#30362E"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "Editorial New",
+      body: "Suisse Int'l",
     },
     quote: {
       en: "A campaign world designed to feel collected, not crowded.",
@@ -353,8 +353,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#F8F0EA", "#E0A8A2", "#C6D0BD", "#7D8C75", "#3F443C"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "GT America",
+      body: "ABC Diatype",
     },
     quote: {
       en: "A social system with enough structure to feel branded and enough air to stay alive.",
@@ -424,8 +424,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#F4ECE9", "#DAB4B1", "#9F6865", "#596153", "#24251F"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "Didot",
+      body: "Helvetica Neue",
     },
     quote: {
       en: "A fashion identity that behaves like a garment detail, quiet until it is close.",
@@ -495,8 +495,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#EFEAE2", "#C7BBAA", "#A0746D", "#6B7466", "#2C302A"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "Neue Montreal",
+      body: "Untitled Sans",
     },
     quote: {
       en: "A grounded identity where rules, paper, and signage carry the architecture.",
@@ -566,8 +566,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#F5ECE4", "#DDB59F", "#B77768", "#9DA98B", "#4C5948"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "Cooper BT",
+      body: "Akzidenz-Grotesk",
     },
     quote: {
       en: "A cafe identity that feels calm before the first cup is poured.",
@@ -637,8 +637,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#F3EDE5", "#D1BCA6", "#B98276", "#87927A", "#343832"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "Sohne",
+      body: "Lyon Text",
     },
     quote: {
       en: "A furniture system where material samples become the identity language.",
@@ -708,8 +708,8 @@ export const projects: Project[] = [
     },
     colorPalette: ["#F2E7DC", "#CFAF96", "#B36F62", "#718066", "#2F342D"],
     typography: {
-      display: "Bodoni Moda",
-      body: "Manrope",
+      display: "Canela",
+      body: "Founders Grotesk",
     },
     quote: {
       en: "A packaging system that makes small-batch production feel careful and collected.",

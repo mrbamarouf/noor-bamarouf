@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArtFrame } from "../components/ArtFrame";
+import { ProjectVisual } from "../components/ProjectVisual";
 import { categoryOrder } from "../data/content";
 import { projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
@@ -49,10 +49,10 @@ export function WorkPage() {
               key={project.slug}
               data-cursor="view"
             >
-              <ArtFrame
-                variant={project.coverImage.variant}
-                scene={project.coverImage.scene}
-                alt={project.coverImage.alt}
+              <ProjectVisual
+                image={project.coverImage}
+                projectSlug={project.slug}
+                asset="cover"
                 ratio={index % 3 === 0 ? "landscape" : index % 3 === 1 ? "portrait" : "square"}
               />
               <span>{project.year} / {dictionary.categories[project.category]}</span>
