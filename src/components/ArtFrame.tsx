@@ -38,6 +38,10 @@ export function ArtFrame({ variant, alt, ratio = "portrait", className = "", loa
         <span>{variantLabels[variant]}</span>
       </div>
       <div className="art-frame__object object-paper" />
+      <div className="art-frame__folio folio-one" />
+      <div className="art-frame__folio folio-two" />
+      <div className="art-frame__rule rule-one" />
+      <div className="art-frame__rule rule-two" />
       <div className="art-frame__object object-vase">
         <span />
       </div>

@@ -909,6 +909,49 @@ html[dir="rtl"] .hero__statement {
   border-bottom: 0;
 }
 
+.art-frame__folio,
+.art-frame__rule {
+  position: absolute;
+  border: 1px solid color-mix(in oklch, var(--frame-ink) 20%, transparent);
+  opacity: 0.64;
+}
+
+.art-frame__folio {
+  left: 10%;
+  top: 12%;
+  width: 23%;
+  height: 28%;
+  background: color-mix(in oklch, white 28%, transparent);
+}
+
+.folio-two {
+  left: auto;
+  right: 9%;
+  top: auto;
+  bottom: 11%;
+  width: 20%;
+  height: 22%;
+  transform: rotate(8deg);
+}
+
+.art-frame__rule {
+  height: 1px;
+  border-width: 0;
+  background: color-mix(in oklch, var(--frame-ink) 34%, transparent);
+}
+
+.rule-one {
+  left: 10%;
+  right: 12%;
+  top: 18%;
+}
+
+.rule-two {
+  left: 16%;
+  right: 20%;
+  bottom: 18%;
+}
+
 .art-frame__stem {
   position: absolute;
   right: 27%;
@@ -949,6 +992,134 @@ html[dir="rtl"] .hero__statement {
 .dot-three {
   right: 29%;
   top: 11%;
+}
+
+.art-frame--aurora .object-main {
+  width: 36%;
+  height: 42%;
+  left: 13%;
+  bottom: 18%;
+  transform: rotate(-4deg);
+}
+
+.art-frame--aurora .object-paper {
+  right: 15%;
+  bottom: 12%;
+  width: 38%;
+  height: 46%;
+  transform: rotate(5deg);
+}
+
+.art-frame--aurora .folio-one {
+  width: 36%;
+  height: 18%;
+}
+
+.art-frame--elysian .object-main {
+  left: 17%;
+  bottom: 16%;
+  width: 34%;
+  height: 58%;
+}
+
+.art-frame--elysian .object-paper {
+  right: 17%;
+  bottom: 20%;
+  width: 31%;
+  height: 54%;
+  transform: rotate(0deg);
+}
+
+.art-frame--elysian .rule-one,
+.art-frame--elysian .rule-two {
+  left: 24%;
+  right: 24%;
+}
+
+.art-frame--nude .object-main {
+  left: 14%;
+  bottom: 17%;
+  width: 34%;
+  height: 46%;
+  transform: perspective(400px) rotateY(-10deg);
+}
+
+.art-frame--nude .object-paper {
+  right: 13%;
+  bottom: 18%;
+  width: 32%;
+  height: 46%;
+  transform: perspective(420px) rotateY(14deg);
+}
+
+.art-frame--nude .object-vase {
+  opacity: 0.2;
+}
+
+.art-frame--luna .object-main {
+  left: 13%;
+  bottom: 18%;
+  width: 30%;
+  height: 30%;
+}
+
+.art-frame--luna .object-paper {
+  right: 12%;
+  top: 18%;
+  bottom: auto;
+  width: 30%;
+  height: 30%;
+  transform: rotate(0deg);
+}
+
+.art-frame--luna .folio-one {
+  left: 46%;
+  top: 34%;
+  width: 28%;
+  height: 28%;
+  background: color-mix(in oklch, var(--frame-main) 18%, white);
+}
+
+.art-frame--luna .folio-two {
+  left: 25%;
+  right: auto;
+  bottom: 12%;
+  width: 28%;
+  height: 28%;
+}
+
+.art-frame--kinfolk .object-main,
+.art-frame--archive .object-main {
+  left: 18%;
+  bottom: 15%;
+  width: 39%;
+  height: 58%;
+  transform: rotate(-2deg);
+}
+
+.art-frame--kinfolk .object-paper,
+.art-frame--archive .object-paper {
+  right: 16%;
+  bottom: 18%;
+  width: 29%;
+  height: 50%;
+  transform: rotate(4deg);
+}
+
+.art-frame--studio .object-main,
+.art-frame--materials .object-main {
+  left: 12%;
+  bottom: 18%;
+  width: 44%;
+  height: 34%;
+}
+
+.art-frame--studio .object-paper,
+.art-frame--materials .object-paper {
+  right: 13%;
+  bottom: 17%;
+  width: 30%;
+  height: 42%;
 }
 
 a:hover .art-frame .object-main,
@@ -1095,6 +1266,11 @@ a:hover .art-frame .object-paper,
   max-width: 34ch;
 }
 
+.service-preview {
+  width: min(100%, 360px);
+  margin-top: clamp(32px, 4vw, 58px);
+}
+
 .services-list {
   border-top: 1px solid var(--color-line);
 }
@@ -1103,15 +1279,22 @@ a:hover .art-frame .object-paper,
   display: grid;
   grid-template-columns: 72px 0.56fr 0.78fr;
   align-items: center;
+  width: 100%;
   gap: 30px;
   padding-block: clamp(26px, 3vw, 44px);
+  color: inherit;
+  text-align: left;
+  background: transparent;
+  border: 0;
   border-bottom: 1px solid var(--color-line);
+  cursor: pointer;
   transition:
     background var(--duration-soft) var(--ease-out),
     padding-inline var(--duration-soft) var(--ease-out);
 }
 
-.service-row:hover {
+.service-row:hover,
+.service-row--active {
   padding-inline: 22px;
   background: color-mix(in oklch, var(--color-sage-soft) 18%, transparent);
 }
@@ -1128,6 +1311,10 @@ a:hover .art-frame .object-paper,
 
 .service-row p {
   font-size: 0.98rem;
+}
+
+html[dir="rtl"] .service-row {
+  text-align: left;
 }
 
 .philosophy-section {

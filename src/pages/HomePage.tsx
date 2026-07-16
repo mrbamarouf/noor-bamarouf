@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { ArtFrame } from "../components/ArtFrame";
 import { BrandMark } from "../components/BrandMark";
 import { serviceOrder } from "../data/content";
 import { projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
-import type { Project } from "../types";
+import type { ArtVariant, Project, ServiceKey } from "../types";
 
 function Arrow() {
   return <span aria-hidden="true">→</span>;
@@ -32,6 +33,16 @@ function ProjectFeature({ project, index }: { project: Project; index: number })
 
 function ServicesSection() {
   const { dictionary } = useLanguage();
+  const [activeService, setActiveService] = useState<ServiceKey>("brandIdentity");
+  const serviceVisuals: Record<ServiceKey, ArtVariant> = {
+    brandIdentity: "flora",
+    graphicDesign: "aurora",
+    packagingDesign: "nude",
+    printDesign: "kinfolk",
+    socialMediaDesign: "luna",
+    editorialDesign: "elysian",
+    creativeDirection: "studio",
+  };
 
   return (
     <section className="section services-section" id="services" aria-labelledby="services-title" data-reveal>
@@ -41,14 +52,31 @@ function ServicesSection() {
         <p>
           {dictionary.home.contactBody}
         </p>
+        <div className="service-preview" aria-hidden="true">
+          <ArtFrame
+            variant={serviceVisuals[activeService]}
+            alt={{
+              en: "Service art direction preview.",
+              ar: "معاينة بصرية للخدمة.",
+            }}
+            ratio="square"
+          />
+        </div>
       </div>
       <div className="services-list">
         {serviceOrder.map((service, index) => (
-          <article className="service-row" key={service}>
+          <button
+            className={activeService === service ? "service-row service-row--active" : "service-row"}
+            key={service}
+            type="button"
+            onMouseEnter={() => setActiveService(service)}
+            onFocus={() => setActiveService(service)}
+            aria-pressed={activeService === service}
+          >
             <span>{String(index + 1).padStart(2, "0")}</span>
             <h3>{dictionary.services[service].title}</h3>
             <p>{dictionary.services[service].description}</p>
-          </article>
+          </button>
         ))}
       </div>
     </section>
@@ -145,7 +173,7 @@ export function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="hero__visual" data-cursor="view">
+        <div className="hero__visual">
           <ArtFrame
             variant="flora"
             alt={{
