@@ -614,65 +614,192 @@ html[dir="rtl"] .text-link::after {
   place-items: center;
   overflow: hidden;
   background: var(--color-ivory);
-  animation: introIn 900ms var(--ease-out) both;
+  animation: introIn 420ms var(--ease-out) both;
 }
 
 .intro--leaving {
   pointer-events: none;
-  animation: introOut 720ms var(--ease-out) forwards;
+  animation: introOut 400ms var(--ease-out) forwards;
 }
 
-.intro__paper {
-  position: absolute;
-  inset: 7vw 9vw;
-  border: 1px solid color-mix(in oklch, var(--color-rose) 18%, transparent);
-}
-
-.intro__paper::before,
-.intro__paper::after {
-  position: absolute;
-  content: "";
-  background: color-mix(in oklch, var(--color-sage) 42%, transparent);
-}
-
-.intro__paper::before {
-  top: 50%;
-  left: -9vw;
-  width: 18vw;
-  height: 1px;
-}
-
-.intro__paper::after {
-  right: -9vw;
-  bottom: 28%;
-  width: 18vw;
-  height: 1px;
-}
-
-.intro__center {
+.intro__composition {
   position: relative;
   display: grid;
-  justify-items: center;
-  gap: 24px;
-  animation: titleReveal 1800ms var(--ease-out) both;
+  grid-template-columns: minmax(240px, 0.42fr) minmax(420px, 0.58fr);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(42px, 5vw, 92px);
+  width: min(80vw, 1180px);
+  max-height: 72vh;
 }
 
-.intro__center p {
+.intro__composition::before {
+  position: absolute;
+  inset: auto 6% -18% 22%;
+  z-index: -1;
+  height: clamp(160px, 18vw, 260px);
+  content: "";
+  background: radial-gradient(ellipse at center, color-mix(in oklch, var(--color-rose) 10%, transparent), transparent 68%);
+  opacity: 0.72;
+  filter: blur(18px);
+}
+
+.intro__monogram {
+  position: relative;
+  justify-self: end;
+  width: clamp(230px, 22vw, 420px);
+  aspect-ratio: 1.08;
+  font-family: var(--font-display);
+  line-height: 0.76;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: introMonogramIn 720ms var(--ease-out) 90ms forwards;
+}
+
+.intro__monogram-n,
+.intro__monogram-b {
+  position: absolute;
+  top: 0;
+  font-size: clamp(13.8rem, 21vw, 25.2rem);
+  font-weight: 400;
+  line-height: 0.76;
+}
+
+.intro__monogram-n {
+  left: 0;
+  color: var(--color-rose);
+  transform: scaleX(0.92);
+}
+
+.intro__monogram-b {
+  left: 35%;
+  color: var(--color-olive);
+  transform: scaleX(0.96);
+}
+
+.intro__branch {
+  position: absolute;
+  left: 55%;
+  top: 3%;
+  width: clamp(82px, 8vw, 148px);
+  height: auto;
+  overflow: visible;
+}
+
+.intro__branch-stem,
+.intro__branch-leaf {
+  fill: none;
+  stroke: var(--color-olive);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.intro__branch-stem {
+  stroke-width: 5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: branchDraw 820ms var(--ease-out) 660ms forwards;
+}
+
+.intro__branch-leaf {
+  fill: color-mix(in oklch, var(--color-olive) 84%, var(--color-sage-soft));
+  stroke-width: 2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.84);
+  animation: leafIn 520ms var(--ease-out) 1020ms forwards;
+}
+
+.intro__branch-leaf:nth-of-type(4) {
+  animation-delay: 1080ms;
+}
+
+.intro__branch-leaf:nth-of-type(5) {
+  animation-delay: 1140ms;
+}
+
+.intro__branch-leaf:nth-of-type(6) {
+  animation-delay: 1200ms;
+}
+
+.intro__wordmark-wrap {
+  display: grid;
+  justify-self: start;
+  gap: clamp(22px, 2vw, 34px);
+  min-width: 0;
+}
+
+.intro__wordmark {
+  display: grid;
+  gap: clamp(4px, 0.6vw, 10px);
+  font-size: clamp(5.4rem, 8.1vw, 9.8rem);
+  line-height: 0.84;
+  letter-spacing: 0;
+}
+
+.intro__wordmark span {
+  display: block;
+  width: fit-content;
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(16px);
+  animation: introWordReveal 760ms var(--ease-out) 1260ms forwards;
+}
+
+.intro__wordmark span:first-child {
+  color: var(--color-rose);
+}
+
+.intro__wordmark span:last-child {
+  color: var(--color-olive);
+  animation-delay: 1370ms;
+}
+
+.intro__descriptor {
+  display: grid;
+  grid-template-columns: minmax(56px, 148px) auto minmax(56px, 148px);
+  align-items: center;
+  justify-content: center;
+  gap: clamp(22px, 2vw, 36px);
+  width: fit-content;
   color: var(--color-muted);
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.35vw, 1.52rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0;
+  word-spacing: 0.38em;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: introDescriptorIn 560ms var(--ease-out) 1780ms forwards;
+}
+
+.intro__descriptor span {
+  height: 1px;
+  background: color-mix(in oklch, var(--color-olive) 62%, transparent);
+  transform: scaleX(0);
+  animation: introRuleIn 620ms var(--ease-out) 1860ms forwards;
 }
 
 .intro__skip {
   position: absolute;
-  right: 38px;
-  bottom: 34px;
-  padding: 10px 0;
+  right: clamp(24px, 3vw, 48px);
+  bottom: clamp(22px, 2.6vw, 42px);
+  padding: 8px 0;
   color: var(--color-muted);
   background: transparent;
   border: 0;
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid color-mix(in oklch, currentColor 62%, transparent);
+  font-size: 0.78rem;
+  font-weight: 700;
   cursor: pointer;
+}
+
+html[dir="rtl"] .intro__composition,
+html[dir="rtl"] .intro__wordmark-wrap,
+html[dir="rtl"] .intro__wordmark,
+html[dir="rtl"] .intro__descriptor {
+  direction: ltr;
 }
 
 /* Header */
@@ -4133,20 +4260,51 @@ html[dir="rtl"] .footer-list h2 {
 @keyframes introOut {
   to {
     opacity: 0;
-    transform: translateY(-18px);
+    transform: translateY(-12px);
   }
 }
 
-@keyframes titleReveal {
+@keyframes introMonogramIn {
   from {
     opacity: 0;
-    clip-path: inset(0 0 100% 0);
-    transform: translateY(22px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes branchDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes leafIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes introWordReveal {
+  to {
     clip-path: inset(0 0 0 0);
     transform: translateY(0);
+  }
+}
+
+@keyframes introDescriptorIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes introRuleIn {
+  to {
+    transform: scaleX(1);
   }
 }
 
