@@ -175,12 +175,6 @@ export function HomePage() {
     const y = (clientY - rect.top) / rect.height - 0.5;
     hero.style.setProperty("--hero-drift-x", `${x * 18}px`);
     hero.style.setProperty("--hero-drift-y", `${y * 12}px`);
-    hero.style.setProperty("--hero-book-x", `${x * -16}px`);
-    hero.style.setProperty("--hero-book-y", `${y * -10}px`);
-    hero.style.setProperty("--hero-card-x", `${x * 14}px`);
-    hero.style.setProperty("--hero-card-y", `${y * 9}px`);
-    hero.style.setProperty("--hero-glass-x", `${x * -10}px`);
-    hero.style.setProperty("--hero-glass-y", `${y * 14}px`);
   };
 
   const setHeroDepth = (event: PointerEvent<HTMLElement>) => {
@@ -204,12 +198,6 @@ export function HomePage() {
     [
       "--hero-drift-x",
       "--hero-drift-y",
-      "--hero-book-x",
-      "--hero-book-y",
-      "--hero-card-x",
-      "--hero-card-y",
-      "--hero-glass-x",
-      "--hero-glass-y",
     ].forEach((property) => hero.style.setProperty(property, "0px"));
   };
 
@@ -259,22 +247,9 @@ export function HomePage() {
               image={projects[0].heroImage}
               projectSlug={projects[0].slug}
               asset="hero"
-              ratio="portrait"
+              ratio="wide"
               loading="eager"
             />
-            <div className="hero__book">
-              <span>NOUR</span>
-              <span>BAMAROUF</span>
-            </div>
-            <div className="hero__stationery">
-              <span>NB</span>
-            </div>
-            <div className="hero__glass">
-              <span />
-            </div>
-            <div className="hero__flower flower-a" />
-            <div className="hero__flower flower-b" />
-            <div className="hero__flower flower-c" />
             <div className="hero__caption">
               <span>{dictionary.hero.materialNote}</span>
             </div>

@@ -925,140 +925,11 @@ html[dir="rtl"] .hero__statement {
 .hero__main-frame {
   position: absolute;
   right: 0;
-  top: 11%;
-  width: min(32vw, 520px);
+  top: 23%;
+  width: min(42vw, 720px);
   min-height: 0;
-  clip-path: polygon(0 8%, 100% 0, 94% 100%, 7% 94%);
+  clip-path: polygon(0 5%, 100% 0, 96% 100%, 4% 94%);
   box-shadow: 0 28px 46px color-mix(in oklch, var(--color-ink) 13%, transparent);
-}
-
-.hero__main-frame .object-main {
-  left: 15%;
-  bottom: 14%;
-  width: 40%;
-  height: 43%;
-}
-
-.hero__book {
-  position: absolute;
-  left: 18%;
-  bottom: 15%;
-  z-index: 4;
-  display: grid;
-  align-content: end;
-  width: min(18vw, 270px);
-  aspect-ratio: 0.72;
-  padding: clamp(22px, 2.2vw, 36px);
-  color: color-mix(in oklch, var(--color-ivory) 92%, white);
-  background:
-    linear-gradient(100deg, color-mix(in oklch, var(--color-olive) 86%, black), color-mix(in oklch, var(--color-sage) 72%, var(--color-olive-dark)));
-  border: 1px solid color-mix(in oklch, white 20%, var(--color-olive));
-  box-shadow: 0 22px 42px color-mix(in oklch, var(--color-ink) 18%, transparent);
-  transform: translate3d(var(--hero-book-x, 0px), var(--hero-book-y, 0px), 0) rotate(-7deg);
-  transition:
-    box-shadow 900ms var(--ease-out),
-    transform 980ms var(--ease-out);
-  will-change: transform;
-}
-
-.hero__book::before {
-  position: absolute;
-  inset: 14px;
-  content: "";
-  border: 1px solid color-mix(in oklch, white 20%, transparent);
-}
-
-.hero__book span {
-  position: relative;
-  z-index: 1;
-  display: block;
-  font-family: var(--font-display);
-  font-size: clamp(1.7rem, 2.7vw, 3.7rem);
-  line-height: 0.95;
-}
-
-.hero__stationery {
-  position: absolute;
-  right: 3%;
-  bottom: 8%;
-  z-index: 5;
-  display: grid;
-  place-items: center;
-  width: min(18vw, 290px);
-  aspect-ratio: 1.18;
-  color: var(--color-rose);
-  background:
-    linear-gradient(135deg, color-mix(in oklch, var(--color-rose) 16%, white), color-mix(in oklch, var(--color-paper) 86%, white));
-  border: 1px solid color-mix(in oklch, var(--color-rose) 28%, transparent);
-  box-shadow: 0 18px 34px color-mix(in oklch, var(--color-rose-deep) 14%, transparent);
-  transform: translate3d(var(--hero-card-x, 0px), var(--hero-card-y, 0px), 0) rotate(8deg);
-  transition:
-    box-shadow 900ms var(--ease-out),
-    transform 980ms var(--ease-out);
-  will-change: transform;
-}
-
-.hero__stationery span {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 5vw, 6.6rem);
-  opacity: 0.52;
-}
-
-.hero__glass {
-  position: absolute;
-  right: 22%;
-  top: 17%;
-  z-index: 6;
-  width: min(9vw, 140px);
-  height: min(22vw, 310px);
-  border: 1px solid color-mix(in oklch, var(--color-olive) 35%, white);
-  border-radius: 999px 999px 42% 42%;
-  background: color-mix(in oklch, var(--color-sage-soft) 31%, transparent);
-  backdrop-filter: blur(2px);
-  transform: translate3d(var(--hero-glass-x, 0px), var(--hero-glass-y, 0px), 0);
-  transition: transform 980ms var(--ease-out);
-  will-change: transform;
-}
-
-.hero__glass span {
-  position: absolute;
-  left: 50%;
-  top: -14%;
-  width: 42%;
-  height: 19%;
-  border: 1px solid color-mix(in oklch, var(--color-olive) 35%, white);
-  border-bottom: 0;
-  transform: translateX(-50%);
-}
-
-.hero__flower {
-  position: absolute;
-  z-index: 7;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: var(--color-rose);
-  box-shadow:
-    0 0 0 7px color-mix(in oklch, var(--color-rose) 14%, transparent),
-    28px 30px 0 -3px color-mix(in oklch, var(--color-rose) 82%, white),
-    -24px 26px 0 -4px color-mix(in oklch, var(--color-rose) 72%, white);
-  transform: translate3d(var(--hero-glass-x, 0px), var(--hero-glass-y, 0px), 0);
-  transition: transform 980ms var(--ease-out);
-}
-
-.flower-a {
-  right: 23%;
-  top: 13%;
-}
-
-.flower-b {
-  right: 34%;
-  top: 25%;
-}
-
-.flower-c {
-  right: 12%;
-  top: 31%;
 }
 
 .hero__caption {
@@ -4230,15 +4101,7 @@ html[dir="rtl"] .footer-list h2 {
   }
 
   .hero__main-frame {
-    width: min(43vw, 520px);
-  }
-
-  .hero__book {
-    width: min(22vw, 230px);
-  }
-
-  .hero__stationery {
-    width: min(22vw, 250px);
+    width: min(43vw, 620px);
   }
 
   .hero__studio-note {
@@ -4314,17 +4177,7 @@ html[dir="rtl"] .footer-list h2 {
 
   .hero__main-frame {
     right: 4%;
-    width: 78%;
-  }
-
-  .hero__book {
-    left: 4%;
-    width: 34%;
-  }
-
-  .hero__stationery {
-    right: 5%;
-    width: 40%;
+    width: 86%;
   }
 
   .hero__side-note,

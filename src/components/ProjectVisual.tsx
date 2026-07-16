@@ -22,7 +22,7 @@ export function ProjectVisual({
   loading = "lazy",
 }: ProjectVisualProps) {
   const { language } = useLanguage();
-  const src = projectSlug && asset ? `/demo-projects/${projectSlug}/${asset}.svg` : undefined;
+  const src = projectSlug && asset ? `/demo-projects/${projectSlug}/${asset}.jpg` : undefined;
 
   if (!src) {
     return (

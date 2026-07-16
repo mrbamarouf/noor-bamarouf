@@ -37,7 +37,7 @@ Motion is calm and title-sequence inspired: intro reveal, text masks, subtle ima
 - `BrandMark`: temporary web implementation of the NB monogram, wordmark, descriptor, and botanical branch.
 - `Intro`: first-session logo reveal with skip and reduced-motion handling.
 - `Header`: minimal desktop navigation with language switcher and scroll refinement.
-- `ProjectVisual`: file-based project imagery renderer for local demonstration mockups stored in `public/demo-projects`.
+- `ProjectVisual`: file-based raster portfolio imagery renderer for local Behance-style demonstration presentations stored in `public/demo-projects`.
 - `ArtFrame`: supporting studio/service atmosphere only. Do not use it as the primary visual for fictional project work.
 - `Footer`: sage editorial footer with navigation, services, socials, and back to top.
 - Pages use centralized content and project data for later replacement.
