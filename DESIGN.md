@@ -2,7 +2,7 @@
 
 ## Theme
 
-Nour Bamarouf uses a warm editorial identity with soft off-white, dusty rose, sage, olive grey, and deep muted charcoal. The visual world should feel like printed stationery, botanical still life, quiet art books, and refined brand systems photographed in natural light.
+Noor Bamarouf uses a warm editorial identity with soft off-white, dusty rose, sage, olive grey, and deep muted charcoal. The visual world should feel like printed stationery, botanical still life, quiet art books, and refined brand systems photographed in natural light.
 
 ## Color
 
@@ -34,7 +34,7 @@ Motion is calm and title-sequence inspired: intro reveal, text masks, subtle ima
 
 ## Components
 
-- `LogoAsset`: image-only rendering of transparent production assets generated from `public/brand-reference/nour-logo-reference.png`.
+- `LogoAsset`: image-only rendering of transparent production assets generated from `public/brand-reference/noor-logo-reference.png`.
 - `Intro`: first-session official logo reveal with skip and reduced-motion handling.
 - `Header`: minimal desktop navigation with language switcher and scroll refinement.
 - `ProjectVisual`: file-based raster portfolio imagery renderer for local Behance-style concept presentations stored in `public/concept-projects`.

@@ -3,6 +3,12 @@ import type { ProjectImage } from "../types";
 import { useLanguage } from "../context/LanguageContext";
 
 export type ProjectVisualAsset = "cover" | "hero" | `gallery-${1 | 2 | 3 | 4}`;
+const imageDimensions = {
+  portrait: { width: 720, height: 984 },
+  landscape: { width: 1536, height: 1024 },
+  square: { width: 1024, height: 1024 },
+  wide: { width: 1536, height: 1024 },
+} as const;
 
 interface ProjectVisualProps {
   image: ProjectImage;
@@ -23,6 +29,7 @@ export function ProjectVisual({
 }: ProjectVisualProps) {
   const { language } = useLanguage();
   const src = projectSlug && asset ? `/concept-projects/${projectSlug}/${asset}.jpg` : undefined;
+  const dimensions = imageDimensions[ratio];
 
   if (!src) {
     return (
@@ -43,7 +50,15 @@ export function ProjectVisual({
       data-project={projectSlug}
       data-asset={asset}
     >
-      <img src={src} alt={image.alt[language]} loading={loading} decoding="async" />
+      <img
+        src={src}
+        alt={image.alt[language]}
+        loading={loading}
+        decoding="async"
+        width={dimensions.width}
+        height={dimensions.height}
+        sizes="(max-width: 900px) calc(100vw - 40px), 50vw"
+      />
     </figure>
   );
 }

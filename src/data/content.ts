@@ -74,7 +74,7 @@ export const copy = {
     home: {
       selectedTitle: "Selected work",
       selectedIntro: "A focused selection across identity, print, packaging, editorial, and social systems.",
-      aboutTitle: "Hello, I’m Nour",
+      aboutTitle: "Hello, I’m Noor",
       aboutQuote: "Thoughtful design can feel quiet and still leave a lasting mark.",
       aboutBody: "I create visual identities, graphic systems, and editorial materials shaped by clarity, emotion, and purpose.",
       philosophyTitle: "Design is more than what it looks like.",
@@ -109,6 +109,10 @@ export const copy = {
       projectFormat: "Project type",
       email: "Email",
       whatsapp: "WhatsApp",
+      menu: "Menu",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+      languageSwitch: "Switch language",
     },
     services: {
       brandIdentity: {
@@ -166,7 +170,7 @@ export const copy = {
     ],
     aboutPage: {
       title: "A designer’s eye for quiet detail.",
-      body: "Nour Bamarouf creates identities, visual systems, print, packaging, and editorial experiences with a calm, detail-led approach.",
+      body: "Noor Bamarouf creates identities, visual systems, print, packaging, and editorial experiences with a calm, detail-led approach.",
       philosophy: "The work begins with listening, then moves through references, material choices, type, color, and composition until the visual language feels clear enough to hold.",
       invite: "Share a project note when the idea needs a visual language with restraint, softness, and precision.",
     },
@@ -178,7 +182,7 @@ export const copy = {
     },
     footer: {
       line: "Design with purpose.",
-      copyright: "Nour Bamarouf. All rights reserved.",
+      copyright: "Noor Bamarouf. All rights reserved.",
     },
   },
   ar: {
@@ -255,6 +259,10 @@ export const copy = {
       projectFormat: "نوع المشروع",
       email: "البريد الإلكتروني",
       whatsapp: "واتساب",
+      menu: "القائمة",
+      openMenu: "فتح القائمة",
+      closeMenu: "إغلاق القائمة",
+      languageSwitch: "تبديل اللغة",
     },
     services: {
       brandIdentity: {

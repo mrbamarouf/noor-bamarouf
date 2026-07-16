@@ -1,6 +1,6 @@
-# Nour Bamarouf Portfolio
+# Noor Bamarouf Portfolio
 
-Desktop-first luxury editorial portfolio for Nour Bamarouf, Graphic Designer.
+Desktop-first luxury editorial portfolio for Noor Bamarouf, Graphic Designer.
 
 ## Local Development
 
@@ -28,7 +28,7 @@ npm run build
 - Project content is centralized in `src/data/projects.ts`.
 - English and Arabic interface copy is centralized in `src/data/content.ts`.
 - Project visuals are local raster case-study assets stored in `public/concept-projects`.
-- Official logo assets are transparent PNGs generated from `public/brand-reference/nour-logo-reference.png`.
+- Official logo assets are transparent PNGs generated from `public/brand-reference/noor-logo-reference.png`.
 - The contact form prepares a mail draft with the submitted project details.
 
 ## Deployment

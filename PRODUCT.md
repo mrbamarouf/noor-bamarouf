@@ -6,11 +6,11 @@ brand
 
 ## Users
 
-Creative directors, founders, boutique brands, and design-aware clients in Saudi Arabia and internationally who are evaluating Nour Bamarouf as a graphic designer for refined visual identity, print, packaging, editorial, and social design work.
+Creative directors, founders, boutique brands, and design-aware clients in Saudi Arabia and internationally who are evaluating Noor Bamarouf as a graphic designer for refined visual identity, print, packaging, editorial, and social design work.
 
 ## Product Purpose
 
-The site presents Nour Bamarouf as a serious graphic designer through a luxury editorial portfolio experience. Success means the visitor feels clarity, trust, taste, and enough curiosity to explore the work or start a project conversation.
+The site presents Noor Bamarouf as a serious graphic designer through a luxury editorial portfolio experience. Success means the visitor feels clarity, trust, taste, and enough curiosity to explore the work or start a project conversation.
 
 ## Brand Personality
 

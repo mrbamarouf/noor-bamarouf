@@ -14,7 +14,7 @@ export function Footer() {
           <LogoAsset variant="footer" />
           <p>{dictionary.footer.line}</p>
         </div>
-        <nav className="footer-list" aria-label={dictionary.ui.footerNavigation}>
+        <nav className="footer-list footer-list--navigation" aria-label={dictionary.ui.footerNavigation}>
           <h2>{dictionary.nav.home}</h2>
           {navItems.map((item) => (
             <Link key={item.to} to={item.to}>
@@ -22,13 +22,13 @@ export function Footer() {
             </Link>
           ))}
         </nav>
-        <div className="footer-list">
+        <div className="footer-list footer-list--services">
           <h2>{dictionary.nav.services}</h2>
           {serviceOrder.slice(0, 5).map((service) => (
             <span key={service}>{dictionary.services[service].title}</span>
           ))}
         </div>
-        <div className="footer-list">
+        <div className="footer-list footer-list--contact">
           <h2>{dictionary.nav.contact}</h2>
           <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
             {dictionary.actions.contactByWhatsApp}

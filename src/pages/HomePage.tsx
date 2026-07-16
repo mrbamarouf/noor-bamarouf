@@ -78,22 +78,27 @@ function ServicesSection() {
         />
       </div>
       <div className="services-list">
-        {serviceOrder.map((service, index) => (
-          <button
-            className={activeService === service ? "service-row service-row--active" : "service-row"}
-            key={service}
-            type="button"
-            onMouseEnter={() => setActiveService(service)}
-            onFocus={() => setActiveService(service)}
-            onClick={() => setActiveService(service)}
-            aria-expanded={activeService === service}
-            aria-controls={`service-panel-${service}`}
-          >
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <h3>{dictionary.services[service].title}</h3>
-            <p id={`service-panel-${service}`}>{dictionary.services[service].description}</p>
-          </button>
-        ))}
+        {serviceOrder.map((service, index) => {
+          const isActive = activeService === service;
+          const panelId = `service-panel-${service}`;
+
+          return (
+            <button
+              className={isActive ? "service-row service-row--active" : "service-row"}
+              key={service}
+              type="button"
+              onClick={() => setActiveService(service)}
+              onMouseEnter={() => setActiveService(service)}
+              onFocus={() => setActiveService(service)}
+              aria-expanded={isActive}
+              aria-controls={panelId}
+            >
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{dictionary.services[service].title}</h3>
+              <p id={panelId}>{dictionary.services[service].description}</p>
+            </button>
+          );
+        })}
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { LogoAsset } from "./LogoAsset";
 
-const INTRO_KEY = "nour-intro-played";
+const INTRO_KEY = "noor-intro-played";
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -11,11 +11,6 @@ function prefersReducedMotion() {
 function isPageReload() {
   const navigation = performance.getEntriesByType("navigation")[0];
   return navigation instanceof PerformanceNavigationTiming && navigation.type === "reload";
-}
-
-function getIntroTiming() {
-  const isMobile = window.matchMedia("(max-width: 900px)").matches;
-  return isMobile ? { leave: 2050, done: 2400 } : { leave: 2600, done: 3000 };
 }
 
 export function Intro() {
@@ -34,13 +29,15 @@ export function Intro() {
       return;
     }
 
-    const timing = getIntroTiming();
     setVisible(true);
-    const leaveTimer = window.setTimeout(() => setLeaving(true), timing.leave);
+    const isMobile = window.matchMedia("(max-width: 900px)").matches;
+    const leaveDelay = isMobile ? 2120 : 2600;
+    const doneDelay = isMobile ? 2480 : 3000;
+    const leaveTimer = window.setTimeout(() => setLeaving(true), leaveDelay);
     const doneTimer = window.setTimeout(() => {
       window.sessionStorage.setItem(INTRO_KEY, "true");
       setVisible(false);
-    }, timing.done);
+    }, doneDelay);
 
     return () => {
       window.clearTimeout(leaveTimer);

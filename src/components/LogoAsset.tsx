@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const FULL_LOGO_SRC = "/brand/nour-logo-full-transparent.png";
-const FOOTER_LOGO_SRC = "/brand/nour-logo-footer-transparent.png";
-const MONOGRAM_LOGO_SRC = "/brand/nour-logo-monogram-transparent.png";
+const FULL_LOGO_SRC = "/brand/noor-logo-full-transparent.png";
+const FOOTER_LOGO_SRC = "/brand/noor-logo-footer-transparent.png";
+const MONOGRAM_LOGO_SRC = "/brand/noor-logo-monogram-transparent.png";
 
 type LogoAssetVariant = "header" | "intro" | "footer" | "hero";
 
@@ -19,11 +19,13 @@ function LogoImage({ variant, priority = false }: Pick<LogoAssetProps, "variant"
 
   return (
     <picture>
-      {logoVariant === "header" ? <source media="(max-width: 720px)" srcSet={MONOGRAM_LOGO_SRC} /> : null}
+      {logoVariant === "header" || logoVariant === "hero" || logoVariant === "footer" ? (
+        <source media="(max-width: 900px)" srcSet={MONOGRAM_LOGO_SRC} />
+      ) : null}
       <img
         className={`official-logo official-logo--${logoVariant}`}
         src={source}
-        alt="Nour Bamarouf official logo"
+        alt="Noor Bamarouf official logo"
         decoding="async"
         loading={priority ? "eager" : "lazy"}
       />
@@ -34,7 +36,7 @@ function LogoImage({ variant, priority = false }: Pick<LogoAssetProps, "variant"
 export function LogoAsset({ variant = "header", asLink = false, className = "", priority = false }: LogoAssetProps) {
   if (asLink) {
     return (
-      <Link className={`official-logo-link official-logo-link--${variant} ${className}`} to="/" aria-label="Nour Bamarouf home">
+      <Link className={`official-logo-link official-logo-link--${variant} ${className}`} to="/" aria-label="Noor Bamarouf home">
         <LogoImage variant={variant} priority={priority} />
       </Link>
     );

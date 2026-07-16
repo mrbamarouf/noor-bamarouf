@@ -25,7 +25,7 @@ function getInitialLanguage(): Language {
     return "en";
   }
 
-  const stored = window.localStorage.getItem("nour-language");
+  const stored = window.localStorage.getItem("noor-language");
   if (stored === "ar" || stored === "en") {
     return stored;
   }
@@ -37,7 +37,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, updateLanguage] = useState<Language>(getInitialLanguage);
 
   useEffect(() => {
-    window.localStorage.setItem("nour-language", language);
+    window.localStorage.setItem("noor-language", language);
     document.documentElement.lang = language;
     document.documentElement.dir = languageMeta[language].dir;
   }, [language]);

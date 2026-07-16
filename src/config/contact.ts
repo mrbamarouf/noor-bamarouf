@@ -8,13 +8,13 @@ export const contactDetails = {
 } as const;
 
 const whatsappMessages: Record<Language, string> = {
-  en: "Hello Nour, I would like to discuss a design project.",
+  en: "Hello Noor, I would like to discuss a design project.",
   ar: "مرحبًا نور، أرغب في مناقشة مشروع تصميم.",
 };
 
 const emailSubjects: Record<Language, string> = {
-  en: "Project inquiry — Nour Bamarouf",
-  ar: "استفسار عن مشروع — نور بامعروف",
+  en: "Project inquiry: Noor Bamarouf",
+  ar: "استفسار عن مشروع: نور بامعروف",
 };
 
 export function getWhatsAppHref(language: Language) {
