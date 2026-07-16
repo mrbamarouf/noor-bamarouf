@@ -3,6 +3,11 @@ import { ArtFrame } from "../components/ArtFrame";
 import { serviceOrder } from "../data/content";
 import { useLanguage } from "../context/LanguageContext";
 
+function Arrow() {
+  const { direction } = useLanguage();
+  return <span aria-hidden="true">{direction === "rtl" ? "←" : "→"}</span>;
+}
+
 export function AboutPage() {
   const { dictionary } = useLanguage();
 
@@ -60,7 +65,7 @@ export function AboutPage() {
         <span className="section__index">{dictionary.sections.invitation}</span>
         <h2 id="about-invite-title">{dictionary.aboutPage.invite}</h2>
         <Link className="button button--primary" to="/contact">
-          {dictionary.actions.startProject} <span aria-hidden="true">→</span>
+          {dictionary.actions.startProject} <Arrow />
         </Link>
       </section>
     </div>

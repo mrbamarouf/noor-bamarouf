@@ -18,15 +18,15 @@ Luxury, feminine, calm, refined, intelligent, artistic, intentional, modern, and
 
 ## Anti-references
 
-The site must not look like a generic portfolio template, SaaS website, startup landing page, wedding invitation, beauty salon, beige-only AI page, repetitive card collection, or cheap pink feminine design. It must avoid harsh black, neon color, glassmorphism, heavy shadows, noisy motion, fake awards, fake clients, fake testimonials, and invented biography.
+The site must not look like a generic portfolio template, SaaS website, startup landing page, wedding invitation, beauty salon, beige-only AI page, repetitive card collection, or cheap pink feminine design. It must avoid harsh black, neon color, glassmorphism, heavy shadows, noisy motion, invented awards, invented client claims, invented testimonials, and invented biography.
 
 ## Design Principles
 
 1. Let the identity breathe through editorial composition, negative space, tactile materials, and refined typography.
-2. Make every visual element feel art-directed, replaceable, and intentional rather than decorative filler.
-3. Keep the desktop experience immersive and composed across wide screens without collapsing into a stretched mobile layout.
+2. Make every visual element feel art-directed, specific, and intentional rather than decorative filler.
+3. Keep the wide-screen experience immersive and composed.
 4. Support English and Arabic from the structure up while preserving the same visual balance.
-5. Keep placeholder copy honest, concise, and ready to replace with real work.
+5. Keep copy concise, elegant, and client-facing in both English and Arabic.
 
 ## Accessibility & Inclusion
 

@@ -58,7 +58,7 @@ export interface ProjectCaseStudy {
   context: LocalizedString;
   direction: LocalizedString;
   applications: LocalizedString[];
-  replacementNote: LocalizedString;
+  outcome: LocalizedString;
 }
 
 export interface Project {

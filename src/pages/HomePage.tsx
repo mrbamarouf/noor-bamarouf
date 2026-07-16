@@ -9,7 +9,8 @@ import { useLanguage } from "../context/LanguageContext";
 import type { ArtScene, ArtVariant, Project, ServiceKey } from "../types";
 
 function Arrow() {
-  return <span aria-hidden="true">→</span>;
+  const { direction } = useLanguage();
+  return <span aria-hidden="true">{direction === "rtl" ? "←" : "→"}</span>;
 }
 
 function ProjectFeature({ project, index }: { project: Project; index: number }) {
@@ -63,17 +64,17 @@ function ServicesSection() {
         <p>
           {dictionary.home.contactBody}
         </p>
-        <div className="service-preview" aria-hidden="true">
-          <ArtFrame
-            variant={serviceVisuals[activeService]}
-            scene={serviceScenes[activeService]}
-            alt={{
-              en: "Service art direction preview.",
-              ar: "معاينة بصرية للخدمة.",
-            }}
-            ratio="square"
-          />
-        </div>
+      </div>
+      <div className="service-preview" aria-hidden="true">
+        <ArtFrame
+          variant={serviceVisuals[activeService]}
+          scene={serviceScenes[activeService]}
+          alt={{
+            en: "Service art direction preview.",
+            ar: "معاينة بصرية للخدمة.",
+          }}
+          ratio="square"
+        />
       </div>
       <div className="services-list">
         {serviceOrder.map((service, index) => (

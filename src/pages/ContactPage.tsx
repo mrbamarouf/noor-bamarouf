@@ -60,7 +60,20 @@ export function ContactPage() {
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length === 0) {
+      const subject = encodeURIComponent(`Project inquiry from ${fields.name}`);
+      const body = encodeURIComponent(
+        [
+          `${fieldLabels.name}: ${fields.name}`,
+          `${fieldLabels.email}: ${fields.email}`,
+          `${fieldLabels.interest}: ${fields.interest}`,
+          `${fieldLabels.timeline}: ${fields.timeline}`,
+          `${fieldLabels.budget}: ${fields.budget}`,
+          "",
+          fields.message,
+        ].join("\n"),
+      );
       setSubmitted(true);
+      window.location.href = `mailto:hello@nourbamarouf.com?subject=${subject}&body=${body}`;
     }
   };
 
@@ -89,8 +102,8 @@ export function ContactPage() {
         <ArtFrame
           variant="flora"
           alt={{
-            en: "Botanical desk composition with a contact card placeholder.",
-            ar: "تكوين مكتبي نباتي مع بطاقة تواصل مؤقتة.",
+            en: "Botanical desk composition with stationery and soft paper details.",
+            ar: "تكوين مكتبي نباتي مع قرطاسية وتفاصيل ورقية ناعمة.",
           }}
           ratio="portrait"
         />
@@ -101,7 +114,6 @@ export function ContactPage() {
             <input
               id="contact-name"
               value={fields.name}
-              placeholder={dictionary.contactPage.placeholders.name}
               onChange={(event) => updateField("name", event.target.value)}
               aria-invalid={Boolean(errors.name)}
               aria-describedby={errors.name ? "contact-name-error" : undefined}
@@ -115,7 +127,6 @@ export function ContactPage() {
               id="contact-email"
               type="email"
               value={fields.email}
-              placeholder={dictionary.contactPage.placeholders.email}
               onChange={(event) => updateField("email", event.target.value)}
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? "contact-email-error" : undefined}
@@ -133,7 +144,7 @@ export function ContactPage() {
                 aria-invalid={Boolean(errors.interest)}
                 aria-describedby={errors.interest ? "contact-interest-error" : undefined}
               >
-                <option value="">{dictionary.ui.selectPlaceholder}</option>
+                <option value="">{dictionary.ui.selectPrompt}</option>
                 {options.interest.map((option) => (
                   <option key={option} value={option}>{option}</option>
                 ))}
@@ -150,7 +161,7 @@ export function ContactPage() {
                 aria-invalid={Boolean(errors.timeline)}
                 aria-describedby={errors.timeline ? "contact-timeline-error" : undefined}
               >
-                <option value="">{dictionary.ui.selectPlaceholder}</option>
+                <option value="">{dictionary.ui.selectPrompt}</option>
                 {options.timeline.map((option) => (
                   <option key={option} value={option}>{option}</option>
                 ))}
@@ -168,7 +179,7 @@ export function ContactPage() {
               aria-invalid={Boolean(errors.budget)}
               aria-describedby={errors.budget ? "contact-budget-error" : undefined}
             >
-              <option value="">{dictionary.ui.selectPlaceholder}</option>
+              <option value="">{dictionary.ui.selectPrompt}</option>
               {options.budget.map((option) => (
                 <option key={option} value={option}>{option}</option>
               ))}
@@ -181,7 +192,6 @@ export function ContactPage() {
             <textarea
               id="contact-message"
               value={fields.message}
-              placeholder={dictionary.contactPage.placeholders.message}
               rows={6}
               onChange={(event) => updateField("message", event.target.value)}
               aria-invalid={Boolean(errors.message)}

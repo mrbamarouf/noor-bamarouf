@@ -10,7 +10,7 @@ function galleryAsset(index: number): ProjectVisualAsset {
 export function ProjectPage() {
   const { slug } = useParams();
   const project = getProject(slug);
-  const { dictionary, language } = useLanguage();
+  const { dictionary, direction, language } = useLanguage();
 
   if (!project) {
     return <Navigate to="/work" replace />;
@@ -22,11 +22,10 @@ export function ProjectPage() {
     <article className="page project-page">
       <header className="project-hero" data-reveal>
         <Link className="text-link" to="/work">
-          ← {dictionary.actions.backToWork}
+          {direction === "rtl" ? `${dictionary.actions.backToWork} →` : `← ${dictionary.actions.backToWork}`}
         </Link>
         <div className="project-hero__title">
           <span>{project.year} / {dictionary.categories[project.category]} / {project.projectType[language]}</span>
-          <span className="project-demo-badge">{dictionary.sections.demoProject}</span>
           <h1>{project.title}</h1>
           <p>{project.fullDescription[language]}</p>
         </div>
@@ -36,7 +35,7 @@ export function ProjectPage() {
             <dd>{project.services.map((service) => dictionary.services[service].title).join(", ")}</dd>
           </div>
           <div>
-            <dt>{dictionary.ui.credits}</dt>
+            <dt>{dictionary.ui.projectFormat}</dt>
             <dd>{project.credits[language]}</dd>
           </div>
         </dl>
@@ -109,16 +108,18 @@ export function ProjectPage() {
             ))}
           </ul>
         </div>
-        <div className="project-replacement-note">
-          <span className="section__index">{dictionary.sections.replacementPlan}</span>
-          <p>{project.caseStudy.replacementNote[language]}</p>
+        <div className="project-outcome-note">
+          <span className="section__index">{dictionary.sections.outcome}</span>
+          <p>{project.caseStudy.outcome[language]}</p>
         </div>
       </section>
 
       <nav className="next-project" aria-label={dictionary.actions.nextProject} data-reveal>
         <span>{dictionary.actions.nextProject}</span>
         <Link to={`/work/${nextProject.slug}`} data-cursor="view">
+          {direction === "rtl" ? "← " : null}
           {nextProject.title}
+          {direction === "rtl" ? null : " →"}
         </Link>
       </nav>
     </article>

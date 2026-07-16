@@ -27,9 +27,9 @@ npm run build
 
 - Project content is centralized in `src/data/projects.ts`.
 - English and Arabic interface copy is centralized in `src/data/content.ts`.
-- The current project visuals are art-directed CSS/SVG placeholders.
-- Replace the temporary web logo with an official transparent SVG or PNG when available.
-- Contact/social values are placeholders and the form is frontend-only until a backend handler is added.
+- Project visuals are local raster case-study assets stored in `public/concept-projects`.
+- Official logo assets are transparent PNGs generated from `public/brand-reference/nour-logo-reference.png`.
+- The contact form prepares a mail draft with the submitted project details.
 
 ## Deployment
 

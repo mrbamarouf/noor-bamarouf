@@ -36,7 +36,7 @@ export function Footer() {
                 {social}
               </a>
             ) : (
-              <span key={social}>{social} {dictionary.ui.socialPlaceholder}</span>
+              <span key={social}>{social}</span>
             ),
           )}
         </div>

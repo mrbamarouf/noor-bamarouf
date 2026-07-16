@@ -61,6 +61,7 @@ export function WorkPage() {
             </Link>
           ))}
         </div>
+        <p className="work-note">{dictionary.home.workNote}</p>
       </section>
     </div>
   );

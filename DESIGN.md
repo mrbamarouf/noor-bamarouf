@@ -26,7 +26,7 @@ Headings use large editorial scale without negative letter spacing. Body copy re
 
 ## Layout
 
-Desktop-first composition uses full-width editorial bands with large inner containers, asymmetrical grids, deliberate overlap, fine rules, and varied image ratios. Repeated identical card grids are avoided. Mobile remains a clean temporary fallback, not the final mobile art direction.
+Desktop-first composition uses full-width editorial bands with large inner containers, asymmetrical grids, deliberate overlap, fine rules, and varied image ratios. Repeated identical card grids are avoided.
 
 ## Motion
 
@@ -37,7 +37,7 @@ Motion is calm and title-sequence inspired: intro reveal, text masks, subtle ima
 - `LogoAsset`: image-only rendering of transparent production assets generated from `public/brand-reference/nour-logo-reference.png`.
 - `Intro`: first-session official logo reveal with skip and reduced-motion handling.
 - `Header`: minimal desktop navigation with language switcher and scroll refinement.
-- `ProjectVisual`: file-based raster portfolio imagery renderer for local Behance-style demonstration presentations stored in `public/demo-projects`.
-- `ArtFrame`: supporting studio/service atmosphere only. Do not use it as the primary visual for fictional project work.
+- `ProjectVisual`: file-based raster portfolio imagery renderer for local Behance-style concept presentations stored in `public/concept-projects`.
+- `ArtFrame`: supporting studio/service atmosphere only. Do not use it as the primary visual for project work.
 - `Footer`: sage editorial footer with navigation, services, socials, and back to top.
-- Pages use centralized content and project data for later replacement.
+- Pages use centralized content and project data for maintainable bilingual updates.
