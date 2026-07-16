@@ -29,7 +29,7 @@ function ProjectFeature({ project, index }: { project: Project; index: number })
       <span className="project-feature__meta">
         {project.year} / {dictionary.categories[project.category]}
       </span>
-      <strong>{project.title}</strong>
+      <strong dir="ltr">{project.title}</strong>
       <span>{project.shortDescription[language]}</span>
     </Link>
   );
@@ -62,9 +62,8 @@ function ServicesSection() {
       <div className="section__index">{dictionary.nav.services}</div>
       <div className="services-section__header">
         <h2 id="services-title">{dictionary.nav.services}</h2>
-        <p>
-          {dictionary.home.contactBody}
-        </p>
+        <p className="services-section__desktop-intro">{dictionary.home.contactBody}</p>
+        <p className="services-section__mobile-intro">{dictionary.home.servicesIntro}</p>
       </div>
       <div className="service-preview" aria-hidden="true">
         <ArtFrame
@@ -127,26 +126,29 @@ function ProcessSection() {
   );
 }
 
-function FeaturedStory() {
+function FeaturedStory({ mobile = false, project }: { mobile?: boolean; project: Project }) {
   const { dictionary, language } = useLanguage();
-  const featured = projects[0];
 
   return (
-    <section className="featured-story" aria-labelledby="featured-title" data-reveal>
+    <section
+      className={`featured-story featured-story--${mobile ? "mobile" : "desktop"}`}
+      aria-labelledby={mobile ? "featured-mobile-title" : "featured-title"}
+      data-reveal
+    >
       <div className="featured-story__visual">
         <ProjectVisual
-          image={featured.heroImage}
-          projectSlug={featured.slug}
+          image={project.heroImage}
+          projectSlug={project.slug}
           asset="hero"
           ratio="wide"
         />
       </div>
       <div className="featured-story__content">
         <span className="section__index">{dictionary.home.featuredTitle}</span>
-        <h2 id="featured-title">{featured.title}</h2>
-        <p>{featured.fullDescription[language]}</p>
+        <h2 id={mobile ? "featured-mobile-title" : "featured-title"} dir="ltr">{project.title}</h2>
+        <p>{mobile ? project.shortDescription[language] : project.fullDescription[language]}</p>
         <div className="palette-row" aria-label={dictionary.sections.palette}>
-          {featured.colorPalette.map((color) => (
+          {project.colorPalette.map((color) => (
             <span key={color} style={{ backgroundColor: color }} />
           ))}
         </div>
@@ -157,10 +159,10 @@ function FeaturedStory() {
           </div>
           <div>
             <dt>{dictionary.sections.typography}</dt>
-            <dd>{featured.typography.display} / {featured.typography.body}</dd>
+            <dd>{project.typography.display} / {project.typography.body}</dd>
           </div>
         </dl>
-        <Link className="text-link" to={`/work/${featured.slug}`}>
+        <Link className="text-link" to={`/work/${project.slug}`}>
           {dictionary.actions.readStory} <Arrow />
         </Link>
       </div>
@@ -171,6 +173,8 @@ function FeaturedStory() {
 export function HomePage() {
   const { dictionary, language } = useLanguage();
   const selected = projects.slice(0, 4);
+  const mobileSelected = projects.slice(1, 4);
+  const mobileFeatured = projects.find((project) => project.slug === "sora") ?? projects[6];
   const heroRef = useRef<HTMLElement>(null);
 
   const setHeroDepthFromPoint = (clientX: number, clientY: number) => {
@@ -275,8 +279,13 @@ export function HomePage() {
           <h2 id="selected-title">{dictionary.home.selectedTitle}</h2>
           <p>{dictionary.home.selectedIntro}</p>
         </div>
-        <div className="selected-work__grid">
+        <div className="selected-work__grid selected-work__grid--desktop">
           {selected.map((project, index) => (
+            <ProjectFeature project={project} index={index} key={project.slug} />
+          ))}
+        </div>
+        <div className="selected-work__grid selected-work__grid--mobile">
+          {mobileSelected.map((project, index) => (
             <ProjectFeature project={project} index={index} key={project.slug} />
           ))}
         </div>
@@ -316,23 +325,30 @@ export function HomePage() {
       </section>
 
       <ProcessSection />
-      <FeaturedStory />
+      <FeaturedStory project={projects[0]} />
+      <FeaturedStory mobile project={mobileFeatured} />
 
       <section className="archive-preview" aria-labelledby="archive-title" data-reveal>
         <div>
           <span className="section__index">{dictionary.home.archiveTitle}</span>
           <h2 id="archive-title">{dictionary.home.archiveTitle}</h2>
+          <p className="archive-preview__intro">{dictionary.home.workNote}</p>
         </div>
         <div className="archive-strip">
           {projects.slice(2).map((project) => (
-            <Link key={project.slug} to={`/work/${project.slug}`} data-cursor="view">
+            <Link
+              className={`archive-strip__item archive-strip__item--${project.slug}`}
+              key={project.slug}
+              to={`/work/${project.slug}`}
+              data-cursor="view"
+            >
               <ProjectVisual
                 image={project.coverImage}
                 projectSlug={project.slug}
                 asset="cover"
                 ratio="square"
               />
-              <span>{project.title}</span>
+              <span dir="ltr">{project.title}</span>
             </Link>
           ))}
         </div>

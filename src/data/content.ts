@@ -74,6 +74,7 @@ export const copy = {
     home: {
       selectedTitle: "Selected work",
       selectedIntro: "A focused selection across identity, print, packaging, editorial, and social systems.",
+      servicesIntro: "Identity, packaging, print, and direction shaped as one coherent visual language.",
       aboutTitle: "Hello, I’m Noor",
       aboutQuote: "Thoughtful design can feel quiet and still leave a lasting mark.",
       aboutBody: "I create visual identities, graphic systems, and editorial materials shaped by clarity, emotion, and purpose.",
@@ -224,6 +225,7 @@ export const copy = {
     home: {
       selectedTitle: "أعمال مختارة",
       selectedIntro: "اختيارات مركزة في الهوية البصرية، المطبوعات، التغليف، التحرير، وأنظمة التواصل.",
+      servicesIntro: "هوية وتغليف ومطبوعات وتوجيه إبداعي تصاغ ضمن لغة بصرية واحدة.",
       aboutTitle: "مرحباً، أنا نور",
       aboutQuote: "يمكن للتصميم الهادئ أن يترك أثراً لا يغيب.",
       aboutBody: "أصمم هويات بصرية، أنظمة جرافيكية، ومواد تحريرية تتشكل من الوضوح والشعور والهدف.",

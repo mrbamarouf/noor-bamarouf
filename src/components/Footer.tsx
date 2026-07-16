@@ -5,11 +5,11 @@ import { useLanguage } from "../context/LanguageContext";
 import { LogoAsset } from "./LogoAsset";
 
 export function Footer() {
-  const { dictionary, language } = useLanguage();
+  const { dictionary, direction, language } = useLanguage();
 
   return (
     <footer className="site-footer">
-      <div className="site-footer__inner">
+      <div className="site-footer__inner site-footer__inner--desktop">
         <div className="site-footer__brand">
           <LogoAsset variant="footer" />
           <p>{dictionary.footer.line}</p>
@@ -41,6 +41,23 @@ export function Footer() {
           {dictionary.actions.backToTop}
         </button>
         <p className="site-footer__copyright">© 2026 {dictionary.footer.copyright}</p>
+      </div>
+      <div className="mobile-footer">
+        <div className="mobile-footer__brand">
+          <LogoAsset variant="footer" />
+          <p>{dictionary.footer.line}</p>
+        </div>
+        <div className="mobile-footer__actions">
+          <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
+            <span>{dictionary.ui.whatsapp}</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a href={getEmailHref(language)}>
+            <span>{dictionary.ui.email}</span>
+            <span aria-hidden="true">{direction === "rtl" ? "←" : "→"}</span>
+          </a>
+        </div>
+        <p className="mobile-footer__copyright">© 2026 {dictionary.footer.copyright}</p>
       </div>
     </footer>
   );

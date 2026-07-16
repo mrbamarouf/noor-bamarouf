@@ -56,7 +56,7 @@ export function WorkPage() {
                 ratio={index % 3 === 0 ? "landscape" : index % 3 === 1 ? "portrait" : "square"}
               />
               <span>{project.year} / {dictionary.categories[project.category]}</span>
-              <strong>{project.title}</strong>
+              <strong dir="ltr">{project.title}</strong>
               <p>{project.shortDescription[language]}</p>
             </Link>
           ))}

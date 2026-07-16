@@ -180,16 +180,17 @@ export function Header() {
           </nav>
           <div className="mobile-menu__utility">
             <button className="mobile-menu__language" type="button" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
-              <span>{language === "en" ? "EN" : "AR"}</span>
-              <strong>{language === "en" ? "AR" : "EN"}</strong>
+              <span>{language === "en" ? "العربية" : "English"}</span>
             </button>
           </div>
           <div className="mobile-menu__actions">
             <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer" onClick={() => closeMenu(false)}>
-              {dictionary.actions.contactByWhatsApp}
+              <span>{dictionary.ui.whatsapp}</span>
+              <span aria-hidden="true">↗</span>
             </a>
             <a href={getEmailHref(language)} onClick={() => closeMenu(false)}>
-              {dictionary.actions.sendEmail}
+              <span>{dictionary.ui.email}</span>
+              <span aria-hidden="true">{language === "ar" ? "←" : "→"}</span>
             </a>
           </div>
         </div>

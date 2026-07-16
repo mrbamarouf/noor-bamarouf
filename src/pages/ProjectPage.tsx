@@ -26,7 +26,7 @@ export function ProjectPage() {
         </Link>
         <div className="project-hero__title">
           <span>{project.year} / {dictionary.categories[project.category]} / {project.projectType[language]}</span>
-          <h1>{project.title}</h1>
+          <h1 dir="ltr">{project.title}</h1>
           <p>{project.fullDescription[language]}</p>
         </div>
         <dl className="project-meta">
@@ -118,7 +118,7 @@ export function ProjectPage() {
         <span>{dictionary.actions.nextProject}</span>
         <Link to={`/work/${nextProject.slug}`} data-cursor="view">
           {direction === "rtl" ? "← " : null}
-          {nextProject.title}
+          <span dir="ltr">{nextProject.title}</span>
           {direction === "rtl" ? null : " →"}
         </Link>
       </nav>
