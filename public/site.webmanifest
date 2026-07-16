@@ -1,0 +1,17 @@
+{
+  "name": "Nour Bamarouf Portfolio",
+  "short_name": "Nour Bamarouf",
+  "description": "Graphic designer portfolio for refined identities, print, packaging, editorial, and social design.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6efea",
+  "theme_color": "#66745f",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
