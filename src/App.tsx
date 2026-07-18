@@ -13,6 +13,14 @@ import { HomePage } from "./pages/HomePage";
 import { ProjectPage } from "./pages/ProjectPage";
 import { WorkPage } from "./pages/WorkPage";
 
+const PRODUCTION_ORIGIN = "https://noorbamarouf.com";
+const BRAND_TITLE = "NOOR BAMAROUF";
+const BRAND_IMAGE = `${PRODUCTION_ORIGIN}/brand/noor-bamarouf-approved-logo.png`;
+
+function setNamedMeta(selector: string, content: string) {
+  document.querySelector<HTMLMetaElement>(selector)?.setAttribute("content", content);
+}
+
 function ScrollManager() {
   const location = useLocation();
   const { dictionary, language } = useLanguage();
@@ -34,14 +42,15 @@ function ScrollManager() {
     const projectSlug = location.pathname.startsWith("/work/") ? projectPathParts[1] : undefined;
     const project = getProject(projectSlug);
     const pageTitleMap: Record<string, string> = {
-      "/": `Noor Bamarouf | ${dictionary.hero.descriptor}`,
-      "/about": `${dictionary.nav.about} | Noor Bamarouf`,
-      "/work": `${dictionary.nav.work} | Noor Bamarouf`,
-      "/contact": `${dictionary.nav.contact} | Noor Bamarouf`,
+      "/": `${BRAND_TITLE} | ${dictionary.hero.descriptor}`,
+      "/about": `${dictionary.nav.about} | ${BRAND_TITLE}`,
+      "/work": `${dictionary.nav.work} | ${BRAND_TITLE}`,
+      "/contact": `${dictionary.nav.contact} | ${BRAND_TITLE}`,
     };
-    document.title = project
-      ? `${project.title} | Noor Bamarouf`
-      : pageTitleMap[location.pathname] ?? `Noor Bamarouf | ${dictionary.hero.descriptor}`;
+    const title = project
+      ? `${project.title} | ${BRAND_TITLE}`
+      : pageTitleMap[location.pathname] ?? `${BRAND_TITLE} | ${dictionary.hero.descriptor}`;
+    document.title = title;
 
     const description = project
       ? project.shortDescription[language]
@@ -50,7 +59,31 @@ function ScrollManager() {
         : location.pathname === "/about"
           ? dictionary.aboutPage.body
           : dictionary.hero.body;
-    document.querySelector("meta[name='description']")?.setAttribute("content", description);
+    const canonicalPath = project || pageTitleMap[location.pathname] ? location.pathname : "/";
+    const canonicalUrl = `${PRODUCTION_ORIGIN}${canonicalPath === "/" ? "/" : canonicalPath}`;
+
+    document.querySelector<HTMLLinkElement>("link[rel='canonical']")?.setAttribute("href", canonicalUrl);
+    setNamedMeta("meta[name='description']", description);
+    setNamedMeta("meta[property='og:title']", title);
+    setNamedMeta("meta[property='og:description']", description);
+    setNamedMeta("meta[property='og:url']", canonicalUrl);
+    setNamedMeta("meta[property='og:image']", BRAND_IMAGE);
+    setNamedMeta("meta[name='twitter:title']", title);
+    setNamedMeta("meta[name='twitter:description']", description);
+    setNamedMeta("meta[name='twitter:url']", canonicalUrl);
+    setNamedMeta("meta[name='twitter:image']", BRAND_IMAGE);
+
+    const structuredData = document.getElementById("structured-data");
+    if (structuredData) {
+      structuredData.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: BRAND_TITLE,
+        url: PRODUCTION_ORIGIN,
+        image: BRAND_IMAGE,
+        jobTitle: "Graphic Designer",
+      });
+    }
   }, [dictionary, language, location.pathname]);
 
   useEffect(() => {

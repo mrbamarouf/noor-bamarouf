@@ -1,14 +1,16 @@
 {
-  "name": "Noor Bamarouf Portfolio",
-  "short_name": "Noor Bamarouf",
+  "id": "https://noorbamarouf.com/",
+  "name": "NOOR BAMAROUF Portfolio",
+  "short_name": "NOOR BAMAROUF",
   "description": "Graphic designer portfolio for refined identities, print, packaging, editorial, and social design.",
-  "start_url": "/",
+  "start_url": "https://noorbamarouf.com/",
+  "scope": "https://noorbamarouf.com/",
   "display": "standalone",
   "background_color": "#f6efea",
   "theme_color": "#66745f",
   "icons": [
     {
-      "src": "/brand/noor-bamarouf-approved-logo.png",
+      "src": "https://noorbamarouf.com/brand/noor-bamarouf-approved-logo.png",
       "sizes": "2172x724",
       "type": "image/png",
       "purpose": "any"
