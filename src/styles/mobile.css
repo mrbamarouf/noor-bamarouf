@@ -113,14 +113,14 @@ html[dir="rtl"] body.mobile-experience .m-footer > p {
   backdrop-filter: blur(16px);
 }
 
-.m-header .official-logo-link--header {
+.m-header .official-logo-link--mobileHeader {
   display: flex;
-  width: min(43vw, 166px);
+  width: 48px;
   min-height: 44px;
   align-items: center;
 }
 
-.m-header .official-logo--header {
+.m-header .official-logo--mobileHeader {
   width: 100%;
   height: auto;
 }
@@ -220,8 +220,8 @@ html[dir="rtl"] body.mobile-experience .m-footer > p {
 
 .m-menu__wordmark {
   display: flex;
-  width: min(44vw, 168px);
-  min-height: 44px;
+  width: 76px;
+  min-height: 56px;
   align-items: center;
 }
 
@@ -332,7 +332,8 @@ body.mobile-experience .m-menu__label {
   padding: max(24px, env(safe-area-inset-top)) var(--m-gutter) max(20px, env(safe-area-inset-bottom));
   background: var(--color-ivory);
   place-items: center;
-  transition: opacity 460ms ease, visibility 460ms ease;
+  isolation: isolate;
+  transition: opacity 560ms ease, visibility 560ms ease;
 }
 
 .m-intro--leaving {
@@ -340,25 +341,108 @@ body.mobile-experience .m-menu__label {
   opacity: 0;
 }
 
-.m-intro__logo-reveal {
-  width: min(78vw, 330px);
+.m-intro__paper-field,
+.m-intro__paper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.m-intro__paper-field {
+  z-index: -1;
   overflow: hidden;
-  clip-path: inset(0 100% 0 0);
-  animation: m-intro-mask 1100ms 350ms var(--ease-out) forwards;
+  background: var(--color-ivory);
 }
 
-html[dir="rtl"] .m-intro__logo-reveal {
-  clip-path: inset(0 0 0 100%);
+.m-intro__paper--top {
+  bottom: auto;
+  height: 56%;
+  background: color-mix(in oklch, var(--color-rose) 5%, var(--color-ivory));
+  box-shadow: 0 18px 44px color-mix(in oklch, var(--color-ink) 6%, transparent);
+  transform: translateY(-102%);
+  animation: mIntroPaperTop 1480ms var(--ease-out) 80ms forwards;
 }
 
-.m-intro__logo-reveal .official-logo-wrap,
-.m-intro__logo-reveal .official-logo {
+.m-intro__paper--bottom {
+  top: auto;
+  height: 55%;
+  background: color-mix(in oklch, var(--color-sage-soft) 6%, var(--color-ivory));
+  box-shadow: 0 -18px 44px color-mix(in oklch, var(--color-ink) 5%, transparent);
+  transform: translateY(102%);
+  animation: mIntroPaperBottom 1480ms var(--ease-out) 80ms forwards;
+}
+
+.m-intro__paper--spine {
+  inset: -5% auto;
+  left: 50%;
+  width: min(74vw, 318px);
+  background: color-mix(in oklch, white 34%, var(--color-ivory));
+  box-shadow: 0 0 42px color-mix(in oklch, var(--color-ink) 5%, transparent);
+  opacity: 0;
+  transform: translate3d(-50%, 12%, 0);
+  animation: mIntroPaperSpine 1680ms var(--ease-out) 360ms forwards;
+}
+
+.m-intro__mark-assembly {
+  position: relative;
+  z-index: 1;
+  width: min(68vw, 42svh, 292px);
+  aspect-ratio: 1;
+}
+
+.m-intro__mark-fragment,
+.m-intro__registration,
+.m-intro__mark-final {
+  position: absolute;
+  inset: 0;
+}
+
+.m-intro__mark-fragment .official-logo-wrap,
+.m-intro__registration .official-logo-wrap,
+.m-intro__mark-final .official-logo-wrap,
+.m-intro__mark-fragment .official-logo,
+.m-intro__registration .official-logo,
+.m-intro__mark-final .official-logo {
   width: 100%;
 }
 
-.m-intro__logo-reveal .official-logo {
-  transform: scale(0.98);
-  animation: m-intro-scale 1400ms 350ms var(--ease-out) forwards;
+.m-intro__mark-fragment {
+  z-index: 2;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.m-intro__mark-fragment--upper {
+  clip-path: inset(0 0 67% 0);
+  transform: translate3d(-16%, -5%, 0);
+  animation: mIntroFragmentUpper 2160ms var(--ease-out) 620ms forwards;
+}
+
+.m-intro__mark-fragment--middle {
+  clip-path: inset(30% 0 34% 0);
+  transform: translate3d(15%, 0, 0);
+  animation: mIntroFragmentMiddle 2100ms var(--ease-out) 820ms forwards;
+}
+
+.m-intro__mark-fragment--lower {
+  clip-path: inset(63% 0 0 0);
+  transform: translate3d(-11%, 5%, 0);
+  animation: mIntroFragmentLower 2000ms var(--ease-out) 1020ms forwards;
+}
+
+.m-intro__registration {
+  z-index: 3;
+  opacity: 0;
+  transform: translate3d(2px, -2px, 0);
+  animation: mIntroRegistration 1200ms var(--ease-out) 1880ms forwards;
+}
+
+.m-intro__mark-final {
+  z-index: 4;
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transform: scale(0.985);
+  animation: mIntroMarkResolve 1240ms var(--ease-out) 2140ms forwards;
 }
 
 .m-intro__skip {
@@ -371,22 +455,57 @@ html[dir="rtl"] .m-intro__logo-reveal {
   background: transparent;
   font: 500 0.66rem/1 var(--m-sans);
   opacity: 0;
-  animation: m-intro-fade 450ms 1550ms ease forwards;
+  animation: mIntroSkipIn 420ms 2300ms ease forwards;
 }
 
 html[dir="rtl"] .m-intro__skip {
   inset-inline: var(--m-gutter) auto;
 }
 
-@keyframes m-intro-mask {
-  to { clip-path: inset(0 0 0 0); }
+@keyframes mIntroPaperTop {
+  to { transform: translateY(-7%); }
 }
 
-@keyframes m-intro-scale {
-  to { transform: scale(1); }
+@keyframes mIntroPaperBottom {
+  to { transform: translateY(7%); }
 }
 
-@keyframes m-intro-fade {
+@keyframes mIntroPaperSpine {
+  to {
+    opacity: 0.8;
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes mIntroFragmentUpper {
+  0% { opacity: 0; transform: translate3d(-16%, -5%, 0); }
+  28%, 68% { opacity: 1; transform: translate3d(0, 0, 0); }
+  100% { opacity: 0; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes mIntroFragmentMiddle {
+  0% { opacity: 0; transform: translate3d(15%, 0, 0); }
+  28%, 68% { opacity: 1; transform: translate3d(0, 0, 0); }
+  100% { opacity: 0; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes mIntroFragmentLower {
+  0% { opacity: 0; transform: translate3d(-11%, 5%, 0); }
+  28%, 68% { opacity: 1; transform: translate3d(0, 0, 0); }
+  100% { opacity: 0; transform: translate3d(0, 0, 0); }
+}
+
+@keyframes mIntroRegistration {
+  0%, 100% { opacity: 0; transform: translate3d(2px, -2px, 0); }
+  40%, 68% { opacity: 0.2; transform: translate3d(1px, -1px, 0); }
+}
+
+@keyframes mIntroMarkResolve {
+  0% { opacity: 0; clip-path: inset(0 0 100% 0); transform: scale(0.985); }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); transform: scale(1); }
+}
+
+@keyframes mIntroSkipIn {
   to { opacity: 1; }
 }
 
@@ -1443,7 +1562,7 @@ html[dir="rtl"] .m-project-outcome > p {
 
 .m-footer .official-logo-wrap--footer {
   display: block;
-  width: min(72vw, 300px);
+  width: min(31vw, 120px);
 }
 
 .m-footer .official-logo--footer {

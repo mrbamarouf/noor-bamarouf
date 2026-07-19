@@ -155,7 +155,7 @@ export function Header() {
       >
         <div className="mobile-menu__panel" role="dialog" aria-modal="true" aria-label={dictionary.ui.menu}>
           <div className="mobile-menu__top">
-            <LogoAsset variant="header" priority />
+            <LogoAsset variant="menu" priority />
             <button className="mobile-menu__close" type="button" onClick={() => closeMenu()} aria-label={dictionary.ui.closeMenu}>
               <span />
               <span />

@@ -17,7 +17,7 @@ import { useMobileViewport } from "./mobile/useMobileViewport";
 
 const PRODUCTION_ORIGIN = "https://noorbamarouf.com";
 const BRAND_TITLE = "NOOR BAMAROUF";
-const BRAND_IMAGE = `${PRODUCTION_ORIGIN}/brand/noor-bamarouf-approved-logo.png`;
+const BRAND_IMAGE = `${PRODUCTION_ORIGIN}/brand/noor-final/noor-nb-social.png`;
 
 function setNamedMeta(selector: string, content: string) {
   document.querySelector<HTMLMetaElement>(selector)?.setAttribute("content", content);

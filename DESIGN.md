@@ -34,7 +34,7 @@ Motion is calm and title-sequence inspired: intro reveal, text masks, subtle ima
 
 ## Components
 
-- `LogoAsset`: image-only rendering of the approved production logo stored at `public/brand/noor-bamarouf-approved-logo.png`.
+- `LogoAsset`: image-only rendering of the approved production monogram variants stored in `public/brand/noor-final/`.
 - `Intro`: first-session official logo reveal with skip and reduced-motion handling.
 - `Header`: minimal desktop navigation with language switcher and scroll refinement.
 - `ProjectVisual`: file-based raster portfolio imagery renderer for local Behance-style concept presentations stored in `public/concept-projects`.

@@ -30,14 +30,11 @@ export function Intro() {
     }
 
     setVisible(true);
-    const isMobile = window.matchMedia("(max-width: 900px)").matches;
-    const leaveDelay = isMobile ? 2120 : 2600;
-    const doneDelay = isMobile ? 2480 : 3000;
-    const leaveTimer = window.setTimeout(() => setLeaving(true), leaveDelay);
+    const leaveTimer = window.setTimeout(() => setLeaving(true), 3920);
     const doneTimer = window.setTimeout(() => {
       window.sessionStorage.setItem(INTRO_KEY, "true");
       setVisible(false);
-    }, doneDelay);
+    }, 4480);
 
     return () => {
       window.clearTimeout(leaveTimer);
@@ -57,9 +54,31 @@ export function Intro() {
 
   return (
     <section className={`intro ${leaving ? "intro--leaving" : ""}`} aria-label="Opening sequence">
+      <div className="intro__paper-field" aria-hidden="true">
+        <span className="intro__paper intro__paper--left" />
+        <span className="intro__paper intro__paper--right" />
+        <span className="intro__paper intro__paper--centre" />
+      </div>
       <div className="intro__composition">
-        <div className="intro__logo-mask">
-          <LogoAsset variant="intro" priority />
+        <div className="intro__mark-assembly">
+          <div className="intro__mark-fragment intro__mark-fragment--upper" aria-hidden="true">
+            <LogoAsset variant="intro" priority />
+          </div>
+          <div className="intro__mark-fragment intro__mark-fragment--middle" aria-hidden="true">
+            <LogoAsset variant="intro" priority />
+          </div>
+          <div className="intro__mark-fragment intro__mark-fragment--lower" aria-hidden="true">
+            <LogoAsset variant="intro" priority />
+          </div>
+          <div className="intro__registration intro__registration--first" aria-hidden="true">
+            <LogoAsset variant="intro" priority />
+          </div>
+          <div className="intro__registration intro__registration--second" aria-hidden="true">
+            <LogoAsset variant="intro" priority />
+          </div>
+          <div className="intro__mark-final">
+            <LogoAsset variant="intro" priority />
+          </div>
         </div>
       </div>
       <button className="intro__skip" type="button" onClick={skip}>

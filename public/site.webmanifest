@@ -10,8 +10,14 @@
   "theme_color": "#66745f",
   "icons": [
     {
-      "src": "https://noorbamarouf.com/brand/noor-bamarouf-approved-logo.png",
-      "sizes": "2172x724",
+      "src": "/brand/noor-final/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/brand/noor-final/icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }

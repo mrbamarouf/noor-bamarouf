@@ -35,7 +35,7 @@ export function MobileHeader() {
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const focusable = () => Array.from(panelRef.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])") ?? []);
-    const timer = window.setTimeout(() => focusable()[0]?.focus(), 80);
+    const timer = window.setTimeout(() => panelRef.current?.querySelector<HTMLButtonElement>(".m-menu__close")?.focus(), 80);
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -75,7 +75,7 @@ export function MobileHeader() {
   return (
     <>
       <header className={`m-header ${scrolled ? "m-header--scrolled" : ""}`}>
-        <LogoAsset variant="header" asLink priority />
+        <LogoAsset variant="mobileHeader" asLink priority />
         <div className="m-header__actions">
           <button className="m-language" type="button" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
             {language === "en" ? "AR" : "EN"}
@@ -99,7 +99,7 @@ export function MobileHeader() {
         <div className="m-menu__panel" ref={panelRef} role="dialog" aria-modal="true" aria-label={words.menuLabel}>
           <div className="m-menu__top">
             <Link className="m-menu__wordmark" to="/" aria-label="NOOR BAMAROUF home" onClick={() => close()}>
-              <LogoAsset variant="header" priority />
+              <LogoAsset variant="menu" priority />
             </Link>
             <button type="button" className="m-menu__close" onClick={() => close(true)} aria-label={words.closeMenu}>
               <span />
