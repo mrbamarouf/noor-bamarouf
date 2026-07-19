@@ -1,7 +1,7 @@
-import type { Project, ProjectImage } from "../types";
 import { useLanguage } from "../context/LanguageContext";
+import type { Project, ProjectImage } from "../types";
 
-type MobileAsset = "cover" | "hero" | `gallery-${number}`;
+export type MobileAsset = "cover" | "hero" | `gallery-${number}`;
 
 interface MobileVisualProps {
   project: Project;
@@ -10,6 +10,13 @@ interface MobileVisualProps {
   className?: string;
   loading?: "lazy" | "eager";
   sizes?: string;
+  fit?: "cover" | "contain";
+}
+
+export function getMobileAssetSource(project: Project, image: ProjectImage, asset: MobileAsset) {
+  const format = image.format ?? "jpg";
+  const folder = image.folder ?? "concept-projects";
+  return `/${folder}/${project.slug}/${asset}.${format}`;
 }
 
 export function MobileVisual({
@@ -19,20 +26,24 @@ export function MobileVisual({
   className = "",
   loading = "lazy",
   sizes = "100vw",
+  fit = "cover",
 }: MobileVisualProps) {
   const { language } = useLanguage();
-  const format = image.format ?? "jpg";
-  const folder = image.folder ?? "concept-projects";
 
   return (
-    <figure className={`m-visual ${className}`} data-project={project.slug}>
+    <figure
+      className={`m-visual m-visual--${fit} ${className}`}
+      data-project={project.slug}
+      data-asset={asset}
+    >
       <img
-        src={`/${folder}/${project.slug}/${asset}.${format}`}
+        src={getMobileAssetSource(project, image, asset)}
         alt={image.alt[language]}
         loading={loading}
+        fetchPriority={loading === "eager" ? "high" : "auto"}
         decoding="async"
-        width="1200"
-        height="900"
+        width="1600"
+        height="1200"
         sizes={sizes}
       />
     </figure>

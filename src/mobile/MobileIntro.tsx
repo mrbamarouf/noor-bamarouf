@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
 import { LogoAsset } from "../components/LogoAsset";
+import { useLanguage } from "../context/LanguageContext";
+import { mobileCopy } from "./mobileCopy";
 
 const INTRO_KEY = "noor-intro-played";
 
@@ -10,7 +11,8 @@ function isReload() {
 }
 
 export function MobileIntro() {
-  const { dictionary } = useLanguage();
+  const { dictionary, language } = useLanguage();
+  const words = mobileCopy[language];
   const [visible, setVisible] = useState(false);
   const [leaving, setLeaving] = useState(false);
 
@@ -23,15 +25,15 @@ export function MobileIntro() {
     }
 
     setVisible(true);
-    const leave = window.setTimeout(() => setLeaving(true), 2800);
-    const finish = window.setTimeout(() => {
+    const leaveTimer = window.setTimeout(() => setLeaving(true), 3880);
+    const finishTimer = window.setTimeout(() => {
       window.sessionStorage.setItem(INTRO_KEY, "true");
       setVisible(false);
-    }, 3360);
+    }, 4440);
 
     return () => {
-      window.clearTimeout(leave);
-      window.clearTimeout(finish);
+      window.clearTimeout(leaveTimer);
+      window.clearTimeout(finishTimer);
     };
   }, []);
 
@@ -41,60 +43,31 @@ export function MobileIntro() {
     window.setTimeout(() => setVisible(false), 420);
   };
 
-  if (!visible) {
-    return null;
-  }
+  if (!visible) return null;
 
   return (
-    <section className={`m-intro ${leaving ? "m-intro--leaving" : ""}`} aria-label="Opening sequence">
+    <section className={`m-intro ${leaving ? "m-intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
       <div className="m-intro__material" aria-hidden="true" />
-      <div className="m-intro__atelier">
-        <div className="m-intro__vellum" aria-hidden="true" />
-        <figure className="m-intro__print-sheet" aria-hidden="true">
-          <div className="m-intro__print-image">
-            <img
-              src="/concept-projects/matcha/hero.jpg"
-              alt=""
-              width="1672"
-              height="941"
-              decoding="async"
-              loading="eager"
-            />
-          </div>
-          <figcaption>
-            <span>01 / 12</span>
-            <span>PACKAGING / IDENTITY</span>
-          </figcaption>
+      <div className="m-intro__stage">
+        <div className="m-intro__underlay" aria-hidden="true" />
+        <figure className="m-intro__proof" aria-hidden="true">
+          <img src="/concept-projects/matcha/cover.jpg" alt="" width="1080" height="1620" loading="eager" decoding="async" />
         </figure>
-        <div className="m-intro__identity-sheet">
-          <div className="m-intro__editorial-meta" aria-hidden="true">
-            <span>PORTFOLIO</span>
-            <span>2026</span>
-          </div>
-          <div className="m-intro__mark-reveal">
+        <div className="m-intro__leaf m-intro__leaf--one" aria-hidden="true" />
+        <div className="m-intro__leaf m-intro__leaf--two" aria-hidden="true" />
+        <div className="m-intro__folio">
+          <p className="m-intro__meta"><span>{words.issue}</span><span>00</span></p>
+          <div className="m-intro__mark-window">
             <LogoAsset variant="intro" priority />
           </div>
-          <div className="m-intro__identity-note" aria-hidden="true">
-            <span>DESIGN</span>
-            <span>PRINT</span>
-            <span>EDITORIAL</span>
-          </div>
-          <div className="m-intro__studio-seal">
-            <img
-              src="/brand/bamarouf-studio-compact.png"
-              alt="Bamarouf Studio"
-              width="820"
-              height="1011"
-              decoding="async"
-              loading="eager"
-            />
-          </div>
+          <p className="m-intro__caption">{dictionary.intro.descriptor}</p>
+          <span className="m-intro__seal">
+            <img src="/brand/bamarouf-studio-compact.png" alt="Bamarouf Studio" width="820" height="1011" loading="eager" decoding="async" />
+          </span>
         </div>
-        <div className="m-intro__light-pass" aria-hidden="true" />
+        <div className="m-intro__light" aria-hidden="true" />
       </div>
-      <button type="button" className="m-intro__skip" onClick={skip}>
-        {dictionary.actions.skipIntro}
-      </button>
+      <button type="button" className="m-intro__skip" onClick={skip}>{dictionary.actions.skipIntro}</button>
     </section>
   );
 }
