@@ -1253,6 +1253,11 @@ html[dir="rtl"] .hero__studio-note span {
   --image-position: center 52%;
 }
 
+.project-visual[data-project="jeddah-railway"][data-asset="cover"] img {
+  object-fit: contain;
+  transform: scale(1);
+}
+
 .project-visual[data-project="jeddah-railway"][data-asset="hero"],
 .project-visual[data-project="jeddah-railway"][data-asset="gallery-1"],
 .project-visual[data-project="jeddah-railway"][data-asset="gallery-2"],
@@ -1262,6 +1267,27 @@ html[dir="rtl"] .hero__studio-note span {
 }
 
 .project-visual[data-project="jeddah-railway"][data-asset^="gallery-"] img {
+  object-fit: contain;
+  transform: scale(1);
+}
+
+.project-visual[data-project="egg-space"] {
+  background: #17072f;
+}
+
+.project-visual[data-project="egg-space"][data-asset="hero"] {
+  background: #fff;
+}
+
+.project-visual[data-project="egg-space"][data-asset="cover"],
+.project-visual[data-project="egg-space"][data-asset="gallery-1"],
+.project-visual[data-project="egg-space"][data-asset="gallery-5"] {
+  --image-position: center;
+}
+
+.project-visual[data-project="egg-space"][data-asset="gallery-2"] img,
+.project-visual[data-project="egg-space"][data-asset="gallery-3"] img,
+.project-visual[data-project="egg-space"][data-asset="gallery-4"] img {
   object-fit: contain;
   transform: scale(1);
 }
@@ -1412,7 +1438,7 @@ html[dir="rtl"] .hero__studio-note span {
   --frame-ink: oklch(0.3 0.021 122);
 }
 
-.art-frame--kinfolk,
+.art-frame--eggSpace,
 .art-frame--archive {
   --frame-bg: oklch(0.85 0.027 72);
   --frame-main: oklch(0.53 0.043 131);
@@ -2178,7 +2204,7 @@ html[dir="rtl"] .hero__studio-note span {
   bottom: 13%;
 }
 
-.art-frame--kinfolk .object-main,
+.art-frame--eggSpace .object-main,
 .art-frame--archive .object-main {
   left: 18%;
   bottom: 15%;
@@ -2187,7 +2213,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(-2deg);
 }
 
-.art-frame--kinfolk .object-paper,
+.art-frame--eggSpace .object-paper,
 .art-frame--archive .object-paper {
   right: 16%;
   bottom: 18%;
@@ -2196,7 +2222,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(4deg);
 }
 
-.art-frame--kinfolk .object-main {
+.art-frame--eggSpace .object-main {
   left: 17%;
   bottom: 12%;
   width: 35%;
@@ -2206,7 +2232,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(-5deg);
 }
 
-.art-frame--kinfolk .object-paper {
+.art-frame--eggSpace .object-paper {
   right: 15%;
   bottom: 17%;
   width: 34%;
@@ -2215,7 +2241,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(4deg);
 }
 
-.art-frame--kinfolk .artifact-one {
+.art-frame--eggSpace .artifact-one {
   left: 28%;
   bottom: 9%;
   width: 36%;
@@ -2223,7 +2249,7 @@ html[dir="rtl"] .hero__studio-note span {
   background: color-mix(in oklch, var(--frame-accent) 24%, white);
 }
 
-.art-frame--kinfolk .artifact-two {
+.art-frame--eggSpace .artifact-two {
   right: 17%;
   top: 15%;
   width: 24%;
@@ -2231,7 +2257,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(8deg);
 }
 
-.art-frame--kinfolk .art-frame__ribbon {
+.art-frame--eggSpace .art-frame__ribbon {
   right: 15%;
   bottom: 42%;
   display: block;
@@ -2239,7 +2265,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(4deg);
 }
 
-.art-frame--kinfolk .art-frame__caption-strip {
+.art-frame--eggSpace .art-frame__caption-strip {
   left: 20%;
   bottom: 14%;
   width: 25%;
@@ -5019,7 +5045,7 @@ html[dir="rtl"] .site-footer .back-to-top {
     transform: none;
   }
 
-  [data-reveal] .project-visual {
+[data-reveal] .project-visual {
     opacity: 1;
     clip-path: inset(0);
     filter: none;
@@ -6164,7 +6190,7 @@ html[dir="rtl"] .site-footer .back-to-top {
   }
 
   .archive-strip .archive-strip__item--jeddah-railway,
-  .archive-strip .archive-strip__item--kinfolk-concept,
+  .archive-strip .archive-strip__item--egg-space,
   .archive-strip .archive-strip__item--sora {
     display: none;
   }

@@ -42,9 +42,9 @@ function ServicesSection() {
     brandIdentity: "studio",
     graphicDesign: "monolith",
     packagingDesign: "noma",
-    printDesign: "kinfolk",
+    printDesign: "forma",
     socialMediaDesign: "luna",
-    editorialDesign: "kinfolk",
+    editorialDesign: "atelier",
     creativeDirection: "atelier",
   };
   const serviceScenes: Record<ServiceKey, ArtScene> = {
@@ -173,7 +173,7 @@ function FeaturedStory({ mobile = false, project }: { mobile?: boolean; project:
 export function HomePage() {
   const { dictionary, language } = useLanguage();
   const selected = projects.slice(0, 4);
-  const mobileSelected = projects.slice(0, 3);
+  const mobileSelected = projects.slice(0, 4);
   const mobileFeatured = projects.find((project) => project.slug === "sora") ?? projects[6];
   const heroRef = useRef<HTMLElement>(null);
 
