@@ -387,6 +387,15 @@ export function ProjectPage() {
           </div>
         </section>
 
+        <section className="project-closing-visual" aria-label={labels.finalGallery} data-reveal>
+          <ProjectVisual
+            image={project.coverImage}
+            projectSlug={project.slug}
+            asset="cover"
+            ratio="wide"
+          />
+        </section>
+
         <nav className="next-project" aria-label={dictionary.actions.nextProject} data-reveal>
           <span>{dictionary.actions.nextProject}</span>
           <Link to={`/work/${nextProject.slug}`} data-cursor="view">
@@ -498,6 +507,15 @@ export function ProjectPage() {
           </div>
         </section>
 
+        <section className="project-closing-visual" aria-label={labels.finalPresentation} data-reveal>
+          <ProjectVisual
+            image={project.coverImage}
+            projectSlug={project.slug}
+            asset="cover"
+            ratio="wide"
+          />
+        </section>
+
         <nav className="next-project" aria-label={dictionary.actions.nextProject} data-reveal>
           <span>{dictionary.actions.nextProject}</span>
           <Link to={`/work/${nextProject.slug}`} data-cursor="view">
@@ -579,13 +597,13 @@ export function ProjectPage() {
       </section>
 
       <section className="project-gallery" aria-label={dictionary.sections.gallery} data-reveal>
-        {project.gallery.map((image, index) => (
+        {project.gallery.slice(1).map((image, index) => (
           <ProjectVisual
             key={`${image.variant}-${index}`}
             image={image}
             projectSlug={project.slug}
-            asset={galleryAsset(index)}
-            ratio={index === 0 ? "portrait" : index === 1 ? "landscape" : index === 2 ? "square" : "portrait"}
+            asset={galleryAsset(index + 1)}
+            ratio={index % 4 === 0 ? "landscape" : index % 4 === 1 ? "portrait" : index % 4 === 2 ? "square" : "wide"}
           />
         ))}
       </section>
@@ -623,6 +641,15 @@ export function ProjectPage() {
       {project.legalNote ? (
         <p className="project-legal-note" data-reveal>{project.legalNote[language]}</p>
       ) : null}
+
+      <section className="project-closing-visual" aria-label={dictionary.sections.gallery} data-reveal>
+        <ProjectVisual
+          image={project.coverImage}
+          projectSlug={project.slug}
+          asset="cover"
+          ratio="wide"
+        />
+      </section>
 
       <nav className="next-project" aria-label={dictionary.actions.nextProject} data-reveal>
         <span>{dictionary.actions.nextProject}</span>

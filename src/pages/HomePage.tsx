@@ -1,13 +1,83 @@
 import { Link } from "react-router-dom";
 import { useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent } from "react";
-import { ArtFrame } from "../components/ArtFrame";
 import { LogoAsset } from "../components/LogoAsset";
-import { ProjectVisual } from "../components/ProjectVisual";
+import { ProjectVisual, type ProjectVisualAsset } from "../components/ProjectVisual";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { serviceOrder } from "../data/content";
 import { getProjectDisplayTitle, getProjectTitleDirection, projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
-import type { ArtScene, ArtVariant, Project, ServiceKey } from "../types";
+import type { Project, ProjectImage, ServiceKey } from "../types";
+
+function portfolioProject(slug: string) {
+  const project = projects.find((item) => item.slug === slug);
+
+  if (!project) {
+    throw new Error(`Missing portfolio project: ${slug}`);
+  }
+
+  return project;
+}
+
+interface ServicePreview {
+  project: Project;
+  image: ProjectImage;
+  asset: ProjectVisualAsset;
+  ratio: "portrait" | "landscape" | "square" | "wide";
+}
+
+const matchaProject = portfolioProject("matcha");
+const wemoProject = portfolioProject("wemo-delights");
+
+const servicePreviews: Record<ServiceKey, ServicePreview> = {
+  brandIdentity: {
+    project: matchaProject,
+    image: matchaProject.gallery[6],
+    asset: "gallery-7",
+    ratio: "landscape",
+  },
+  logoDesign: {
+    project: portfolioProject("ansab-holding"),
+    image: portfolioProject("ansab-holding").coverImage,
+    asset: "cover",
+    ratio: "square",
+  },
+  graphicDesign: {
+    project: portfolioProject("egg-space"),
+    image: portfolioProject("egg-space").gallery[6],
+    asset: "gallery-7",
+    ratio: "landscape",
+  },
+  packagingDesign: {
+    project: portfolioProject("wello"),
+    image: portfolioProject("wello").coverImage,
+    asset: "cover",
+    ratio: "landscape",
+  },
+  printDesign: {
+    project: portfolioProject("jeddah-railway"),
+    image: portfolioProject("jeddah-railway").gallery[2],
+    asset: "gallery-3",
+    ratio: "wide",
+  },
+  socialMediaDesign: {
+    project: portfolioProject("rahaba-space"),
+    image: portfolioProject("rahaba-space").coverImage,
+    asset: "cover",
+    ratio: "square",
+  },
+  editorialDesign: {
+    project: portfolioProject("red-sea"),
+    image: portfolioProject("red-sea").gallery[5],
+    asset: "gallery-6",
+    ratio: "landscape",
+  },
+  creativeDirection: {
+    project: wemoProject,
+    image: wemoProject.gallery[1],
+    asset: "gallery-2",
+    ratio: "landscape",
+  },
+};
 
 function Arrow() {
   const { direction } = useLanguage();
@@ -40,26 +110,7 @@ function ProjectFeature({ project, index }: { project: Project; index: number })
 function ServicesSection() {
   const { dictionary } = useLanguage();
   const [activeService, setActiveService] = useState<ServiceKey>("brandIdentity");
-  const serviceVisuals: Record<ServiceKey, ArtVariant> = {
-    brandIdentity: "studio",
-    logoDesign: "zahyStore",
-    graphicDesign: "archive",
-    packagingDesign: "nirtoColdBrew",
-    printDesign: "materials",
-    socialMediaDesign: "archive",
-    editorialDesign: "archive",
-    creativeDirection: "materials",
-  };
-  const serviceScenes: Record<ServiceKey, ArtScene> = {
-    brandIdentity: "stationery",
-    logoDesign: "cover",
-    graphicDesign: "signage",
-    packagingDesign: "packaging",
-    printDesign: "print",
-    socialMediaDesign: "social",
-    editorialDesign: "editorial",
-    creativeDirection: "campaign",
-  };
+  const preview = servicePreviews[activeService];
 
   return (
     <section className="section services-section" id="services" aria-labelledby="services-title" data-reveal>
@@ -70,15 +121,14 @@ function ServicesSection() {
         <p className="services-section__mobile-intro">{dictionary.home.servicesIntro}</p>
       </div>
       <div className="service-preview" aria-hidden="true">
-        <ArtFrame
-          variant={serviceVisuals[activeService]}
-          scene={serviceScenes[activeService]}
-          alt={{
-            en: "Service art direction preview.",
-            ar: "معاينة بصرية للخدمة.",
-          }}
-          ratio="square"
+        <ProjectVisual
+          className="service-preview__visual"
+          image={preview.image}
+          projectSlug={preview.project.slug}
+          asset={preview.asset}
+          ratio={preview.ratio}
         />
+        <span className="service-preview__project">{preview.project.title}</span>
       </div>
       <div className="services-list">
         {serviceOrder.map((service, index) => {
@@ -143,9 +193,9 @@ function FeaturedStory({ mobile = false, project }: { mobile?: boolean; project:
     >
       <div className="featured-story__visual">
         <ProjectVisual
-          image={project.heroImage}
+          image={mobile ? project.heroImage : project.gallery[2]}
           projectSlug={project.slug}
-          asset="hero"
+          asset={mobile ? "hero" : "gallery-3"}
           ratio="wide"
         />
       </div>
@@ -182,6 +232,7 @@ export function HomePage() {
   const mobileSelected = projects.slice(0, 7);
   const archivePreviewProjects = projects.slice(selected.length);
   const mobileFeatured = projects.find((project) => project.slug === "rahaba-space") ?? projects[7];
+  const heroProject = matchaProject;
   const heroRef = useRef<HTMLElement>(null);
 
   const setHeroDepthFromPoint = (clientX: number, clientY: number) => {
@@ -256,13 +307,44 @@ export function HomePage() {
             </Link>
           </div>
         </div>
+        <div className="hero__desktop-canvas">
+          <ProjectVisual
+            className="hero__portrait-frame"
+            image={heroProject.coverImage}
+            projectSlug={heroProject.slug}
+            asset="cover"
+            ratio="portrait"
+            loading="eager"
+          />
+          <ProjectVisual
+            className="hero__detail-frame"
+            image={heroProject.gallery[1]}
+            projectSlug={heroProject.slug}
+            asset="gallery-2"
+            ratio="square"
+            loading="eager"
+          />
+          <ProjectVisual
+            className="hero__wide-frame"
+            image={heroProject.heroImage}
+            projectSlug={heroProject.slug}
+            asset="hero"
+            ratio="wide"
+            loading="eager"
+          />
+          <div className="hero__project-mark">
+            <span>01</span>
+            <strong>{heroProject.title}</strong>
+            <span>{heroProject.projectType[language]}</span>
+          </div>
+        </div>
         <div className="hero__visual" aria-hidden="true">
           <div className="hero__visual-stage">
             <ProjectVisual
               className="hero__main-frame"
-              image={projects[0].heroImage}
+              image={projects[0].coverImage}
               projectSlug={projects[0].slug}
-              asset="hero"
+              asset="cover"
               ratio="wide"
               loading="eager"
             />
@@ -313,13 +395,11 @@ export function HomePage() {
             {dictionary.nav.about} <Arrow />
           </Link>
         </div>
-        <ArtFrame
-          variant="materials"
-          scene="materials"
-          alt={{
-            en: "Studio material study with paper, blush ceramics, and soft shadows.",
-            ar: "دراسة مواد في الاستوديو مع ورق وخزف وردي وظلال ناعمة.",
-          }}
+        <ProjectVisual
+          className="about-slice__visual"
+          image={wemoProject.gallery[4]}
+          projectSlug={wemoProject.slug}
+          asset="gallery-5"
           ratio="landscape"
         />
       </section>

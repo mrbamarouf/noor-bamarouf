@@ -1,11 +1,13 @@
-import { ArtFrame } from "../components/ArtFrame";
+import { ProjectVisual } from "../components/ProjectVisual";
 import { contactDetails, getEmailHref, getWhatsAppHref } from "../config/contact";
+import { projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
 
 export function ContactPage() {
   const { dictionary, language } = useLanguage();
   const whatsappHref = getWhatsAppHref(language);
   const emailHref = getEmailHref(language);
+  const matcha = projects.find((project) => project.slug === "matcha") ?? projects[0];
 
   return (
     <div className="page contact-page">
@@ -28,12 +30,11 @@ export function ContactPage() {
       </section>
 
       <section className="contact-layout" data-reveal>
-        <ArtFrame
-          variant="materials"
-          alt={{
-            en: "Studio material composition with paper, soft color, and tactile design details.",
-            ar: "تكوين خامات استوديو مع ورق وألوان هادئة وتفاصيل تصميم ملموسة.",
-          }}
+        <ProjectVisual
+          className="contact-layout__visual"
+          image={matcha.coverImage}
+          projectSlug={matcha.slug}
+          asset="cover"
           ratio="portrait"
         />
 

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { ArtFrame } from "../components/ArtFrame";
+import { ProjectVisual } from "../components/ProjectVisual";
 import { serviceOrder } from "../data/content";
+import { projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
 
 function Arrow() {
@@ -10,6 +11,8 @@ function Arrow() {
 
 export function AboutPage() {
   const { dictionary } = useLanguage();
+  const matcha = projects.find((project) => project.slug === "matcha") ?? projects[0];
+  const wemo = projects.find((project) => project.slug === "wemo-delights") ?? projects[0];
 
   return (
     <div className="page about-page">
@@ -22,14 +25,20 @@ export function AboutPage() {
       </section>
 
       <section className="about-editorial" data-reveal>
-        <ArtFrame
-          variant="studio"
-          alt={{
-            en: "Studio table with papers, botanical forms, and soft material samples.",
-            ar: "طاولة استوديو مع أوراق وأشكال نباتية وعينات مواد ناعمة.",
-          }}
-          ratio="portrait"
-        />
+        <div className="about-editorial__visuals">
+          <ProjectVisual
+            image={wemo.gallery[4]}
+            projectSlug={wemo.slug}
+            asset="gallery-5"
+            ratio="portrait"
+          />
+          <ProjectVisual
+            image={matcha.gallery[1]}
+            projectSlug={matcha.slug}
+            asset="gallery-2"
+            ratio="square"
+          />
+        </div>
         <div className="about-editorial__statement">
           <span className="section__index">{dictionary.sections.creativeDirection}</span>
           <h2>{dictionary.home.aboutQuote}</h2>
@@ -53,9 +62,19 @@ export function AboutPage() {
         </div>
         <div className="capabilities-list">
           {serviceOrder.map((service) => (
-            <article key={service}>
-              <h3>{dictionary.services[service].title}</h3>
-              <p>{dictionary.services[service].description}</p>
+            <article className={service === "creativeDirection" ? "capability capability--featured" : "capability"} key={service}>
+              <div>
+                <h3>{dictionary.services[service].title}</h3>
+                <p>{dictionary.services[service].description}</p>
+              </div>
+              {service === "creativeDirection" ? (
+                <ProjectVisual
+                  image={matcha.gallery[7]}
+                  projectSlug={matcha.slug}
+                  asset="gallery-8"
+                  ratio="landscape"
+                />
+              ) : null}
             </article>
           ))}
         </div>
