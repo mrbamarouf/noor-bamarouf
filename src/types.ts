@@ -35,6 +35,7 @@ export type ArtVariant =
   | "rahabaSpace"
   | "nirtoColdBrew"
   | "zahyStore"
+  | "ansabHolding"
   | "studio"
   | "materials"
   | "archive";

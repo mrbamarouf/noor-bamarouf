@@ -1394,6 +1394,27 @@ html[dir="rtl"] .hero__studio-note span {
   transform: scale(1);
 }
 
+.project-visual[data-project="ansab-holding"] {
+  background:
+    radial-gradient(circle at 50% 44%, color-mix(in oklch, #5ec63d 5%, transparent), transparent 34%),
+    linear-gradient(135deg, #fbf8f0, #ffffff);
+}
+
+.project-visual[data-project="ansab-holding"][data-asset="hero"],
+.project-visual[data-project="ansab-holding"][data-asset="gallery-6"] {
+  background: #10271d;
+}
+
+.project-visual[data-project="ansab-holding"][data-asset="cover"] img,
+.project-visual[data-project="ansab-holding"][data-asset="gallery-1"] img,
+.project-visual[data-project="ansab-holding"][data-asset="gallery-2"] img,
+.project-visual[data-project="ansab-holding"][data-asset="gallery-3"] img,
+.project-visual[data-project="ansab-holding"][data-asset="gallery-4"] img,
+.project-visual[data-project="ansab-holding"][data-asset="gallery-5"] img {
+  object-fit: contain;
+  transform: scale(1);
+}
+
 [data-reveal] .project-visual {
   opacity: 0.98;
   filter: saturate(0.94);
@@ -2612,6 +2633,13 @@ a:hover .art-frame .art-frame__caption-strip {
   --frame-ink: oklch(0.24 0.04 178);
 }
 
+.art-frame--ansabHolding {
+  --frame-bg: oklch(0.96 0.018 90);
+  --frame-main: oklch(0.66 0.18 140);
+  --frame-accent: oklch(0.77 0.14 78);
+  --frame-ink: oklch(0.23 0.03 150);
+}
+
 .art-frame--scene-hero {
   background:
     radial-gradient(circle at 74% 25%, color-mix(in oklch, var(--frame-accent) 19%, transparent), transparent 24%),
@@ -3053,7 +3081,8 @@ a:hover .art-frame .art-frame__caption-strip {
 }
 
 .art-frame--nirtoColdBrew .object-main span,
-.art-frame--zahyStore .object-main span {
+.art-frame--zahyStore .object-main span,
+.art-frame--ansabHolding .object-main span {
   font-size: clamp(1.05rem, 2vw, 2.8rem);
 }
 
@@ -4227,6 +4256,39 @@ html[dir="rtl"] .project-meta {
 
 .logo-case__details .palette-row {
   margin-top: 4px;
+}
+
+.logo-case--lockup {
+  grid-template-columns: minmax(180px, 0.28fr) minmax(220px, 0.28fr) minmax(260px, 0.22fr) minmax(260px, 0.22fr);
+  align-items: end;
+}
+
+.logo-case--lockup > div {
+  align-self: start;
+}
+
+.logo-case--lockup p,
+.logo-case--color p {
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+
+.logo-case--lockup .project-visual {
+  min-height: clamp(280px, 23vw, 420px);
+}
+
+.logo-case--color {
+  grid-template-columns: minmax(300px, 0.36fr) minmax(420px, 0.64fr);
+  align-items: center;
+}
+
+.logo-case--color h2 {
+  font-size: clamp(2.8rem, 5vw, 6.4rem);
+  line-height: 0.96;
+}
+
+.logo-case--color .project-visual {
+  min-height: clamp(360px, 34vw, 560px);
 }
 
 .logo-case--final {
@@ -6564,6 +6626,8 @@ html[dir="rtl"] .site-footer .back-to-top {
   .logo-case,
   .logo-case--logo,
   .logo-case--concept,
+  .logo-case--lockup,
+  .logo-case--color,
   .logo-case--final,
   html[dir="rtl"] .logo-case {
     grid-template-columns: 1fr;
@@ -6578,6 +6642,7 @@ html[dir="rtl"] .site-footer .back-to-top {
   }
 
   .logo-case--concept h2,
+  .logo-case--color h2,
   .logo-case--final h2 {
     max-width: 9ch;
     font-size: clamp(2.3rem, 11vw, 3.9rem);
@@ -6585,6 +6650,8 @@ html[dir="rtl"] .site-footer .back-to-top {
 
   .logo-case--logo > p,
   .logo-case--concept p,
+  .logo-case--lockup p,
+  .logo-case--color p,
   .logo-case--final p,
   .logo-case__details p {
     line-height: 1.72;

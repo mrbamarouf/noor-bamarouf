@@ -32,6 +32,31 @@ const logoCaseLabels = {
   },
 } as const;
 
+const ansabLogoLabels = {
+  en: {
+    logo: "Logo",
+    logoConcept: "Logo Concept",
+    symbol: "Symbol",
+    lockup: "Arabic / English Lockup",
+    color: "Color",
+    finalGallery: "Final Gallery",
+    symbolText: "The symbol is shown as a close crop from the supplied lockup, keeping the organic shape and star detail visible.",
+    lockupText: "The supplied presentation includes both the Latin Ansab wordmark and the Arabic أنساب القابضة name in one bilingual composition.",
+    colorText: "The PDF includes four color versions, presented together as the supplied color detail.",
+  },
+  ar: {
+    logo: "الشعار",
+    logoConcept: "فكرة الشعار",
+    symbol: "الرمز",
+    lockup: "التكوين العربي / الإنجليزي",
+    color: "اللون",
+    finalGallery: "المعرض النهائي",
+    symbolText: "يظهر الرمز كلقطة قريبة من التكوين المقدم، مع الحفاظ على الشكل العضوي وتفصيل النجمة.",
+    lockupText: "يتضمن العرض المقدم العلامة النصية اللاتينية Ansab والاسم العربي أنساب القابضة ضمن تكوين ثنائي اللغة.",
+    colorText: "يتضمن ملف PDF أربع نسخ لونية، معروضة معًا كتفصيل لوني مقدم ضمن المشروع.",
+  },
+} as const;
+
 export function ProjectPage() {
   const { slug } = useParams();
   const project = getProject(slug);
@@ -46,6 +71,134 @@ export function ProjectPage() {
   const projectTitleDirection = getProjectTitleDirection(project, language);
   const nextProjectTitle = getProjectDisplayTitle(nextProject, language);
   const nextProjectTitleDirection = getProjectTitleDirection(nextProject, language);
+
+  if (project.slug === "ansab-holding") {
+    const labels = ansabLogoLabels[language];
+
+    return (
+      <article className="page project-page project-page--logo project-page--ansab">
+        <header className="project-hero logo-project-hero" data-reveal>
+          <Link className="text-link" to="/work">
+            {direction === "rtl" ? `${dictionary.actions.backToWork} →` : `← ${dictionary.actions.backToWork}`}
+          </Link>
+          <div className="project-hero__title">
+            <span>{project.year} / {dictionary.categories[project.category]} / {project.projectType[language]}</span>
+            <h1 dir={projectTitleDirection}>{projectTitle}</h1>
+            <p>{project.fullDescription[language]}</p>
+          </div>
+          <dl className="project-meta">
+            <div>
+              <dt>{dictionary.nav.services}</dt>
+              <dd>{project.services.map((service) => dictionary.services[service].title).join(", ")}</dd>
+            </div>
+            <div>
+              <dt>{dictionary.ui.projectFormat}</dt>
+              <dd>{project.credits[language]}</dd>
+            </div>
+          </dl>
+        </header>
+
+        <ProjectVisual
+          className="project-main-image logo-project__hero-mark"
+          image={project.heroImage}
+          projectSlug={project.slug}
+          asset="hero"
+          ratio="wide"
+          loading="eager"
+        />
+
+        <section className="logo-case logo-case--logo" aria-label={labels.logo} data-reveal>
+          <span className="section__index">{labels.logo}</span>
+          <ProjectVisual
+            image={project.gallery[0]}
+            projectSlug={project.slug}
+            asset="gallery-1"
+            ratio="square"
+          />
+          <p>{project.caseStudy.context[language]}</p>
+        </section>
+
+        <section className="logo-case logo-case--concept" aria-label={labels.logoConcept} data-reveal>
+          <div>
+            <span className="section__index">{labels.logoConcept}</span>
+            <h2>{project.quote?.[language] ?? project.projectType[language]}</h2>
+            <p>{project.caseStudy.direction[language]}</p>
+          </div>
+          <ProjectVisual
+            image={project.gallery[1]}
+            projectSlug={project.slug}
+            asset="gallery-2"
+            ratio="square"
+          />
+        </section>
+
+        <section className="logo-case logo-case--lockup" aria-label={labels.lockup} data-reveal>
+          <div>
+            <span className="section__index">{labels.symbol}</span>
+            <p>{labels.symbolText}</p>
+          </div>
+          <div>
+            <span className="section__index">{labels.lockup}</span>
+            <p>{labels.lockupText}</p>
+          </div>
+          <ProjectVisual
+            image={project.gallery[2]}
+            projectSlug={project.slug}
+            asset="gallery-3"
+            ratio="square"
+          />
+          <ProjectVisual
+            image={project.gallery[3]}
+            projectSlug={project.slug}
+            asset="gallery-4"
+            ratio="square"
+          />
+        </section>
+
+        <section className="logo-case logo-case--color" aria-label={labels.color} data-reveal>
+          <div>
+            <span className="section__index">{labels.color}</span>
+            <h2>{labels.color}</h2>
+            <p>{labels.colorText}</p>
+            <div className="palette-row palette-row--large">
+              {project.colorPalette.map((color) => (
+                <span key={color} style={{ backgroundColor: color }} />
+              ))}
+            </div>
+          </div>
+          <ProjectVisual
+            image={project.gallery[4]}
+            projectSlug={project.slug}
+            asset="gallery-5"
+            ratio="landscape"
+          />
+        </section>
+
+        <section className="logo-case logo-case--final" aria-label={labels.finalGallery} data-reveal>
+          <ProjectVisual
+            image={project.gallery[5]}
+            projectSlug={project.slug}
+            asset="gallery-6"
+            ratio="wide"
+          />
+          <div>
+            <span className="section__index">{labels.finalGallery}</span>
+            <h2>{project.shortDescription[language]}</h2>
+            <p>{project.caseStudy.outcome[language]}</p>
+          </div>
+        </section>
+
+        <nav className="next-project" aria-label={dictionary.actions.nextProject} data-reveal>
+          <span>{dictionary.actions.nextProject}</span>
+          <Link to={`/work/${nextProject.slug}`} data-cursor="view">
+            {direction === "rtl" ? "← " : null}
+            <span dir={nextProjectTitleDirection}>{nextProjectTitle}</span>
+            {direction === "rtl" ? null : " →"}
+          </Link>
+        </nav>
+      </article>
+    );
+  }
 
   if (project.slug === "zahy-store") {
     const labels = logoCaseLabels[language];

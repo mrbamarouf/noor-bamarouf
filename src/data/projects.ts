@@ -816,6 +816,87 @@ export const projects: Project[] = [
       ar: "شعار واحد، معروض بهدوء.",
     },
   },
+  {
+    title: "ANSAB HOLDING",
+    displayTitle: {
+      en: "ANSAB HOLDING",
+      ar: "أنساب القابضة",
+    },
+    slug: "ansab-holding",
+    year: "2026",
+    category: "logoDesign",
+    projectType: {
+      en: "Bilingual Logo Mark",
+      ar: "شعار ثنائي اللغة",
+    },
+    shortDescription: {
+      en: "A logo design project built from the supplied ANSAB HOLDING presentation, with a bilingual lockup, symbol crop, and color versions.",
+      ar: "مشروع تصميم شعار مبني على عرض ANSAB HOLDING المقدم، مع تكوين ثنائي اللغة، لقطة للرمز، ونسخ لونية.",
+    },
+    fullDescription: {
+      en: "ANSAB HOLDING is an official logo design project. The supplied PDF presents the Ansab / أنساب القابضة mark through a green field hero, bilingual lockup, symbol detail, and four color versions.",
+      ar: "أنساب القابضة مشروع تصميم شعار رسمي. يعرض ملف PDF المقدم علامة Ansab / أنساب القابضة من خلال صورة رئيسية فوق حقل أخضر، تكوين ثنائي اللغة، تفصيل للرمز، وأربع نسخ لونية.",
+    },
+    services: ["logoDesign"],
+    credits: officialPortfolioCredits,
+    coverImage: {
+      variant: "ansabHolding",
+      scene: "cover",
+      format: "webp",
+      folder: "projects",
+      alt: {
+        en: "ANSAB HOLDING logo lockup with green symbol, Latin wordmark, and Arabic name.",
+        ar: "شعار أنساب القابضة مع رمز أخضر، علامة لاتينية، واسم عربي.",
+      },
+    },
+    heroImage: {
+      variant: "ansabHolding",
+      scene: "hero",
+      format: "webp",
+      folder: "projects",
+      alt: {
+        en: "ANSAB HOLDING white logo lockup over a green field presentation image.",
+        ar: "شعار أنساب القابضة الأبيض فوق صورة عرض لحقل أخضر.",
+      },
+    },
+    gallery: [
+      { variant: "ansabHolding", scene: "cover", format: "webp", folder: "projects", alt: { en: "ANSAB HOLDING primary bilingual logo lockup.", ar: "التكوين الرئيسي ثنائي اللغة لشعار أنساب القابضة." } },
+      { variant: "ansabHolding", scene: "cover", format: "webp", folder: "projects", alt: { en: "Close crop of the ANSAB HOLDING symbol from the supplied logo.", ar: "لقطة قريبة من رمز أنساب القابضة ضمن الشعار المقدم." } },
+      { variant: "ansabHolding", scene: "cover", format: "webp", folder: "projects", alt: { en: "Arabic ANSAB HOLDING name crop from the supplied lockup.", ar: "لقطة الاسم العربي أنساب القابضة من التكوين المقدم." } },
+      { variant: "ansabHolding", scene: "cover", format: "webp", folder: "projects", alt: { en: "English Ansab wordmark crop from the supplied lockup.", ar: "لقطة العلامة النصية الإنجليزية Ansab من التكوين المقدم." } },
+      { variant: "ansabHolding", scene: "cover", format: "webp", folder: "projects", alt: { en: "Four supplied ANSAB HOLDING color versions on a clean page.", ar: "أربع نسخ لونية مقدمة لشعار أنساب القابضة على صفحة نظيفة." } },
+      { variant: "ansabHolding", scene: "hero", format: "webp", folder: "projects", alt: { en: "Close crop of the ANSAB HOLDING field presentation.", ar: "لقطة قريبة من عرض أنساب القابضة فوق الحقل." } },
+    ],
+    caseStudy: {
+      context: {
+        en: "The supplied PDF is a logo presentation only, so the project focuses on the mark, its bilingual lockup, symbol, color versions, and final presentation crops.",
+        ar: "ملف PDF المقدم هو عرض شعار فقط، لذلك يركز المشروع على العلامة، تكوينها ثنائي اللغة، الرمز، النسخ اللونية، ولقطات العرض النهائية.",
+      },
+      direction: {
+        en: "The logo combines an organic symbol with a rounded Latin wordmark and Arabic name. The presentation pairs clean color versions with a white mark over a green field image.",
+        ar: "يجمع الشعار بين رمز عضوي وعلامة لاتينية مستديرة واسم عربي. يربط العرض بين نسخ لونية نظيفة وشعار أبيض فوق صورة حقل أخضر.",
+      },
+      applications: [
+        { en: "Final supplied logo presentation", ar: "عرض الشعار النهائي كما ورد" },
+        { en: "Symbol close-up", ar: "لقطة قريبة للرمز" },
+        { en: "Arabic and English lockup crops", ar: "لقطات للتكوين العربي والإنجليزي" },
+        { en: "Supplied color versions", ar: "النسخ اللونية المقدمة" },
+      ],
+      outcome: {
+        en: "A focused logo presentation that lets the supplied ANSAB HOLDING mark carry the case study through clean crops and restrained sequencing.",
+        ar: "عرض شعار مركز يترك لعلامة أنساب القابضة المقدمة أن تقود دراسة الحالة عبر لقطات نظيفة وتسلسل هادئ.",
+      },
+    },
+    colorPalette: ["#5EC63D", "#F6B51E", "#F54B58", "#FA8A4C", "#111111", "#FFFFFF"],
+    typography: {
+      display: "Supplied rounded Latin wordmark",
+      body: "Arabic lockup lettering",
+    },
+    quote: {
+      en: "A bilingual logo presented through symbol, wordform, and color.",
+      ar: "شعار ثنائي اللغة يُعرض من خلال الرمز، الكلمة، واللون.",
+    },
+  },
 ];
 
 export function getProject(slug: string | undefined) {
