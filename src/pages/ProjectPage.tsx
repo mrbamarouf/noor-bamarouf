@@ -472,12 +472,24 @@ export function ProjectPage() {
           </div>
         </section>
 
+        <section className="project-gallery logo-project__gallery" aria-label={dictionary.sections.gallery} data-reveal>
+          {project.gallery.slice(1, -1).map((image, index) => (
+            <ProjectVisual
+              key={`${image.variant}-${index}`}
+              image={image}
+              projectSlug={project.slug}
+              asset={galleryAsset(index + 1)}
+              ratio={index % 2 === 0 ? "square" : "landscape"}
+            />
+          ))}
+        </section>
+
         <section className="logo-case logo-case--final" aria-label={labels.finalPresentation} data-reveal>
           <ProjectVisual
-            image={project.gallery[2]}
+            image={project.gallery[project.gallery.length - 1]}
             projectSlug={project.slug}
-            asset="gallery-3"
-            ratio="square"
+            asset={galleryAsset(project.gallery.length - 1)}
+            ratio="landscape"
           />
           <div>
             <span className="section__index">{labels.finalPresentation}</span>

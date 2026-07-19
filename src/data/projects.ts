@@ -57,10 +57,14 @@ export const projects: Project[] = [
       },
     },
     gallery: [
-      { variant: "wello", scene: "packaging", format: "png", alt: { en: "Apple Cinnamon WELLO pouch being poured into a breakfast bowl beside milk and oats.", ar: "عبوة WELLO بنكهة التفاح والقرفة وهي تصب في وعاء إفطار بجانب الحليب والشوفان." } },
-      { variant: "wello", scene: "materials", format: "png", alt: { en: "Choco Hazelnut WELLO pouch with a bowl, nuts, chocolate, and a repeated brand pattern.", ar: "عبوة WELLO بنكهة الشوكولاتة والبندق مع وعاء ومكسرات وشوكولاتة ونمط متكرر للعلامة." } },
-      { variant: "wello", scene: "packaging", format: "png", alt: { en: "Three WELLO Super Oats flavors shown with ingredient photography and distinct color fields.", ar: "ثلاث نكهات من WELLO Super Oats مع صور مكونات ومساحات ألوان مميزة." } },
-      { variant: "wello", scene: "campaign", format: "png", alt: { en: "WELLO campaign visual with Super Oats pouches and a busy-morning breakfast message.", ar: "تصميم حملة WELLO مع عبوات Super Oats ورسالة إفطار للصباح المزدحم." } },
+      { variant: "wello", scene: "packaging", format: "webp", alt: { en: "Apple Cinnamon WELLO pouch being poured into a breakfast bowl beside milk and oats.", ar: "عبوة WELLO بنكهة التفاح والقرفة وهي تصب في وعاء إفطار بجانب الحليب والشوفان." } },
+      { variant: "wello", scene: "materials", format: "webp", alt: { en: "Choco Hazelnut WELLO pouch with a bowl, nuts, chocolate, and a repeated brand pattern.", ar: "عبوة WELLO بنكهة الشوكولاتة والبندق مع وعاء ومكسرات وشوكولاتة ونمط متكرر للعلامة." } },
+      { variant: "wello", scene: "packaging", format: "webp", alt: { en: "Three WELLO Super Oats flavors shown with ingredient photography and distinct color fields.", ar: "ثلاث نكهات من WELLO Super Oats مع صور مكونات ومساحات ألوان مميزة." } },
+      { variant: "wello", scene: "campaign", format: "webp", alt: { en: "WELLO campaign visual with Super Oats pouches and a busy-morning breakfast message.", ar: "تصميم حملة WELLO مع عبوات Super Oats ورسالة إفطار للصباح المزدحم." } },
+      { variant: "wello", scene: "materials", format: "webp", alt: { en: "WELLO breakfast flat-lay board combining product, ingredient, and campaign visuals.", ar: "لوحة عرض مسطحة لـ WELLO تجمع المنتج والمكونات ومرئيات الحملة." } },
+      { variant: "wello", scene: "packaging", format: "webp", alt: { en: "WELLO pouch lineup arranged as a shelf-style packaging presentation.", ar: "مجموعة عبوات WELLO مرتبة كعرض تغليف بأسلوب الرف." } },
+      { variant: "wello", scene: "materials", format: "webp", alt: { en: "WELLO close-up presentation board for pack details, color, and breakfast imagery.", ar: "لوحة لقطات قريبة لـ WELLO لتفاصيل العبوة واللون وصور الإفطار." } },
+      { variant: "wello", scene: "packaging", format: "webp", alt: { en: "WELLO final gallery board with packaging lineup, breakfast scene, and ingredient-led visuals.", ar: "لوحة معرض نهائية لـ WELLO تضم مجموعة التغليف ومشهد الإفطار ومرئيات المكونات." } },
     ],
     caseStudy: {
       context: {
@@ -131,7 +135,11 @@ export const projects: Project[] = [
       { variant: "matcha", scene: "campaign", alt: { en: "MATCHA campaign poster on a matcha powder texture with Arabic and English messaging.", ar: "ملصق حملة MATCHA فوق ملمس بودرة الماتشا مع رسالة بالعربية والإنجليزية." } },
       { variant: "matcha", scene: "packaging", alt: { en: "Hot matcha cup with latte art, branded sleeve, green tile, and warm shadows.", ar: "كوب ماتشا ساخن مع رسم لاتيه وغلاف يحمل الهوية وبلاط أخضر وظلال دافئة." } },
       { variant: "matcha", scene: "social", alt: { en: "MATCHA social profile presentation with post grid, tote, whisk, drink, and product visuals.", ar: "عرض حساب MATCHA الاجتماعي مع شبكة منشورات وحقيبة وخفاقة ومشروب ومرئيات المنتج." } },
-      { variant: "matcha", scene: "packaging", alt: { en: "Iced MATCHA cup application with a branded sleeve and soft editorial styling.", ar: "تطبيق كوب MATCHA بارد مع غلاف الهوية وتنسيق تحريري ناعم." } },
+      { variant: "matcha", scene: "packaging", format: "webp", alt: { en: "Iced MATCHA cup application with a branded sleeve and soft editorial styling.", ar: "تطبيق كوب MATCHA بارد مع غلاف الهوية وتنسيق تحريري ناعم." } },
+      { variant: "matcha", scene: "social", format: "webp", alt: { en: "MATCHA social and beverage board with post grid, cup, powder, and campaign visuals.", ar: "لوحة اجتماعية ومشروبية لـ MATCHA تضم شبكة منشورات وكوبًا وبودرة ومرئيات حملة." } },
+      { variant: "matcha", scene: "packaging", format: "webp", alt: { en: "MATCHA packaging and cup family arranged as a soft green presentation system.", ar: "تغليف وأكواب MATCHA مرتبة كنظام عرض أخضر ناعم." } },
+      { variant: "matcha", scene: "materials", format: "webp", alt: { en: "MATCHA texture and pattern board with powder, cup sleeve, drink, and campaign crops.", ar: "لوحة خامات ونمط لـ MATCHA تضم بودرة وغلاف كوب ومشروب ولقطات حملة." } },
+      { variant: "matcha", scene: "packaging", format: "webp", alt: { en: "MATCHA final overview board connecting packaging, drinkware, social, and campaign assets.", ar: "لوحة ختامية لـ MATCHA تربط التغليف والأكواب والمنشورات ومرئيات الحملة." } },
     ],
     caseStudy: {
       context: {
@@ -288,10 +296,13 @@ export const projects: Project[] = [
     },
     gallery: [
       { variant: "eggSpace", scene: "print", format: "jpg", folder: "projects", alt: { en: "EGG SPACE concept statement with the line about space as the safest place for eggs.", ar: "بيان فكرة EGG SPACE مع عبارة عن الفضاء باعتباره المكان الأكثر أماناً للبيض." } },
-      { variant: "eggSpace", scene: "materials", format: "jpg", folder: "projects", alt: { en: "EGG SPACE design process board showing production photos and layout work.", ar: "لوحة عملية تصميم EGG SPACE تعرض صور الإنتاج والعمل على التخطيط." } },
-      { variant: "eggSpace", scene: "print", format: "jpg", folder: "projects", alt: { en: "EGG SPACE 2D packaging wrap with lid, base, label, and cosmic illustration system.", ar: "تصميم EGG SPACE ثنائي الأبعاد للغلاف والغطاء والقاعدة والملصق والنظام الرسومي الكوني." } },
-      { variant: "eggSpace", scene: "packaging", format: "jpg", folder: "projects", alt: { en: "EGG SPACE printed packaging result with cylindrical package and eggs inside.", ar: "النتيجة المطبوعة لعبوة EGG SPACE الأسطوانية مع البيض في الداخل." } },
+      { variant: "eggSpace", scene: "materials", format: "webp", folder: "projects", alt: { en: "EGG SPACE design process board showing production photos and layout work.", ar: "لوحة عملية تصميم EGG SPACE تعرض صور الإنتاج والعمل على التخطيط." } },
+      { variant: "eggSpace", scene: "print", format: "webp", folder: "projects", alt: { en: "EGG SPACE 2D packaging wrap with lid, base, label, and cosmic illustration system.", ar: "تصميم EGG SPACE ثنائي الأبعاد للغلاف والغطاء والقاعدة والملصق والنظام الرسومي الكوني." } },
+      { variant: "eggSpace", scene: "packaging", format: "webp", folder: "projects", alt: { en: "EGG SPACE printed packaging result with cylindrical package and eggs inside.", ar: "النتيجة المطبوعة لعبوة EGG SPACE الأسطوانية مع البيض في الداخل." } },
       { variant: "eggSpace", scene: "hero", format: "jpg", folder: "projects", alt: { en: "EGG SPACE final graphic detail with yellow lettering and the eggs out of the ordinary tagline.", ar: "تفصيل بصري نهائي لـ EGG SPACE مع كتابة صفراء وعبارة Eggs Out of the Ordinary." } },
+      { variant: "eggSpace", scene: "packaging", format: "webp", folder: "projects", alt: { en: "EGG SPACE cosmic packaging presentation with 3D mockup, cover, and final title graphic.", ar: "عرض تغليف كوني لـ EGG SPACE مع النموذج ثلاثي الأبعاد والغلاف والتفصيل النهائي." } },
+      { variant: "eggSpace", scene: "print", format: "webp", folder: "projects", alt: { en: "EGG SPACE printed and 2D design materials arranged as a premium process spread.", ar: "مواد EGG SPACE المطبوعة وثنائية الأبعاد مرتبة كعرض عملية تصميم راقٍ." } },
+      { variant: "eggSpace", scene: "packaging", format: "webp", folder: "projects", alt: { en: "EGG SPACE final gallery board with cover, cylinder mockup, and concept visuals.", ar: "لوحة معرض نهائية لـ EGG SPACE تضم الغلاف والنموذج الأسطواني ومرئيات الفكرة." } },
     ],
     caseStudy: {
       context: {
@@ -369,7 +380,12 @@ export const projects: Project[] = [
     gallery: [
       { variant: "redBullMarvel", scene: "packaging", format: "jpg", folder: "projects", alt: { en: "Single RED BULL × MARVEL can design with comic speech bubble and red-yellow character styling.", ar: "تصميم عبوة مفردة لريد بُل × مارفل مع فقاعة قصص مصورة وتنسيق أحمر وأصفر مستوحى من الشخصيات." } },
       { variant: "redBullMarvel", scene: "campaign", format: "jpg", folder: "projects", alt: { en: "RED BULL × MARVEL versus-style visual with two superhero-inspired can variations.", ar: "مرئية بأسلوب المواجهة لريد بُل × مارفل تعرض تصميمين مختلفين للعلب مستوحيين من الأبطال الخارقين." } },
-      { variant: "redBullMarvel", scene: "packaging", format: "jpg", folder: "projects", alt: { en: "RED BULL × MARVEL full limited-edition can lineup with character-driven packaging variations.", ar: "المجموعة الكاملة لعبوات ريد بُل × مارفل لإصدار محدود مع تنويعات تغليف قائمة على الشخصيات." } },
+      { variant: "redBullMarvel", scene: "packaging", format: "webp", folder: "projects", alt: { en: "RED BULL × MARVEL full limited-edition can lineup with character-driven packaging variations.", ar: "المجموعة الكاملة لعبوات ريد بُل × مارفل لإصدار محدود مع تنويعات تغليف قائمة على الشخصيات." } },
+      { variant: "redBullMarvel", scene: "packaging", format: "webp", folder: "projects", alt: { en: "RED BULL × MARVEL comic panel board with can, versus, lineup, and color details.", ar: "لوحة قصص مصورة لريد بُل × مارفل تضم العبوة والمواجهة والمجموعة وتفاصيل اللون." } },
+      { variant: "redBullMarvel", scene: "campaign", format: "webp", folder: "projects", alt: { en: "RED BULL × MARVEL versus and single-can artwork arranged as a promotional board.", ar: "مرئيات المواجهة والعبوة المفردة لريد بُل × مارفل مرتبة كلوحة ترويجية." } },
+      { variant: "redBullMarvel", scene: "packaging", format: "webp", folder: "projects", alt: { en: "RED BULL × MARVEL collectible lineup shown as tall comic-framed packaging panels.", ar: "مجموعة ريد بُل × مارفل القابلة للاقتناء معروضة كلوحات تغليف طويلة بأسلوب القصص المصورة." } },
+      { variant: "redBullMarvel", scene: "campaign", format: "webp", folder: "projects", alt: { en: "RED BULL × MARVEL promotional packaging presentation with bold comic color fields.", ar: "عرض ترويجي لتغليف ريد بُل × مارفل مع مساحات ألوان قصص مصورة جريئة." } },
+      { variant: "redBullMarvel", scene: "packaging", format: "webp", folder: "projects", alt: { en: "RED BULL × MARVEL final gallery board with collectible cans and campaign panels.", ar: "لوحة معرض نهائية لريد بُل × مارفل تضم العلب القابلة للاقتناء ولوحات الحملة." } },
     ],
     caseStudy: {
       context: {
@@ -785,6 +801,10 @@ export const projects: Project[] = [
       { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE final logo artwork.", ar: "العمل النهائي لشعار ZAHY STORE." } },
       { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE logo symbol and wordmark as supplied.", ar: "رمز ZAHY STORE والعلامة النصية كما وردا في الملف." } },
       { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE final logo presentation.", ar: "العرض النهائي لشعار ZAHY STORE." } },
+      { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE symbol close-up presented on a clean background.", ar: "لقطة قريبة لرمز ZAHY STORE معروضة على خلفية نظيفة." } },
+      { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE supplied logo shown in a clean scale sequence.", ar: "شعار ZAHY STORE المقدم معروض بتسلسل أحجام نظيف." } },
+      { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE logo presented on the approved deep green color field.", ar: "شعار ZAHY STORE معروض على مساحة اللون الأخضر العميق المعتمد." } },
+      { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE final light and deep green logo presentation pair.", ar: "عرض نهائي لشعار ZAHY STORE بنسختين على خلفية فاتحة وخضراء عميقة." } },
     ],
     caseStudy: {
       context: {
