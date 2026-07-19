@@ -4,6 +4,7 @@ import { navItems } from "../data/content";
 import { useLanguage } from "../context/LanguageContext";
 import { LogoAsset } from "./LogoAsset";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
+import { BamaroufStudioLink } from "./BamaroufStudioLink";
 
 function isHashLink(to: string) {
   return to.includes("#");
@@ -127,9 +128,12 @@ export function Header() {
             );
           })}
         </nav>
-        <button className="language-toggle" type="button" onClick={toggleLanguage} aria-label="Switch language">
-          <span>{language === "en" ? "AR" : "EN"}</span>
-        </button>
+        <div className="site-header__actions">
+          <BamaroufStudioLink copy={dictionary.ecosystem} variant="header" />
+          <button className="language-toggle" type="button" onClick={toggleLanguage} aria-label="Switch language">
+            <span>{language === "en" ? "AR" : "EN"}</span>
+          </button>
+        </div>
         <button
           ref={menuButtonRef}
           className={`mobile-menu-button ${menuOpen ? "mobile-menu-button--open" : ""}`}
@@ -178,6 +182,9 @@ export function Header() {
               );
             })}
           </nav>
+          <div className="mobile-menu__studio">
+            <BamaroufStudioLink copy={dictionary.ecosystem} variant="menu" onClick={() => closeMenu(false)} />
+          </div>
           <div className="mobile-menu__utility">
             <button className="mobile-menu__language" type="button" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
               <span>{language === "en" ? "العربية" : "English"}</span>

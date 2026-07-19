@@ -115,6 +115,11 @@ export const copy = {
       closeMenu: "Close menu",
       languageSwitch: "Switch language",
     },
+    ecosystem: {
+      label: "Visit BAMAROUF STUDIO",
+      name: "BAMAROUF STUDIO",
+      footerLine: "AN INDEPENDENT WORLD OF BAMAROUF STUDIO",
+    },
     services: {
       brandIdentity: {
         title: "Brand Identity",
@@ -265,6 +270,11 @@ export const copy = {
       openMenu: "فتح القائمة",
       closeMenu: "إغلاق القائمة",
       languageSwitch: "تبديل اللغة",
+    },
+    ecosystem: {
+      label: "زيارة بامعروف استديو",
+      name: "بامعروف استديو",
+      footerLine: "عالم مستقل ضمن بامعروف استديو",
     },
     services: {
       brandIdentity: {

@@ -3,6 +3,7 @@ import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { navItems, serviceOrder } from "../data/content";
 import { useLanguage } from "../context/LanguageContext";
 import { LogoAsset } from "./LogoAsset";
+import { BamaroufStudioLink } from "./BamaroufStudioLink";
 
 export function Footer() {
   const { dictionary, direction, language } = useLanguage();
@@ -13,6 +14,7 @@ export function Footer() {
         <div className="site-footer__brand">
           <LogoAsset variant="footer" />
           <p>{dictionary.footer.line}</p>
+          <BamaroufStudioLink copy={dictionary.ecosystem} variant="footer" />
         </div>
         <nav className="footer-list footer-list--navigation" aria-label={dictionary.ui.footerNavigation}>
           <h2>{dictionary.nav.home}</h2>
@@ -46,6 +48,7 @@ export function Footer() {
         <div className="mobile-footer__brand">
           <LogoAsset variant="footer" />
           <p>{dictionary.footer.line}</p>
+          <BamaroufStudioLink copy={dictionary.ecosystem} variant="footer" />
         </div>
         <div className="mobile-footer__actions">
           <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
