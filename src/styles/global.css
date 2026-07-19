@@ -247,11 +247,17 @@ a {
   padding: 12px 16px;
   color: var(--color-ivory);
   background: var(--color-olive-dark);
+  opacity: 0;
+  pointer-events: none;
   transform: translateY(calc(-100% - 44px));
-  transition: transform 240ms var(--ease-out);
+  transition:
+    opacity 180ms var(--ease-out),
+    transform 240ms var(--ease-out);
 }
 
-.skip-link:focus {
+.skip-link:focus-visible {
+  opacity: 1;
+  pointer-events: auto;
   transform: translateY(0);
 }
 
@@ -361,6 +367,15 @@ html[dir="rtl"] .scroll-progress {
 [data-reveal].is-visible .process-stage:nth-child(4),
 [data-reveal].is-visible .archive-strip a:nth-child(4) {
   transition-delay: 260ms;
+}
+
+[data-reveal].is-visible .project-feature:nth-child(5),
+[data-reveal].is-visible .archive-strip a:nth-child(5) {
+  transition-delay: 320ms;
+}
+
+[data-reveal].is-visible .project-feature:nth-child(6) {
+  transition-delay: 380ms;
 }
 
 [data-reveal].is-visible .service-row:nth-child(5),
@@ -1305,6 +1320,16 @@ html[dir="rtl"] .hero__studio-note span {
   object-fit: cover;
   object-position: center 66%;
   transform: scale(1.01);
+}
+
+.project-visual[data-project="impostor"] {
+  background: #000;
+}
+
+.project-visual[data-project="impostor"] img {
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1);
 }
 
 [data-reveal] .project-visual {
@@ -2511,13 +2536,6 @@ a:hover .art-frame .art-frame__caption-strip {
   transform: scale(1.045);
 }
 
-.art-frame--atelier {
-  --frame-bg: oklch(0.91 0.024 43);
-  --frame-main: oklch(0.31 0.022 86);
-  --frame-accent: oklch(0.69 0.062 23);
-  --frame-ink: oklch(0.22 0.014 82);
-}
-
 .art-frame--monolith {
   --frame-bg: oklch(0.88 0.018 76);
   --frame-main: oklch(0.43 0.024 128);
@@ -2986,7 +3004,6 @@ a:hover .art-frame .art-frame__caption-strip {
   width: 36%;
 }
 
-.art-frame--atelier .object-main span,
 .art-frame--monolith .object-main span,
 .art-frame--sora .object-main span,
 .art-frame--forma .object-main span,
@@ -3221,8 +3238,13 @@ a:hover .art-frame .art-frame__caption-strip {
 }
 
 .project-feature:nth-child(5) {
-  grid-column: 3 / 11;
+  grid-column: 1 / 7;
   margin-top: clamp(16px, 2vw, 34px);
+}
+
+.project-feature:nth-child(6) {
+  grid-column: 7 / -1;
+  margin-top: clamp(58px, 5vw, 92px);
 }
 
 .project-feature__number {
@@ -5679,7 +5701,8 @@ html[dir="rtl"] .site-footer .back-to-top {
   .project-feature:nth-child(2),
   .project-feature:nth-child(3),
   .project-feature:nth-child(4),
-  .project-feature:nth-child(5) {
+  .project-feature:nth-child(5),
+  .project-feature:nth-child(6) {
     grid-column: auto;
     margin-top: 0;
   }
@@ -6220,8 +6243,7 @@ html[dir="rtl"] .site-footer .back-to-top {
   }
 
   .archive-strip .archive-strip__item--jeddah-railway,
-  .archive-strip .archive-strip__item--egg-space,
-  .archive-strip .archive-strip__item--sora {
+  .archive-strip .archive-strip__item--egg-space {
     display: none;
   }
 

@@ -20,6 +20,7 @@ export const categoryOrder: CategoryKey[] = [
   "packaging",
   "print",
   "socialMedia",
+  "awareness",
   "editorial",
   "creativeDirection",
 ];
@@ -157,6 +158,7 @@ export const copy = {
       packaging: "Packaging",
       print: "Print",
       socialMedia: "Social Media",
+      awareness: "Social Awareness",
       editorial: "Editorial",
       creativeDirection: "Creative Direction",
     },
@@ -313,6 +315,7 @@ export const copy = {
       packaging: "التغليف",
       print: "المطبوعات",
       socialMedia: "التواصل",
+      awareness: "توعية اجتماعية",
       editorial: "تحريري",
       creativeDirection: "توجيه إبداعي",
     },

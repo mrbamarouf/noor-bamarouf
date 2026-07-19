@@ -18,6 +18,7 @@ export type CategoryKey =
   | "packaging"
   | "print"
   | "socialMedia"
+  | "awareness"
   | "editorial"
   | "creativeDirection";
 
@@ -27,7 +28,7 @@ export type ArtVariant =
   | "jeddahRailway"
   | "eggSpace"
   | "redBullMarvel"
-  | "atelier"
+  | "impostor"
   | "monolith"
   | "sora"
   | "forma"

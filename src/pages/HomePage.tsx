@@ -46,8 +46,8 @@ function ServicesSection() {
     packagingDesign: "noma",
     printDesign: "forma",
     socialMediaDesign: "sora",
-    editorialDesign: "atelier",
-    creativeDirection: "atelier",
+    editorialDesign: "forma",
+    creativeDirection: "monolith",
   };
   const serviceScenes: Record<ServiceKey, ArtScene> = {
     brandIdentity: "stationery",
@@ -176,8 +176,8 @@ function FeaturedStory({ mobile = false, project }: { mobile?: boolean; project:
 
 export function HomePage() {
   const { dictionary, language } = useLanguage();
-  const selected = projects.slice(0, 5);
-  const mobileSelected = projects.slice(0, 5);
+  const selected = projects.slice(0, 6);
+  const mobileSelected = projects.slice(0, 6);
   const archivePreviewProjects = projects.slice(selected.length);
   const mobileFeatured = projects.find((project) => project.slug === "sora") ?? projects[6];
   const heroRef = useRef<HTMLElement>(null);
