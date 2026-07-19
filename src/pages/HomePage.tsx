@@ -44,9 +44,9 @@ function ServicesSection() {
     brandIdentity: "studio",
     graphicDesign: "archive",
     packagingDesign: "noma",
-    printDesign: "forma",
+    printDesign: "materials",
     socialMediaDesign: "archive",
-    editorialDesign: "forma",
+    editorialDesign: "archive",
     creativeDirection: "materials",
   };
   const serviceScenes: Record<ServiceKey, ArtScene> = {

@@ -31,7 +31,7 @@ export type ArtVariant =
   | "impostor"
   | "wemoDelights"
   | "rahabaSpace"
-  | "forma"
+  | "nirtoColdBrew"
   | "noma"
   | "studio"
   | "materials"

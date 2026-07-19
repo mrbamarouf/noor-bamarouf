@@ -1360,6 +1360,27 @@ html[dir="rtl"] .hero__studio-note span {
   --image-position: center;
 }
 
+.project-visual[data-project="nirto-cold-brew"] {
+  background: #2a120c;
+}
+
+.project-visual[data-project="nirto-cold-brew"][data-asset="cover"] {
+  --image-position: center 52%;
+}
+
+.project-visual[data-project="nirto-cold-brew"][data-asset="hero"] {
+  --image-position: center;
+}
+
+.project-visual[data-project="nirto-cold-brew"][data-asset="gallery-1"] img,
+.project-visual[data-project="nirto-cold-brew"][data-asset="gallery-2"] img,
+.project-visual[data-project="nirto-cold-brew"][data-asset="gallery-4"] img,
+.project-visual[data-project="nirto-cold-brew"][data-asset="gallery-5"] img,
+.project-visual[data-project="nirto-cold-brew"][data-asset="gallery-6"] img {
+  object-fit: contain;
+  transform: scale(1);
+}
+
 [data-reveal] .project-visual {
   opacity: 0.98;
   filter: saturate(0.94);
@@ -2564,11 +2585,11 @@ a:hover .art-frame .art-frame__caption-strip {
   transform: scale(1.045);
 }
 
-.art-frame--forma {
-  --frame-bg: oklch(0.89 0.025 72);
-  --frame-main: oklch(0.58 0.031 128);
-  --frame-accent: oklch(0.62 0.059 27);
-  --frame-ink: oklch(0.26 0.016 91);
+.art-frame--nirtoColdBrew {
+  --frame-bg: oklch(0.86 0.058 65);
+  --frame-main: oklch(0.31 0.054 44);
+  --frame-accent: oklch(0.67 0.101 69);
+  --frame-ink: oklch(0.18 0.021 55);
 }
 
 .art-frame--noma {
@@ -3018,14 +3039,9 @@ a:hover .art-frame .art-frame__caption-strip {
   width: 36%;
 }
 
-.art-frame--forma .object-main span,
+.art-frame--nirtoColdBrew .object-main span,
 .art-frame--noma .object-main span {
   font-size: clamp(1.05rem, 2vw, 2.8rem);
-}
-
-.art-frame--forma .artifact-three {
-  border-radius: 0;
-  transform: rotate(8deg);
 }
 
 .art-frame--noma .art-frame__package::before {
