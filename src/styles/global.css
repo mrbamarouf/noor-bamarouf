@@ -1349,6 +1349,17 @@ html[dir="rtl"] .hero__studio-note span {
   --image-position: center 58%;
 }
 
+.project-visual[data-project="rahaba-space"] {
+  background: #aa9584;
+}
+
+.project-visual[data-project="rahaba-space"][data-asset="cover"],
+.project-visual[data-project="rahaba-space"][data-asset="hero"],
+.project-visual[data-project="rahaba-space"][data-asset="gallery-1"],
+.project-visual[data-project="rahaba-space"][data-asset="gallery-2"] {
+  --image-position: center;
+}
+
 [data-reveal] .project-visual {
   opacity: 0.98;
   filter: saturate(0.94);
@@ -2553,13 +2564,6 @@ a:hover .art-frame .art-frame__caption-strip {
   transform: scale(1.045);
 }
 
-.art-frame--sora {
-  --frame-bg: oklch(0.9 0.029 55);
-  --frame-main: oklch(0.63 0.046 126);
-  --frame-accent: oklch(0.66 0.071 31);
-  --frame-ink: oklch(0.31 0.02 107);
-}
-
 .art-frame--forma {
   --frame-bg: oklch(0.89 0.025 72);
   --frame-main: oklch(0.58 0.031 128);
@@ -3014,15 +3018,9 @@ a:hover .art-frame .art-frame__caption-strip {
   width: 36%;
 }
 
-.art-frame--sora .object-main span,
 .art-frame--forma .object-main span,
 .art-frame--noma .object-main span {
   font-size: clamp(1.05rem, 2vw, 2.8rem);
-}
-
-.art-frame--sora .art-frame__seal {
-  color: var(--frame-accent);
-  background: color-mix(in oklch, var(--frame-bg) 78%, white);
 }
 
 .art-frame--forma .artifact-three {
@@ -3068,65 +3066,6 @@ a:hover .art-frame .art-frame__caption-strip {
   height: 30%;
   background: color-mix(in oklch, white 72%, var(--frame-main));
   transform: rotate(-6deg);
-}
-
-.art-frame--sora.art-frame--scene-packaging .art-frame__package {
-  left: 15%;
-  bottom: 12%;
-  width: 36%;
-  height: 63%;
-  transform: perspective(680px) rotateY(-18deg) rotateZ(-2deg);
-}
-
-.art-frame--sora.art-frame--scene-packaging .art-frame__package::before {
-  clip-path: polygon(0 7%, 100% 0, 95% 100%, 4% 94%);
-}
-
-.art-frame--sora.art-frame--scene-packaging .artifact-one {
-  right: 10%;
-  top: 18%;
-  width: 38%;
-  height: 42%;
-  color: var(--frame-ink);
-  background: color-mix(in oklch, var(--frame-bg) 86%, white);
-  transform: rotate(2deg);
-}
-
-.art-frame--sora.art-frame--scene-packaging .artifact-one::before,
-.art-frame--sora.art-frame--scene-packaging .artifact-one::after {
-  position: absolute;
-  left: 14%;
-  right: 14%;
-  height: 1px;
-  content: "";
-  background: color-mix(in oklch, var(--frame-ink) 21%, transparent);
-}
-
-.art-frame--sora.art-frame--scene-packaging .artifact-one::before {
-  top: 34%;
-}
-
-.art-frame--sora.art-frame--scene-packaging .artifact-one::after {
-  top: 56%;
-  box-shadow: 0 18px 0 color-mix(in oklch, var(--frame-ink) 12%, transparent);
-}
-
-.art-frame--sora.art-frame--scene-packaging .artifact-two {
-  left: 9%;
-  top: 13%;
-  width: 24%;
-  height: 22%;
-  border-radius: 50%;
-  background: color-mix(in oklch, var(--frame-accent) 26%, white);
-}
-
-.art-frame--sora.art-frame--scene-packaging .artifact-three {
-  right: 17%;
-  bottom: 16%;
-  width: 28%;
-  height: 18%;
-  border-radius: 999px 999px 12px 12px;
-  background: color-mix(in oklch, var(--frame-main) 28%, white);
 }
 
 .art-frame--noma.art-frame--scene-packaging .art-frame__package {

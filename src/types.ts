@@ -30,7 +30,7 @@ export type ArtVariant =
   | "redBullMarvel"
   | "impostor"
   | "wemoDelights"
-  | "sora"
+  | "rahabaSpace"
   | "forma"
   | "noma"
   | "studio"

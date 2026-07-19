@@ -45,7 +45,7 @@ function ServicesSection() {
     graphicDesign: "archive",
     packagingDesign: "noma",
     printDesign: "forma",
-    socialMediaDesign: "sora",
+    socialMediaDesign: "archive",
     editorialDesign: "forma",
     creativeDirection: "materials",
   };
@@ -179,7 +179,7 @@ export function HomePage() {
   const selected = projects.slice(0, 7);
   const mobileSelected = projects.slice(0, 7);
   const archivePreviewProjects = projects.slice(selected.length);
-  const mobileFeatured = projects.find((project) => project.slug === "sora") ?? projects[6];
+  const mobileFeatured = projects.find((project) => project.slug === "rahaba-space") ?? projects[7];
   const heroRef = useRef<HTMLElement>(null);
 
   const setHeroDepthFromPoint = (clientX: number, clientY: number) => {
