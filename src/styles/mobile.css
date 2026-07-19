@@ -329,8 +329,9 @@ body.mobile-experience .m-menu__label {
   inset: 0;
   display: grid;
   overflow: hidden;
-  padding: max(24px, env(safe-area-inset-top)) var(--m-gutter) max(20px, env(safe-area-inset-bottom));
-  background: var(--color-ivory);
+  padding: max(20px, env(safe-area-inset-top)) var(--m-gutter) max(18px, env(safe-area-inset-bottom));
+  background: #e7ddd6;
+  direction: ltr;
   place-items: center;
   isolation: isolate;
   transition: opacity 560ms ease, visibility 560ms ease;
@@ -341,108 +342,200 @@ body.mobile-experience .m-menu__label {
   opacity: 0;
 }
 
-.m-intro__paper-field,
-.m-intro__paper {
+.m-intro__material {
   position: absolute;
   inset: 0;
   pointer-events: none;
-}
-
-.m-intro__paper-field {
   z-index: -1;
-  overflow: hidden;
-  background: var(--color-ivory);
-}
-
-.m-intro__paper--top {
-  bottom: auto;
-  height: 56%;
-  background: color-mix(in oklch, var(--color-rose) 5%, var(--color-ivory));
-  box-shadow: 0 18px 44px color-mix(in oklch, var(--color-ink) 6%, transparent);
-  transform: translateY(-102%);
-  animation: mIntroPaperTop 1480ms var(--ease-out) 80ms forwards;
-}
-
-.m-intro__paper--bottom {
-  top: auto;
-  height: 55%;
-  background: color-mix(in oklch, var(--color-sage-soft) 6%, var(--color-ivory));
-  box-shadow: 0 -18px 44px color-mix(in oklch, var(--color-ink) 5%, transparent);
-  transform: translateY(102%);
-  animation: mIntroPaperBottom 1480ms var(--ease-out) 80ms forwards;
-}
-
-.m-intro__paper--spine {
-  inset: -5% auto;
-  left: 50%;
-  width: min(74vw, 318px);
-  background: color-mix(in oklch, white 34%, var(--color-ivory));
-  box-shadow: 0 0 42px color-mix(in oklch, var(--color-ink) 5%, transparent);
+  background: #e7ddd6 url("/brand/noor-final/intro-paper-texture.webp") center / cover;
   opacity: 0;
-  transform: translate3d(-50%, 12%, 0);
-  animation: mIntroPaperSpine 1680ms var(--ease-out) 360ms forwards;
+  transform: scale(1.025);
+  animation: mIntroMaterialIn 650ms ease forwards;
 }
 
-.m-intro__mark-assembly {
+.m-intro__atelier {
+  position: relative;
+  width: min(92vw, 400px);
+  height: min(84svh, 780px);
+  min-height: 440px;
+  isolation: isolate;
+}
+
+.m-intro__vellum,
+.m-intro__print-sheet,
+.m-intro__identity-sheet {
+  position: absolute;
+  margin: 0;
+}
+
+.m-intro__vellum {
+  z-index: 0;
+  inset: 3% -1% -1% 5%;
+  background: #e8d3cc url("/brand/noor-final/intro-blush-vellum.webp") center / cover;
+  box-shadow: 0 20px 52px color-mix(in oklch, var(--color-ink) 11%, transparent);
+  opacity: 0;
+  transform: translate3d(0, 7%, 0) rotate(-1.6deg);
+  transform-origin: 50% 100%;
+  animation: mIntroVellumIn 950ms var(--ease-out) 90ms forwards;
+}
+
+.m-intro__print-sheet {
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 84%;
+  height: 36%;
+  padding: 9px;
+  background: #f6efea url("/brand/noor-final/intro-paper-texture.webp") center / cover;
+  box-shadow: 0 22px 54px color-mix(in oklch, var(--color-ink) 15%, transparent);
+  opacity: 0;
+  transform: translate3d(-9%, -3%, 0) rotate(-2.4deg);
+  transform-origin: 100% 50%;
+  animation: mIntroPrintSheetIn 1050ms var(--ease-out) 190ms forwards;
+}
+
+.m-intro__print-image {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-sage-soft);
+  clip-path: inset(0 100% 0 0);
+  animation: mIntroPrintImageIn 950ms var(--ease-out) 450ms forwards;
+}
+
+.m-intro__print-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 42% center;
+  transform: scale(1.05);
+  animation: mIntroPrintImageSettle 1600ms var(--ease-out) 430ms forwards;
+}
+
+.m-intro__print-sheet figcaption,
+.m-intro__editorial-meta,
+.m-intro__identity-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: color-mix(in oklch, var(--color-ink) 76%, var(--color-muted));
+  font: 700 0.48rem/1.2 var(--m-sans);
+  letter-spacing: 0.08em;
+}
+
+.m-intro__print-sheet figcaption {
+  position: absolute;
+  z-index: 1;
+  top: 17px;
+  right: 17px;
+  left: 17px;
+  color: var(--color-ivory);
+  text-shadow: 0 1px 10px color-mix(in oklch, var(--color-ink) 48%, transparent);
+  opacity: 0;
+  transform: translateY(6px);
+  animation: mIntroDetailsIn 420ms ease 980ms forwards;
+}
+
+.m-intro__identity-sheet {
+  z-index: 3;
+  top: 24%;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  width: 90%;
+  padding: 20px 18px 17px 31px;
+  overflow: hidden;
+  background: #f6efea url("/brand/noor-final/intro-paper-texture.webp") center / cover;
+  box-shadow: 0 28px 68px color-mix(in oklch, var(--color-ink) 17%, transparent);
+  grid-template-rows: auto 1fr auto;
+  opacity: 0;
+  transform: translate3d(10%, 0, 0) rotate(0.85deg);
+  transform-origin: 0 50%;
+  animation: mIntroIdentitySheetIn 1100ms var(--ease-out) 320ms forwards;
+}
+
+.m-intro__identity-sheet::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 20px;
+  content: "";
+  background: url("/brand/noor-final/intro-blush-vellum.webp") center / cover;
+  opacity: 0.44;
+}
+
+.m-intro__editorial-meta {
   position: relative;
   z-index: 1;
-  width: min(68vw, 42svh, 292px);
-  aspect-ratio: 1;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: mIntroDetailsIn 430ms ease 870ms forwards;
 }
 
-.m-intro__mark-fragment,
-.m-intro__registration,
-.m-intro__mark-final {
-  position: absolute;
-  inset: 0;
+.m-intro__mark-reveal {
+  position: relative;
+  z-index: 1;
+  width: min(60vw, 32svh, 250px);
+  overflow: hidden;
+  place-self: center;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translateY(9px) scale(0.985);
+  animation: mIntroAtelierMarkIn 1050ms var(--ease-out) 930ms forwards;
 }
 
-.m-intro__mark-fragment .official-logo-wrap,
-.m-intro__registration .official-logo-wrap,
-.m-intro__mark-final .official-logo-wrap,
-.m-intro__mark-fragment .official-logo,
-.m-intro__registration .official-logo,
-.m-intro__mark-final .official-logo {
+.m-intro__mark-reveal .official-logo-wrap,
+.m-intro__mark-reveal .official-logo {
   width: 100%;
 }
 
-.m-intro__mark-fragment {
+.m-intro__identity-note {
+  position: relative;
+  z-index: 1;
+  justify-content: flex-start;
+  gap: 10px;
+  padding-inline-end: 54px;
+  opacity: 0;
+  transform: translateY(6px);
+  animation: mIntroDetailsIn 400ms ease 1630ms forwards;
+}
+
+.m-intro__studio-seal {
+  position: absolute;
   z-index: 2;
+  right: 14px;
+  bottom: 13px;
+  display: grid;
+  width: 42px;
+  min-height: 54px;
+  padding: 5px;
+  background: color-mix(in oklch, var(--color-rose) 10%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklch, white 68%, transparent),
+    inset -1px -1px 0 color-mix(in oklch, var(--color-ink) 14%, transparent);
+  place-items: center;
   opacity: 0;
-  will-change: transform, opacity;
+  transform: translateY(7px) rotate(-2deg);
+  animation: mIntroStudioSealIn 620ms var(--ease-out) 1950ms forwards;
 }
 
-.m-intro__mark-fragment--upper {
-  clip-path: inset(0 0 67% 0);
-  transform: translate3d(-16%, -5%, 0);
-  animation: mIntroFragmentUpper 2160ms var(--ease-out) 620ms forwards;
+.m-intro__studio-seal img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  opacity: 0.34;
 }
 
-.m-intro__mark-fragment--middle {
-  clip-path: inset(30% 0 34% 0);
-  transform: translate3d(15%, 0, 0);
-  animation: mIntroFragmentMiddle 2100ms var(--ease-out) 820ms forwards;
-}
-
-.m-intro__mark-fragment--lower {
-  clip-path: inset(63% 0 0 0);
-  transform: translate3d(-11%, 5%, 0);
-  animation: mIntroFragmentLower 2000ms var(--ease-out) 1020ms forwards;
-}
-
-.m-intro__registration {
-  z-index: 3;
+.m-intro__light-pass {
+  position: absolute;
+  z-index: 5;
+  inset: -34%;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 31%, rgba(255, 250, 244, 0.05) 40%, rgba(255, 250, 244, 0.54) 49%, rgba(255, 250, 244, 0.08) 58%, transparent 67%);
   opacity: 0;
-  transform: translate3d(2px, -2px, 0);
-  animation: mIntroRegistration 1200ms var(--ease-out) 1880ms forwards;
-}
-
-.m-intro__mark-final {
-  z-index: 4;
-  opacity: 0;
-  clip-path: inset(0 0 100% 0);
-  transform: scale(0.985);
-  animation: mIntroMarkResolve 1240ms var(--ease-out) 2140ms forwards;
+  transform: translateX(-62%);
+  animation: mIntroLightPass 1150ms ease-in-out 1480ms forwards;
 }
 
 .m-intro__skip {
@@ -455,54 +548,54 @@ body.mobile-experience .m-menu__label {
   background: transparent;
   font: 500 0.66rem/1 var(--m-sans);
   opacity: 0;
-  animation: mIntroSkipIn 420ms 2300ms ease forwards;
+  animation: mIntroSkipIn 340ms 1860ms ease forwards;
 }
 
 html[dir="rtl"] .m-intro__skip {
   inset-inline: var(--m-gutter) auto;
 }
 
-@keyframes mIntroPaperTop {
-  to { transform: translateY(-7%); }
+@keyframes mIntroMaterialIn {
+  to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes mIntroPaperBottom {
-  to { transform: translateY(7%); }
+@keyframes mIntroVellumIn {
+  to { opacity: 0.92; transform: translate3d(0, 0, 0) rotate(-1.6deg); }
 }
 
-@keyframes mIntroPaperSpine {
-  to {
-    opacity: 0.8;
-    transform: translate3d(-50%, 0, 0);
-  }
+@keyframes mIntroPrintSheetIn {
+  to { opacity: 1; transform: translate3d(0, 0, 0) rotate(-1.25deg); }
 }
 
-@keyframes mIntroFragmentUpper {
-  0% { opacity: 0; transform: translate3d(-16%, -5%, 0); }
-  28%, 68% { opacity: 1; transform: translate3d(0, 0, 0); }
-  100% { opacity: 0; transform: translate3d(0, 0, 0); }
+@keyframes mIntroPrintImageIn {
+  to { clip-path: inset(0); }
 }
 
-@keyframes mIntroFragmentMiddle {
-  0% { opacity: 0; transform: translate3d(15%, 0, 0); }
-  28%, 68% { opacity: 1; transform: translate3d(0, 0, 0); }
-  100% { opacity: 0; transform: translate3d(0, 0, 0); }
+@keyframes mIntroPrintImageSettle {
+  to { transform: scale(1); }
 }
 
-@keyframes mIntroFragmentLower {
-  0% { opacity: 0; transform: translate3d(-11%, 5%, 0); }
-  28%, 68% { opacity: 1; transform: translate3d(0, 0, 0); }
-  100% { opacity: 0; transform: translate3d(0, 0, 0); }
+@keyframes mIntroIdentitySheetIn {
+  to { opacity: 1; transform: translate3d(0, 0, 0) rotate(0.15deg); }
 }
 
-@keyframes mIntroRegistration {
-  0%, 100% { opacity: 0; transform: translate3d(2px, -2px, 0); }
-  40%, 68% { opacity: 0.2; transform: translate3d(1px, -1px, 0); }
+@keyframes mIntroDetailsIn {
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes mIntroMarkResolve {
-  0% { opacity: 0; clip-path: inset(0 0 100% 0); transform: scale(0.985); }
-  100% { opacity: 1; clip-path: inset(0 0 0 0); transform: scale(1); }
+@keyframes mIntroAtelierMarkIn {
+  0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateY(9px) scale(0.985); }
+  100% { opacity: 1; clip-path: inset(0); transform: translateY(0) scale(1); }
+}
+
+@keyframes mIntroStudioSealIn {
+  to { opacity: 1; transform: translateY(0) rotate(-2deg); }
+}
+
+@keyframes mIntroLightPass {
+  0% { opacity: 0; transform: translateX(-62%); }
+  28% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(62%); }
 }
 
 @keyframes mIntroSkipIn {

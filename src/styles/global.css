@@ -764,7 +764,9 @@ html[dir="rtl"] .bamarouf-studio-link--footer .bamarouf-studio-link__line {
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--color-ivory);
+  padding: clamp(38px, 4.5vw, 78px);
+  background: #e7ddd6;
+  direction: ltr;
   isolation: isolate;
   animation: introIn 360ms var(--ease-out) both;
 }
@@ -774,130 +776,198 @@ html[dir="rtl"] .bamarouf-studio-link--footer .bamarouf-studio-link__line {
   animation: introOut 560ms var(--ease-out) forwards;
 }
 
-.intro__paper-field,
-.intro__paper {
+.intro__material {
   position: absolute;
   inset: 0;
   pointer-events: none;
-}
-
-.intro__paper-field {
   z-index: -1;
-  overflow: hidden;
-  background: var(--color-ivory);
-}
-
-.intro__paper {
-  will-change: transform, opacity;
-}
-
-.intro__paper--left {
-  right: auto;
-  width: 53%;
-  background: color-mix(in oklch, var(--color-rose) 5%, var(--color-ivory));
-  box-shadow: 22px 0 56px color-mix(in oklch, var(--color-ink) 7%, transparent);
-  transform: translateX(-102%);
-  animation: introPaperLeft 1500ms var(--ease-out) 80ms forwards;
-}
-
-.intro__paper--right {
-  left: auto;
-  width: 53%;
-  background: color-mix(in oklch, var(--color-sage-soft) 6%, var(--color-ivory));
-  box-shadow: -22px 0 56px color-mix(in oklch, var(--color-ink) 6%, transparent);
-  transform: translateX(102%);
-  animation: introPaperRight 1500ms var(--ease-out) 80ms forwards;
-}
-
-.intro__paper--centre {
-  inset: -8% auto;
-  left: 50%;
-  width: clamp(320px, 39vw, 690px);
-  background: color-mix(in oklch, white 35%, var(--color-ivory));
-  box-shadow: 0 0 70px color-mix(in oklch, var(--color-ink) 5%, transparent);
+  background: #e7ddd6 url("/brand/noor-final/intro-paper-texture.webp") center / cover;
   opacity: 0;
-  transform: translate3d(-50%, 18%, 0);
-  animation: introPaperCentre 1700ms var(--ease-out) 360ms forwards;
+  transform: scale(1.025);
+  animation: introMaterialIn 700ms ease forwards;
 }
 
-.intro__composition {
+.intro__atelier {
+  position: relative;
+  width: min(88vw, 1540px);
+  height: min(78svh, 860px);
+  min-height: 520px;
+  isolation: isolate;
+}
+
+.intro__vellum,
+.intro__print-sheet,
+.intro__identity-sheet {
+  position: absolute;
+  margin: 0;
+}
+
+.intro__vellum {
+  z-index: 0;
+  inset: 2% -1% -1% 4%;
+  background: #e8d3cc url("/brand/noor-final/intro-blush-vellum.webp") center / cover;
+  box-shadow: 0 24px 72px color-mix(in oklch, var(--color-ink) 12%, transparent);
+  opacity: 0;
+  transform: translate3d(0, 7%, 0) rotate(-1.4deg);
+  transform-origin: 50% 100%;
+  animation: introVellumIn 1000ms var(--ease-out) 100ms forwards;
+}
+
+.intro__print-sheet {
+  z-index: 1;
+  top: 5%;
+  bottom: 5%;
+  left: 0;
+  width: 47%;
+  padding: clamp(15px, 1.4vw, 24px);
+  background: #f6efea url("/brand/noor-final/intro-paper-texture.webp") center / cover;
+  box-shadow: 0 30px 74px color-mix(in oklch, var(--color-ink) 16%, transparent);
+  opacity: 0;
+  transform: translate3d(-13%, 2%, 0) rotate(-2.2deg);
+  transform-origin: 100% 50%;
+  animation: introPrintSheetIn 1100ms var(--ease-out) 220ms forwards;
+}
+
+.intro__print-image {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-sage-soft);
+  clip-path: inset(0 100% 0 0);
+  animation: introPrintImageIn 1000ms var(--ease-out) 500ms forwards;
+}
+
+.intro__print-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 38% center;
+  transform: scale(1.04);
+  animation: introPrintImageSettle 1700ms var(--ease-out) 480ms forwards;
+}
+
+.intro__print-sheet figcaption,
+.intro__editorial-meta,
+.intro__identity-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: color-mix(in oklch, var(--color-ink) 74%, var(--color-muted));
+  font: 700 clamp(0.58rem, 0.62vw, 0.72rem)/1.2 var(--font-body);
+  letter-spacing: 0.13em;
+}
+
+.intro__print-sheet figcaption {
+  position: absolute;
+  z-index: 1;
+  top: clamp(30px, 3vw, 48px);
+  left: clamp(30px, 3vw, 48px);
+  width: 72%;
+  color: var(--color-ivory);
+  text-shadow: 0 1px 12px color-mix(in oklch, var(--color-ink) 52%, transparent);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: introDetailsIn 450ms ease 1060ms forwards;
+}
+
+.intro__identity-sheet {
+  z-index: 3;
+  inset: 0 0 0 auto;
+  display: grid;
+  width: 62%;
+  padding: clamp(28px, 3vw, 54px) clamp(32px, 4vw, 72px);
+  overflow: hidden;
+  background: #f6efea url("/brand/noor-final/intro-paper-texture.webp") center / cover;
+  box-shadow: 0 34px 90px color-mix(in oklch, var(--color-ink) 18%, transparent);
+  grid-template-rows: auto 1fr auto;
+  opacity: 0;
+  transform: translate3d(12%, 0, 0) rotate(0.9deg);
+  transform-origin: 0 50%;
+  animation: introIdentitySheetIn 1150ms var(--ease-out) 350ms forwards;
+}
+
+.intro__identity-sheet::before {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: clamp(28px, 3.2vw, 58px);
+  content: "";
+  background: url("/brand/noor-final/intro-blush-vellum.webp") center / cover;
+  opacity: 0.42;
+}
+
+.intro__editorial-meta {
   position: relative;
   z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  min-height: 100%;
-  padding: clamp(48px, 6vw, 96px);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: introDetailsIn 450ms ease 930ms forwards;
 }
 
-.intro__mark-assembly {
+.intro__mark-reveal {
   position: relative;
-  width: clamp(328px, 31vw, 540px);
-  aspect-ratio: 1;
+  z-index: 1;
+  place-self: center;
+  width: clamp(320px, 31vw, 560px);
+  overflow: hidden;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translateY(12px) scale(0.985);
+  animation: introAtelierMarkIn 1100ms var(--ease-out) 1000ms forwards;
 }
 
-.intro__mark-fragment,
-.intro__registration,
-.intro__mark-final {
-  position: absolute;
-  inset: 0;
-}
-
-.intro__mark-fragment .official-logo-wrap,
-.intro__registration .official-logo-wrap,
-.intro__mark-final .official-logo-wrap,
-.intro__mark-fragment .official-logo,
-.intro__registration .official-logo,
-.intro__mark-final .official-logo {
+.intro__mark-reveal .official-logo-wrap,
+.intro__mark-reveal .official-logo {
   width: 100%;
 }
 
-.intro__mark-fragment {
+.intro__identity-note {
+  position: relative;
+  z-index: 1;
+  justify-content: flex-start;
+  gap: clamp(18px, 2.4vw, 42px);
+  padding-inline-end: clamp(92px, 8vw, 142px);
+  opacity: 0;
+  transform: translateY(8px);
+  animation: introDetailsIn 400ms ease 1700ms forwards;
+}
+
+.intro__studio-seal {
+  position: absolute;
   z-index: 2;
+  right: clamp(26px, 3.2vw, 58px);
+  bottom: clamp(24px, 3vw, 52px);
+  display: grid;
+  width: clamp(66px, 5.6vw, 92px);
+  min-height: clamp(76px, 6.8vw, 112px);
+  padding: clamp(7px, 0.8vw, 12px);
+  background: color-mix(in oklch, var(--color-rose) 10%, transparent);
+  box-shadow:
+    inset 1px 1px 0 color-mix(in oklch, white 66%, transparent),
+    inset -1px -1px 0 color-mix(in oklch, var(--color-ink) 14%, transparent);
+  place-items: center;
   opacity: 0;
-  will-change: transform, opacity;
+  transform: translateY(8px) rotate(-2deg);
+  animation: introStudioSealIn 650ms var(--ease-out) 2000ms forwards;
 }
 
-.intro__mark-fragment--upper {
-  clip-path: inset(0 0 67% 0);
-  transform: translate3d(-14%, -5%, 0);
-  animation: introFragmentUpper 2100ms var(--ease-out) 580ms forwards;
+.intro__studio-seal img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+  opacity: 0.36;
 }
 
-.intro__mark-fragment--middle {
-  clip-path: inset(30% 0 34% 0);
-  transform: translate3d(13%, 0, 0);
-  animation: introFragmentMiddle 2050ms var(--ease-out) 780ms forwards;
-}
-
-.intro__mark-fragment--lower {
-  clip-path: inset(63% 0 0 0);
-  transform: translate3d(-9%, 5%, 0);
-  animation: introFragmentLower 1950ms var(--ease-out) 980ms forwards;
-}
-
-.intro__registration {
-  z-index: 3;
+.intro__light-pass {
+  position: absolute;
+  z-index: 5;
+  inset: -32%;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 31%, rgba(255, 250, 244, 0.06) 40%, rgba(255, 250, 244, 0.58) 49%, rgba(255, 250, 244, 0.08) 58%, transparent 67%);
   opacity: 0;
-  will-change: transform, opacity;
-}
-
-.intro__registration--first {
-  transform: translate3d(-3px, 2px, 0);
-  animation: introRegistrationFirst 1150ms var(--ease-out) 1820ms forwards;
-}
-
-.intro__registration--second {
-  transform: translate3d(3px, -2px, 0);
-  animation: introRegistrationSecond 1150ms var(--ease-out) 1900ms forwards;
-}
-
-.intro__mark-final {
-  z-index: 4;
-  opacity: 0;
-  clip-path: inset(0 0 100% 0);
-  transform: scale(0.985);
-  animation: introMarkResolve 1220ms var(--ease-out) 2060ms forwards;
+  transform: translateX(-62%);
+  animation: introLightPass 1200ms ease-in-out 1550ms forwards;
 }
 
 .intro__skip {
@@ -914,11 +984,7 @@ html[dir="rtl"] .bamarouf-studio-link--footer .bamarouf-studio-link__line {
   font-weight: 700;
   cursor: pointer;
   opacity: 0;
-  animation: introSkipIn 420ms ease 2200ms forwards;
-}
-
-html[dir="rtl"] .intro__composition {
-  direction: ltr;
+  animation: introSkipIn 350ms ease 1900ms forwards;
 }
 
 /* Mobile shell defaults */
@@ -5157,106 +5223,84 @@ html[dir="rtl"] .site-footer .back-to-top {
   }
 }
 
-@keyframes introPaperLeft {
+@keyframes introMaterialIn {
   to {
-    transform: translateX(-8%);
-  }
-}
-
-@keyframes introPaperRight {
-  to {
-    transform: translateX(8%);
-  }
-}
-
-@keyframes introPaperCentre {
-  0% {
-    opacity: 0;
-    transform: translate3d(-50%, 18%, 0);
-  }
-  100% {
-    opacity: 0.78;
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-@keyframes introFragmentUpper {
-  0% {
-    opacity: 0;
-    transform: translate3d(-14%, -5%, 0);
-  }
-  28%, 68% {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes introFragmentMiddle {
-  0% {
-    opacity: 0;
-    transform: translate3d(13%, 0, 0);
-  }
-  28%, 68% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes introFragmentLower {
-  0% {
-    opacity: 0;
-    transform: translate3d(-9%, 5%, 0);
-  }
-  28%, 68% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    opacity: 0;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-@keyframes introRegistrationFirst {
-  0%, 100% {
-    opacity: 0;
-    transform: translate3d(-3px, 2px, 0);
-  }
-  40%, 68% {
-    opacity: 0.22;
-    transform: translate3d(-1px, 1px, 0);
-  }
-}
-
-@keyframes introRegistrationSecond {
-  0%, 100% {
-    opacity: 0;
-    transform: translate3d(3px, -2px, 0);
-  }
-  40%, 68% {
-    opacity: 0.14;
-    transform: translate3d(1px, -1px, 0);
-  }
-}
-
-@keyframes introMarkResolve {
-  0% {
-    opacity: 0;
-    clip-path: inset(0 0 100% 0);
-    transform: scale(0.985);
-  }
-  100% {
-    opacity: 1;
-    clip-path: inset(0 0 0 0);
     transform: scale(1);
+  }
+}
+
+@keyframes introVellumIn {
+  to {
+    opacity: 0.92;
+    transform: translate3d(0, 0, 0) rotate(-1.4deg);
+  }
+}
+
+@keyframes introPrintSheetIn {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(-1.1deg);
+  }
+}
+
+@keyframes introPrintImageIn {
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes introPrintImageSettle {
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes introIdentitySheetIn {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0.15deg);
+  }
+}
+
+@keyframes introDetailsIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes introAtelierMarkIn {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+    transform: translateY(12px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes introStudioSealIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(-2deg);
+  }
+}
+
+@keyframes introLightPass {
+  0% {
+    opacity: 0;
+    transform: translateX(-62%);
+  }
+  28% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(62%);
   }
 }
 
@@ -5524,14 +5568,10 @@ html[dir="rtl"] .site-footer .back-to-top {
     min-height: 100svh;
   }
 
-  .intro__composition {
-    min-height: 100dvh;
-    min-height: 100svh;
-    padding: calc(var(--mobile-safe-top) + 40px) var(--mobile-gutter) calc(var(--mobile-safe-bottom) + 54px);
-  }
-
-  .intro__mark-assembly {
-    width: min(68vw, 42svh, 292px);
+  .intro__atelier {
+    width: min(92vw, 400px);
+    height: min(84svh, 780px);
+    min-height: 440px;
   }
 
   .intro__skip {

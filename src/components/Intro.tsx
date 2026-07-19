@@ -30,11 +30,11 @@ export function Intro() {
     }
 
     setVisible(true);
-    const leaveTimer = window.setTimeout(() => setLeaving(true), 3920);
+    const leaveTimer = window.setTimeout(() => setLeaving(true), 2800);
     const doneTimer = window.setTimeout(() => {
       window.sessionStorage.setItem(INTRO_KEY, "true");
       setVisible(false);
-    }, 4480);
+    }, 3360);
 
     return () => {
       window.clearTimeout(leaveTimer);
@@ -54,32 +54,50 @@ export function Intro() {
 
   return (
     <section className={`intro ${leaving ? "intro--leaving" : ""}`} aria-label="Opening sequence">
-      <div className="intro__paper-field" aria-hidden="true">
-        <span className="intro__paper intro__paper--left" />
-        <span className="intro__paper intro__paper--right" />
-        <span className="intro__paper intro__paper--centre" />
-      </div>
-      <div className="intro__composition">
-        <div className="intro__mark-assembly">
-          <div className="intro__mark-fragment intro__mark-fragment--upper" aria-hidden="true">
+      <div className="intro__material" aria-hidden="true" />
+      <div className="intro__atelier">
+        <div className="intro__vellum" aria-hidden="true" />
+        <figure className="intro__print-sheet" aria-hidden="true">
+          <div className="intro__print-image">
+            <img
+              src="/concept-projects/matcha/hero.jpg"
+              alt=""
+              width="1672"
+              height="941"
+              decoding="async"
+              loading="eager"
+            />
+          </div>
+          <figcaption>
+            <span>01 / 12</span>
+            <span>PACKAGING / IDENTITY</span>
+          </figcaption>
+        </figure>
+        <div className="intro__identity-sheet">
+          <div className="intro__editorial-meta" aria-hidden="true">
+            <span>PORTFOLIO</span>
+            <span>2026</span>
+          </div>
+          <div className="intro__mark-reveal">
             <LogoAsset variant="intro" priority />
           </div>
-          <div className="intro__mark-fragment intro__mark-fragment--middle" aria-hidden="true">
-            <LogoAsset variant="intro" priority />
+          <div className="intro__identity-note" aria-hidden="true">
+            <span>DESIGN</span>
+            <span>PRINT</span>
+            <span>EDITORIAL</span>
           </div>
-          <div className="intro__mark-fragment intro__mark-fragment--lower" aria-hidden="true">
-            <LogoAsset variant="intro" priority />
-          </div>
-          <div className="intro__registration intro__registration--first" aria-hidden="true">
-            <LogoAsset variant="intro" priority />
-          </div>
-          <div className="intro__registration intro__registration--second" aria-hidden="true">
-            <LogoAsset variant="intro" priority />
-          </div>
-          <div className="intro__mark-final">
-            <LogoAsset variant="intro" priority />
+          <div className="intro__studio-seal">
+            <img
+              src="/brand/bamarouf-studio-compact.png"
+              alt="Bamarouf Studio"
+              width="820"
+              height="1011"
+              decoding="async"
+              loading="eager"
+            />
           </div>
         </div>
+        <div className="intro__light-pass" aria-hidden="true" />
       </div>
       <button className="intro__skip" type="button" onClick={skip}>
         {dictionary.actions.skipIntro}
