@@ -2,7 +2,7 @@ import { ArtFrame } from "./ArtFrame";
 import type { ProjectImage } from "../types";
 import { useLanguage } from "../context/LanguageContext";
 
-export type ProjectVisualAsset = "cover" | "hero" | `gallery-${1 | 2 | 3 | 4}`;
+export type ProjectVisualAsset = "cover" | "hero" | `gallery-${number}`;
 const imageDimensions = {
   portrait: { width: 720, height: 984 },
   landscape: { width: 1536, height: 1024 },
@@ -29,7 +29,8 @@ export function ProjectVisual({
 }: ProjectVisualProps) {
   const { language } = useLanguage();
   const imageFormat = image.format ?? "jpg";
-  const src = projectSlug && asset ? `/concept-projects/${projectSlug}/${asset}.${imageFormat}` : undefined;
+  const imageFolder = image.folder ?? "concept-projects";
+  const src = projectSlug && asset ? `/${imageFolder}/${projectSlug}/${asset}.${imageFormat}` : undefined;
   const dimensions = imageDimensions[ratio];
 
   if (!src) {

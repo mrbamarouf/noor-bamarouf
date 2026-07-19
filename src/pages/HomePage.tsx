@@ -44,7 +44,7 @@ function ServicesSection() {
     packagingDesign: "noma",
     printDesign: "kinfolk",
     socialMediaDesign: "luna",
-    editorialDesign: "elysian",
+    editorialDesign: "kinfolk",
     creativeDirection: "atelier",
   };
   const serviceScenes: Record<ServiceKey, ArtScene> = {

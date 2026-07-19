@@ -13,7 +13,7 @@ interface ArtFrameProps {
 const variantLabels: Record<ArtVariant, string> = {
   wello: "WELLO",
   matcha: "MATCHA",
-  elysian: "ELYSIAN",
+  jeddahRailway: "JEDDAH",
   luna: "LUNA",
   kinfolk: "KINFOLK",
   atelier: "ATELIER",
@@ -29,7 +29,7 @@ const variantLabels: Record<ArtVariant, string> = {
 const variantMarks: Record<ArtVariant, string> = {
   wello: "Super oats",
   matcha: "Tea ritual",
-  elysian: "Issue 01",
+  jeddahRailway: "Railway line",
   luna: "Social suite",
   kinfolk: "Print story",
   atelier: "Garment mark",
@@ -45,7 +45,7 @@ const variantMarks: Record<ArtVariant, string> = {
 const variantInitials: Record<ArtVariant, string> = {
   wello: "WO",
   matcha: "MA",
-  elysian: "EL",
+  jeddahRailway: "JR",
   luna: "LU",
   kinfolk: "KC",
   atelier: "AT",

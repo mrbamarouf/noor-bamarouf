@@ -24,7 +24,7 @@ export type CategoryKey =
 export type ArtVariant =
   | "wello"
   | "matcha"
-  | "elysian"
+  | "jeddahRailway"
   | "luna"
   | "kinfolk"
   | "atelier"
@@ -51,8 +51,15 @@ export type ArtScene =
 export interface ProjectImage {
   variant: ArtVariant;
   scene?: ArtScene;
-  format?: "jpg" | "png";
+  format?: "jpg" | "png" | "webp";
+  folder?: "concept-projects" | "projects";
   alt: LocalizedString;
+}
+
+export interface ProjectVideo {
+  src: string;
+  poster: string;
+  label: LocalizedString;
 }
 
 export interface ProjectCaseStudy {
@@ -75,6 +82,7 @@ export interface Project {
   coverImage: ProjectImage;
   heroImage: ProjectImage;
   gallery: ProjectImage[];
+  video?: ProjectVideo;
   caseStudy: ProjectCaseStudy;
   colorPalette: string[];
   typography: {

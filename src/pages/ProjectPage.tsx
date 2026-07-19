@@ -50,6 +50,20 @@ export function ProjectPage() {
         loading="eager"
       />
 
+      {project.video ? (
+        <section className="project-video" aria-label={project.video.label[language]} data-reveal>
+          <video
+            controls
+            muted
+            playsInline
+            preload="metadata"
+            poster={project.video.poster}
+          >
+            <source src={project.video.src} type="video/mp4" />
+          </video>
+        </section>
+      ) : null}
+
       <section className="project-narrative" aria-label={dictionary.sections.overview} data-reveal>
         <div>
           <span className="section__index">{dictionary.sections.overview}</span>
