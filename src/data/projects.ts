@@ -10,6 +10,11 @@ const officialClientCredits = {
   ar: "مشروع عميل رسمي",
 };
 
+const officialPortfolioCredits = {
+  en: "Official Portfolio Project",
+  ar: "مشروع بورتفوليو رسمي",
+};
+
 export const projects: Project[] = [
   {
     title: "WELLO",
@@ -85,74 +90,74 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "AURORA",
-    slug: "aurora",
+    title: "MATCHA",
+    slug: "matcha",
     year: "2026",
     category: "packaging",
     projectType: {
-      en: "Luxury Skincare Packaging",
-      ar: "تغليف عناية فاخرة",
+      en: "Matcha Beverage Identity",
+      ar: "هوية مشروب ماتشا",
     },
     shortDescription: {
-      en: "A skincare packaging system with glass jars, refill cartons, ritual cards, and a soft launch campaign.",
-      ar: "نظام تغليف للعناية بالبشرة مع عبوات زجاجية، علب إعادة تعبئة، بطاقات طقوس، وحملة إطلاق ناعمة.",
+      en: "A matcha beverage identity shaped through sage packaging, soft drink photography, social templates, and bilingual campaign language.",
+      ar: "هوية مشروب ماتشا تتشكل عبر تغليف أخضر هادئ، تصوير مشروبات ناعم، قوالب اجتماعية، ورسائل حملة بالعربية والإنجليزية.",
     },
     fullDescription: {
-      en: "AURORA is a skincare packaging study built around luxury product storytelling. It pairs frosted glass, refill sleeves, quiet gradients of rose and mineral green, and editorial product cards for a calm morning-routine brand world.",
-      ar: "تقدم AURORA دراسة تغليف للعناية بالبشرة مبنية حول سرد المنتج الفاخر. تجمع بين الزجاج المعتّم، أغلفة إعادة التعبئة، تدرجات وردية وخضراء معدنية هادئة، وبطاقات منتج تحريرية لعالم صباحي رقيق.",
+      en: "MATCHA is a real portfolio project for a matcha beverage identity. The supplied assets show a sage-and-cream visual system across pouch packaging, hot and iced cup applications, social posts, and Arabic/English campaign graphics.",
+      ar: "MATCHA مشروع بورتفوليو حقيقي لهوية مشروب ماتشا. تعرض الأصول نظاماً بصرياً بدرجات الأخضر والكريمي عبر تغليف الأكياس، أكواب ساخنة وباردة، منشورات اجتماعية، ورسائل حملة بالعربية والإنجليزية.",
     },
-    services: ["packagingDesign", "creativeDirection", "printDesign"],
-    credits: conceptCredits,
+    services: ["brandIdentity", "packagingDesign", "socialMediaDesign"],
+    credits: officialPortfolioCredits,
     coverImage: {
-      variant: "aurora",
+      variant: "matcha",
       scene: "packaging",
       alt: {
-        en: "AURORA cover with skincare carton, jar seal, and refill packaging.",
-        ar: "غلاف AURORA مع علبة عناية، ختم عبوة، وتغليف إعادة تعبئة.",
+        en: "MATCHA iced drink cup with a branded sage-and-cream sleeve held against soft fabric.",
+        ar: "كوب MATCHA بارد مع غلاف أخضر وكريمي يحمل الهوية وسط خامات ناعمة.",
       },
     },
     heroImage: {
-      variant: "aurora",
+      variant: "matcha",
       scene: "hero",
       alt: {
-        en: "AURORA luxury skincare hero mockup with cartons, label cards, and glass forms.",
-        ar: "مشهد AURORA الرئيسي بتغليف عناية فاخر، بطاقات ملصقات، وأشكال زجاجية.",
+        en: "MATCHA pouch packaging presentation with a single standing pouch and repeated flat-lay pouches.",
+        ar: "عرض تغليف MATCHA مع عبوة واقفة ومجموعة عبوات مكررة بتخطيط علوي.",
       },
     },
     gallery: [
-      { variant: "aurora", scene: "packaging", alt: { en: "Serum carton, jar label, and refill sleeve system.", ar: "علبة سيروم، ملصق عبوة، ونظام أغلفة إعادة التعبئة." } },
-      { variant: "aurora", scene: "editorial", alt: { en: "Ingredient story cards and product education spread.", ar: "بطاقات قصة المكونات وصفحة تعريف بالمنتج." } },
-      { variant: "aurora", scene: "social", alt: { en: "Soft ritual social launch grid.", ar: "شبكة إطلاق اجتماعية بطابع طقوس ناعم." } },
-      { variant: "aurora", scene: "materials", alt: { en: "Frosted glass, label stock, and carton color study.", ar: "زجاج معتّم، خامة ملصق، ودراسة ألوان العلب." } },
+      { variant: "matcha", scene: "campaign", alt: { en: "MATCHA campaign poster on a matcha powder texture with Arabic and English messaging.", ar: "ملصق حملة MATCHA فوق ملمس بودرة الماتشا مع رسالة بالعربية والإنجليزية." } },
+      { variant: "matcha", scene: "packaging", alt: { en: "Hot matcha cup with latte art, branded sleeve, green tile, and warm shadows.", ar: "كوب ماتشا ساخن مع رسم لاتيه وغلاف يحمل الهوية وبلاط أخضر وظلال دافئة." } },
+      { variant: "matcha", scene: "social", alt: { en: "MATCHA social profile presentation with post grid, tote, whisk, drink, and product visuals.", ar: "عرض حساب MATCHA الاجتماعي مع شبكة منشورات وحقيبة وخفاقة ومشروب ومرئيات المنتج." } },
+      { variant: "matcha", scene: "packaging", alt: { en: "Iced MATCHA cup application with a branded sleeve and soft editorial styling.", ar: "تطبيق كوب MATCHA بارد مع غلاف الهوية وتنسيق تحريري ناعم." } },
     ],
     caseStudy: {
       context: {
-        en: "The case study explores a premium product system that needs to feel quiet, clean, and tactile across small packaging surfaces.",
-        ar: "تستكشف الدراسة نظام منتج فاخر يحتاج أن يبدو هادئاً ونظيفاً وملموساً عبر مساحات تغليف صغيرة.",
+        en: "The supplied material focuses on a beverage brand that needs to feel fresh and recognizable across physical drink moments and social media. The same organic pattern appears on pouches, cups, and posts so the identity stays consistent without relying on heavy copy.",
+        ar: "تركز الأصول على علامة مشروبات يجب أن تبدو منعشة وسهلة التمييز عبر لحظات الشرب الواقعية والمنصات الاجتماعية. يظهر النمط العضوي نفسه على الأكياس والأكواب والمنشورات، ليحافظ على تماسك الهوية دون الاعتماد على نصوص كثيرة.",
       },
       direction: {
-        en: "The direction uses pale rose light, mineral green, fine product rules, and a jar seal that can scale from packaging to campaign layouts.",
-        ar: "يستخدم الاتجاه ضوءاً وردياً شاحباً، أخضر معدنياً، خطوط منتج دقيقة، وختم عبوة يمكن توسيعه من التغليف إلى تخطيطات الحملة.",
+        en: "The direction combines olive green, cream, and pale blush with a lowercase serif wordmark, soft wavy patterning, matcha powder texture, and close drink photography. The system feels calm but playful, with Arabic and English campaign language where the presentation calls for it.",
+        ar: "يجمع الاتجاه بين الأخضر الزيتوني والكريمي والوردي الباهت مع شعار نصي صغير بالحروف اللاتينية، نمط متموج ناعم، ملمس بودرة الماتشا، وتصوير قريب للمشروبات. تبدو الهوية هادئة ومرحة في الوقت نفسه، مع لغة حملة عربية وإنجليزية حين يحتاج العرض إليها.",
       },
       applications: [
-        { en: "Primary carton, refill sleeve, and jar label", ar: "علبة رئيسية، غلاف إعادة تعبئة، وملصق عبوة" },
-        { en: "Ingredient education cards", ar: "بطاقات تعريف بالمكونات" },
-        { en: "Launch campaign story panels", ar: "لوحات سرد لحملة الإطلاق" },
-        { en: "Social templates for routine and product pairings", ar: "قوالب اجتماعية للروتين وتركيبات المنتج" },
+        { en: "Pouch packaging and repeat pattern system", ar: "تغليف الأكياس ونظام النمط المتكرر" },
+        { en: "Hot and iced cup sleeve applications", ar: "تطبيقات أغلفة الأكواب الساخنة والباردة" },
+        { en: "Social profile and feed presentation", ar: "عرض الحساب والشبكة الاجتماعية" },
+        { en: "Campaign posters with Arabic and English messaging", ar: "ملصقات حملة برسائل عربية وإنجليزية" },
       ],
       outcome: {
-        en: "A refined packaging language that connects primary cartons, ritual cards, social launch assets, and material details.",
-        ar: "لغة تغليف مصقولة تربط العلب الرئيسية وبطاقات الطقوس ومواد الإطلاق الاجتماعي وتفاصيل الخامات.",
+        en: "A cohesive beverage identity presentation that connects packaging, drinkware, social posts, and campaign graphics through one recognizable green-and-cream visual language.",
+        ar: "عرض هوية متماسك لمشروب يربط التغليف والأكواب والمنشورات ورسومات الحملة عبر لغة بصرية واضحة بالأخضر والكريمي.",
       },
     },
-    colorPalette: ["#FAF1ED", "#E7B8B9", "#D58A81", "#B8C0A9", "#516254"],
+    colorPalette: ["#F4E8DE", "#D8B8B3", "#C8D0A1", "#8A946F", "#5F6C47", "#2F3B27"],
     typography: {
-      display: "Optima",
-      body: "Neue Haas Grotesk",
+      display: "Serif mark",
+      body: "Rounded type",
     },
     quote: {
-      en: "A skincare world built from restraint, surface, and a sense of morning light.",
-      ar: "عالم عناية مبني من الهدوء، السطح، وإحساس ضوء الصباح.",
+      en: "A matcha identity built from soft green, tactile powder, and everyday drink rituals.",
+      ar: "هوية ماتشا مبنية من أخضر هادئ، ملمس بودرة، وطقوس مشروب يومية.",
     },
   },
   {

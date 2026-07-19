@@ -23,7 +23,7 @@ export type CategoryKey =
 
 export type ArtVariant =
   | "wello"
-  | "aurora"
+  | "matcha"
   | "elysian"
   | "luna"
   | "kinfolk"

@@ -173,7 +173,7 @@ function FeaturedStory({ mobile = false, project }: { mobile?: boolean; project:
 export function HomePage() {
   const { dictionary, language } = useLanguage();
   const selected = projects.slice(0, 4);
-  const mobileSelected = projects.slice(1, 4);
+  const mobileSelected = projects.slice(0, 3);
   const mobileFeatured = projects.find((project) => project.slug === "sora") ?? projects[6];
   const heroRef = useRef<HTMLElement>(null);
 
