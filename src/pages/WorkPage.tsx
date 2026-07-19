@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { categoryOrder } from "../data/content";
-import { projects } from "../data/projects";
+import { getProjectDisplayTitle, getProjectTitleDirection, projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
 import type { CategoryKey } from "../types";
 
@@ -56,7 +56,7 @@ export function WorkPage() {
                 ratio={index % 3 === 0 ? "landscape" : index % 3 === 1 ? "portrait" : "square"}
               />
               <span>{project.year} / {dictionary.categories[project.category]}</span>
-              <strong dir="ltr">{project.title}</strong>
+              <strong dir={getProjectTitleDirection(project, language)}>{getProjectDisplayTitle(project, language)}</strong>
               <p>{project.shortDescription[language]}</p>
             </Link>
           ))}

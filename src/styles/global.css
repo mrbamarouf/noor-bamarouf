@@ -1292,6 +1292,21 @@ html[dir="rtl"] .hero__studio-note span {
   transform: scale(1);
 }
 
+.project-visual[data-project="red-bull-marvel"] {
+  background: #087dc2;
+}
+
+.project-visual[data-project="red-bull-marvel"] img {
+  object-fit: contain;
+  transform: scale(1);
+}
+
+.project-main-image[data-project="red-bull-marvel"][data-asset="hero"] img {
+  object-fit: cover;
+  object-position: center 66%;
+  transform: scale(1.01);
+}
+
 [data-reveal] .project-visual {
   opacity: 0.98;
   filter: saturate(0.94);
@@ -1431,11 +1446,11 @@ html[dir="rtl"] .hero__studio-note span {
   --frame-ink: oklch(0.39 0.019 69);
 }
 
-.art-frame--luna {
-  --frame-bg: oklch(0.92 0.021 92);
-  --frame-main: oklch(0.7 0.045 136);
-  --frame-accent: oklch(0.67 0.07 25);
-  --frame-ink: oklch(0.3 0.021 122);
+.art-frame--redBullMarvel {
+  --frame-bg: oklch(0.66 0.21 80);
+  --frame-main: oklch(0.58 0.21 27);
+  --frame-accent: oklch(0.55 0.17 248);
+  --frame-ink: oklch(0.18 0.02 250);
 }
 
 .art-frame--eggSpace,
@@ -2126,7 +2141,7 @@ html[dir="rtl"] .hero__studio-note span {
   width: 34%;
 }
 
-.art-frame--luna .object-main {
+.art-frame--redBullMarvel .object-main {
   left: 13%;
   bottom: 18%;
   width: 30%;
@@ -2134,7 +2149,7 @@ html[dir="rtl"] .hero__studio-note span {
   display: none;
 }
 
-.art-frame--luna .object-paper {
+.art-frame--redBullMarvel .object-paper {
   right: 12%;
   top: 18%;
   bottom: auto;
@@ -2144,7 +2159,7 @@ html[dir="rtl"] .hero__studio-note span {
   display: none;
 }
 
-.art-frame--luna .folio-one {
+.art-frame--redBullMarvel .folio-one {
   left: 46%;
   top: 34%;
   width: 28%;
@@ -2152,7 +2167,7 @@ html[dir="rtl"] .hero__studio-note span {
   background: color-mix(in oklch, var(--frame-main) 18%, white);
 }
 
-.art-frame--luna .folio-two {
+.art-frame--redBullMarvel .folio-two {
   left: 25%;
   right: auto;
   bottom: 12%;
@@ -2160,7 +2175,7 @@ html[dir="rtl"] .hero__studio-note span {
   height: 28%;
 }
 
-.art-frame--luna .art-frame__social-grid {
+.art-frame--redBullMarvel .art-frame__social-grid {
   left: 13%;
   top: 14%;
   display: grid;
@@ -2169,7 +2184,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(-2deg);
 }
 
-.art-frame--luna .artifact-one {
+.art-frame--redBullMarvel .artifact-one {
   right: 11%;
   bottom: 12%;
   width: 28%;
@@ -2180,7 +2195,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(6deg);
 }
 
-.art-frame--luna .artifact-two {
+.art-frame--redBullMarvel .artifact-two {
   left: 20%;
   bottom: 10%;
   width: 26%;
@@ -2188,7 +2203,7 @@ html[dir="rtl"] .hero__studio-note span {
   background: color-mix(in oklch, var(--frame-accent) 30%, white);
 }
 
-.art-frame--luna .art-frame__seal {
+.art-frame--redBullMarvel .art-frame__seal {
   right: 18%;
   top: 13%;
   display: grid;
@@ -2199,7 +2214,7 @@ html[dir="rtl"] .hero__studio-note span {
   border-color: color-mix(in oklch, var(--frame-ink) 18%, transparent);
 }
 
-.art-frame--luna .art-frame__caption-strip {
+.art-frame--redBullMarvel .art-frame__caption-strip {
   left: 16%;
   bottom: 13%;
 }
@@ -3203,6 +3218,11 @@ a:hover .art-frame .art-frame__caption-strip {
 .project-feature:nth-child(4) {
   grid-column: 7 / -1;
   margin-top: clamp(48px, 5vw, 86px);
+}
+
+.project-feature:nth-child(5) {
+  grid-column: 3 / 11;
+  margin-top: clamp(16px, 2vw, 34px);
 }
 
 .project-feature__number {
@@ -4334,6 +4354,15 @@ html[dir="rtl"] .project-direction > div {
   color: var(--color-muted);
   font-size: 0.96rem;
   line-height: 1.68;
+}
+
+.project-legal-note {
+  max-width: 76ch;
+  margin: clamp(26px, 4vw, 56px) auto 0;
+  color: color-mix(in oklch, var(--color-muted) 82%, var(--color-paper));
+  font-size: 0.78rem;
+  line-height: 1.7;
+  text-align: center;
 }
 
 .next-project {
@@ -5649,7 +5678,8 @@ html[dir="rtl"] .site-footer .back-to-top {
   .project-feature:first-child,
   .project-feature:nth-child(2),
   .project-feature:nth-child(3),
-  .project-feature:nth-child(4) {
+  .project-feature:nth-child(4),
+  .project-feature:nth-child(5) {
     grid-column: auto;
     margin-top: 0;
   }
@@ -6195,14 +6225,6 @@ html[dir="rtl"] .site-footer .back-to-top {
     display: none;
   }
 
-  .archive-strip__item--luna {
-    grid-column: 1 / -1;
-  }
-
-  .archive-strip__item--luna .project-visual {
-    aspect-ratio: 1.22;
-  }
-
   .contact-cta {
     display: grid;
     grid-template-columns: 1fr;
@@ -6494,6 +6516,12 @@ html[dir="rtl"] .site-footer .back-to-top {
 
   .project-outcome-note {
     padding: 18px;
+  }
+
+  .project-legal-note {
+    max-width: 30ch;
+    font-size: 0.72rem;
+    text-align: start;
   }
 
   .next-project {

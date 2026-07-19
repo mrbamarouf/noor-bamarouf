@@ -5,7 +5,7 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Intro } from "./components/Intro";
 import { ScrollProgress } from "./components/ScrollProgress";
-import { getProject } from "./data/projects";
+import { getProject, getProjectDisplayTitle } from "./data/projects";
 import { useLanguage } from "./context/LanguageContext";
 import { AboutPage } from "./pages/AboutPage";
 import { ContactPage } from "./pages/ContactPage";
@@ -48,7 +48,7 @@ function ScrollManager() {
       "/contact": `${dictionary.nav.contact} | ${BRAND_TITLE}`,
     };
     const title = project
-      ? `${project.title} | ${BRAND_TITLE}`
+      ? `${getProjectDisplayTitle(project, language)} | ${BRAND_TITLE}`
       : pageTitleMap[location.pathname] ?? `${BRAND_TITLE} | ${dictionary.hero.descriptor}`;
     document.title = title;
 

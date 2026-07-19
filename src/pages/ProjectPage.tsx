@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ProjectVisual, type ProjectVisualAsset } from "../components/ProjectVisual";
-import { getNextProject, getProject } from "../data/projects";
+import { getNextProject, getProject, getProjectDisplayTitle, getProjectTitleDirection } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
 
 function galleryAsset(index: number): ProjectVisualAsset {
@@ -17,6 +17,10 @@ export function ProjectPage() {
   }
 
   const nextProject = getNextProject(project.slug);
+  const projectTitle = getProjectDisplayTitle(project, language);
+  const projectTitleDirection = getProjectTitleDirection(project, language);
+  const nextProjectTitle = getProjectDisplayTitle(nextProject, language);
+  const nextProjectTitleDirection = getProjectTitleDirection(nextProject, language);
 
   return (
     <article className="page project-page">
@@ -26,7 +30,7 @@ export function ProjectPage() {
         </Link>
         <div className="project-hero__title">
           <span>{project.year} / {dictionary.categories[project.category]} / {project.projectType[language]}</span>
-          <h1 dir="ltr">{project.title}</h1>
+          <h1 dir={projectTitleDirection}>{projectTitle}</h1>
           <p>{project.fullDescription[language]}</p>
         </div>
         <dl className="project-meta">
@@ -128,11 +132,15 @@ export function ProjectPage() {
         </div>
       </section>
 
+      {project.legalNote ? (
+        <p className="project-legal-note" data-reveal>{project.legalNote[language]}</p>
+      ) : null}
+
       <nav className="next-project" aria-label={dictionary.actions.nextProject} data-reveal>
         <span>{dictionary.actions.nextProject}</span>
         <Link to={`/work/${nextProject.slug}`} data-cursor="view">
           {direction === "rtl" ? "← " : null}
-          <span dir="ltr">{nextProject.title}</span>
+          <span dir={nextProjectTitleDirection}>{nextProjectTitle}</span>
           {direction === "rtl" ? null : " →"}
         </Link>
       </nav>

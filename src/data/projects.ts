@@ -1,4 +1,12 @@
-import type { Project } from "../types";
+import type { Language, Project } from "../types";
+
+export function getProjectDisplayTitle(project: Project, language: Language) {
+  return project.displayTitle?.[language] ?? project.title;
+}
+
+export function getProjectTitleDirection(project: Project, language: Language) {
+  return project.displayTitle?.[language] && language === "ar" ? "rtl" : "ltr";
+}
 
 const conceptCredits = {
   en: "Independent Concept",
@@ -321,74 +329,85 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "LUNA",
-    slug: "luna",
-    year: "2025",
-    category: "socialMedia",
+    title: "RED BULL × MARVEL",
+    displayTitle: {
+      en: "RED BULL ×\u00A0MARVEL",
+      ar: "ريد بُل ×\u00A0مارفل",
+    },
+    slug: "red-bull-marvel",
+    year: "2024",
+    category: "packaging",
     projectType: {
-      en: "Social Media System",
-      ar: "نظام تواصل اجتماعي",
+      en: "LIMITED EDITION",
+      ar: "إصدار محدود",
     },
     shortDescription: {
-      en: "A social identity system with modular launch posts, story frames, profile graphics, and campaign rhythm.",
-      ar: "نظام هوية اجتماعي مع منشورات إطلاق مرنة، إطارات قصص، رسومات ملف، وإيقاع حملة.",
+      en: "A limited-edition packaging concept that reimagines Red Bull through a Marvel superhero visual system, combining character energy, bold color, and collectible can variations.",
+      ar: "مفهوم لتغليف إصدار محدود يعيد تقديم ريد بُل من خلال نظام بصري مستوحى من أبطال مارفل، يجمع بين طاقة الشخصيات والألوان الجريئة وتصاميم علب قابلة للاقتناء.",
     },
     fullDescription: {
-      en: "LUNA is a social media system for a soft lifestyle brand. It shows how a visual language can move through feed modules, stories, reels covers, and campaign cards while staying recognizable without repeating one layout.",
-      ar: "تقدم LUNA نظام تواصل اجتماعي لعلامة أسلوب حياة ناعمة. يوضح كيف تنتقل اللغة البصرية عبر وحدات المنشورات والقصص وأغلفة الريلز وبطاقات الحملة مع الحفاظ على التعرّف دون تكرار تخطيط واحد.",
+      en: "RED BULL × MARVEL is an independent limited-edition packaging concept exploring a superhero crossover through Red Bull relogo work, collectible can variations, bold comic color, and promotional packaging visuals.",
+      ar: "ريد بُل × مارفل مفهوم مستقل لتغليف إصدار محدود يستكشف تقاطعاً بصرياً مستوحى من الأبطال الخارقين عبر تجربة إعادة شعار ريد بُل، تصاميم علب قابلة للاقتناء، ألوان قصص مصورة جريئة، ومرئيات ترويجية للتغليف.",
     },
-    services: ["socialMediaDesign", "graphicDesign", "creativeDirection"],
-    credits: conceptCredits,
+    services: ["packagingDesign", "brandIdentity", "graphicDesign", "creativeDirection"],
+    credits: officialPortfolioCredits,
     coverImage: {
-      variant: "luna",
-      scene: "social",
+      variant: "redBullMarvel",
+      scene: "packaging",
+      format: "jpg",
+      folder: "projects",
       alt: {
-        en: "LUNA cover showing a modular social grid and story templates.",
-        ar: "غلاف LUNA يعرض شبكة اجتماعية مرنة وقوالب قصص.",
+        en: "RED BULL × MARVEL limited-edition can lineup with superhero-inspired character variations.",
+        ar: "مجموعة علب ريد بُل × مارفل لإصدار محدود مع تصاميم مستوحاة من شخصيات الأبطال الخارقين.",
       },
     },
     heroImage: {
-      variant: "luna",
-      scene: "hero",
+      variant: "redBullMarvel",
+      scene: "packaging",
+      format: "jpg",
+      folder: "projects",
       alt: {
-        en: "LUNA hero with social media modules, profile cards, and campaign tiles.",
-        ar: "مشهد LUNA الرئيسي مع وحدات تواصل، بطاقات ملف، وبلاطات حملة.",
+        en: "RED BULL × MARVEL collectible can lineup on a bold comic-style blue background.",
+        ar: "مجموعة علب ريد بُل × مارفل قابلة للاقتناء على خلفية زرقاء بأسلوب القصص المصورة.",
       },
     },
     gallery: [
-      { variant: "luna", scene: "social", alt: { en: "Feed grid, story templates, and reel cover system.", ar: "شبكة منشورات، قوالب قصص، ونظام أغلفة ريلز." } },
-      { variant: "luna", scene: "campaign", alt: { en: "Launch campaign cards and seasonal content set.", ar: "بطاقات حملة إطلاق ومجموعة محتوى موسمية." } },
-      { variant: "luna", scene: "editorial", alt: { en: "Content guide spread with hierarchy and caption rules.", ar: "صفحة دليل محتوى مع هرمية وقواعد تعليقات." } },
-      { variant: "luna", scene: "materials", alt: { en: "Template library and visual asset tokens.", ar: "مكتبة قوالب ورموز أصول بصرية." } },
+      { variant: "redBullMarvel", scene: "packaging", format: "jpg", folder: "projects", alt: { en: "Single RED BULL × MARVEL can design with comic speech bubble and red-yellow character styling.", ar: "تصميم عبوة مفردة لريد بُل × مارفل مع فقاعة قصص مصورة وتنسيق أحمر وأصفر مستوحى من الشخصيات." } },
+      { variant: "redBullMarvel", scene: "campaign", format: "jpg", folder: "projects", alt: { en: "RED BULL × MARVEL versus-style visual with two superhero-inspired can variations.", ar: "مرئية بأسلوب المواجهة لريد بُل × مارفل تعرض تصميمين مختلفين للعلب مستوحيين من الأبطال الخارقين." } },
+      { variant: "redBullMarvel", scene: "packaging", format: "jpg", folder: "projects", alt: { en: "RED BULL × MARVEL full limited-edition can lineup with character-driven packaging variations.", ar: "المجموعة الكاملة لعبوات ريد بُل × مارفل لإصدار محدود مع تنويعات تغليف قائمة على الشخصيات." } },
     ],
     caseStudy: {
       context: {
-        en: "The project builds a social system that stays flexible across formats while preserving a recognizable visual rhythm.",
-        ar: "تبني الدراسة نظاماً اجتماعياً مرناً عبر الصيغ مع الحفاظ على إيقاع بصري واضح.",
+        en: "The project frames Red Bull cans as collectible character editions, using superhero cues to create a playful crossover packaging system.",
+        ar: "يعامل المشروع علب ريد بُل كإصدارات شخصيات قابلة للاقتناء، مستخدماً إشارات الأبطال الخارقين لبناء نظام تغليف تقاطعي مرح.",
       },
       direction: {
-        en: "The system is built from soft modules, profile seals, large quiet fields, and a feed grid that shifts proportion instead of repeating one template.",
-        ar: "يبنى النظام من وحدات ناعمة، أختام ملف، مساحات هادئة كبيرة، وشبكة منشورات تغيّر النسب بدلاً من تكرار قالب واحد.",
+        en: "The visual direction uses comic-book panels, speech-bubble language, saturated red, blue, yellow, green, and black fields, and bold can graphics that signal different hero energies.",
+        ar: "يعتمد الاتجاه البصري على لوحات القصص المصورة، لغة فقاعات الكلام، مساحات مشبعة بالأحمر والأزرق والأصفر والأخضر والأسود، ورسومات علب جريئة تميز طاقة كل شخصية.",
       },
       applications: [
-        { en: "Feed post and carousel templates", ar: "قوالب منشورات وسلاسل" },
-        { en: "Story frames and highlight covers", ar: "إطارات قصص وأغلفة هايلايت" },
-        { en: "Profile graphics and reel covers", ar: "رسومات ملف وأغلفة ريلز" },
-        { en: "Launch campaign grid", ar: "شبكة حملة إطلاق" },
+        { en: "Red Bull relogo exploration", ar: "استكشاف إعادة شعار ريد بُل" },
+        { en: "Superhero-inspired can variations", ar: "تنويعات علب مستوحاة من الأبطال الخارقين" },
+        { en: "Limited-edition can lineup", ar: "مجموعة علب إصدار محدود" },
+        { en: "Promotional packaging visuals", ar: "مرئيات ترويجية للتغليف" },
       ],
       outcome: {
-        en: "A modular social identity with enough structure for launch campaigns, recurring posts, and profile moments.",
-        ar: "هوية اجتماعية مرنة ببنية تكفي لحملات الإطلاق والمنشورات المتكررة ولحظات الملف التعريفي.",
+        en: "A focused packaging presentation that turns character references into a collectible energy-drink can system and bold promotional visuals.",
+        ar: "عرض تغليف مركز يحول مراجع الشخصيات إلى نظام علب طاقة قابلة للاقتناء ومرئيات ترويجية جريئة.",
       },
     },
-    colorPalette: ["#F8F0EA", "#E0A8A2", "#C6D0BD", "#7D8C75", "#3F443C"],
+    colorPalette: ["#ED1C24", "#087DC2", "#FFD600", "#111111", "#65B946", "#FFFFFF"],
     typography: {
-      display: "GT America",
-      body: "ABC Diatype",
+      display: "Comic display",
+      body: "Bold sans",
     },
     quote: {
-      en: "A social system with enough structure to feel branded and enough air to stay alive.",
-      ar: "نظام اجتماعي يملك بنية تكفي للتميّز وهواءً يكفي للحياة.",
+      en: "A collectible can system built from superhero energy, comic rhythm, and bold color.",
+      ar: "نظام علب قابلة للاقتناء مبني على طاقة الأبطال، إيقاع القصص المصورة، والألوان الجريئة.",
+    },
+    legalNote: {
+      en: "Independent design concept created for portfolio presentation. Red Bull and Marvel trademarks belong to their respective owners.",
+      ar: "مفهوم تصميم مستقل أُعد للعرض ضمن ملف الأعمال. تعود العلامات التجارية لريد بُل ومارفل إلى مالكيها.",
     },
   },
   {

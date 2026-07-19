@@ -26,7 +26,7 @@ export type ArtVariant =
   | "matcha"
   | "jeddahRailway"
   | "eggSpace"
-  | "luna"
+  | "redBullMarvel"
   | "atelier"
   | "monolith"
   | "sora"
@@ -71,6 +71,7 @@ export interface ProjectCaseStudy {
 
 export interface Project {
   title: string;
+  displayTitle?: LocalizedString;
   slug: string;
   year: string;
   category: CategoryKey;
@@ -90,4 +91,5 @@ export interface Project {
     body: string;
   };
   quote?: LocalizedString;
+  legalNote?: LocalizedString;
 }

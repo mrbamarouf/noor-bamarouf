@@ -5,7 +5,7 @@ import { LogoAsset } from "../components/LogoAsset";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { serviceOrder } from "../data/content";
-import { projects } from "../data/projects";
+import { getProjectDisplayTitle, getProjectTitleDirection, projects } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
 import type { ArtScene, ArtVariant, Project, ServiceKey } from "../types";
 
@@ -16,6 +16,8 @@ function Arrow() {
 
 function ProjectFeature({ project, index }: { project: Project; index: number }) {
   const { dictionary, language } = useLanguage();
+  const projectTitle = getProjectDisplayTitle(project, language);
+  const projectTitleDirection = getProjectTitleDirection(project, language);
 
   return (
     <Link className="project-feature" to={`/work/${project.slug}`} data-cursor="view">
@@ -29,7 +31,7 @@ function ProjectFeature({ project, index }: { project: Project; index: number })
       <span className="project-feature__meta">
         {project.year} / {dictionary.categories[project.category]}
       </span>
-      <strong dir="ltr">{project.title}</strong>
+      <strong dir={projectTitleDirection}>{projectTitle}</strong>
       <span>{project.shortDescription[language]}</span>
     </Link>
   );
@@ -43,7 +45,7 @@ function ServicesSection() {
     graphicDesign: "monolith",
     packagingDesign: "noma",
     printDesign: "forma",
-    socialMediaDesign: "luna",
+    socialMediaDesign: "sora",
     editorialDesign: "atelier",
     creativeDirection: "atelier",
   };
@@ -128,6 +130,8 @@ function ProcessSection() {
 
 function FeaturedStory({ mobile = false, project }: { mobile?: boolean; project: Project }) {
   const { dictionary, language } = useLanguage();
+  const projectTitle = getProjectDisplayTitle(project, language);
+  const projectTitleDirection = getProjectTitleDirection(project, language);
 
   return (
     <section
@@ -145,7 +149,7 @@ function FeaturedStory({ mobile = false, project }: { mobile?: boolean; project:
       </div>
       <div className="featured-story__content">
         <span className="section__index">{dictionary.home.featuredTitle}</span>
-        <h2 id={mobile ? "featured-mobile-title" : "featured-title"} dir="ltr">{project.title}</h2>
+        <h2 id={mobile ? "featured-mobile-title" : "featured-title"} dir={projectTitleDirection}>{projectTitle}</h2>
         <p>{mobile ? project.shortDescription[language] : project.fullDescription[language]}</p>
         <div className="palette-row" aria-label={dictionary.sections.palette}>
           {project.colorPalette.map((color) => (
@@ -172,8 +176,9 @@ function FeaturedStory({ mobile = false, project }: { mobile?: boolean; project:
 
 export function HomePage() {
   const { dictionary, language } = useLanguage();
-  const selected = projects.slice(0, 4);
-  const mobileSelected = projects.slice(0, 4);
+  const selected = projects.slice(0, 5);
+  const mobileSelected = projects.slice(0, 5);
+  const archivePreviewProjects = projects.slice(selected.length);
   const mobileFeatured = projects.find((project) => project.slug === "sora") ?? projects[6];
   const heroRef = useRef<HTMLElement>(null);
 
@@ -335,7 +340,7 @@ export function HomePage() {
           <p className="archive-preview__intro">{dictionary.home.workNote}</p>
         </div>
         <div className="archive-strip">
-          {projects.slice(2).map((project) => (
+          {archivePreviewProjects.map((project) => (
             <Link
               className={`archive-strip__item archive-strip__item--${project.slug}`}
               key={project.slug}
@@ -347,8 +352,9 @@ export function HomePage() {
                 projectSlug={project.slug}
                 asset="cover"
                 ratio="square"
+                loading="eager"
               />
-              <span dir="ltr">{project.title}</span>
+              <span dir={getProjectTitleDirection(project, language)}>{getProjectDisplayTitle(project, language)}</span>
             </Link>
           ))}
         </div>
