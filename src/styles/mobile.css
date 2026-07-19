@@ -392,11 +392,8 @@ html[dir="rtl"] .m-menu__copyright {
   position: fixed;
   z-index: 100;
   inset: 0;
-  display: grid;
   overflow: hidden;
-  padding: max(18px, env(safe-area-inset-top)) var(--m-16) max(16px, env(safe-area-inset-bottom));
   background: #e7ddd6;
-  place-items: center;
   direction: ltr;
   transition: opacity 560ms var(--ease-out), visibility 560ms var(--ease-out);
 }
@@ -409,184 +406,111 @@ html[dir="rtl"] .m-menu__copyright {
 
 .m-intro__material {
   position: absolute;
-  z-index: -1;
+  z-index: 0;
   inset: 0;
-  background: #e7ddd6 url("/brand/noor-final/intro-paper-texture.webp") center / cover;
-  animation: mIntroMaterial 900ms ease both;
+  background: #e8ded8 url("/brand/noor-final/intro-paper-texture.webp") center / cover;
+  opacity: 0;
+  transform: scale(1.02);
+  animation: mIntroMaterial 760ms ease forwards;
 }
 
 .m-intro__stage {
-  position: relative;
-  width: min(100%, 398px);
-  height: min(84svh, 760px);
-  min-height: 450px;
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  overflow: hidden;
   isolation: isolate;
 }
 
-.m-intro__underlay,
-.m-intro__proof,
-.m-intro__leaf,
-.m-intro__folio {
+.m-intro__atmosphere,
+.m-intro__shadow-drift,
+.m-intro__mark,
+.m-intro__light-pass {
   position: absolute;
-  margin: 0;
 }
 
-.m-intro__underlay {
-  z-index: 0;
-  inset: 5% 2% 0 8%;
-  background: url("/brand/noor-final/intro-blush-vellum.webp") center / cover;
-  box-shadow: 0 24px 54px rgba(46, 39, 36, 0.1);
-  opacity: 0;
-  transform: translateY(7%) rotate(-1.8deg);
-  animation: mIntroUnderlay 1250ms var(--ease-out) 120ms forwards;
-}
-
-.m-intro__proof {
+.m-intro__atmosphere {
   z-index: 1;
-  top: 2%;
-  right: -2%;
-  width: 72%;
-  height: 66%;
-  padding: 9px;
-  background: #f7f1ed;
-  box-shadow: 0 20px 48px rgba(46, 39, 36, 0.16);
+  inset: -3%;
+  background: url("/brand/noor-final/intro-material-atmosphere.jpg") center / cover no-repeat;
   opacity: 0;
-  transform: translate3d(12%, -5%, 0) rotate(2deg);
-  animation: mIntroProof 1350ms var(--ease-out) 260ms forwards;
+  transform: translate3d(0, 1.5%, 0) scale(1.08);
+  will-change: transform, opacity;
+  animation: mIntroAtmosphere 3500ms cubic-bezier(0.2, 0.75, 0.25, 1) 80ms forwards;
 }
 
-.m-intro__proof img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.m-intro__leaf {
+.m-intro__shadow-drift {
   z-index: 2;
-  width: 82%;
-  height: 70%;
-  background: #f3e9e4 url("/brand/noor-final/intro-paper-texture.webp") center / cover;
-  box-shadow: 0 22px 52px rgba(46, 39, 36, 0.13);
+  inset: -8%;
+  background:
+    linear-gradient(120deg, rgba(69, 77, 56, 0.12), transparent 30%, transparent 70%, rgba(151, 89, 87, 0.13)),
+    linear-gradient(165deg, rgba(255, 251, 247, 0.34), transparent 52%);
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transform: translate3d(4%, -1.5%, 0);
+  animation: mIntroShadowDrift 3300ms ease-in-out 180ms forwards;
 }
 
-.m-intro__leaf--one {
-  left: 2%;
-  bottom: 1%;
-  transform: translate3d(-16%, 6%, 0) rotate(-4deg);
-  animation: mIntroLeafOne 1600ms var(--ease-out) 180ms forwards;
-}
-
-.m-intro__leaf--two {
-  right: 4%;
-  bottom: 4%;
-  background-image: url("/brand/noor-final/intro-blush-vellum.webp");
-  transform: translate3d(18%, 4%, 0) rotate(4deg);
-  animation: mIntroLeafTwo 1600ms var(--ease-out) 300ms forwards;
-}
-
-.m-intro__folio {
+.m-intro__mark {
   z-index: 4;
-  left: 0;
-  bottom: 2%;
-  display: grid;
-  width: 84%;
-  height: 72%;
-  padding: var(--m-16) var(--m-16) var(--m-12);
-  overflow: hidden;
-  background: #f7f1ed url("/brand/noor-final/intro-paper-texture.webp") center / cover;
-  box-shadow: 0 28px 66px rgba(46, 39, 36, 0.2);
-  grid-template-rows: auto 1fr auto;
+  top: 50%;
+  left: 50%;
+  width: min(54vw, 220px);
   opacity: 0;
-  transform: translate3d(-12%, 9%, 0) rotate(-2deg);
-  animation: mIntroFolio 1450ms var(--ease-out) 680ms forwards;
+  clip-path: inset(48% 0 48% 0);
+  transform: translate(-50%, -50%) scale(0.98);
+  animation: mIntroMark 1380ms var(--ease-out) 980ms forwards;
 }
 
-.m-intro__folio::before {
+.m-intro__mark-shadow {
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 11px;
-  content: "";
-  background: var(--color-rose);
-  opacity: 0.38;
-}
-
-.m-intro__meta {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  margin: 0;
-  color: var(--color-muted);
-  font: 700 9px/1.4 var(--m-sans);
-  justify-content: space-between;
+  z-index: -1;
+  top: 80%;
+  left: 18%;
+  width: 64%;
+  height: 1px;
+  box-shadow: 0 18px 30px 12px rgba(93, 76, 70, 0.11);
   opacity: 0;
-  animation: mIntroDetails 500ms ease 1880ms forwards;
+  animation: mIntroMarkShadow 800ms ease 1760ms forwards;
 }
 
-.m-intro__mark-window {
-  position: relative;
-  z-index: 1;
-  width: min(62vw, 230px);
-  overflow: hidden;
-  place-self: center;
-  clip-path: inset(44% 0 44% 0);
-  transform: scale(0.985);
-  animation: mIntroMarkWindow 1550ms var(--ease-out) 1180ms forwards;
-}
-
-.m-intro__mark-window .official-logo-wrap,
-.m-intro__mark-window .official-logo {
+.m-intro__mark .official-logo-wrap,
+.m-intro__mark .official-logo {
   display: block;
   width: 100%;
   height: auto;
 }
 
-.m-intro__caption {
-  position: relative;
-  z-index: 1;
-  margin: 0;
-  color: var(--color-muted);
-  font: 700 10px/1.5 var(--m-sans);
-  opacity: 0;
-  transform: translateY(5px);
-  animation: mIntroDetails 520ms ease 2260ms forwards;
-}
-
-.m-intro__seal {
+.m-intro__impression {
   position: absolute;
-  z-index: 2;
-  right: 13px;
-  bottom: 11px;
+  z-index: 5;
+  bottom: max(30px, calc(env(safe-area-inset-bottom) + 18px));
+  left: 50%;
   display: grid;
-  width: 45px;
-  min-height: 56px;
-  padding: 5px;
-  background: color-mix(in oklch, var(--color-rose) 10%, transparent);
-  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.58), inset -1px -1px 0 rgba(46, 39, 36, 0.12);
+  width: 48px;
+  height: 48px;
   place-items: center;
   opacity: 0;
-  transform: translateY(8px) rotate(-2deg);
-  animation: mIntroSeal 700ms var(--ease-out) 2780ms forwards;
+  transform: translate(-50%, 8px) scale(0.96);
+  animation: mIntroImpression 680ms var(--ease-out) 2760ms forwards;
 }
 
-.m-intro__seal img {
+.m-intro__impression img {
   display: block;
   width: 100%;
   height: auto;
   mix-blend-mode: multiply;
-  opacity: 0.36;
+  opacity: 0.3;
 }
 
-.m-intro__light {
-  position: absolute;
-  z-index: 6;
+.m-intro__light-pass {
+  z-index: 5;
   inset: -28%;
   pointer-events: none;
-  background: linear-gradient(106deg, transparent 33%, rgba(255, 251, 246, 0.04) 41%, rgba(255, 251, 246, 0.58) 49%, rgba(255, 251, 246, 0.08) 57%, transparent 66%);
+  background: linear-gradient(108deg, transparent 36%, rgba(255, 251, 246, 0.06) 43%, rgba(255, 251, 246, 0.56) 50%, rgba(255, 251, 246, 0.1) 57%, transparent 64%);
   opacity: 0;
-  transform: translateX(-65%);
-  animation: mIntroLight 1500ms ease-in-out 2380ms forwards;
+  transform: translateX(-72%);
+  animation: mIntroLightPass 1500ms ease-in-out 2050ms forwards;
 }
 
 .m-intro__skip {
@@ -601,7 +525,7 @@ html[dir="rtl"] .m-menu__copyright {
   background: transparent;
   font: 600 11px/1 var(--m-sans);
   opacity: 0;
-  animation: mIntroDetails 420ms ease 2500ms forwards;
+  animation: mIntroSkip 420ms ease 2740ms forwards;
 }
 
 html[dir="rtl"] .m-intro__skip {
@@ -610,48 +534,43 @@ html[dir="rtl"] .m-intro__skip {
 }
 
 @keyframes mIntroMaterial {
-  from { opacity: 0; transform: scale(1.025); }
   to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes mIntroUnderlay {
-  to { opacity: 0.92; transform: translateY(0) rotate(-1.2deg); }
+@keyframes mIntroAtmosphere {
+  0% { opacity: 0; transform: translate3d(0, 1.5%, 0) scale(1.08); }
+  28% { opacity: 1; }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.01); }
 }
 
-@keyframes mIntroProof {
-  to { opacity: 1; transform: translate3d(0, 0, 0) rotate(1deg); }
+@keyframes mIntroShadowDrift {
+  0% { opacity: 0; transform: translate3d(4%, -1.5%, 0); }
+  42% { opacity: 0.8; }
+  100% { opacity: 0.46; transform: translate3d(-2.5%, 1%, 0); }
 }
 
-@keyframes mIntroLeafOne {
-  to { transform: translate3d(-3%, 0, 0) rotate(-2.2deg); }
+@keyframes mIntroMark {
+  0% { opacity: 0; clip-path: inset(48% 0 48% 0); transform: translate(-50%, -50%) scale(0.98); }
+  32% { opacity: 1; }
+  100% { opacity: 1; clip-path: inset(0); transform: translate(-50%, -50%) scale(1); }
 }
 
-@keyframes mIntroLeafTwo {
-  to { transform: translate3d(6%, 0, 0) rotate(2.1deg); }
+@keyframes mIntroMarkShadow {
+  to { opacity: 1; }
 }
 
-@keyframes mIntroFolio {
-  to { opacity: 1; transform: translate3d(0, 0, 0) rotate(-0.25deg); }
+@keyframes mIntroImpression {
+  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
 }
 
-@keyframes mIntroMarkWindow {
-  0% { clip-path: inset(44% 0 44% 0); transform: scale(0.985); }
-  45% { clip-path: inset(38% 0 38% 0); }
-  100% { clip-path: inset(0); transform: scale(1); }
-}
-
-@keyframes mIntroDetails {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes mIntroSeal {
-  to { opacity: 1; transform: translateY(0) rotate(-2deg); }
-}
-
-@keyframes mIntroLight {
-  0% { opacity: 0; transform: translateX(-65%); }
+@keyframes mIntroLightPass {
+  0% { opacity: 0; transform: translateX(-72%); }
   30% { opacity: 1; }
-  100% { opacity: 0; transform: translateX(65%); }
+  100% { opacity: 0; transform: translateX(72%); }
+}
+
+@keyframes mIntroSkip {
+  to { opacity: 1; }
 }
 
 /* Shared chapter system */
@@ -2175,25 +2094,27 @@ html[dir="rtl"] .m-project-navigation a {
   }
 
   .m-intro__stage {
-    height: 82svh;
-    min-height: 420px;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .m-intro__mark {
+    width: min(56vw, 210px);
+  }
+
+  .m-intro__impression {
+    bottom: max(22px, calc(env(safe-area-inset-bottom) + 12px));
   }
 }
 
 @media (orientation: landscape) and (max-height: 560px) and (max-width: 900px) {
   .m-intro__stage {
-    width: min(70vw, 520px);
-    height: 84svh;
+    width: 100%;
+    height: 100%;
   }
 
-  .m-intro__folio {
-    width: 68%;
-    height: 82%;
-  }
-
-  .m-intro__proof {
-    width: 48%;
-    height: 82%;
+  .m-intro__mark {
+    width: min(32vw, 190px);
   }
 }
 
