@@ -897,6 +897,90 @@ export const projects: Project[] = [
       ar: "شعار ثنائي اللغة يُعرض من خلال الرمز، الكلمة، واللون.",
     },
   },
+  {
+    title: "RED SEA",
+    displayTitle: {
+      en: "RED SEA",
+      ar: "البحر الأحمر",
+    },
+    slug: "red-sea",
+    year: "2024–2025",
+    category: "socialMediaDesign",
+    projectType: {
+      en: "Official Client Project",
+      ar: "مشروع عميل رسمي",
+    },
+    shortDescription: {
+      en: "A curated social media design project for RED SEA, shaped through feed posts, stories, highlight-style visuals, profile materials, and selected campaign artwork.",
+      ar: "مشروع تصميم وسائل تواصل اجتماعي منسق لـ RED SEA، يتشكل عبر منشورات، قصص، مرئيات للهايلايت، مواد للملف، وأعمال حملة مختارة.",
+    },
+    fullDescription: {
+      en: "RED SEA is an official client project focused on social media design. The supplied archive includes Instagram posts, story designs, highlight covers, profile visuals, National Day artwork, and logistics-focused supporting materials. This case study curates the strongest pieces instead of displaying the full archive.",
+      ar: "RED SEA مشروع عميل رسمي يركز على تصميم وسائل التواصل الاجتماعي. يتضمن الأرشيف المقدم منشورات Instagram، تصاميم قصص، أغلفة هايلايت، مرئيات للملف، عملًا بصريًا لليوم الوطني، ومواد مساندة مرتبطة بعالم الخدمات اللوجستية. تعرض دراسة الحالة أقوى القطع بدل عرض الأرشيف كاملًا.",
+    },
+    services: ["socialMediaDesign", "graphicDesign"],
+    credits: officialClientCredits,
+    coverImage: {
+      variant: "redSea",
+      scene: "social",
+      format: "webp",
+      folder: "projects",
+      alt: {
+        en: "RED SEA curated social media board with profile, post, story, and National Day visuals.",
+        ar: "لوحة منسقة لـ RED SEA تضم مرئيات الملف، منشورًا، قصة، وتصميمًا لليوم الوطني.",
+      },
+    },
+    heroImage: {
+      variant: "redSea",
+      scene: "social",
+      format: "webp",
+      folder: "projects",
+      alt: {
+        en: "RED SEA hero presentation with logistics truck imagery and selected social media designs.",
+        ar: "عرض رئيسي لـ RED SEA مع صورة شاحنة لوجستية وتصاميم مختارة لوسائل التواصل.",
+      },
+    },
+    gallery: [
+      { variant: "redSea", scene: "materials", format: "webp", folder: "projects", alt: { en: "RED SEA company profile and logistics support pages arranged as profile identity materials.", ar: "صفحات ملف RED SEA التعريفي ومواد لوجستية مساندة معروضة كمواد للملف." } },
+      { variant: "redSea", scene: "social", format: "webp", folder: "projects", alt: { en: "RED SEA curated Instagram feed grid with logistics, delivery, and service posts.", ar: "شبكة Instagram منسقة لـ RED SEA تضم منشورات لوجستية، توصيل، وخدمات." } },
+      { variant: "redSea", scene: "social", format: "webp", folder: "projects", alt: { en: "RED SEA story design suite with Riyadh, Dubai, Amman, and truck service visuals.", ar: "مجموعة قصص RED SEA لمرئيات الرياض، دبي، عمّان، وخدمات الشاحنات." } },
+      { variant: "redSea", scene: "social", format: "webp", folder: "projects", alt: { en: "RED SEA highlight-style covers and quick profile visuals.", ar: "أغلفة هايلايت ومرئيات ملف سريعة لـ RED SEA." } },
+      { variant: "redSea", scene: "campaign", format: "webp", folder: "projects", alt: { en: "RED SEA featured posts including National Day artwork, logistics photography, and service posts.", ar: "منشورات مختارة لـ RED SEA تشمل عمل اليوم الوطني، تصويرًا لوجستيًا، ومنشورات خدمات." } },
+      { variant: "redSea", scene: "materials", format: "webp", folder: "projects", alt: { en: "RED SEA campaign highlights with route, metric, and client support visuals.", ar: "مواد حملة مختارة لـ RED SEA تضم مرئيات مسارات، أرقام، وعملاء." } },
+      { variant: "redSea", scene: "print", format: "webp", folder: "projects", alt: { en: "RED SEA close-up crops of logo, route, container, service, and city visuals.", ar: "لقطات قريبة لشعار RED SEA، المسارات، الحاويات، الخدمات، ومرئيات المدن." } },
+      { variant: "redSea", scene: "social", format: "webp", folder: "projects", alt: { en: "RED SEA final curated gallery board with profile, feed, story, and campaign materials.", ar: "لوحة معرض نهائية منسقة لـ RED SEA تضم مواد الملف، المنشورات، القصص، والحملة." } },
+    ],
+    caseStudy: {
+      context: {
+        en: "The source archive contains many social assets across posts, stories, profile materials, and campaign moments. The portfolio presentation edits that archive down to the strongest finished visuals so the work reads as a coherent social media design project.",
+        ar: "يضم الأرشيف المقدم عددًا كبيرًا من مواد التواصل، بين منشورات، قصص، مواد ملف، ولحظات حملة. يعرض البورتفوليو أقوى المرئيات المكتملة فقط حتى يظهر العمل كمشروع تصميم وسائل تواصل متماسك.",
+      },
+      direction: {
+        en: "The visual direction uses RED SEA's blue and red corporate palette, logistics photography, clean Arabic hierarchy, route and metric graphics, and city-led stories to keep the communication direct without making every asset feel identical.",
+        ar: "يعتمد الاتجاه البصري على لوحة RED SEA باللونين الأزرق والأحمر، تصوير الخدمات اللوجستية، هرمية عربية واضحة، رسومات المسارات والأرقام، وقصص المدن، ليبقى التواصل مباشرًا دون أن تبدو كل قطعة متكررة.",
+      },
+      applications: [
+        { en: "Instagram feed post designs", ar: "تصاميم منشورات Instagram" },
+        { en: "Story design suite", ar: "مجموعة تصاميم القصص" },
+        { en: "Highlight covers and profile visuals", ar: "أغلفة الهايلايت ومرئيات الملف" },
+        { en: "National Day and selected campaign artwork", ar: "عمل اليوم الوطني ومواد حملة مختارة" },
+        { en: "Logistics service and route graphics", ar: "رسومات الخدمات اللوجستية والمسارات" },
+      ],
+      outcome: {
+        en: "A focused social media presentation that turns a broad client archive into a premium, readable case study with clear feed, story, profile, and campaign sections.",
+        ar: "عرض مركز لتصميم وسائل التواصل يحوّل أرشيف عميل واسعًا إلى دراسة حالة راقية وسهلة القراءة، بأقسام واضحة للمنشورات، القصص، الملف، ومواد الحملة.",
+      },
+    },
+    colorPalette: ["#112A43", "#1A4A86", "#BD1826", "#E8EEF5", "#F7F2EA", "#FFFFFF"],
+    typography: {
+      display: "Bilingual corporate sans",
+      body: "Arabic social media hierarchy",
+    },
+    quote: {
+      en: "A logistics social system edited for clarity, motion, service, and place.",
+      ar: "نظام تواصل لوجستي منسق للوضوح، الحركة، الخدمة، والمكان.",
+    },
+  },
 ];
 
 export function getProject(slug: string | undefined) {

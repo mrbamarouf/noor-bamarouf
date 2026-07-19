@@ -1415,6 +1415,24 @@ html[dir="rtl"] .hero__studio-note span {
   transform: scale(1);
 }
 
+.project-visual[data-project="red-sea"] {
+  background:
+    radial-gradient(circle at 82% 18%, color-mix(in oklch, #bd1826 16%, transparent), transparent 26%),
+    linear-gradient(135deg, #f8f2ea, #e9eef4);
+}
+
+.project-visual[data-project="red-sea"][data-asset="hero"],
+.project-visual[data-project="red-sea"][data-asset="gallery-3"],
+.project-visual[data-project="red-sea"][data-asset="gallery-8"] {
+  background: #112a43;
+}
+
+.project-visual[data-project="red-sea"] img {
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1);
+}
+
 [data-reveal] .project-visual {
   opacity: 0.98;
   filter: saturate(0.94);
@@ -2638,6 +2656,13 @@ a:hover .art-frame .art-frame__caption-strip {
   --frame-main: oklch(0.66 0.18 140);
   --frame-accent: oklch(0.77 0.14 78);
   --frame-ink: oklch(0.23 0.03 150);
+}
+
+.art-frame--redSea {
+  --frame-bg: oklch(0.95 0.018 68);
+  --frame-main: oklch(0.38 0.11 252);
+  --frame-accent: oklch(0.47 0.18 24);
+  --frame-ink: oklch(0.21 0.04 252);
 }
 
 .art-frame--scene-hero {
@@ -4322,6 +4347,105 @@ html[dir="rtl"] .logo-case--final h2 {
   background: #073d4c;
   border: 1px solid var(--color-line);
   object-fit: contain;
+}
+
+.project-page--red-sea .project-main-image {
+  background: #112a43;
+}
+
+.red-sea-section,
+.red-sea-pair,
+.red-sea-system,
+.red-sea-final {
+  display: grid;
+  gap: clamp(28px, 4vw, 72px);
+  padding-block: clamp(70px, 7vw, 128px);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.red-sea-section {
+  grid-template-columns: minmax(280px, 0.34fr) minmax(420px, 0.66fr);
+  align-items: center;
+}
+
+.red-sea-section--feed {
+  grid-template-columns: minmax(460px, 0.64fr) minmax(280px, 0.36fr);
+}
+
+.red-sea-section h2,
+.red-sea-final h2 {
+  max-width: 11ch;
+  font-size: clamp(2.8rem, 5.4vw, 6.4rem);
+  line-height: 0.96;
+  text-wrap: balance;
+}
+
+.red-sea-section p,
+.red-sea-pair p,
+.red-sea-system p {
+  max-width: 44ch;
+  color: var(--color-muted);
+  line-height: 1.75;
+}
+
+.red-sea-section__stack {
+  display: grid;
+  gap: 22px;
+}
+
+.red-sea-section__stack .project-visual {
+  min-height: clamp(280px, 28vw, 440px);
+}
+
+.red-sea-pair {
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
+  align-items: start;
+}
+
+.red-sea-pair article {
+  display: grid;
+  gap: 18px;
+}
+
+.red-sea-pair .project-visual {
+  min-height: clamp(320px, 31vw, 520px);
+}
+
+.red-sea-system {
+  grid-template-columns: minmax(460px, 0.6fr) minmax(300px, 0.4fr);
+  align-items: center;
+}
+
+.red-sea-system ul {
+  display: grid;
+  gap: 12px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.red-sea-system li {
+  padding-block: 12px;
+  border-top: 1px solid var(--color-line);
+  color: var(--color-ink);
+}
+
+.red-sea-final {
+  grid-template-columns: minmax(300px, 0.34fr) minmax(480px, 0.66fr);
+  align-items: center;
+}
+
+.red-sea-final .project-visual {
+  min-height: clamp(360px, 38vw, 620px);
+}
+
+html[dir="rtl"] .project-page--red-sea {
+  text-align: right;
+}
+
+html[dir="rtl"] .red-sea-section h2,
+html[dir="rtl"] .red-sea-final h2 {
+  max-width: 12ch;
 }
 
 .project-narrative,
@@ -6575,10 +6699,76 @@ html[dir="rtl"] .site-footer .back-to-top {
     aspect-ratio: 1.04;
   }
 
+  .project-page--red-sea .project-main-image {
+    aspect-ratio: 1.5;
+  }
+
   html[dir="rtl"] .project-narrative,
   html[dir="rtl"] .project-direction,
   html[dir="rtl"] .project-system {
     text-align: right;
+  }
+
+  .red-sea-section,
+  .red-sea-pair,
+  .red-sea-system,
+  .red-sea-final,
+  html[dir="rtl"] .red-sea-section,
+  html[dir="rtl"] .red-sea-pair,
+  html[dir="rtl"] .red-sea-system,
+  html[dir="rtl"] .red-sea-final {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-block: var(--mobile-section-space-compact);
+    text-align: left;
+  }
+
+  html[dir="rtl"] .red-sea-section,
+  html[dir="rtl"] .red-sea-pair,
+  html[dir="rtl"] .red-sea-system,
+  html[dir="rtl"] .red-sea-final {
+    text-align: right;
+  }
+
+  .red-sea-section h2,
+  .red-sea-final h2 {
+    max-width: 10ch;
+    font-size: clamp(2.2rem, 10vw, 3.7rem);
+  }
+
+  .red-sea-section p,
+  .red-sea-pair p,
+  .red-sea-system p {
+    line-height: 1.72;
+  }
+
+  .red-sea-pair article {
+    gap: 14px;
+  }
+
+  .red-sea-section__stack {
+    gap: 12px;
+  }
+
+  .red-sea-section .project-visual,
+  .red-sea-pair .project-visual,
+  .red-sea-system .project-visual,
+  .red-sea-final .project-visual,
+  .red-sea-section__stack .project-visual {
+    min-height: 0;
+    aspect-ratio: 1.5;
+  }
+
+  .red-sea-pair .project-visual {
+    aspect-ratio: 1.5;
+  }
+
+  .red-sea-section--campaign .project-visual:first-child {
+    aspect-ratio: 1.5;
+  }
+
+  .red-sea-system ul {
+    margin-top: 18px;
   }
 
   .project-gallery {

@@ -20,6 +20,7 @@ export type CategoryKey =
   | "packaging"
   | "print"
   | "socialMedia"
+  | "socialMediaDesign"
   | "awareness"
   | "editorial"
   | "creativeDirection";
@@ -36,6 +37,7 @@ export type ArtVariant =
   | "nirtoColdBrew"
   | "zahyStore"
   | "ansabHolding"
+  | "redSea"
   | "studio"
   | "materials"
   | "archive";
