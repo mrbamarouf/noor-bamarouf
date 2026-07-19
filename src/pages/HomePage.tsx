@@ -39,7 +39,7 @@ function ServicesSection() {
   const { dictionary } = useLanguage();
   const [activeService, setActiveService] = useState<ServiceKey>("brandIdentity");
   const serviceVisuals: Record<ServiceKey, ArtVariant> = {
-    brandIdentity: "flora",
+    brandIdentity: "studio",
     graphicDesign: "monolith",
     packagingDesign: "noma",
     printDesign: "kinfolk",

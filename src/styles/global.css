@@ -1335,7 +1335,7 @@ html[dir="rtl"] .hero__studio-note span {
   aspect-ratio: 1.78;
 }
 
-.art-frame--flora {
+.art-frame--wello {
   --frame-bg: oklch(0.91 0.031 58);
   --frame-main: var(--color-sage);
   --frame-accent: var(--color-rose);
@@ -1789,7 +1789,7 @@ html[dir="rtl"] .hero__studio-note span {
   box-shadow: 0 12px 20px color-mix(in oklch, var(--frame-ink) 10%, transparent);
 }
 
-.art-frame--flora .artifact-one {
+.art-frame--wello .artifact-one {
   left: 13%;
   top: 15%;
   width: 28%;
@@ -1798,7 +1798,7 @@ html[dir="rtl"] .hero__studio-note span {
   clip-path: polygon(0 0, 100% 5%, 96% 100%, 4% 96%);
 }
 
-.art-frame--flora .artifact-two {
+.art-frame--wello .artifact-two {
   right: 15%;
   top: 16%;
   width: 21%;
@@ -1806,12 +1806,12 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(9deg);
 }
 
-.art-frame--flora .artifact-three,
-.art-frame--flora .artifact-four {
+.art-frame--wello .artifact-three,
+.art-frame--wello .artifact-four {
   display: none;
 }
 
-.art-frame--flora .object-main {
+.art-frame--wello .object-main {
   left: 14%;
   bottom: 13%;
   width: 38%;
@@ -1820,7 +1820,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(-2deg);
 }
 
-.art-frame--flora .object-paper {
+.art-frame--wello .object-paper {
   right: 12%;
   bottom: 15%;
   width: 32%;
@@ -1828,7 +1828,7 @@ html[dir="rtl"] .hero__studio-note span {
   transform: rotate(6deg);
 }
 
-.art-frame--flora .art-frame__caption-strip {
+.art-frame--wello .art-frame__caption-strip {
   right: 18%;
   bottom: 13%;
   transform: rotate(5deg);

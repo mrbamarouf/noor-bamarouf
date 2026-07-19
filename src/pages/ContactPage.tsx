@@ -29,10 +29,10 @@ export function ContactPage() {
 
       <section className="contact-layout" data-reveal>
         <ArtFrame
-          variant="flora"
+          variant="materials"
           alt={{
-            en: "Botanical desk composition with stationery and soft paper details.",
-            ar: "تكوين مكتبي نباتي مع قرطاسية وتفاصيل ورقية ناعمة.",
+            en: "Studio material composition with paper, soft color, and tactile design details.",
+            ar: "تكوين خامات استوديو مع ورق وألوان هادئة وتفاصيل تصميم ملموسة.",
           }}
           ratio="portrait"
         />

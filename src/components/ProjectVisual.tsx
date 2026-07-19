@@ -28,7 +28,8 @@ export function ProjectVisual({
   loading = "lazy",
 }: ProjectVisualProps) {
   const { language } = useLanguage();
-  const src = projectSlug && asset ? `/concept-projects/${projectSlug}/${asset}.jpg` : undefined;
+  const imageFormat = image.format ?? "jpg";
+  const src = projectSlug && asset ? `/concept-projects/${projectSlug}/${asset}.${imageFormat}` : undefined;
   const dimensions = imageDimensions[ratio];
 
   if (!src) {

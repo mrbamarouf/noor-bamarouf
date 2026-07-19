@@ -5,76 +5,83 @@ const conceptCredits = {
   ar: "مفهوم مستقل",
 };
 
+const officialClientCredits = {
+  en: "Official Client Project",
+  ar: "مشروع عميل رسمي",
+};
+
 export const projects: Project[] = [
   {
-    title: "FLORA",
-    slug: "flora",
+    title: "WELLO",
+    slug: "wello",
     year: "2026",
-    category: "branding",
+    category: "packaging",
     projectType: {
-      en: "Botanical Brand Identity",
-      ar: "هوية بصرية نباتية",
+      en: "Super Oats Packaging System",
+      ar: "نظام تغليف شوفان",
     },
     shortDescription: {
-      en: "A botanical identity for a paper goods studio, built from pressed flowers, soft stationery, and quiet packaging.",
-      ar: "هوية نباتية لاستوديو قرطاسية، مبنية من الزهور المضغوطة، القرطاسية الناعمة، والتغليف الهادئ.",
+      en: "A bilingual packaging system for WELLO Super Oats, built around bold flavor color, product photography, and breakfast shelf impact.",
+      ar: "نظام تغليف ثنائي اللغة لمنتج WELLO Super Oats، مبني على ألوان نكهات جريئة، تصوير المنتج، وحضور واضح على الرف.",
     },
     fullDescription: {
-      en: "FLORA is a botanical identity study for a stationery studio shaped around cards, wrapping paper, and gift notes. The system uses pressed-paper texture, soft sage, dusty rose, and a generous serif voice to make the brand feel handmade but precise.",
-      ar: "تقدم FLORA دراسة هوية نباتية لاستوديو قرطاسية يصمم بطاقات وورق تغليف وملاحظات هدايا. يعتمد النظام على ملمس الورق المضغوط، الأخضر الهادئ، الوردي الترابي، وخط تحريري رحب ليبدو العمل يدوياً ودقيقاً في الوقت نفسه.",
+      en: "WELLO is an official client project for a Super Oats product line. The visual system presents three visible flavors, bilingual Arabic and English packaging, nutrition callouts, ingredient-led imagery, and bright breakfast scenes designed for quick recognition.",
+      ar: "WELLO مشروع عميل رسمي لخط منتجات Super Oats. يعرض النظام البصري ثلاث نكهات ظاهرة، تغليفاً ثنائي اللغة بالعربية والإنجليزية، إشارات غذائية، صور مكونات واضحة، ومشاهد إفطار مشرقة يسهل تمييزها بسرعة.",
     },
-    services: ["brandIdentity", "printDesign", "packagingDesign"],
-    credits: conceptCredits,
+    services: ["packagingDesign", "brandIdentity", "graphicDesign"],
+    credits: officialClientCredits,
     coverImage: {
-      variant: "flora",
-      scene: "cover",
+      variant: "wello",
+      scene: "packaging",
+      format: "png",
       alt: {
-        en: "FLORA cover mockup with botanical stationery, embossed cards, and pressed paper.",
-        ar: "غلاف FLORA مع قرطاسية نباتية، بطاقات بارزة، وورق مضغوط.",
+        en: "WELLO Super Oats packaging lineup with Choco Hazelnut, Apple Cinnamon, and Banana Peanut Butter pouches.",
+        ar: "مجموعة تغليف WELLO Super Oats مع نكهات الشوكولاتة والبندق، التفاح والقرفة، وزبدة الفول السوداني والموز.",
       },
     },
     heroImage: {
-      variant: "flora",
+      variant: "wello",
       scene: "hero",
+      format: "png",
       alt: {
-        en: "FLORA hero still life with stationery, floral marks, ribbon, and paper packaging.",
-        ar: "مشهد رئيسي لـ FLORA مع قرطاسية، علامات نباتية، شريط، وتغليف ورقي.",
+        en: "WELLO hero image showing three Super Oats pouches on a breakfast counter with the message Ultimate Breakfast for Busy Mornings.",
+        ar: "صورة رئيسية لـ WELLO تعرض ثلاث عبوات Super Oats على طاولة إفطار مع عبارة Ultimate Breakfast for Busy Mornings.",
       },
     },
     gallery: [
-      { variant: "flora", scene: "stationery", alt: { en: "Letterhead, note cards, and envelope system.", ar: "نظام أوراق، بطاقات، ومغلفات." } },
-      { variant: "flora", scene: "packaging", alt: { en: "Botanical wrap, label, and gift sleeve packaging.", ar: "تغليف نباتي، ملصق، وغلاف هدية." } },
-      { variant: "flora", scene: "print", alt: { en: "Printed cards and small paper insert set.", ar: "بطاقات مطبوعة ومجموعة إدخالات ورقية صغيرة." } },
-      { variant: "flora", scene: "materials", alt: { en: "Paper stock, pressed-petal color swatches, and tactile details.", ar: "خامات ورق، عينات ألوان بتلات، وتفاصيل ملموسة." } },
+      { variant: "wello", scene: "packaging", format: "png", alt: { en: "Apple Cinnamon WELLO pouch being poured into a breakfast bowl beside milk and oats.", ar: "عبوة WELLO بنكهة التفاح والقرفة وهي تصب في وعاء إفطار بجانب الحليب والشوفان." } },
+      { variant: "wello", scene: "materials", format: "png", alt: { en: "Choco Hazelnut WELLO pouch with a bowl, nuts, chocolate, and a repeated brand pattern.", ar: "عبوة WELLO بنكهة الشوكولاتة والبندق مع وعاء ومكسرات وشوكولاتة ونمط متكرر للعلامة." } },
+      { variant: "wello", scene: "packaging", format: "png", alt: { en: "Three WELLO Super Oats flavors shown with ingredient photography and distinct color fields.", ar: "ثلاث نكهات من WELLO Super Oats مع صور مكونات ومساحات ألوان مميزة." } },
+      { variant: "wello", scene: "campaign", format: "png", alt: { en: "WELLO campaign visual with Super Oats pouches and a busy-morning breakfast message.", ar: "تصميم حملة WELLO مع عبوات Super Oats ورسالة إفطار للصباح المزدحم." } },
     ],
     caseStudy: {
       context: {
-        en: "The project explores how a gentle botanical identity can feel complete across stationery, product packaging, and print touchpoints without becoming ornamental.",
-        ar: "تستكشف الدراسة كيف تبدو الهوية النباتية مكتملة عبر القرطاسية والتغليف ونقاط التلامس المطبوعة دون أن تصبح زخرفية.",
+        en: "The supplied project assets show a consumer packaging system for oats, where flavor must be understood instantly while the bilingual product information stays clear on small pack surfaces.",
+        ar: "تعرض أصول المشروع نظام تغليف استهلاكي للشوفان، حيث يجب أن تكون النكهة مفهومة فوراً مع بقاء معلومات المنتج ثنائية اللغة واضحة على مساحة العبوة الصغيرة.",
       },
       direction: {
-        en: "The visual language centers on pressed-paper edges, a soft monogram, herbarium-inspired layouts, and a calm relationship between blush and sage.",
-        ar: "ترتكز اللغة البصرية على حواف الورق المضغوط، مونوغرام ناعم، تخطيطات مستوحاة من الأعشاب، وعلاقة هادئة بين الوردي والأخضر.",
+        en: "The direction uses a rounded WELLO wordmark, oversized ingredient imagery, curved color blocks, bilingual flavor names, and icon-style benefit callouts to keep the packs energetic and easy to scan.",
+        ar: "يعتمد الاتجاه على شعار WELLO بحروف مستديرة، صور مكونات بارزة، مساحات لونية منحنية، أسماء نكهات بالعربية والإنجليزية، وأيقونات فوائد تساعد على قراءة العبوة بسرعة.",
       },
       applications: [
-        { en: "Embossed stationery and envelope suite", ar: "قرطاسية ومغلفات بتفاصيل بارزة" },
-        { en: "Gift wrap, sleeve labels, and hang tags", ar: "ورق تغليف، ملصقات، وبطاقات تعليق" },
-        { en: "Mini print catalog and care cards", ar: "كتالوج مطبوع صغير وبطاقات عناية" },
-        { en: "Launch social templates with botanical crop details", ar: "قوالب إطلاق للتواصل مع تفاصيل نباتية مقربة" },
+        { en: "Primary Super Oats pouch packaging", ar: "تغليف عبوات Super Oats الرئيسية" },
+        { en: "Flavor system for Choco Hazelnut, Apple Cinnamon, and Banana Peanut Butter", ar: "نظام نكهات للشوكولاتة والبندق، التفاح والقرفة، وزبدة الفول السوداني والموز" },
+        { en: "Bilingual Arabic and English front-of-pack hierarchy", ar: "هرمية واجهة العبوة بالعربية والإنجليزية" },
+        { en: "Campaign and ingredient-led presentation visuals", ar: "مرئيات عرض وحملة مبنية على المكونات" },
       ],
       outcome: {
-        en: "A quiet identity system with enough range for packaging, stationery, print inserts, and a soft launch presence.",
-        ar: "نظام هوية هادئ يمتد إلى التغليف والقرطاسية والإدخالات المطبوعة وحضور إطلاق ناعم.",
+        en: "A bright, flavor-led packaging presentation that gives WELLO a clear product family, strong shelf recognition, and a flexible visual base for breakfast campaign imagery.",
+        ar: "عرض تغليف مشرق تقوده النكهات، يمنح WELLO عائلة منتجات واضحة، تمييزاً قوياً على الرف، وقاعدة بصرية مرنة لصور حملات الإفطار.",
       },
     },
-    colorPalette: ["#F7EFE9", "#E9C7C6", "#C97F7A", "#A9B39B", "#5D715F"],
+    colorPalette: ["#F7F0E4", "#F15B24", "#F6A33B", "#FFC928", "#54BFB2", "#00644E", "#34383A"],
     typography: {
-      display: "Reckless Neue",
-      body: "Avenir Next",
+      display: "Rounded display wordmark",
+      body: "Bilingual product sans",
     },
     quote: {
-      en: "A botanical identity where the paper, not decoration, carries the softness.",
-      ar: "هوية نباتية تحمل نعومتها من الورق لا من الزخرفة.",
+      en: "A breakfast packaging system where flavor, color, and bilingual clarity do the heavy lifting.",
+      ar: "نظام تغليف إفطار تقوده النكهة واللون والوضوح ثنائي اللغة.",
     },
   },
   {

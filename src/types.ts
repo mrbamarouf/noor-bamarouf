@@ -22,7 +22,7 @@ export type CategoryKey =
   | "creativeDirection";
 
 export type ArtVariant =
-  | "flora"
+  | "wello"
   | "aurora"
   | "elysian"
   | "luna"
@@ -51,6 +51,7 @@ export type ArtScene =
 export interface ProjectImage {
   variant: ArtVariant;
   scene?: ArtScene;
+  format?: "jpg" | "png";
   alt: LocalizedString;
 }
 

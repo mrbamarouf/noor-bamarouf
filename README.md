@@ -33,4 +33,4 @@ npm run build
 
 ## Deployment
 
-No Vercel deployment is connected from this project yet. `vercel.json` only provides a future SPA route fallback so direct URLs like `/work/flora` can resolve to the React app after hosting.
+No Vercel deployment is connected from this project yet. `vercel.json` only provides a future SPA route fallback so direct URLs like `/work/wello` can resolve to the React app after hosting.
