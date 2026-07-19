@@ -42,12 +42,12 @@ function ServicesSection() {
   const [activeService, setActiveService] = useState<ServiceKey>("brandIdentity");
   const serviceVisuals: Record<ServiceKey, ArtVariant> = {
     brandIdentity: "studio",
-    graphicDesign: "monolith",
+    graphicDesign: "archive",
     packagingDesign: "noma",
     printDesign: "forma",
     socialMediaDesign: "sora",
     editorialDesign: "forma",
-    creativeDirection: "monolith",
+    creativeDirection: "materials",
   };
   const serviceScenes: Record<ServiceKey, ArtScene> = {
     brandIdentity: "stationery",
@@ -176,8 +176,8 @@ function FeaturedStory({ mobile = false, project }: { mobile?: boolean; project:
 
 export function HomePage() {
   const { dictionary, language } = useLanguage();
-  const selected = projects.slice(0, 6);
-  const mobileSelected = projects.slice(0, 6);
+  const selected = projects.slice(0, 7);
+  const mobileSelected = projects.slice(0, 7);
   const archivePreviewProjects = projects.slice(selected.length);
   const mobileFeatured = projects.find((project) => project.slug === "sora") ?? projects[6];
   const heroRef = useRef<HTMLElement>(null);

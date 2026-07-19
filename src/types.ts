@@ -29,7 +29,7 @@ export type ArtVariant =
   | "eggSpace"
   | "redBullMarvel"
   | "impostor"
-  | "monolith"
+  | "wemoDelights"
   | "sora"
   | "forma"
   | "noma"

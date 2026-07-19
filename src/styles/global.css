@@ -378,6 +378,10 @@ html[dir="rtl"] .scroll-progress {
   transition-delay: 380ms;
 }
 
+[data-reveal].is-visible .project-feature:nth-child(7) {
+  transition-delay: 440ms;
+}
+
 [data-reveal].is-visible .service-row:nth-child(5),
 [data-reveal].is-visible .process-stage:nth-child(5) {
   transition-delay: 340ms;
@@ -1330,6 +1334,19 @@ html[dir="rtl"] .hero__studio-note span {
   object-fit: contain;
   object-position: center;
   transform: scale(1);
+}
+
+.project-visual[data-project="wemo-delights"] {
+  background: #5f4467;
+}
+
+.project-visual[data-project="wemo-delights"][data-asset="cover"] {
+  --image-position: center 54%;
+}
+
+.project-visual[data-project="wemo-delights"][data-asset="gallery-3"],
+.project-visual[data-project="wemo-delights"][data-asset="gallery-6"] {
+  --image-position: center 58%;
 }
 
 [data-reveal] .project-visual {
@@ -2536,13 +2553,6 @@ a:hover .art-frame .art-frame__caption-strip {
   transform: scale(1.045);
 }
 
-.art-frame--monolith {
-  --frame-bg: oklch(0.88 0.018 76);
-  --frame-main: oklch(0.43 0.024 128);
-  --frame-accent: oklch(0.58 0.052 26);
-  --frame-ink: oklch(0.23 0.016 94);
-}
-
 .art-frame--sora {
   --frame-bg: oklch(0.9 0.029 55);
   --frame-main: oklch(0.63 0.046 126);
@@ -3004,19 +3014,10 @@ a:hover .art-frame .art-frame__caption-strip {
   width: 36%;
 }
 
-.art-frame--monolith .object-main span,
 .art-frame--sora .object-main span,
 .art-frame--forma .object-main span,
 .art-frame--noma .object-main span {
   font-size: clamp(1.05rem, 2vw, 2.8rem);
-}
-
-.art-frame--monolith .art-frame__texture {
-  opacity: 0.34;
-}
-
-.art-frame--monolith .object-main {
-  letter-spacing: 0;
 }
 
 .art-frame--sora .art-frame__seal {
@@ -3245,6 +3246,11 @@ a:hover .art-frame .art-frame__caption-strip {
 .project-feature:nth-child(6) {
   grid-column: 7 / -1;
   margin-top: clamp(58px, 5vw, 92px);
+}
+
+.project-feature:nth-child(7) {
+  grid-column: 3 / 11;
+  margin-top: clamp(24px, 3vw, 48px);
 }
 
 .project-feature__number {
@@ -5702,7 +5708,8 @@ html[dir="rtl"] .site-footer .back-to-top {
   .project-feature:nth-child(3),
   .project-feature:nth-child(4),
   .project-feature:nth-child(5),
-  .project-feature:nth-child(6) {
+  .project-feature:nth-child(6),
+  .project-feature:nth-child(7) {
     grid-column: auto;
     margin-top: 0;
   }
