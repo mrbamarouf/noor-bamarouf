@@ -4,6 +4,7 @@ export type LocalizedString = Record<Language, string>;
 
 export type ServiceKey =
   | "brandIdentity"
+  | "logoDesign"
   | "graphicDesign"
   | "packagingDesign"
   | "printDesign"
@@ -14,6 +15,7 @@ export type ServiceKey =
 export type CategoryKey =
   | "all"
   | "branding"
+  | "logoDesign"
   | "graphicDesign"
   | "packaging"
   | "print"
@@ -32,7 +34,7 @@ export type ArtVariant =
   | "wemoDelights"
   | "rahabaSpace"
   | "nirtoColdBrew"
-  | "noma"
+  | "zahyStore"
   | "studio"
   | "materials"
   | "archive";

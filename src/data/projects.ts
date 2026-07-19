@@ -8,11 +8,6 @@ export function getProjectTitleDirection(project: Project, language: Language) {
   return project.displayTitle?.[language] && language === "ar" ? "rtl" : "ltr";
 }
 
-const conceptCredits = {
-  en: "Independent Concept",
-  ar: "مفهوم مستقل",
-};
-
 const officialClientCredits = {
   en: "Official Client Project",
   ar: "مشروع عميل رسمي",
@@ -744,74 +739,81 @@ export const projects: Project[] = [
     },
   },
   {
-    title: "NOMA",
-    slug: "noma",
-    year: "2024",
-    category: "packaging",
+    title: "ZAHY STORE",
+    displayTitle: {
+      en: "ZAHY STORE",
+      ar: "زاهي ستور",
+    },
+    slug: "zahy-store",
+    year: "2026",
+    category: "logoDesign",
     projectType: {
-      en: "Artisan Packaging",
-      ar: "تغليف حرفي",
+      en: "Final Logo Mark",
+      ar: "الشعار النهائي",
     },
     shortDescription: {
-      en: "An artisan packaging study with jar labels, batch cards, wrap paper, shelf tags, and gift cartons.",
-      ar: "مفهوم تغليف حرفي مع ملصقات عبوات، بطاقات دفعات، ورق تغليف، بطاقات رف، وعلب هدايا.",
+      en: "A focused logo design project built around a single supplied mark: an Arabic symbol paired with the ZAHY STORE wordmark.",
+      ar: "مشروع تصميم شعار مركز يعتمد على علامة واحدة مقدمة: رمز عربي مقترن بالعلامة النصية ZAHY STORE.",
     },
     fullDescription: {
-      en: "NOMA is an artisan packaging study for small-batch pantry goods. It focuses on label hierarchy, batch numbering, gift cartons, shelf presence, and printed wrap.",
-      ar: "تقدم NOMA دراسة تغليف حرفي لمنتجات مخزن صغيرة الدفعات. تركز على هرمية الملصقات، ترقيم الدفعات، علب الهدايا، الحضور على الرف، وورق التغليف.",
+      en: "ZAHY STORE is an official logo design project. The supplied file contains one finished logo composed of a vertical Arabic symbol, deep green color, and a Latin ZAHY STORE wordmark.",
+      ar: "ZAHY STORE مشروع تصميم شعار رسمي. يحتوي الملف المقدم على شعار مكتمل واحد يتكون من رمز عربي عمودي، لون أخضر عميق، وعلامة نصية لاتينية ZAHY STORE.",
     },
-    services: ["packagingDesign", "brandIdentity", "printDesign"],
-    credits: conceptCredits,
+    services: ["logoDesign"],
+    credits: officialPortfolioCredits,
     coverImage: {
-      variant: "noma",
-      scene: "packaging",
+      variant: "zahyStore",
+      scene: "cover",
+      format: "png",
+      folder: "projects",
       alt: {
-        en: "NOMA cover with jar label, batch card, carton, and wrap paper.",
-        ar: "غلاف NOMA مع ملصق عبوة، بطاقة دفعة، علبة، وورق تغليف.",
+        en: "ZAHY STORE logo with a deep green Arabic symbol and Latin wordmark.",
+        ar: "شعار ZAHY STORE مع رمز عربي أخضر عميق وعلامة نصية لاتينية.",
       },
     },
     heroImage: {
-      variant: "noma",
+      variant: "zahyStore",
       scene: "hero",
+      format: "png",
+      folder: "projects",
       alt: {
-        en: "NOMA artisan packaging hero with jar labels, cartons, batch cards, and printed wrap.",
-        ar: "مشهد NOMA الرئيسي مع ملصقات عبوات، علب، بطاقات دفعات، وورق مطبوع.",
+        en: "ZAHY STORE supplied logo presented on a clean background.",
+        ar: "شعار ZAHY STORE المقدم معروض على خلفية نظيفة.",
       },
     },
     gallery: [
-      { variant: "noma", scene: "packaging", alt: { en: "Jar label, batch card, and gift carton packaging.", ar: "ملصق عبوة، بطاقة دفعة، وتغليف علبة هدية." } },
-      { variant: "noma", scene: "print", alt: { en: "Shelf tag, receipt card, and tasting note insert.", ar: "بطاقة رف، بطاقة إيصال، وإدخال ملاحظات تذوق." } },
-      { variant: "noma", scene: "materials", alt: { en: "Kraft paper, label stock, and seal color study.", ar: "ورق كرافت، خامة ملصق، ودراسة لون ختم." } },
-      { variant: "noma", scene: "social", alt: { en: "Small-batch launch posts and pantry story cards.", ar: "منشورات إطلاق دفعات صغيرة وبطاقات قصة مخزن." } },
+      { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE final logo artwork.", ar: "العمل النهائي لشعار ZAHY STORE." } },
+      { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE logo symbol and wordmark as supplied.", ar: "رمز ZAHY STORE والعلامة النصية كما وردا في الملف." } },
+      { variant: "zahyStore", scene: "cover", format: "png", folder: "projects", alt: { en: "ZAHY STORE final logo presentation.", ar: "العرض النهائي لشعار ZAHY STORE." } },
     ],
     caseStudy: {
       context: {
-        en: "The case study explores packaging for small-batch goods, where label hierarchy and tactile trust matter more than loud shelf graphics.",
-        ar: "تستكشف الحالة تغليف منتجات صغيرة الدفعات، حيث تهم هرمية الملصق والثقة الملموسة أكثر من الرسومات الصاخبة على الرف.",
+        en: "The supplied work is limited to the logo itself, so the case study presents the final mark without adding unsupported materials.",
+        ar: "يقتصر العمل المقدم على الشعار نفسه، لذلك يعرض المشروع العلامة النهائية دون إضافة مواد غير موثقة.",
       },
       direction: {
-        en: "The identity uses batch labels, muted clay, olive ink, wrap-paper rhythm, and small seals that make the packaging feel handled.",
-        ar: "تستخدم الهوية ملصقات دفعات، لون طين مكتوم، حبر زيتوني، إيقاع ورق تغليف، وأختاماً صغيرة تجعل التغليف محسوساً.",
+        en: "The logo combines a vertical Arabic symbol with a restrained Latin wordmark. The composition is geometric, compact, and built around a deep green color.",
+        ar: "يجمع الشعار بين رمز عربي عمودي وعلامة نصية لاتينية هادئة. التكوين هندسي ومركز ومبني على لون أخضر عميق.",
       },
       applications: [
-        { en: "Jar label and batch numbering", ar: "ملصق عبوة وترقيم دفعات" },
-        { en: "Gift carton and printed wrap", ar: "علبة هدية وورق تغليف مطبوع" },
-        { en: "Shelf tag and tasting card", ar: "بطاقة رف وبطاقة تذوق" },
-        { en: "Small-batch social launch set", ar: "مجموعة إطلاق اجتماعية للدفعات الصغيرة" },
+        { en: "Final supplied logo artwork", ar: "العمل النهائي للشعار كما ورد" },
+        { en: "Arabic symbol", ar: "الرمز العربي" },
+        { en: "Latin wordmark", ar: "العلامة النصية اللاتينية" },
+        { en: "Deep green logo color", ar: "لون الشعار الأخضر العميق" },
       ],
       outcome: {
-        en: "A tactile packaging system with enough clarity for labels, batch details, shelf tags, and gifting moments.",
-        ar: "نظام تغليف ملموس بوضوح كافٍ للملصقات وتفاصيل الدفعات وبطاقات الرف ولحظات الإهداء.",
+        en: "A minimal logo presentation that keeps attention on the supplied mark, its symbol, letterforms, and color.",
+        ar: "عرض شعار بسيط يحافظ على التركيز على العلامة المقدمة، رمزها، حروفها، ولونها.",
       },
     },
-    colorPalette: ["#F2E7DC", "#CFAF96", "#B36F62", "#718066", "#2F342D"],
+    colorPalette: ["#0E5A4D", "#F8F6F0", "#FFFFFF"],
     typography: {
-      display: "Canela",
-      body: "Founders Grotesk",
+      display: "Supplied Latin wordmark",
+      body: "Logo lettering only",
     },
     quote: {
-      en: "A packaging system that makes small-batch production feel careful and collected.",
-      ar: "نظام تغليف يجعل الإنتاج الصغير يبدو دقيقاً ومنسقاً.",
+      en: "A single logo mark, presented with restraint.",
+      ar: "شعار واحد، معروض بهدوء.",
     },
   },
 ];

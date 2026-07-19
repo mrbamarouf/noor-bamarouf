@@ -16,6 +16,7 @@ export const navItems = [
 export const categoryOrder: CategoryKey[] = [
   "all",
   "branding",
+  "logoDesign",
   "graphicDesign",
   "packaging",
   "print",
@@ -126,6 +127,10 @@ export const copy = {
         title: "Brand Identity",
         description: "Naming support, marks, color, type, and visual systems with a clear point of view.",
       },
+      logoDesign: {
+        title: "Logo Design",
+        description: "Focused logo marks and wordmarks designed as clear standalone identifiers.",
+      },
       graphicDesign: {
         title: "Graphic Design",
         description: "Designed assets for launches, campaigns, profiles, presentations, and brand moments.",
@@ -154,6 +159,7 @@ export const copy = {
     categories: {
       all: "All",
       branding: "Branding",
+      logoDesign: "Logo Design",
       graphicDesign: "Graphic Design",
       packaging: "Packaging Design",
       print: "Print",
@@ -283,6 +289,10 @@ export const copy = {
         title: "هوية بصرية",
         description: "تسمية، علامات، ألوان، خطوط، وأنظمة بصرية بتوجه واضح.",
       },
+      logoDesign: {
+        title: "تصميم الشعار",
+        description: "شعارات وعلامات نصية مركزة تعمل كمعرّفات مستقلة وواضحة.",
+      },
       graphicDesign: {
         title: "التصميم الجرافيكي",
         description: "مواد مصممة للإطلاقات، الحملات، الملفات التعريفية، العروض، ولحظات العلامة.",
@@ -311,6 +321,7 @@ export const copy = {
     categories: {
       all: "الكل",
       branding: "الهوية",
+      logoDesign: "تصميم الشعار",
       graphicDesign: "جرافيك",
       packaging: "تصميم التغليف",
       print: "المطبوعات",

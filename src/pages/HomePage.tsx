@@ -42,8 +42,9 @@ function ServicesSection() {
   const [activeService, setActiveService] = useState<ServiceKey>("brandIdentity");
   const serviceVisuals: Record<ServiceKey, ArtVariant> = {
     brandIdentity: "studio",
+    logoDesign: "zahyStore",
     graphicDesign: "archive",
-    packagingDesign: "noma",
+    packagingDesign: "nirtoColdBrew",
     printDesign: "materials",
     socialMediaDesign: "archive",
     editorialDesign: "archive",
@@ -51,6 +52,7 @@ function ServicesSection() {
   };
   const serviceScenes: Record<ServiceKey, ArtScene> = {
     brandIdentity: "stationery",
+    logoDesign: "cover",
     graphicDesign: "signage",
     packagingDesign: "packaging",
     printDesign: "print",
