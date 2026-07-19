@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
 import { LanguageProvider } from "./context/LanguageContext";
 import "./styles/global.css";
+import "./styles/mobile.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

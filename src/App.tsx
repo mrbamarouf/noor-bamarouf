@@ -12,6 +12,8 @@ import { ContactPage } from "./pages/ContactPage";
 import { HomePage } from "./pages/HomePage";
 import { ProjectPage } from "./pages/ProjectPage";
 import { WorkPage } from "./pages/WorkPage";
+import { MobileApp } from "./mobile/MobileApp";
+import { useMobileViewport } from "./mobile/useMobileViewport";
 
 const PRODUCTION_ORIGIN = "https://noorbamarouf.com";
 const BRAND_TITLE = "NOOR BAMAROUF";
@@ -115,6 +117,11 @@ function ScrollManager() {
 
 export function App() {
   const { dictionary } = useLanguage();
+  const isMobile = useMobileViewport();
+
+  if (isMobile) {
+    return <MobileApp manager={<ScrollManager />} />;
+  }
 
   return (
     <>
