@@ -385,7 +385,7 @@ export function getProjectImageByAsset(project: Project, asset: PresentationAsse
 export const projectPresentations: Record<string, ProjectPresentation> = {
   wello: {
     family: "packaging",
-    hero: { asset: "cover", kind: "packaging-mockup", emphasis: "full" },
+    hero: { asset: "gallery-6", kind: "packaging-mockup", emphasis: "full" },
     sections: [
       {
         id: "packaging-fronts",
