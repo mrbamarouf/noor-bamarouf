@@ -53,50 +53,32 @@ export function Intro() {
   }
 
   return (
-    <section className={`intro ${leaving ? "intro--leaving" : ""}`} aria-label="Opening sequence">
+    <section className={`intro ${leaving ? "intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
       <div className="intro__material" aria-hidden="true" />
+      <div className="intro__atmosphere" aria-hidden="true" />
+      <div className="intro__shadow-field" aria-hidden="true" />
       <div className="intro__atelier">
+        <span className="intro__paper intro__paper--lower" aria-hidden="true" />
+        <span className="intro__paper intro__paper--upper" aria-hidden="true" />
         <div className="intro__vellum" aria-hidden="true" />
-        <figure className="intro__print-sheet" aria-hidden="true">
-          <div className="intro__print-image">
-            <img
-              src="/concept-projects/matcha/hero.jpg"
-              alt=""
-              width="1672"
-              height="941"
-              decoding="async"
-              loading="eager"
-            />
-          </div>
-          <figcaption>
-            <span>01 / 12</span>
-            <span>PACKAGING / IDENTITY</span>
-          </figcaption>
-        </figure>
-        <div className="intro__identity-sheet">
-          <div className="intro__editorial-meta" aria-hidden="true">
-            <span>PORTFOLIO</span>
-            <span>2026</span>
-          </div>
+        <div className="intro__identity-field">
+          <span className="intro__mark-shadow" aria-hidden="true" />
           <div className="intro__mark-reveal">
             <LogoAsset variant="intro" priority />
           </div>
-          <div className="intro__identity-note" aria-hidden="true">
-            <span>DESIGN</span>
-            <span>PRINT</span>
-            <span>EDITORIAL</span>
-          </div>
           <div className="intro__studio-seal">
             <img
-              src="/brand/bamarouf-studio-compact.png"
+              src="/brand/bamarouf-studio-symbol.png"
               alt="Bamarouf Studio"
-              width="820"
-              height="1011"
+              width="900"
+              height="900"
               decoding="async"
               loading="eager"
             />
           </div>
         </div>
+        <span className="intro__fiber intro__fiber--left" aria-hidden="true" />
+        <span className="intro__fiber intro__fiber--right" aria-hidden="true" />
         <div className="intro__light-pass" aria-hidden="true" />
       </div>
       <button className="intro__skip" type="button" onClick={skip}>
