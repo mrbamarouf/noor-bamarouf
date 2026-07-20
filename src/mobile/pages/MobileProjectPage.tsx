@@ -1,12 +1,83 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
-import { getProject, getProjectDisplayTitle, getProjectTitleDirection, projects } from "../../data/projects";
+import {
+  getProject,
+  getProjectDisplayTitle,
+  getProjectTitleDirection,
+  projects,
+} from "../../data/projects";
+import {
+  getProjectImageByAsset,
+  getProjectPresentation,
+  type PresentationSection,
+  type PresentationVisual,
+} from "../../data/projectPresentation";
+import type { Language, Project } from "../../types";
 import { MobileChapterHeader } from "../MobilePrimitives";
 import { MobileVisual } from "../MobileVisual";
 import { mobileCopy } from "../mobileCopy";
 
-const containedProjects = new Set(["zahy-store", "ansab-holding"]);
-const galleryModes = ["bleed", "inset", "portrait", "paper", "wide"] as const;
+function resolveSectionCopy(project: Project, section: PresentationSection, language: Language) {
+  if (section.copy) return section.copy[language];
+  if (section.copyKey) return project.caseStudy[section.copyKey][language];
+  return undefined;
+}
+
+function MobileCaseVisual({
+  project,
+  visual,
+}: {
+  project: Project;
+  visual: PresentationVisual;
+}) {
+  const { language } = useLanguage();
+  const image = getProjectImageByAsset(project, visual.source ?? visual.asset);
+
+  return (
+    <article className={`m-case-visual m-case-visual--${visual.kind}`} data-kind={visual.kind} data-reveal>
+      <MobileVisual
+        project={project}
+        image={image}
+        asset={visual.asset}
+        fit={visual.fit ?? "contain"}
+        loading="eager"
+        formatOverride={visual.format}
+        sizes="(max-width: 900px) 100vw, 1px"
+      />
+      {visual.caption ? <p>{visual.caption[language]}</p> : null}
+    </article>
+  );
+}
+
+function MobileCaseSection({
+  index,
+  project,
+  section,
+}: {
+  index: number;
+  project: Project;
+  section: PresentationSection;
+}) {
+  const { language } = useLanguage();
+  const copy = resolveSectionCopy(project, section, language);
+
+  return (
+    <section className={`m-case-section m-case-section--${section.layout} m-case-section--${section.tone ?? "ivory"}`}>
+      <MobileChapterHeader
+        number={String(index + 3).padStart(2, "0")}
+        label={section.label[language]}
+        title={section.title[language]}
+        text={copy}
+        tone={section.tone === "dark" || section.tone === "brand" ? "dark" : "light"}
+      />
+      <div className="m-case-section__visuals">
+        {section.visuals.map((visual) => (
+          <MobileCaseVisual key={`${project.slug}-${section.id}-${visual.asset}`} project={project} visual={visual} />
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export function MobileProjectPage() {
   const { slug } = useParams();
@@ -16,16 +87,16 @@ export function MobileProjectPage() {
 
   if (!project) return <Navigate to="/work" replace />;
 
+  const presentation = getProjectPresentation(project);
   const index = projects.findIndex((item) => item.slug === project.slug);
   const previous = projects[(index - 1 + projects.length) % projects.length];
   const next = projects[(index + 1) % projects.length];
   const title = getProjectDisplayTitle(project, language);
   const titleDirection = getProjectTitleDirection(project, language);
-  const gallery = project.gallery.slice(0, 8);
-  const containArtwork = containedProjects.has(project.slug);
+  const heroImage = getProjectImageByAsset(project, presentation.hero.asset);
 
   return (
-    <article className="m-page m-project-page" data-project={project.slug}>
+    <article className="m-page m-project-page m-project-page--asset-aware" data-project={project.slug}>
       <header className="m-project-cover">
         <div className="m-project-cover__nav">
           <Link to="/work">{language === "ar" ? "→" : "←"}<span>{dictionary.actions.backToWork}</span></Link>
@@ -39,10 +110,10 @@ export function MobileProjectPage() {
         <div className="m-project-cover__visual" data-reveal>
           <MobileVisual
             project={project}
-            image={project.heroImage}
-            asset="hero"
+            image={heroImage}
+            asset={presentation.hero.asset}
+            fit={presentation.hero.fit ?? "contain"}
             loading="eager"
-            fit={containArtwork ? "contain" : "cover"}
             sizes="(max-width: 900px) 100vw, 1px"
           />
           <p><span>{words.issue}</span><span>{String(index + 1).padStart(2, "0")}</span></p>
@@ -55,8 +126,8 @@ export function MobileProjectPage() {
           number="01"
           label={words.projectStory}
           title={dictionary.sections.overview}
+          text={project.fullDescription[language]}
         />
-        <p className="m-project-overview__lead" data-reveal>{project.fullDescription[language]}</p>
         <dl data-reveal>
           <div><dt>{dictionary.ui.projectFormat}</dt><dd>{project.projectType[language]}</dd></div>
           <div><dt>{dictionary.sections.capabilities}</dt><dd>{project.services.map((service) => dictionary.services[service].title).join(" · ")}</dd></div>
@@ -64,27 +135,15 @@ export function MobileProjectPage() {
         </dl>
       </section>
 
-      {gallery[0] ? (
-        <div className="m-project-opening" data-reveal>
-          <MobileVisual
-            project={project}
-            image={gallery[0]}
-            asset="gallery-1"
-            fit={containArtwork ? "contain" : "cover"}
-            sizes="(max-width: 900px) 100vw, 1px"
-          />
-        </div>
-      ) : null}
-
-      <section className="m-project-direction" aria-labelledby="mobile-project-direction-title">
+      <section className="m-project-direction m-project-direction--asset-aware" aria-labelledby="mobile-project-direction-title">
         <MobileChapterHeader
           id="mobile-project-direction-title"
           number="02"
           label={words.projectStory}
           title={dictionary.sections.creativeDirection}
+          text={project.caseStudy.direction[language]}
           tone="dark"
         />
-        <p data-reveal>{project.caseStudy.direction[language]}</p>
         {project.quote ? <blockquote data-reveal>{project.quote[language]}</blockquote> : null}
       </section>
 
@@ -96,43 +155,17 @@ export function MobileProjectPage() {
         </section>
       ) : null}
 
-      {gallery.length > 1 ? (
-        <section className="m-project-sequence" aria-labelledby="mobile-project-sequence-title">
-          <MobileChapterHeader
-            id="mobile-project-sequence-title"
-            number="03"
-            label={words.visualSequence}
-            title={dictionary.sections.gallery}
-          />
-          <div className="m-project-sequence__gallery">
-            {gallery.slice(1).map((image, galleryIndex) => {
-              const assetIndex = galleryIndex + 2;
-              const mode = galleryModes[galleryIndex % galleryModes.length];
-              return (
-                <div className={`m-gallery-frame m-gallery-frame--${mode}`} key={`${project.slug}-${assetIndex}`} data-reveal>
-                  <MobileVisual
-                    project={project}
-                    image={image}
-                    asset={`gallery-${assetIndex}`}
-                    fit={containArtwork || mode === "paper" ? "contain" : "cover"}
-                    sizes="(max-width: 900px) 100vw, 1px"
-                  />
-                  <span dir="ltr">{String(assetIndex).padStart(2, "0")}</span>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
+      {presentation.sections.map((section, sectionIndex) => (
+        <MobileCaseSection key={section.id} index={sectionIndex} project={project} section={section} />
+      ))}
 
       <section className="m-project-system" aria-labelledby="mobile-project-system-title">
         <MobileChapterHeader
           id="mobile-project-system-title"
-          number="04"
+          number={String(presentation.sections.length + 3).padStart(2, "0")}
           label={dictionary.sections.system}
           title={dictionary.sections.capabilities}
         />
-        <p data-reveal>{project.caseStudy.context[language]}</p>
         <ol>
           {project.caseStudy.applications.map((application, applicationIndex) => (
             <li key={application[language]} data-reveal>
@@ -162,7 +195,7 @@ export function MobileProjectPage() {
       </section>
 
       <section className="m-project-outcome" data-reveal>
-        <p className="m-chapter-label"><span>05</span><span>{words.finalFrame}</span></p>
+        <p className="m-chapter-label"><span>{String(presentation.sections.length + 4).padStart(2, "0")}</span><span>{words.finalFrame}</span></p>
         <p>{project.caseStudy.outcome[language]}</p>
         {project.legalNote ? <small>{project.legalNote[language]}</small> : null}
       </section>

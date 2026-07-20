@@ -5,6 +5,7 @@ export function CustomCursor() {
   const { dictionary } = useLanguage();
   const [enabled, setEnabled] = useState(false);
   const [position, setPosition] = useState({ x: -100, y: -100 });
+  const [hasPointerPosition, setHasPointerPosition] = useState(false);
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export function CustomCursor() {
 
     const onMove = (event: PointerEvent) => {
       setPosition({ x: event.clientX, y: event.clientY });
+      setHasPointerPosition(true);
       const target = event.target instanceof Element ? event.target : null;
       setActive(Boolean(target?.closest("[data-cursor='view']")));
     };
@@ -28,7 +30,7 @@ export function CustomCursor() {
     return () => window.removeEventListener("pointermove", onMove);
   }, [enabled]);
 
-  if (!enabled) {
+  if (!enabled || !hasPointerPosition) {
     return null;
   }
 

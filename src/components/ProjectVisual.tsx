@@ -1,8 +1,11 @@
 import { ArtFrame } from "./ArtFrame";
 import type { ProjectImage } from "../types";
 import { useLanguage } from "../context/LanguageContext";
+import { getProjectAssetDimensions } from "../data/projectAssetDimensions";
+import type { CSSProperties } from "react";
 
-export type ProjectVisualAsset = "cover" | "hero" | `gallery-${number}`;
+export type ProjectVisualAsset = "cover" | "hero" | `gallery-${number}` | (string & {});
+export type ProjectVisualFit = "contain" | "cover";
 const imageDimensions = {
   portrait: { width: 720, height: 984 },
   landscape: { width: 1536, height: 1024 },
@@ -17,6 +20,9 @@ interface ProjectVisualProps {
   ratio?: "portrait" | "landscape" | "square" | "wide";
   className?: string;
   loading?: "lazy" | "eager";
+  fit?: ProjectVisualFit;
+  preserveAspect?: boolean;
+  formatOverride?: ProjectImage["format"];
 }
 
 export function ProjectVisual({
@@ -26,12 +32,22 @@ export function ProjectVisual({
   ratio = "portrait",
   className = "",
   loading = "lazy",
+  fit = "contain",
+  preserveAspect = true,
+  formatOverride,
 }: ProjectVisualProps) {
   const { language } = useLanguage();
-  const imageFormat = image.format ?? "jpg";
+  const imageFormat = formatOverride ?? image.format ?? "jpg";
   const imageFolder = image.folder ?? "concept-projects";
   const src = projectSlug && asset ? `/${imageFolder}/${projectSlug}/${asset}.${imageFormat}` : undefined;
-  const dimensions = imageDimensions[ratio];
+  const assetDimensions = src ? getProjectAssetDimensions(src.slice(1)) : undefined;
+  const dimensions = preserveAspect && assetDimensions ? assetDimensions : imageDimensions[ratio];
+  const visualStyle =
+    preserveAspect && assetDimensions
+      ? ({
+          "--visual-ratio": `${assetDimensions.width} / ${assetDimensions.height}`,
+        } as CSSProperties)
+      : undefined;
 
   if (!src) {
     return (
@@ -48,9 +64,11 @@ export function ProjectVisual({
 
   return (
     <figure
-      className={`project-visual project-visual--${ratio} ${className}`}
+      className={`project-visual project-visual--${ratio} project-visual--fit-${fit} ${className}`}
       data-project={projectSlug}
       data-asset={asset}
+      data-fit={fit}
+      style={visualStyle}
     >
       <img
         src={src}

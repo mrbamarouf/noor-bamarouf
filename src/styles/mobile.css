@@ -732,6 +732,7 @@ html[dir="rtl"] .m-chapter-summary {
   position: relative;
   margin: 0;
   overflow: hidden;
+  aspect-ratio: var(--m-visual-ratio, 4 / 3);
   background: color-mix(in oklch, var(--color-rose) 8%, var(--color-ivory));
 }
 
@@ -1517,7 +1518,7 @@ html[dir="rtl"] .m-footer__brand p {
 }
 
 .m-route-cover__visual .m-visual {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--m-visual-ratio, 4 / 3);
 }
 
 .m-route-cover__visual > span {
@@ -1861,11 +1862,15 @@ html[dir="rtl"] .m-contact-cover__note {
 }
 
 .m-project-cover__visual .m-visual {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--m-visual-ratio, 4 / 3);
 }
 
 .m-project-cover__visual .m-visual--contain {
   padding: var(--m-24);
+}
+
+.m-project-page--asset-aware .m-project-cover__visual .m-visual--contain {
+  padding: 0;
 }
 
 .m-project-cover__visual > p {
@@ -2161,6 +2166,68 @@ html[dir="rtl"] .m-project-system li {
 }
 
 html[dir="rtl"] .m-project-navigation a {
+  text-align: right;
+}
+
+.m-case-section {
+  padding: var(--m-80) var(--m-gutter) var(--m-64);
+  border-top: 1px solid color-mix(in oklch, var(--color-ink) 16%, transparent);
+  scroll-margin-top: calc(var(--header-height) + var(--m-16));
+}
+
+.m-case-section--paper {
+  background: color-mix(in oklch, var(--color-rose) 11%, var(--color-ivory));
+}
+
+.m-case-section--dark,
+.m-case-section--brand {
+  color: var(--color-ivory);
+  background: var(--color-olive-dark);
+}
+
+.m-case-section--brand {
+  background: color-mix(in oklch, var(--color-rose-deep) 72%, var(--color-ink));
+}
+
+.m-case-section__visuals {
+  display: grid;
+  margin-top: var(--m-40);
+  gap: var(--m-24);
+}
+
+.m-case-section--social-grid .m-case-section__visuals,
+.m-case-section--logo .m-case-section__visuals,
+.m-case-section--packaging .m-case-section__visuals {
+  gap: var(--m-20);
+}
+
+.m-case-visual {
+  display: grid;
+  gap: var(--m-8);
+}
+
+.m-case-visual .m-visual {
+  background: color-mix(in oklch, var(--color-paper) 76%, white);
+}
+
+.m-case-section--dark .m-case-visual .m-visual,
+.m-case-section--brand .m-case-visual .m-visual {
+  background: rgb(247 241 234 / 0.08);
+}
+
+.m-case-visual p {
+  margin: 0;
+  color: var(--color-muted);
+  font: 600 11px/1.55 var(--m-sans);
+}
+
+.m-case-section--dark .m-case-visual p,
+.m-case-section--brand .m-case-visual p {
+  color: rgb(247 241 234 / 0.68);
+}
+
+html[dir="rtl"] .m-case-section,
+html[dir="rtl"] .m-case-visual p {
   text-align: right;
 }
 
