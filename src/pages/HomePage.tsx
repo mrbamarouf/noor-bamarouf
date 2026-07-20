@@ -325,9 +325,9 @@ export function HomePage() {
         </div>
         <Link className="home-hero__feature" to={`/work/${welloProject.slug}`} data-cursor="view">
           <ProjectVisual
-            image={welloProject.coverImage}
+            image={welloProject.gallery[5]}
             projectSlug={welloProject.slug}
-            asset="cover"
+            asset="gallery-6"
             ratio="wide"
             fit="cover"
             loading="eager"
