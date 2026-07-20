@@ -1,8 +1,7 @@
 import { LogoAsset } from "../components/LogoAsset";
+import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { useLanguage } from "../context/LanguageContext";
 import { mobileCopy } from "./mobileCopy";
-
-const STUDIO_URL = "https://bamaroufstudio.com/";
 
 export function MobileFooter() {
   const { dictionary, language } = useLanguage();
@@ -19,13 +18,10 @@ export function MobileFooter() {
         <p>{dictionary.footer.line}</p>
       </div>
 
-      <a className="m-footer__studio" href={STUDIO_URL} aria-label={dictionary.ecosystem.label}>
-        <span aria-hidden="true">
-          <img src="/brand/bamarouf-studio-symbol.png" alt="" width="900" height="900" loading="lazy" decoding="async" />
-        </span>
-        <strong>{dictionary.ecosystem.footerLine}</strong>
-        <i aria-hidden="true">{language === "ar" ? "←" : "→"}</i>
-      </a>
+      <div className="m-footer__actions">
+        <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.ui.whatsapp}<span aria-hidden="true">↗</span></a>
+        <a href={getEmailHref(language)}>{dictionary.ui.email}<span aria-hidden="true">↗</span></a>
+      </div>
 
       <div className="m-footer__base">
         <small>© 2026 {words.copyright}</small>

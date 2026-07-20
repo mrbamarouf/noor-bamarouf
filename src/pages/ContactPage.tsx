@@ -10,39 +10,13 @@ export function ContactPage() {
   const matcha = projects.find((project) => project.slug === "matcha") ?? projects[0];
 
   return (
-    <div className="page contact-page">
-      <section className="contact-hero" aria-labelledby="contact-title" data-reveal>
-        <div>
+    <div className="page contact-page contact-page--v2">
+      <section className="contact-v2-hero" aria-labelledby="contact-title" data-reveal>
+        <div className="contact-v2-hero__copy">
           <span className="section__index">{dictionary.nav.contact}</span>
           <h1 id="contact-title">{dictionary.contactPage.title}</h1>
           <p>{dictionary.contactPage.body}</p>
-        </div>
-        <address className="contact-quick-links">
-          <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
-            <span>{dictionary.ui.whatsapp}</span>
-            <strong>{contactDetails.whatsappDisplay}</strong>
-          </a>
-          <a href={emailHref}>
-            <span>{dictionary.ui.email}</span>
-            <strong>{contactDetails.email}</strong>
-          </a>
-        </address>
-      </section>
-
-      <section className="contact-layout" data-reveal>
-        <ProjectVisual
-          className="contact-layout__visual"
-          image={matcha.coverImage}
-          projectSlug={matcha.slug}
-          asset="cover"
-          ratio="portrait"
-        />
-
-        <div className="contact-panel">
-          <span className="section__index">{dictionary.ui.connect}</span>
-          <h2>{dictionary.contactPage.methodTitle}</h2>
-          <p>{dictionary.contactPage.methodBody}</p>
-          <div className="contact-actions">
+          <div className="contact-v2-hero__actions">
             <a className="button button--primary" href={whatsappHref} target="_blank" rel="noopener noreferrer">
               {dictionary.actions.contactByWhatsApp}
             </a>
@@ -50,17 +24,26 @@ export function ContactPage() {
               {dictionary.actions.sendEmail}
             </a>
           </div>
-          <dl className="contact-details">
-            <div>
-              <dt>{dictionary.ui.whatsapp}</dt>
-              <dd>{contactDetails.whatsappDisplay}</dd>
-            </div>
-            <div>
-              <dt>{dictionary.ui.email}</dt>
-              <dd>{contactDetails.email}</dd>
-            </div>
-          </dl>
         </div>
+        <ProjectVisual
+          className="contact-v2-hero__visual"
+          image={matcha.coverImage}
+          projectSlug={matcha.slug}
+          asset="cover"
+          ratio="portrait"
+        />
+      </section>
+
+      <section className="contact-v2-methods" aria-label={dictionary.ui.connect} data-reveal>
+        <div>
+          <span>{dictionary.ui.whatsapp}</span>
+          <a href={whatsappHref} target="_blank" rel="noopener noreferrer">{contactDetails.whatsappDisplay}</a>
+        </div>
+        <div>
+          <span>{dictionary.ui.email}</span>
+          <a href={emailHref}>{contactDetails.email}</a>
+        </div>
+        <p>{dictionary.contactPage.methodBody}</p>
       </section>
     </div>
   );

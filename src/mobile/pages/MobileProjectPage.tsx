@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import {
@@ -9,6 +10,7 @@ import {
 import {
   getProjectImageByAsset,
   getProjectPresentation,
+  getProjectThemeStyle,
   type PresentationSection,
   type PresentationVisual,
 } from "../../data/projectPresentation";
@@ -93,10 +95,15 @@ export function MobileProjectPage() {
   const next = projects[(index + 1) % projects.length];
   const title = getProjectDisplayTitle(project, language);
   const titleDirection = getProjectTitleDirection(project, language);
-  const heroImage = getProjectImageByAsset(project, presentation.hero.asset);
+  const heroImage = getProjectImageByAsset(project, presentation.hero.source ?? presentation.hero.asset);
+  const themeStyle = getProjectThemeStyle(project) as CSSProperties;
 
   return (
-    <article className="m-page m-project-page m-project-page--asset-aware" data-project={project.slug}>
+    <article
+      className={`m-page m-project-page m-project-page--asset-aware m-project-page--${project.slug}`}
+      data-project={project.slug}
+      style={themeStyle}
+    >
       <header className="m-project-cover">
         <div className="m-project-cover__nav">
           <Link to="/work">{language === "ar" ? "→" : "←"}<span>{dictionary.actions.backToWork}</span></Link>
@@ -114,6 +121,7 @@ export function MobileProjectPage() {
             asset={presentation.hero.asset}
             fit={presentation.hero.fit ?? "contain"}
             loading="eager"
+            formatOverride={presentation.hero.format}
             sizes="(max-width: 900px) 100vw, 1px"
           />
           <p><span>{words.issue}</span><span>{String(index + 1).padStart(2, "0")}</span></p>

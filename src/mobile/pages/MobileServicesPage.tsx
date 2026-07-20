@@ -1,5 +1,5 @@
 import { useLanguage } from "../../context/LanguageContext";
-import { MobileChapterHeader, MobileTextLink } from "../MobilePrimitives";
+import { MobileTextLink } from "../MobilePrimitives";
 import { MobileServicesShowcase } from "../MobileServicesShowcase";
 import { mobileCopy } from "../mobileCopy";
 
@@ -8,27 +8,22 @@ export function MobileServicesPage() {
   const words = mobileCopy[language];
 
   return (
-    <div className="m-page m-services-page">
-      <section className="m-services-cover" aria-labelledby="mobile-services-page-title">
-        <MobileChapterHeader
-          id="mobile-services-page-title"
-          number="01"
-          label={words.servicesLabel}
-          title={words.servicesTitle}
-          text={words.servicesBody}
-        />
+    <div className="m-page m-services-page m-services-page--v2">
+      <section className="m-room m-room--services-route" aria-labelledby="mobile-services-page-title">
+        <div className="m-room__heading" data-reveal>
+          <p>{words.servicesLabel}</p>
+          <h1 id="mobile-services-page-title">{words.servicesTitle}</h1>
+          <span>{words.servicesBody}</span>
+        </div>
         <MobileServicesShowcase />
       </section>
 
-      <section className="m-process-chapter m-process-chapter--route" aria-labelledby="mobile-services-process-title">
-        <MobileChapterHeader
-          id="mobile-services-process-title"
-          number="02"
-          label={words.processLabel}
-          title={words.processTitle}
-          text={words.processBody}
-          tone="dark"
-        />
+      <section className="m-room m-room--process m-room--process-route" aria-labelledby="mobile-services-process-title">
+        <div className="m-room__heading m-room__heading--dark" data-reveal>
+          <p>{words.processLabel}</p>
+          <h2 id="mobile-services-process-title">{words.processTitle}</h2>
+          <span>{words.processBody}</span>
+        </div>
         <ol>
           {dictionary.process.map((step, index) => (
             <li key={step.title} data-reveal>

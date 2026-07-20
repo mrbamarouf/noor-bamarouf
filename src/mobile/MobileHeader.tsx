@@ -5,7 +5,13 @@ import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { useLanguage } from "../context/LanguageContext";
 import { mobileCopy } from "./mobileCopy";
 
-const STUDIO_URL = "https://bamaroufstudio.com/";
+const darkProjectHeaderSlugs = new Set([
+  "egg-space",
+  "red-bull-marvel",
+  "impostor",
+  "nirto-cold-brew",
+  "red-sea",
+]);
 
 export function MobileHeader() {
   const { dictionary, language, toggleLanguage } = useLanguage();
@@ -77,10 +83,12 @@ export function MobileHeader() {
     { to: "/services", label: dictionary.nav.services },
     { to: "/contact", label: dictionary.nav.contact },
   ];
+  const currentProjectSlug = location.pathname.startsWith("/work/") ? location.pathname.split("/")[2] : "";
+  const isDarkProjectHeader = darkProjectHeaderSlugs.has(currentProjectSlug);
 
   return (
     <>
-      <header className={`m-header ${scrolled ? "m-header--scrolled" : ""}`}>
+      <header className={`m-header ${scrolled ? "m-header--scrolled" : ""} ${isDarkProjectHeader ? "m-header--on-dark" : ""}`}>
         <LogoAsset variant="mobileHeader" asLink priority />
         <div className="m-header__tools">
           <button type="button" className="m-header__language" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
@@ -135,17 +143,6 @@ export function MobileHeader() {
               </NavLink>
             ))}
           </nav>
-
-          <a className="m-menu__studio" href={STUDIO_URL} aria-label={dictionary.ecosystem.label} onClick={() => close()}>
-            <span className="m-menu__studio-mark" aria-hidden="true">
-              <img src="/brand/bamarouf-studio-symbol.png" alt="" width="900" height="900" decoding="async" />
-            </span>
-            <span>
-              <strong>{dictionary.ecosystem.name}</strong>
-              <small>{dictionary.ecosystem.footerLine}</small>
-            </span>
-            <i aria-hidden="true">{language === "ar" ? "←" : "→"}</i>
-          </a>
 
           <div className="m-menu__contact">
             <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.ui.whatsapp}<span aria-hidden="true">↗</span></a>

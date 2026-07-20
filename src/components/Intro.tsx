@@ -114,20 +114,18 @@ export function Intro() {
 
   return (
     <section className={`intro ${leaving ? "intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
-      <div className="intro__field" aria-hidden="true" />
-      <div className="intro__veil intro__veil--left" aria-hidden="true" />
-      <div className="intro__veil intro__veil--right" aria-hidden="true" />
-      <div className="intro__stage">
-        <span className="intro__axis intro__axis--horizontal" aria-hidden="true" />
-        <span className="intro__axis intro__axis--vertical" aria-hidden="true" />
-        <span className="intro__star intro__star--one" aria-hidden="true">✦</span>
-        <span className="intro__star intro__star--two" aria-hidden="true">✦</span>
+      <div className="intro__atmosphere" aria-hidden="true">
+        <span className="intro__paper intro__paper--base" />
+        <span className="intro__paper intro__paper--blush" />
+        <span className="intro__paper intro__paper--sage" />
+        <span className="intro__light" />
+        <span className="intro__grain" />
+      </div>
+      <div className="intro__stage" aria-hidden="true">
         <div className="intro__mark-reveal">
-          <span className="intro__mark-glow" aria-hidden="true" />
           <LogoAsset variant="intro" priority />
         </div>
       </div>
-      <div className="intro__threshold" aria-hidden="true" />
       <button className="intro__skip" type="button" onClick={skip}>
         {dictionary.actions.skipIntro}
       </button>

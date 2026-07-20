@@ -2,135 +2,148 @@ import { Link } from "react-router-dom";
 import { LogoAsset } from "../../components/LogoAsset";
 import { getEmailHref, getWhatsAppHref } from "../../config/contact";
 import { useLanguage } from "../../context/LanguageContext";
-import { projects } from "../../data/projects";
+import { getProjectDisplayTitle, getProjectTitleDirection, projects } from "../../data/projects";
+import type { Project } from "../../types";
 import { MobileServicesShowcase } from "../MobileServicesShowcase";
-import {
-  MobileArchiveRow,
-  MobileChapterHeader,
-  MobileProjectFeature,
-  MobileTextLink,
-} from "../MobilePrimitives";
 import { MobileVisual } from "../MobileVisual";
 import { mobileCopy } from "../mobileCopy";
+
+function MobileArrow() {
+  const { language } = useLanguage();
+  return <span aria-hidden="true">{language === "ar" ? "←" : "→"}</span>;
+}
+
+function MobileProjectRoom({ project, index, asset = "cover" }: { project: Project; index: number; asset?: "cover" | "hero" }) {
+  const { dictionary, language } = useLanguage();
+  const title = getProjectDisplayTitle(project, language);
+  const image = asset === "hero" ? project.heroImage : project.coverImage;
+
+  return (
+    <Link className="m-v2-project-room" to={`/work/${project.slug}`} data-reveal>
+      <div className="m-v2-project-room__visual">
+        <MobileVisual project={project} image={image} asset={asset} sizes="(max-width: 900px) 100vw, 1px" />
+        <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
+      </div>
+      <div className="m-v2-project-room__copy">
+        <p>{dictionary.categories[project.category]} / {project.year}</p>
+        <h3><bdi dir={getProjectTitleDirection(project, language)}>{title}</bdi></h3>
+        <span>{dictionary.actions.openProject} <MobileArrow /></span>
+      </div>
+    </Link>
+  );
+}
 
 export function MobileHomePage() {
   const { dictionary, language } = useLanguage();
   const words = mobileCopy[language];
-  const selected = projects.slice(0, 4);
-  const archive = projects.slice(4);
+  const selected = projects.slice(0, 5);
+  const archive = projects.slice(5);
 
   return (
-    <div className="m-page m-home">
-      <section className="m-cover" aria-labelledby="mobile-home-title">
-        <div className="m-cover__brand-field" data-reveal aria-hidden="true">
-          <span className="m-cover__field m-cover__field--rose" />
-          <span className="m-cover__field m-cover__field--sage" />
-          <span className="m-cover__field m-cover__field--paper" />
-          <span className="m-cover__rule m-cover__rule--one" />
-          <span className="m-cover__rule m-cover__rule--two" />
-          <span className="m-cover__star m-cover__star--one">✦</span>
-          <span className="m-cover__star m-cover__star--two">✦</span>
+    <div className="m-page m-home m-home--v2">
+      <section className="m-room m-room--hero" aria-labelledby="mobile-home-title">
+        <div className="m-room__atmosphere" aria-hidden="true">
+          <span />
+          <span />
+          <span />
         </div>
-        <div className="m-cover__folio" data-reveal>
-          <LogoAsset variant="hero" priority />
-          <p className="m-chapter-label"><span>01</span><span>{words.heroLabel}</span></p>
+        <LogoAsset variant="hero" priority />
+        <div className="m-room--hero__copy" data-reveal>
+          <p>{words.heroLabel}</p>
           <h1 id="mobile-home-title">{words.heroTitle}</h1>
-          <p className="m-cover__body">{words.heroBody}</p>
+          <p>{words.heroBody}</p>
           <Link className="m-primary-link" to="/work">
             <span>{dictionary.actions.viewWork}</span>
-            <span aria-hidden="true">{language === "ar" ? "←" : "→"}</span>
+            <MobileArrow />
           </Link>
         </div>
       </section>
 
-      <section className="m-chapter m-selected" aria-labelledby="mobile-selected-title">
-        <MobileChapterHeader
-          id="mobile-selected-title"
-          number="02"
-          label={words.featuredLabel}
-          title={words.featuredTitle}
-          text={words.featuredBody}
-        />
-        <div className="m-selected__sequence">
-          <MobileProjectFeature project={selected[0]} index={0} mode="cinematic" asset="hero" />
-          <MobileProjectFeature project={selected[1]} index={1} mode="folio" />
-          <MobileProjectFeature project={selected[2]} index={2} mode="strip" asset="hero" />
-          <MobileProjectFeature project={selected[3]} index={3} mode="poster" />
+      <section className="m-room m-room--work" aria-labelledby="mobile-selected-title">
+        <div className="m-room__heading" data-reveal>
+          <p>{words.featuredLabel}</p>
+          <h2 id="mobile-selected-title">{words.featuredTitle}</h2>
+          <span>{words.featuredBody}</span>
         </div>
-        <MobileTextLink to="/work">{dictionary.actions.viewAllProjects}</MobileTextLink>
-      </section>
-
-      <section className="m-about-chapter" aria-labelledby="mobile-about-title">
-        <div className="m-about-chapter__visual" data-reveal>
-          <MobileVisual project={projects[6]} image={projects[6].gallery[0]} asset="gallery-1" sizes="(max-width: 900px) 78vw, 1px" />
-          <span aria-hidden="true">03</span>
-        </div>
-        <div className="m-about-chapter__copy">
-          <MobileChapterHeader
-            id="mobile-about-title"
-            number="03"
-            label={words.aboutLabel}
-            title={words.aboutTitle}
-            text={words.aboutBody}
-          />
-          <MobileTextLink to="/about">{dictionary.actions.readStory}</MobileTextLink>
+        <div className="m-v2-selected-stack">
+          {selected.map((project, index) => (
+            <MobileProjectRoom key={project.slug} project={project} index={index} asset={index === 0 || index === 2 ? "hero" : "cover"} />
+          ))}
         </div>
       </section>
 
-      <section className="m-chapter m-services-chapter" id="services" aria-labelledby="mobile-services-title">
-        <MobileChapterHeader
-          id="mobile-services-title"
-          number="04"
-          label={words.servicesLabel}
-          title={words.servicesTitle}
-          text={words.servicesBody}
-        />
+      <section className="m-room m-room--about" aria-labelledby="mobile-about-title">
+        <div className="m-room--about__visual" data-reveal>
+          <MobileVisual project={projects[6]} image={projects[6].gallery[0]} asset="gallery-1" sizes="(max-width: 900px) 82vw, 1px" />
+        </div>
+        <div className="m-room__heading" data-reveal>
+          <p>{words.aboutLabel}</p>
+          <h2 id="mobile-about-title">{words.aboutTitle}</h2>
+          <span>{words.aboutBody}</span>
+          <Link className="m-text-link" to="/about">
+            <span>{dictionary.actions.readStory}</span>
+            <MobileArrow />
+          </Link>
+        </div>
+      </section>
+
+      <section className="m-room m-room--services" id="services" aria-labelledby="mobile-services-title">
+        <div className="m-room__heading" data-reveal>
+          <p>{words.servicesLabel}</p>
+          <h2 id="mobile-services-title">{words.servicesTitle}</h2>
+          <span>{words.servicesBody}</span>
+        </div>
         <MobileServicesShowcase />
       </section>
 
-      <section className="m-process-chapter" aria-labelledby="mobile-process-title">
-        <MobileChapterHeader
-          id="mobile-process-title"
-          number="05"
-          label={words.processLabel}
-          title={words.processTitle}
-          text={words.processBody}
-          tone="dark"
-        />
+      <section className="m-room m-room--process" aria-labelledby="mobile-process-title">
+        <div className="m-room__heading m-room__heading--dark" data-reveal>
+          <p>{words.processLabel}</p>
+          <h2 id="mobile-process-title">{words.processTitle}</h2>
+          <span>{words.processBody}</span>
+        </div>
         <ol>
           {dictionary.process.map((step, index) => (
             <li key={step.title} data-reveal>
               <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-              <div><h3>{step.title}</h3><p>{step.text}</p></div>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
             </li>
           ))}
         </ol>
       </section>
 
-      <section className="m-chapter m-archive-chapter" aria-labelledby="mobile-archive-title">
-        <MobileChapterHeader
-          id="mobile-archive-title"
-          number="06"
-          label={words.archiveLabel}
-          title={words.archiveTitle}
-          text={words.archiveBody}
-        />
-        <div className="m-archive-list">
-          {archive.map((project, index) => <MobileArchiveRow key={project.slug} project={project} index={index + 4} />)}
+      <section className="m-room m-room--archive" aria-labelledby="mobile-archive-title">
+        <div className="m-room__heading" data-reveal>
+          <p>{words.archiveLabel}</p>
+          <h2 id="mobile-archive-title">{words.archiveTitle}</h2>
+          <span>{words.archiveBody}</span>
         </div>
-        <MobileTextLink to="/work">{dictionary.actions.viewAllProjects}</MobileTextLink>
+        <div className="m-v2-archive-list">
+          {archive.map((project, index) => (
+            <Link key={project.slug} to={`/work/${project.slug}`} data-reveal>
+              <span dir="ltr">{String(index + 6).padStart(2, "0")}</span>
+              <strong><bdi dir={getProjectTitleDirection(project, language)}>{getProjectDisplayTitle(project, language)}</bdi></strong>
+              <i>{dictionary.categories[project.category]}</i>
+            </Link>
+          ))}
+        </div>
       </section>
 
-      <section className="m-contact-chapter" aria-labelledby="mobile-contact-title">
-        <p className="m-chapter-label"><span>07</span><span>{words.contactLabel}</span></p>
-        <h2 id="mobile-contact-title">{words.contactTitle}</h2>
-        <p>{words.contactBody}</p>
-        <div className="m-contact-chapter__methods">
+      <section className="m-room m-room--contact" aria-labelledby="mobile-contact-title">
+        <div className="m-room__heading" data-reveal>
+          <p>{words.contactLabel}</p>
+          <h2 id="mobile-contact-title">{words.contactTitle}</h2>
+          <span>{words.contactBody}</span>
+        </div>
+        <div className="m-room--contact__methods" data-reveal>
           <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
-            <span>01</span><strong>{dictionary.ui.whatsapp}</strong><i aria-hidden="true">↗</i>
+            {dictionary.ui.whatsapp}<span aria-hidden="true">↗</span>
           </a>
           <a href={getEmailHref(language)}>
-            <span>02</span><strong>{dictionary.ui.email}</strong><i aria-hidden="true">↗</i>
+            {dictionary.ui.email}<span aria-hidden="true">↗</span>
           </a>
         </div>
       </section>

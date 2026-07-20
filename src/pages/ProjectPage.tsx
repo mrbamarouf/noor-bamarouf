@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ProjectVisual } from "../components/ProjectVisual";
 import { useLanguage } from "../context/LanguageContext";
@@ -10,6 +11,7 @@ import {
 import {
   getProjectImageByAsset,
   getProjectPresentation,
+  getProjectThemeStyle,
   type PresentationSection,
   type PresentationVisual,
 } from "../data/projectPresentation";
@@ -159,12 +161,14 @@ export function ProjectPage() {
   const projectTitleDirection = getProjectTitleDirection(project, language);
   const nextProjectTitle = getProjectDisplayTitle(nextProject, language);
   const nextProjectTitleDirection = getProjectTitleDirection(nextProject, language);
-  const heroImage = getProjectImageByAsset(project, presentation.hero.asset);
+  const heroImage = getProjectImageByAsset(project, presentation.hero.source ?? presentation.hero.asset);
+  const themeStyle = getProjectThemeStyle(project) as CSSProperties;
 
   return (
     <article
-      className={`page project-page project-page--asset-aware project-page--${presentation.family}`}
+      className={`page project-page project-page--asset-aware project-page--${presentation.family} project-page--${project.slug}`}
       data-project={project.slug}
+      style={themeStyle}
     >
       <header className="project-hero case-hero" data-reveal>
         <Link className="text-link" to="/work">
@@ -195,6 +199,7 @@ export function ProjectPage() {
         ratio="wide"
         fit={presentation.hero.fit ?? "contain"}
         loading="eager"
+        formatOverride={presentation.hero.format}
       />
 
       <section className="case-overview" aria-label={dictionary.sections.overview} data-reveal>

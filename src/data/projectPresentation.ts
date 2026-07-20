@@ -61,7 +61,212 @@ export interface ProjectPresentation {
   sections: PresentationSection[];
 }
 
+interface ProjectWorldTheme {
+  background: string;
+  surface: string;
+  surfaceAlt: string;
+  ink: string;
+  muted: string;
+  accent: string;
+  accent2: string;
+  deep: string;
+  onDeep: string;
+  line: string;
+  glow: string;
+}
+
 const text = (en: string, ar: string): LocalizedString => ({ en, ar });
+
+const defaultProjectWorld: ProjectWorldTheme = {
+  background: "#F7F1EA",
+  surface: "#FFFBF5",
+  surfaceAlt: "#EFE2D4",
+  ink: "#2D2924",
+  muted: "#6F655D",
+  accent: "#B96866",
+  accent2: "#596447",
+  deep: "#303A2E",
+  onDeep: "#F8F1E8",
+  line: "rgb(45 41 36 / 0.15)",
+  glow: "rgb(185 104 102 / 0.16)",
+};
+
+const projectWorlds: Record<string, ProjectWorldTheme> = {
+  wello: {
+    background: "#FFF3DA",
+    surface: "#FFF9EA",
+    surfaceAlt: "#FFE3AA",
+    ink: "#1E2D28",
+    muted: "#59645C",
+    accent: "#F15B24",
+    accent2: "#54BFB2",
+    deep: "#00644E",
+    onDeep: "#FFF7E8",
+    line: "rgb(30 45 40 / 0.16)",
+    glow: "rgb(241 91 36 / 0.18)",
+  },
+  matcha: {
+    background: "#F4E8DE",
+    surface: "#FCF5EA",
+    surfaceAlt: "#E8D3C8",
+    ink: "#2F3B27",
+    muted: "#667056",
+    accent: "#D8B8B3",
+    accent2: "#8A946F",
+    deep: "#5F6C47",
+    onDeep: "#FFF8F1",
+    line: "rgb(47 59 39 / 0.15)",
+    glow: "rgb(216 184 179 / 0.2)",
+  },
+  "jeddah-railway": {
+    background: "#EAF4F1",
+    surface: "#F7F3E6",
+    surfaceAlt: "#D6F0EA",
+    ink: "#073D4C",
+    muted: "#45666A",
+    accent: "#0D9B8F",
+    accent2: "#F28D45",
+    deep: "#073D4C",
+    onDeep: "#F5F4E9",
+    line: "rgb(7 61 76 / 0.16)",
+    glow: "rgb(13 155 143 / 0.18)",
+  },
+  "egg-space": {
+    background: "#17072F",
+    surface: "#231043",
+    surfaceAlt: "#2A0B5C",
+    ink: "#F8F3EA",
+    muted: "#D8CDEA",
+    accent: "#FDB914",
+    accent2: "#8C63F1",
+    deep: "#0D041E",
+    onDeep: "#FFF7E5",
+    line: "rgb(248 243 234 / 0.16)",
+    glow: "rgb(253 185 20 / 0.18)",
+  },
+  "red-bull-marvel": {
+    background: "#101010",
+    surface: "#1A1A1A",
+    surfaceAlt: "#241715",
+    ink: "#FFFFFF",
+    muted: "#D9D6CC",
+    accent: "#FFD600",
+    accent2: "#087DC2",
+    deep: "#ED1C24",
+    onDeep: "#FFFFFF",
+    line: "rgb(255 255 255 / 0.18)",
+    glow: "rgb(237 28 36 / 0.2)",
+  },
+  impostor: {
+    background: "#080808",
+    surface: "#151515",
+    surfaceAlt: "#24120F",
+    ink: "#FFFFFF",
+    muted: "#D7CDC5",
+    accent: "#E50909",
+    accent2: "#FFD84D",
+    deep: "#000000",
+    onDeep: "#FFFFFF",
+    line: "rgb(255 255 255 / 0.17)",
+    glow: "rgb(229 9 9 / 0.2)",
+  },
+  "wemo-delights": {
+    background: "#F2E3CE",
+    surface: "#FFF5E8",
+    surfaceAlt: "#EBD1D5",
+    ink: "#2E1D3D",
+    muted: "#74596D",
+    accent: "#5F4467",
+    accent2: "#B88952",
+    deep: "#2E1D3D",
+    onDeep: "#FFF4E4",
+    line: "rgb(46 29 61 / 0.16)",
+    glow: "rgb(244 198 209 / 0.2)",
+  },
+  "rahaba-space": {
+    background: "#F3E8D8",
+    surface: "#FBF3E7",
+    surfaceAlt: "#E3CFBA",
+    ink: "#4A2F21",
+    muted: "#7B634F",
+    accent: "#805631",
+    accent2: "#AA9584",
+    deep: "#4A2F21",
+    onDeep: "#FFF4E6",
+    line: "rgb(74 47 33 / 0.16)",
+    glow: "rgb(170 149 132 / 0.22)",
+  },
+  "nirto-cold-brew": {
+    background: "#080706",
+    surface: "#140D09",
+    surfaceAlt: "#2A120C",
+    ink: "#F0D7A2",
+    muted: "#C19B67",
+    accent: "#D99A38",
+    accent2: "#9C4B1E",
+    deep: "#050403",
+    onDeep: "#FFEFD2",
+    line: "rgb(240 215 162 / 0.18)",
+    glow: "rgb(217 154 56 / 0.18)",
+  },
+  "zahy-store": {
+    background: "#F8F6F0",
+    surface: "#FFFFFF",
+    surfaceAlt: "#E9F1EC",
+    ink: "#0E5A4D",
+    muted: "#5F786F",
+    accent: "#0E5A4D",
+    accent2: "#A9C8BB",
+    deep: "#0E5A4D",
+    onDeep: "#FFFFFF",
+    line: "rgb(14 90 77 / 0.16)",
+    glow: "rgb(14 90 77 / 0.12)",
+  },
+  "ansab-holding": {
+    background: "#F8F6F0",
+    surface: "#FFFFFF",
+    surfaceAlt: "#EFF7E4",
+    ink: "#111111",
+    muted: "#5E5E5A",
+    accent: "#5EC63D",
+    accent2: "#F6B51E",
+    deep: "#111111",
+    onDeep: "#FFFFFF",
+    line: "rgb(17 17 17 / 0.15)",
+    glow: "rgb(94 198 61 / 0.14)",
+  },
+  "red-sea": {
+    background: "#112A43",
+    surface: "#FFFFFF",
+    surfaceAlt: "#D9E6F1",
+    ink: "#FFFFFF",
+    muted: "#D9E6F1",
+    accent: "#BD1826",
+    accent2: "#1A4A86",
+    deep: "#112A43",
+    onDeep: "#FFFFFF",
+    line: "rgb(255 255 255 / 0.16)",
+    glow: "rgb(189 24 38 / 0.2)",
+  },
+};
+
+export function getProjectThemeStyle(project: Project): Record<string, string> {
+  const theme = projectWorlds[project.slug] ?? defaultProjectWorld;
+
+  return {
+    "--case-bg": theme.background,
+    "--case-surface": theme.surface,
+    "--case-surface-alt": theme.surfaceAlt,
+    "--case-ink": theme.ink,
+    "--case-muted": theme.muted,
+    "--case-accent": theme.accent,
+    "--case-accent-2": theme.accent2,
+    "--case-deep": theme.deep,
+    "--case-on-deep": theme.onDeep,
+    "--case-line": theme.line,
+    "--case-glow": theme.glow,
+  };
+}
 
 export function getProjectImageByAsset(project: Project, asset: PresentationAsset): ProjectImage {
   if (asset === "cover") return project.coverImage;
@@ -208,14 +413,16 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
     hero: { asset: "hero", kind: "packaging-mockup", emphasis: "full" },
     sections: [
       {
-        id: "concept-process",
-        label: text("Concept", "الفكرة"),
-        title: text("The idea and process behind the cylinder", "الفكرة والعملية خلف العبوة الأسطوانية"),
+        id: "final-package",
+        label: text("Final Package", "التغليف النهائي"),
+        title: text("The cylinder as a finished brand object", "العبوة الأسطوانية كقطعة نهائية تحمل الهوية"),
         copyKey: "context",
-        layout: "portrait-grid",
+        layout: "social-grid",
         visuals: [
-          { asset: "gallery-1", kind: "square-post", emphasis: "feature" },
-          { asset: "gallery-2", kind: "landscape-presentation", emphasis: "wide" },
+          { asset: "cover", kind: "packaging-mockup" },
+          { asset: "gallery-5", kind: "packaging-mockup" },
+          { asset: "gallery-6", kind: "landscape-presentation", emphasis: "wide" },
+          { asset: "gallery-8", kind: "landscape-presentation", emphasis: "wide" },
         ],
       },
       {
@@ -232,16 +439,15 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         ],
       },
       {
-        id: "final-package",
-        label: text("Final Package", "التغليف النهائي"),
-        title: text("Mockup, prototype, and closing graphic", "نموذج وعينة وتفصيل ختامي"),
+        id: "concept-process",
+        label: text("Design System", "نظام التصميم"),
+        title: text("Concept note and production structure", "الفكرة وبنية الإنتاج"),
         copyKey: "outcome",
-        layout: "social-grid",
+        layout: "portrait-grid",
+        tone: "dark",
         visuals: [
-          { asset: "cover", kind: "square-post" },
-          { asset: "gallery-5", kind: "square-post" },
-          { asset: "gallery-6", kind: "landscape-presentation", emphasis: "wide" },
-          { asset: "gallery-8", kind: "landscape-presentation", emphasis: "wide" },
+          { asset: "gallery-1", kind: "square-post", emphasis: "feature" },
+          { asset: "gallery-2", kind: "landscape-presentation", emphasis: "wide" },
         ],
       },
     ],
@@ -417,15 +623,12 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
     hero: { asset: "hero", kind: "packaging-mockup", emphasis: "full" },
     sections: [
       {
-        id: "packaging-concept",
-        label: text("Packaging Concept", "فكرة التغليف"),
-        title: text("Can presentation and full wrap", "عرض العبوة والعمل الفني الكامل"),
+        id: "finished-can",
+        label: text("Finished Visuals", "المرئيات النهائية"),
+        title: text("Cold brew can presentation", "عرض عبوة الكولد برو"),
         copyKey: "context",
         layout: "packaging",
-        visuals: [
-          { asset: "cover", kind: "packaging-mockup", emphasis: "wide" },
-          { asset: "gallery-2", kind: "landscape-presentation", emphasis: "wide" },
-        ],
+        visuals: [{ asset: "cover", kind: "packaging-mockup", emphasis: "wide" }],
       },
       {
         id: "label-panels",
@@ -442,10 +645,19 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         ],
       },
       {
-        id: "closeups",
-        label: text("Close-ups", "لقطات قريبة"),
-        title: text("Coffee texture and label detail", "ملمس القهوة وتفاصيل الملصق"),
+        id: "technical-layout",
+        label: text("Packaging Layout", "مخطط التغليف"),
+        title: text("Flat wrap kept as a technical reference", "الغلاف المسطح كمرجع تقني"),
         copyKey: "outcome",
+        layout: "document",
+        tone: "dark",
+        visuals: [{ asset: "gallery-2", kind: "landscape-presentation", emphasis: "wide" }],
+      },
+      {
+        id: "closeups",
+        label: text("Closing Detail", "تفصيل ختامي"),
+        title: text("Coffee texture and label finish", "ملمس القهوة ولمسة الملصق النهائية"),
+        copyKey: "direction",
         layout: "stack",
         visuals: [{ asset: "gallery-3", kind: "square-post", emphasis: "feature" }],
       },
@@ -528,25 +740,12 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
     hero: { asset: "hero", kind: "brand-application", emphasis: "full" },
     sections: [
       {
-        id: "company-profile",
-        label: text("Company Profile", "الملف التعريفي"),
-        title: text("Readable company profile presentation", "عرض واضح للملف التعريفي"),
-        copyKey: "context",
-        layout: "document",
-        visuals: [
-          { asset: "details/profile-cover", source: "gallery-1", format: "png", kind: "document-page", emphasis: "wide" },
-          { asset: "details/profile-truck-types", source: "gallery-1", format: "png", kind: "document-page", emphasis: "wide" },
-          { asset: "details/profile-spread", source: "gallery-1", format: "png", kind: "document-spread", emphasis: "wide" },
-          { asset: "gallery-6", kind: "document-spread", emphasis: "wide" },
-        ],
-      },
-      {
         id: "social-media-posts",
         label: text("Social Media Posts", "منشورات وسائل التواصل"),
-        title: text("Selected feed and post designs", "تصاميم مختارة للشبكة والمنشورات"),
-        copyKey: "direction",
+        title: text("Curated feed and finished post designs", "منشورات نهائية ومنسقة للشبكة"),
+        copyKey: "context",
         layout: "social-grid",
-        tone: "paper",
+        tone: "brand",
         visuals: [
           { asset: "details/post-vision", source: "gallery-5", format: "png", kind: "square-post", emphasis: "feature" },
           { asset: "details/post-fragile", source: "gallery-5", format: "png", kind: "square-post" },
@@ -558,8 +757,8 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         label: text("Stories / Highlights", "القصص والهايلايت"),
         title: text("Vertical communication and quick identifiers", "تواصل عمودي ومعرّفات سريعة"),
         copy: text(
-          "Stories and highlight-style visuals are kept together so the mobile communication system stays legible and separate from the company profile.",
-          "تُعرض القصص ومرئيات الهايلايت معًا حتى يبقى نظام التواصل العمودي واضحًا ومنفصلًا عن الملف التعريفي.",
+          "Stories and highlight-style visuals are kept together so the vertical communication system stays legible, fast, and recognizably RED SEA.",
+          "تُعرض القصص ومرئيات الهايلايت معًا حتى يبقى نظام التواصل العمودي واضحًا وسريعًا ومتصلاً بهوية RED SEA.",
         ),
         layout: "portrait-grid",
         tone: "dark",
@@ -574,15 +773,11 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
       },
       {
         id: "campaign-and-selected",
-        label: text("Campaign / Selected Visuals", "الحملة ومرئيات مختارة"),
-        title: text("Campaign materials and closing overview", "مواد الحملة ولمحة ختامية"),
+        label: text("Campaign / OOH", "الحملة والإعلانات الخارجية"),
+        title: text("National Day artwork and logistics-led marketing visuals", "عمل اليوم الوطني ومرئيات تسويقية مرتبطة بالخدمات اللوجستية"),
         copyKey: "outcome",
         layout: "billboard",
-        visuals: [
-          { asset: "details/post-national-day", source: "gallery-5", format: "png", kind: "square-post", emphasis: "wide" },
-          { asset: "gallery-8", kind: "brand-application", emphasis: "wide" },
-          { asset: "gallery-7", kind: "landscape-presentation", emphasis: "wide" },
-        ],
+        visuals: [{ asset: "details/post-national-day", source: "gallery-5", format: "png", kind: "square-post", emphasis: "wide" }],
       },
     ],
   },

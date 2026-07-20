@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import { projects } from "../../data/projects";
-import { MobileChapterHeader } from "../MobilePrimitives";
 import { MobileVisual } from "../MobileVisual";
 import { mobileCopy } from "../mobileCopy";
 
@@ -10,46 +9,38 @@ export function MobileAboutPage() {
   const words = mobileCopy[language];
 
   return (
-    <div className="m-page m-about-page">
-      <section className="m-about-cover" aria-labelledby="mobile-about-page-title">
-        <div className="m-about-cover__copy">
-          <MobileChapterHeader
-            id="mobile-about-page-title"
-            number="01"
-            label={words.aboutLabel}
-            title={words.aboutTitle}
-            text={words.aboutBody}
-          />
+    <div className="m-page m-about-page m-about-page--v2">
+      <section className="m-room m-room--about-route" aria-labelledby="mobile-about-page-title">
+        <div className="m-room__heading" data-reveal>
+          <p>{words.aboutLabel}</p>
+          <h1 id="mobile-about-page-title">{dictionary.aboutPage.title}</h1>
+          <span>{dictionary.aboutPage.body}</span>
         </div>
-        <div className="m-about-cover__visual" data-reveal>
-          <MobileVisual project={projects[1]} image={projects[1].gallery[1]} asset="gallery-2" loading="eager" sizes="(max-width: 900px) 100vw, 1px" />
-          <p>{dictionary.hero.materialNote}</p>
-        </div>
+        <MobileVisual project={projects[1]} image={projects[1].gallery[1]} asset="gallery-2" loading="eager" sizes="(max-width: 900px) 100vw, 1px" />
       </section>
 
-      <section className="m-about-essay">
-        <p className="m-chapter-label"><span>02</span><span>{dictionary.sections.overview}</span></p>
-        <p className="m-about-essay__lead" data-reveal>{dictionary.aboutPage.body}</p>
-        <blockquote data-reveal>{dictionary.home.aboutQuote}</blockquote>
-        <p data-reveal>{dictionary.aboutPage.philosophy}</p>
+      <section className="m-room m-room--about-essay">
+        <div className="m-room__heading" data-reveal>
+          <p>{dictionary.sections.creativeDirection}</p>
+          <h2>{dictionary.home.aboutQuote}</h2>
+          <span>{dictionary.aboutPage.philosophy}</span>
+        </div>
+        <MobileVisual project={projects[6]} image={projects[6].gallery[0]} asset="gallery-1" sizes="(max-width: 900px) 84vw, 1px" />
       </section>
 
-      <section className="m-about-values" aria-labelledby="mobile-values-title">
-        <MobileChapterHeader
-          id="mobile-values-title"
-          number="03"
-          label={dictionary.sections.values}
-          title={dictionary.sections.values}
-        />
-        <ol>
+      <section className="m-room m-room--about-values" aria-labelledby="mobile-values-title">
+        <div className="m-room__heading" data-reveal>
+          <p>{dictionary.sections.values}</p>
+          <h2 id="mobile-values-title">{dictionary.sections.values}</h2>
+        </div>
+        <ol className="m-v2-archive-list">
           {dictionary.values.map((value, index) => (
-            <li key={value} data-reveal><span dir="ltr">{String(index + 1).padStart(2, "0")}</span><strong>{value}</strong></li>
+            <li key={value} data-reveal>
+              <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{value}</strong>
+            </li>
           ))}
         </ol>
-      </section>
-
-      <section className="m-about-invitation" data-reveal>
-        <p>{dictionary.aboutPage.invite}</p>
         <Link className="m-primary-link" to="/contact">
           <span>{dictionary.actions.startProject}</span>
           <span aria-hidden="true">{language === "ar" ? "←" : "→"}</span>

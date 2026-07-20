@@ -104,19 +104,17 @@ export function MobileIntro() {
 
   return (
     <section className={`m-intro ${leaving ? "m-intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
-      <div className="m-intro__field" aria-hidden="true" />
-      <div className="m-intro__stage">
-        <span className="m-intro__veil m-intro__veil--top" aria-hidden="true" />
-        <span className="m-intro__veil m-intro__veil--bottom" aria-hidden="true" />
-        <span className="m-intro__axis m-intro__axis--horizontal" aria-hidden="true" />
-        <span className="m-intro__axis m-intro__axis--vertical" aria-hidden="true" />
-        <span className="m-intro__star m-intro__star--one" aria-hidden="true">✦</span>
-        <span className="m-intro__star m-intro__star--two" aria-hidden="true">✦</span>
+      <div className="m-intro__atmosphere" aria-hidden="true">
+        <span className="m-intro__paper m-intro__paper--base" />
+        <span className="m-intro__paper m-intro__paper--blush" />
+        <span className="m-intro__paper m-intro__paper--sage" />
+        <span className="m-intro__light-pass" />
+        <span className="m-intro__grain" />
+      </div>
+      <div className="m-intro__stage" aria-hidden="true">
         <div className="m-intro__mark">
-          <span className="m-intro__mark-shadow" aria-hidden="true" />
           <LogoAsset variant="intro" priority />
         </div>
-        <div className="m-intro__light-pass" aria-hidden="true" />
       </div>
       <button type="button" className="m-intro__skip" onClick={skip}>{dictionary.actions.skipIntro}</button>
     </section>
