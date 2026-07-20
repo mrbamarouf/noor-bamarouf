@@ -10,7 +10,6 @@ const darkProjectHeaderSlugs = new Set([
   "red-bull-marvel",
   "impostor",
   "nirto-cold-brew",
-  "red-sea",
 ]);
 
 export function MobileHeader() {

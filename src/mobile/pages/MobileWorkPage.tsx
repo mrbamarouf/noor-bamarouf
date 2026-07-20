@@ -10,7 +10,7 @@ import { mobileCopy } from "../mobileCopy";
 const workAssets: MobileAsset[] = [
   "hero", "cover", "hero", "cover",
   "cover", "hero", "hero", "cover",
-  "hero", "cover", "hero", "hero",
+  "hero", "cover", "hero",
 ];
 
 export function MobileWorkPage() {

@@ -7,10 +7,6 @@ export function MobileFooter() {
   const { dictionary, language } = useLanguage();
   const words = mobileCopy[language];
 
-  const backToTop = () => {
-    window.scrollTo({ top: 0, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
-  };
-
   return (
     <footer className="m-footer">
       <div className="m-footer__brand">
@@ -25,7 +21,6 @@ export function MobileFooter() {
 
       <div className="m-footer__base">
         <small>© 2026 {words.copyright}</small>
-        <button type="button" onClick={backToTop} aria-label={dictionary.actions.backToTop}>↑</button>
       </div>
     </footer>
   );

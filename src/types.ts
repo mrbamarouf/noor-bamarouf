@@ -37,7 +37,6 @@ export type ArtVariant =
   | "nirtoColdBrew"
   | "zahyStore"
   | "ansabHolding"
-  | "redSea"
   | "studio"
   | "materials"
   | "archive";

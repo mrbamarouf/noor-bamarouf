@@ -174,6 +174,16 @@ export function ProjectPage() {
         <Link className="text-link" to="/work">
           {direction === "rtl" ? `${dictionary.actions.backToWork} →` : `← ${dictionary.actions.backToWork}`}
         </Link>
+        <ProjectVisual
+          className={`project-main-image project-main-image--${presentation.hero.kind}`}
+          image={heroImage}
+          projectSlug={project.slug}
+          asset={presentation.hero.asset}
+          ratio="wide"
+          fit={presentation.hero.fit ?? "contain"}
+          loading="eager"
+          formatOverride={presentation.hero.format}
+        />
         <div className="project-hero__title">
           <span>{project.year} / {dictionary.categories[project.category]} / {project.projectType[language]}</span>
           <h1 dir={projectTitleDirection}>{projectTitle}</h1>
@@ -190,17 +200,6 @@ export function ProjectPage() {
           </div>
         </dl>
       </header>
-
-      <ProjectVisual
-        className={`project-main-image project-main-image--${presentation.hero.kind}`}
-        image={heroImage}
-        projectSlug={project.slug}
-        asset={presentation.hero.asset}
-        ratio="wide"
-        fit={presentation.hero.fit ?? "contain"}
-        loading="eager"
-        formatOverride={presentation.hero.format}
-      />
 
       <section className="case-overview" aria-label={dictionary.sections.overview} data-reveal>
         <div>

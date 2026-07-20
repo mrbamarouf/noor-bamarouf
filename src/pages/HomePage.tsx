@@ -28,6 +28,7 @@ interface ServicePreview {
 const welloProject = portfolioProject("wello");
 const matchaProject = portfolioProject("matcha");
 const jeddahProject = portfolioProject("jeddah-railway");
+const eggSpaceProject = portfolioProject("egg-space");
 const wemoProject = portfolioProject("wemo-delights");
 const ansabProject = portfolioProject("ansab-holding");
 const rahabaProject = portfolioProject("rahaba-space");
@@ -46,8 +47,8 @@ const servicePreviews: Record<ServiceKey, ServicePreview> = {
     ratio: "square",
   },
   graphicDesign: {
-    project: portfolioProject("egg-space"),
-    image: portfolioProject("egg-space").gallery[6],
+    project: eggSpaceProject,
+    image: eggSpaceProject.gallery[6],
     asset: "gallery-7",
     ratio: "landscape",
   },
@@ -88,17 +89,20 @@ function Arrow() {
   return <span aria-hidden="true">{direction === "rtl" ? "←" : "→"}</span>;
 }
 
-function ProjectRoom({ project, index }: { project: Project; index: number }) {
+function ProjectEntry({ project, index, featured = false }: { project: Project; index: number; featured?: boolean }) {
   const { dictionary, language } = useLanguage();
   const title = getProjectDisplayTitle(project, language);
   const titleDirection = getProjectTitleDirection(project, language);
-  const useHero = index === 0 || index === 2;
-  const asset = useHero ? "hero" : "cover";
-  const image = useHero ? project.heroImage : project.coverImage;
-  const ratio = index === 0 ? "wide" : index % 3 === 1 ? "portrait" : "landscape";
+  const asset = featured ? "hero" : index % 3 === 0 ? "hero" : "cover";
+  const image = asset === "hero" ? project.heroImage : project.coverImage;
+  const ratio = featured ? "wide" : index % 2 === 0 ? "landscape" : "portrait";
 
   return (
-    <Link className={`v2-work-card v2-work-card--${index % 4}`} to={`/work/${project.slug}`} data-cursor="view">
+    <Link
+      className={featured ? "home-work-entry home-work-entry--feature" : "home-work-entry"}
+      to={`/work/${project.slug}`}
+      data-cursor="view"
+    >
       <ProjectVisual
         image={image}
         projectSlug={project.slug}
@@ -106,56 +110,107 @@ function ProjectRoom({ project, index }: { project: Project; index: number }) {
         ratio={ratio}
         loading={index < 3 ? "eager" : "lazy"}
       />
-      <span className="v2-work-card__count" dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-      <span className="v2-work-card__meta">{project.year} / {dictionary.categories[project.category]}</span>
-      <strong dir={titleDirection}>{title}</strong>
-      <span>{project.shortDescription[language]}</span>
+      <div className="home-work-entry__copy">
+        <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
+        <p>{dictionary.categories[project.category]} / {project.year}</p>
+        <h3 dir={titleDirection}>{title}</h3>
+        <small>{project.projectType[language]}</small>
+      </div>
     </Link>
   );
 }
 
-function ServicesSection() {
+function SelectedWork({ projects: selectedProjects }: { projects: Project[] }) {
   const { dictionary } = useLanguage();
-  const [activeService, setActiveService] = useState<ServiceKey>("brandIdentity");
-  const preview = servicePreviews[activeService];
+  const [feature, ...supporting] = selectedProjects;
 
   return (
-    <section className="v2-services" id="services" aria-labelledby="services-title" data-reveal>
-      <div className="v2-services__intro">
-        <span className="section__index">{dictionary.nav.services}</span>
+    <section className="home-selected" aria-labelledby="selected-title" data-reveal>
+      <div className="home-section-heading">
+        <span className="section__index">02</span>
+        <h2 id="selected-title">{dictionary.home.selectedTitle}</h2>
+        <p>{dictionary.home.selectedIntro}</p>
+      </div>
+      <div className="home-selected__layout">
+        {feature ? <ProjectEntry project={feature} index={0} featured /> : null}
+        <div className="home-selected__supporting">
+          {supporting.map((project, index) => (
+            <ProjectEntry project={project} index={index + 1} key={project.slug} />
+          ))}
+        </div>
+      </div>
+      <Link className="text-link home-selected__link" to="/work">
+        {dictionary.actions.viewAllProjects} <Arrow />
+      </Link>
+    </section>
+  );
+}
+
+function AboutNoor() {
+  const { dictionary } = useLanguage();
+
+  return (
+    <section className="home-about" aria-labelledby="home-about-title" data-reveal>
+      <div className="home-about__copy">
+        <span className="section__index">03</span>
+        <h2 id="home-about-title">{dictionary.home.aboutQuote}</h2>
+        <p>{dictionary.home.philosophyBody}</p>
+        <Link className="text-link" to="/about">
+          {dictionary.actions.readStory} <Arrow />
+        </Link>
+      </div>
+      <div className="home-about__visuals" aria-hidden="true">
+        <ProjectVisual image={matchaProject.gallery[6]} projectSlug={matchaProject.slug} asset="gallery-7" ratio="wide" fit="cover" />
+        <ProjectVisual image={wemoProject.gallery[4]} projectSlug={wemoProject.slug} asset="gallery-5" ratio="portrait" fit="cover" />
+      </div>
+    </section>
+  );
+}
+
+function ServicesSection() {
+  const { dictionary, language } = useLanguage();
+  const [activeService, setActiveService] = useState<ServiceKey>("brandIdentity");
+  const preview = servicePreviews[activeService];
+  const previewTitle = getProjectDisplayTitle(preview.project, language);
+
+  return (
+    <section className="home-services" id="services" aria-labelledby="services-title" data-reveal>
+      <div className="home-section-heading">
+        <span className="section__index">04</span>
         <h2 id="services-title">{dictionary.nav.services}</h2>
         <p>{dictionary.home.servicesIntro}</p>
       </div>
-      <div className="v2-services__visual">
-        <ProjectVisual
-          className="v2-services__image"
-          image={preview.image}
-          projectSlug={preview.project.slug}
-          asset={preview.asset}
-          ratio={preview.ratio}
-        />
-        <span>{preview.project.title}</span>
-      </div>
-      <div className="v2-services__list">
-        {serviceOrder.map((service, index) => {
-          const active = service === activeService;
+      <div className="home-services__body">
+        <div className="home-services__list">
+          {serviceOrder.map((service, index) => {
+            const active = service === activeService;
 
-          return (
-            <button
-              className={active ? "v2-service-row v2-service-row--active" : "v2-service-row"}
-              key={service}
-              type="button"
-              onClick={() => setActiveService(service)}
-              onFocus={() => setActiveService(service)}
-              onMouseEnter={() => setActiveService(service)}
-              aria-pressed={active}
-            >
-              <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-              <strong>{dictionary.services[service].title}</strong>
-              <em>{dictionary.services[service].description}</em>
-            </button>
-          );
-        })}
+            return (
+              <button
+                className={active ? "home-service-row home-service-row--active" : "home-service-row"}
+                key={service}
+                type="button"
+                onClick={() => setActiveService(service)}
+                onFocus={() => setActiveService(service)}
+                onMouseEnter={() => setActiveService(service)}
+                aria-pressed={active}
+              >
+                <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
+                <strong>{dictionary.services[service].title}</strong>
+                <em>{dictionary.services[service].description}</em>
+              </button>
+            );
+          })}
+        </div>
+        <figure className="home-services__preview">
+          <ProjectVisual
+            image={preview.image}
+            projectSlug={preview.project.slug}
+            asset={preview.asset}
+            ratio={preview.ratio}
+          />
+          <figcaption dir={getProjectTitleDirection(preview.project, language)}>{previewTitle}</figcaption>
+        </figure>
       </div>
     </section>
   );
@@ -165,13 +220,13 @@ function ProcessSection() {
   const { dictionary } = useLanguage();
 
   return (
-    <section className="v2-process" aria-labelledby="process-title" data-reveal>
-      <div className="v2-process__intro">
-        <span className="section__index">{dictionary.home.processTitle}</span>
+    <section className="home-process" aria-labelledby="process-title" data-reveal>
+      <div className="home-section-heading">
+        <span className="section__index">05</span>
         <h2 id="process-title">{dictionary.home.processTitle}</h2>
         <p>{dictionary.home.processIntro}</p>
       </div>
-      <ol className="v2-process__steps">
+      <ol className="home-process__steps">
         {dictionary.process.map((stage, index) => (
           <li key={stage.title}>
             <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
@@ -184,32 +239,46 @@ function ProcessSection() {
   );
 }
 
-function FeaturedCase({ project }: { project: Project }) {
+function ArchivePreview({ archiveProjects }: { archiveProjects: Project[] }) {
   const { dictionary, language } = useLanguage();
-  const title = getProjectDisplayTitle(project, language);
-  const titleDirection = getProjectTitleDirection(project, language);
 
   return (
-    <section className="v2-featured-case" aria-labelledby="featured-title" data-reveal>
-      <ProjectVisual
-        className="v2-featured-case__image"
-        image={project.heroImage}
-        projectSlug={project.slug}
-        asset="hero"
-        ratio="wide"
-      />
-      <div className="v2-featured-case__copy">
-        <span className="section__index">{dictionary.home.featuredTitle}</span>
-        <h2 id="featured-title" dir={titleDirection}>{title}</h2>
-        <p>{project.fullDescription[language]}</p>
-        <div className="palette-row" aria-label={dictionary.sections.palette}>
-          {project.colorPalette.map((color) => (
-            <span key={color} style={{ backgroundColor: color }} />
-          ))}
-        </div>
-        <Link className="text-link" to={`/work/${project.slug}`}>
-          {dictionary.actions.readStory} <Arrow />
-        </Link>
+    <section className="home-archive" aria-labelledby="archive-title" data-reveal>
+      <div className="home-archive__intro">
+        <span className="section__index">06</span>
+        <h2 id="archive-title">{dictionary.home.archiveTitle}</h2>
+        <p>{dictionary.home.workNote}</p>
+      </div>
+      <div className="home-archive__list">
+        {archiveProjects.map((project, index) => (
+          <Link key={project.slug} to={`/work/${project.slug}`} data-cursor="view">
+            <span dir="ltr">{String(index + 6).padStart(2, "0")}</span>
+            <strong dir={getProjectTitleDirection(project, language)}>{getProjectDisplayTitle(project, language)}</strong>
+            <small>{dictionary.categories[project.category]}</small>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ContactCallout() {
+  const { dictionary, language } = useLanguage();
+
+  return (
+    <section className="home-contact" aria-labelledby="home-contact-title" data-reveal>
+      <div>
+        <span className="section__index">07</span>
+        <h2 id="home-contact-title">{dictionary.home.contactTitle}</h2>
+        <p>{dictionary.home.contactBody}</p>
+      </div>
+      <div className="home-contact__actions">
+        <a className="button button--primary" href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
+          {dictionary.actions.contactByWhatsApp} <Arrow />
+        </a>
+        <a className="button button--quiet" href={getEmailHref(language)}>
+          {dictionary.actions.sendEmail}
+        </a>
       </div>
     </section>
   );
@@ -217,30 +286,35 @@ function FeaturedCase({ project }: { project: Project }) {
 
 export function HomePage() {
   const { dictionary, language } = useLanguage();
-  const selected = projects.slice(0, 8);
-  const archivePreviewProjects = projects.slice(8);
+  const selectedProjects = projects.slice(0, 5);
+  const archivePreviewProjects = projects.slice(5);
+  const heroTitle = language === "ar" ? "نور بامعروف" : "NOOR BAMAROUF";
+  const heroDisciplines = [
+    dictionary.services.brandIdentity.title,
+    dictionary.services.packagingDesign.title,
+    dictionary.services.printDesign.title,
+    dictionary.services.editorialDesign.title,
+    dictionary.services.socialMediaDesign.title,
+    dictionary.services.creativeDirection.title,
+  ];
 
   return (
-    <div className="page page--home page--v2">
-      <section className="v2-hero" aria-labelledby="hero-title" data-reveal>
-        <div className="v2-hero__atmosphere" aria-hidden="true">
-          <span className="v2-hero__sheet v2-hero__sheet--one" />
-          <span className="v2-hero__sheet v2-hero__sheet--two" />
-          <span className="v2-hero__sheet v2-hero__sheet--three" />
-          <span className="v2-hero__light" />
-          <span className="v2-hero__press-mark" />
-        </div>
-        <div className="v2-hero__identity">
+    <div className="page page--home page--rebuild">
+      <section className="home-hero" aria-labelledby="hero-title" data-reveal>
+        <div className="home-hero__identity">
           <LogoAsset variant="hero" priority />
-        </div>
-        <div className="v2-hero__copy">
           <p>{dictionary.hero.descriptor}</p>
-          <h1 id="hero-title">
-            <span>{dictionary.hero.lineOne}</span>
-            <span>{dictionary.hero.lineTwo}</span>
-          </h1>
+        </div>
+        <div className="home-hero__copy">
+          <span className="section__index">01 / {dictionary.hero.edition}</span>
+          <h1 id="hero-title">{heroTitle}</h1>
           <p>{dictionary.hero.body}</p>
-          <div className="v2-hero__actions">
+          <ul aria-label={dictionary.sections.capabilities}>
+            {heroDisciplines.map((discipline) => (
+              <li key={discipline}>{discipline}</li>
+            ))}
+          </ul>
+          <div className="home-hero__actions">
             <Link className="button button--primary" to="/work">
               {dictionary.actions.viewWork} <Arrow />
             </Link>
@@ -249,71 +323,25 @@ export function HomePage() {
             </Link>
           </div>
         </div>
-      </section>
-
-      <section className="v2-material-statement" aria-labelledby="statement-title" data-reveal>
-        <div>
-          <span className="section__index">{dictionary.home.aboutTitle}</span>
-          <h2 id="statement-title">{dictionary.home.aboutQuote}</h2>
-        </div>
-        <p>{dictionary.home.philosophyBody}</p>
-        <div className="v2-material-statement__images" aria-hidden="true">
-          <ProjectVisual image={matchaProject.gallery[1]} projectSlug={matchaProject.slug} asset="gallery-2" ratio="square" />
-          <ProjectVisual image={wemoProject.gallery[4]} projectSlug={wemoProject.slug} asset="gallery-5" ratio="portrait" />
-        </div>
-      </section>
-
-      <section className="v2-selected-work" aria-labelledby="selected-title" data-reveal>
-        <div className="v2-selected-work__intro">
-          <span className="section__index">{dictionary.home.selectedTitle}</span>
-          <h2 id="selected-title">{dictionary.home.selectedTitle}</h2>
-          <p>{dictionary.home.selectedIntro}</p>
-        </div>
-        <div className="v2-selected-work__rooms">
-          {selected.map((project, index) => (
-            <ProjectRoom project={project} index={index} key={project.slug} />
-          ))}
-        </div>
-        <Link className="text-link v2-selected-work__link" to="/work">
-          {dictionary.actions.viewAllProjects} <Arrow />
+        <Link className="home-hero__feature" to={`/work/${welloProject.slug}`} data-cursor="view">
+          <ProjectVisual
+            image={welloProject.heroImage}
+            projectSlug={welloProject.slug}
+            asset="hero"
+            ratio="wide"
+            fit="cover"
+            loading="eager"
+          />
+          <span>{dictionary.actions.openProject}</span>
         </Link>
       </section>
 
-      <FeaturedCase project={projects[0]} />
+      <SelectedWork projects={selectedProjects} />
+      <AboutNoor />
       <ServicesSection />
       <ProcessSection />
-
-      <section className="v2-archive-preview" aria-labelledby="archive-title" data-reveal>
-        <div>
-          <span className="section__index">{dictionary.home.archiveTitle}</span>
-          <h2 id="archive-title">{dictionary.home.archiveTitle}</h2>
-          <p>{dictionary.home.workNote}</p>
-        </div>
-        <div className="v2-archive-preview__list">
-          {archivePreviewProjects.map((project) => (
-            <Link key={project.slug} to={`/work/${project.slug}`} data-cursor="view">
-              <ProjectVisual image={project.coverImage} projectSlug={project.slug} asset="cover" ratio="square" />
-              <span dir={getProjectTitleDirection(project, language)}>{getProjectDisplayTitle(project, language)}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="v2-contact-cta" aria-labelledby="home-contact-title" data-reveal>
-        <div>
-          <span className="section__index">{dictionary.nav.contact}</span>
-          <h2 id="home-contact-title">{dictionary.home.contactTitle}</h2>
-          <p>{dictionary.home.contactBody}</p>
-        </div>
-        <div className="v2-contact-cta__actions">
-          <a className="button button--primary" href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
-            {dictionary.actions.contactByWhatsApp} <Arrow />
-          </a>
-          <a className="button button--quiet" href={getEmailHref(language)}>
-            {dictionary.actions.sendEmail}
-          </a>
-        </div>
-      </section>
+      <ArchivePreview archiveProjects={archivePreviewProjects} />
+      <ContactCallout />
     </div>
   );
 }

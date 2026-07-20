@@ -114,17 +114,18 @@ export function Intro() {
 
   return (
     <section className={`intro ${leaving ? "intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
-      <div className="intro__atmosphere" aria-hidden="true">
-        <span className="intro__paper intro__paper--base" />
-        <span className="intro__paper intro__paper--blush" />
-        <span className="intro__paper intro__paper--sage" />
-        <span className="intro__light" />
-        <span className="intro__grain" />
+      <div className="intro__field" aria-hidden="true">
+        <span className="intro__aura intro__aura--blush" />
+        <span className="intro__aura intro__aura--olive" />
+        <span className="intro__light-pass" />
+        <span className="intro__texture" />
       </div>
       <div className="intro__stage" aria-hidden="true">
         <div className="intro__mark-reveal">
           <LogoAsset variant="intro" priority />
         </div>
+        <p className="intro__wordmark">NOOR BAMAROUF</p>
+        <span className="intro__role">{dictionary.intro.descriptor}</span>
       </div>
       <button className="intro__skip" type="button" onClick={skip}>
         {dictionary.actions.skipIntro}

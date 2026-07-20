@@ -96,6 +96,9 @@ export function MobileProjectPage() {
   const title = getProjectDisplayTitle(project, language);
   const titleDirection = getProjectTitleDirection(project, language);
   const heroImage = getProjectImageByAsset(project, presentation.hero.source ?? presentation.hero.asset);
+  const mobileHeroAsset = project.slug === "zahy-store" ? "gallery-1" : presentation.family === "logo" ? "cover" : presentation.hero.asset;
+  const mobileHeroImage = project.slug === "zahy-store" ? project.gallery[0] : presentation.family === "logo" ? project.coverImage : heroImage;
+  const mobileHeroFormat = presentation.family === "logo" ? undefined : presentation.hero.format;
   const themeStyle = getProjectThemeStyle(project) as CSSProperties;
 
   return (
@@ -109,22 +112,22 @@ export function MobileProjectPage() {
           <Link to="/work">{language === "ar" ? "→" : "←"}<span>{dictionary.actions.backToWork}</span></Link>
           <span dir="ltr">{String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
         </div>
+        <div className="m-project-cover__visual" data-reveal>
+          <MobileVisual
+            project={project}
+            image={mobileHeroImage}
+            asset={mobileHeroAsset}
+            fit={presentation.hero.fit ?? "contain"}
+            loading="eager"
+            formatOverride={mobileHeroFormat}
+            sizes="(max-width: 900px) 100vw, 1px"
+          />
+          <p><span>{words.issue}</span><span>{String(index + 1).padStart(2, "0")}</span></p>
+        </div>
         <div className="m-project-cover__copy" data-reveal>
           <p>{dictionary.categories[project.category]} <span aria-hidden="true">/</span> {project.year}</p>
           <h1><bdi dir={titleDirection}>{title}</bdi></h1>
           <span>{project.projectType[language]}</span>
-        </div>
-        <div className="m-project-cover__visual" data-reveal>
-          <MobileVisual
-            project={project}
-            image={heroImage}
-            asset={presentation.hero.asset}
-            fit={presentation.hero.fit ?? "contain"}
-            loading="eager"
-            formatOverride={presentation.hero.format}
-            sizes="(max-width: 900px) 100vw, 1px"
-          />
-          <p><span>{words.issue}</span><span>{String(index + 1).padStart(2, "0")}</span></p>
         </div>
       </header>
 

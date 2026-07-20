@@ -104,17 +104,18 @@ export function MobileIntro() {
 
   return (
     <section className={`m-intro ${leaving ? "m-intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
-      <div className="m-intro__atmosphere" aria-hidden="true">
-        <span className="m-intro__paper m-intro__paper--base" />
-        <span className="m-intro__paper m-intro__paper--blush" />
-        <span className="m-intro__paper m-intro__paper--sage" />
+      <div className="m-intro__field" aria-hidden="true">
+        <span className="m-intro__aura m-intro__aura--blush" />
+        <span className="m-intro__aura m-intro__aura--olive" />
         <span className="m-intro__light-pass" />
-        <span className="m-intro__grain" />
+        <span className="m-intro__texture" />
       </div>
       <div className="m-intro__stage" aria-hidden="true">
         <div className="m-intro__mark">
           <LogoAsset variant="intro" priority />
         </div>
+        <p className="m-intro__wordmark">NOOR BAMAROUF</p>
+        <span className="m-intro__role">{dictionary.intro.descriptor}</span>
       </div>
       <button type="button" className="m-intro__skip" onClick={skip}>{dictionary.actions.skipIntro}</button>
     </section>
