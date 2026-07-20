@@ -10517,9 +10517,9 @@ html[dir="rtl"] .home-contact__actions {
 
 .project-page--asset-aware .case-hero {
   display: grid;
-  padding-block: clamp(112px, 10vw, 174px) clamp(72px, 7vw, 128px);
+  padding-block: clamp(72px, 7vw, 118px) clamp(72px, 7vw, 128px);
   grid-template-columns: minmax(0, 1fr);
-  gap: clamp(26px, 4vw, 62px);
+  gap: clamp(18px, 3vw, 42px);
 }
 
 .project-page--asset-aware .case-hero > .text-link {

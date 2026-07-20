@@ -7,10 +7,12 @@ body.mobile-experience {
   --m-12: 12px;
   --m-14: 14px;
   --m-16: 16px;
+  --m-18: 18px;
   --m-20: 20px;
   --m-24: 24px;
   --m-28: 28px;
   --m-32: 32px;
+  --m-36: 36px;
   --m-40: 40px;
   --m-48: 48px;
   --m-56: 56px;
@@ -3847,10 +3849,23 @@ body.mobile-experience .m-project-page--asset-aware .m-project-cover__nav {
 }
 
 body.mobile-experience .m-project-page--asset-aware .m-project-cover__visual .m-visual {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   min-height: clamp(350px, 58svh, 620px);
   background: var(--case-surface);
   border: 1px solid var(--case-divider);
   box-shadow: 0 22px 54px color-mix(in oklch, var(--case-deep) 18%, transparent);
+}
+
+body.mobile-experience .m-project-page--wello .m-project-cover__visual .m-visual[data-project="wello"] {
+  min-height: 0;
+  aspect-ratio: 4 / 5;
+}
+
+body.mobile-experience .m-project-page--wello .m-project-cover__visual .m-visual[data-project="wello"] img {
+  object-fit: cover;
+  object-position: 28% 50%;
 }
 
 body.mobile-experience .m-project-page--asset-aware .m-project-cover__visual p,
