@@ -14,7 +14,6 @@ export function MobileFooter() {
 
   return (
     <footer className="m-footer">
-      <p className="m-footer__chapter"><span>08</span><span>{dictionary.ecosystem.name}</span></p>
       <div className="m-footer__brand">
         <LogoAsset variant="footer" />
         <p>{dictionary.footer.line}</p>

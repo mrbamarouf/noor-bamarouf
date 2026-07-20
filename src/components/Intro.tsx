@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { LogoAsset } from "./LogoAsset";
 
 const INTRO_KEY = "noor-intro-played";
+const INTRO_ENTER_MS = 2380;
+const INTRO_EXIT_MS = 540;
+const INTRO_REDUCED_ENTER_MS = 680;
+const INTRO_REDUCED_EXIT_MS = 180;
+const INTRO_FAILSAFE_MS = 4300;
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -17,6 +22,45 @@ export function Intro() {
   const { dictionary } = useLanguage();
   const [visible, setVisible] = useState(false);
   const [leaving, setLeaving] = useState(false);
+  const completedRef = useRef(false);
+  const cleanupRef = useRef<(() => void) | null>(null);
+  const focusTargetRef = useRef<HTMLElement | null>(null);
+
+  const restoreFocus = useCallback(() => {
+    const previousTarget = focusTargetRef.current;
+    if (previousTarget && document.contains(previousTarget) && previousTarget !== document.body) {
+      previousTarget.focus({ preventScroll: true });
+      return;
+    }
+
+    const main = document.getElementById("main-content");
+    if (!main) {
+      return;
+    }
+
+    const hadTabIndex = main.hasAttribute("tabindex");
+    main.setAttribute("tabindex", "-1");
+    main.focus({ preventScroll: true });
+    if (!hadTabIndex) {
+      main.addEventListener("blur", () => main.removeAttribute("tabindex"), { once: true });
+    }
+  }, []);
+
+  const finish = useCallback((restore = true) => {
+    if (completedRef.current) {
+      return;
+    }
+
+    completedRef.current = true;
+    window.sessionStorage.setItem(INTRO_KEY, "true");
+    cleanupRef.current?.();
+    cleanupRef.current = null;
+    setVisible(false);
+
+    if (restore) {
+      window.requestAnimationFrame(restoreFocus);
+    }
+  }, [restoreFocus]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -24,28 +68,44 @@ export function Intro() {
     }
 
     const hasPlayedInSession = window.sessionStorage.getItem(INTRO_KEY) === "true";
-    if ((!isPageReload() && hasPlayedInSession) || prefersReducedMotion()) {
+    if (!isPageReload() && hasPlayedInSession) {
       window.sessionStorage.setItem(INTRO_KEY, "true");
       return;
     }
 
+    const reduceMotion = prefersReducedMotion();
+    const enterMs = reduceMotion ? INTRO_REDUCED_ENTER_MS : INTRO_ENTER_MS;
+    const exitMs = reduceMotion ? INTRO_REDUCED_EXIT_MS : INTRO_EXIT_MS;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const activeElement = document.activeElement;
+
+    focusTargetRef.current = activeElement instanceof HTMLElement ? activeElement : null;
+    completedRef.current = false;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    cleanupRef.current = () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+
     setVisible(true);
-    const leaveTimer = window.setTimeout(() => setLeaving(true), 2800);
-    const doneTimer = window.setTimeout(() => {
-      window.sessionStorage.setItem(INTRO_KEY, "true");
-      setVisible(false);
-    }, 3360);
+    const leaveTimer = window.setTimeout(() => setLeaving(true), enterMs);
+    const doneTimer = window.setTimeout(() => finish(), enterMs + exitMs);
+    const failSafeTimer = window.setTimeout(() => finish(false), INTRO_FAILSAFE_MS);
 
     return () => {
       window.clearTimeout(leaveTimer);
       window.clearTimeout(doneTimer);
+      window.clearTimeout(failSafeTimer);
+      cleanupRef.current?.();
+      cleanupRef.current = null;
     };
-  }, []);
+  }, [finish]);
 
   const skip = () => {
-    window.sessionStorage.setItem(INTRO_KEY, "true");
     setLeaving(true);
-    window.setTimeout(() => setVisible(false), 320);
+    window.setTimeout(() => finish(), 260);
   };
 
   if (!visible) {
@@ -54,33 +114,20 @@ export function Intro() {
 
   return (
     <section className={`intro ${leaving ? "intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
-      <div className="intro__material" aria-hidden="true" />
-      <div className="intro__atmosphere" aria-hidden="true" />
-      <div className="intro__shadow-field" aria-hidden="true" />
-      <div className="intro__atelier">
-        <span className="intro__paper intro__paper--lower" aria-hidden="true" />
-        <span className="intro__paper intro__paper--upper" aria-hidden="true" />
-        <div className="intro__vellum" aria-hidden="true" />
-        <div className="intro__identity-field">
-          <span className="intro__mark-shadow" aria-hidden="true" />
-          <div className="intro__mark-reveal">
-            <LogoAsset variant="intro" priority />
-          </div>
-          <div className="intro__studio-seal">
-            <img
-              src="/brand/bamarouf-studio-symbol.png"
-              alt="Bamarouf Studio"
-              width="900"
-              height="900"
-              decoding="async"
-              loading="eager"
-            />
-          </div>
+      <div className="intro__field" aria-hidden="true" />
+      <div className="intro__veil intro__veil--left" aria-hidden="true" />
+      <div className="intro__veil intro__veil--right" aria-hidden="true" />
+      <div className="intro__stage">
+        <span className="intro__axis intro__axis--horizontal" aria-hidden="true" />
+        <span className="intro__axis intro__axis--vertical" aria-hidden="true" />
+        <span className="intro__star intro__star--one" aria-hidden="true">✦</span>
+        <span className="intro__star intro__star--two" aria-hidden="true">✦</span>
+        <div className="intro__mark-reveal">
+          <span className="intro__mark-glow" aria-hidden="true" />
+          <LogoAsset variant="intro" priority />
         </div>
-        <span className="intro__fiber intro__fiber--left" aria-hidden="true" />
-        <span className="intro__fiber intro__fiber--right" aria-hidden="true" />
-        <div className="intro__light-pass" aria-hidden="true" />
       </div>
+      <div className="intro__threshold" aria-hidden="true" />
       <button className="intro__skip" type="button" onClick={skip}>
         {dictionary.actions.skipIntro}
       </button>

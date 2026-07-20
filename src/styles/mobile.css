@@ -1,12 +1,19 @@
 /* Dedicated mobile product. Desktop presentation remains in global.css. */
 body.mobile-experience {
   --m-4: 4px;
+  --m-6: 6px;
   --m-8: 8px;
+  --m-10: 10px;
   --m-12: 12px;
+  --m-14: 14px;
   --m-16: 16px;
+  --m-20: 20px;
   --m-24: 24px;
+  --m-28: 28px;
   --m-32: 32px;
+  --m-40: 40px;
   --m-48: 48px;
+  --m-56: 56px;
   --m-64: 64px;
   --m-88: 88px;
   --m-gutter: 20px;
@@ -201,9 +208,10 @@ html[dir="rtl"] .m-header {
 .m-menu__panel {
   display: grid;
   min-height: 100svh;
-  padding: max(12px, env(safe-area-inset-top)) var(--m-gutter) max(16px, env(safe-area-inset-bottom));
-  grid-template-rows: auto auto 1fr auto auto auto;
-  gap: var(--m-12);
+  padding: max(10px, env(safe-area-inset-top)) var(--m-gutter) max(14px, env(safe-area-inset-bottom));
+  align-content: space-between;
+  grid-template-rows: repeat(6, auto);
+  gap: var(--m-10);
   transform: translateY(12px);
   transition: transform 480ms var(--ease-out);
 }
@@ -261,22 +269,23 @@ html[dir="rtl"] .m-menu__top {
 
 .m-menu__nav {
   display: grid;
-  align-content: center;
+  align-content: start;
   border-top: 1px solid rgb(247 241 234 / 0.22);
 }
 
 .m-menu__nav a {
   display: grid;
-  min-height: 52px;
+  min-height: 50px;
   border-bottom: 1px solid rgb(247 241 234 / 0.18);
   color: var(--color-ivory);
   text-decoration: none;
-  grid-template-columns: 36px 1fr 32px;
+  grid-template-columns: 32px 1fr 30px;
+  column-gap: var(--m-8);
   align-items: center;
 }
 
 html[dir="rtl"] .m-menu__nav a {
-  grid-template-columns: 36px 1fr 32px;
+  grid-template-columns: 32px 1fr 30px;
   column-gap: var(--m-8);
 }
 
@@ -286,11 +295,11 @@ html[dir="rtl"] .m-menu__nav a {
 }
 
 .m-menu__nav strong {
-  font: 400 31px/1.05 var(--m-serif);
+  font: 400 28px/1.08 var(--m-serif);
 }
 
 html[dir="rtl"] .m-menu__nav strong {
-  font-size: 27px;
+  font-size: 25px;
   line-height: 1.5;
   text-align: right;
 }
@@ -310,8 +319,8 @@ html[dir="rtl"] .m-menu__nav strong {
 
 .m-menu__studio {
   display: grid;
-  min-height: 70px;
-  padding: var(--m-8) 0;
+  min-height: 62px;
+  padding: var(--m-6) 0;
   border-top: 1px solid rgb(247 241 234 / 0.22);
   border-bottom: 1px solid rgb(247 241 234 / 0.22);
   color: var(--color-ivory);
@@ -325,7 +334,8 @@ html[dir="rtl"] .m-menu__nav strong {
   display: grid;
   width: 44px;
   height: 44px;
-  background: rgb(247 241 234 / 0.07);
+  border: 1px solid rgb(247 241 234 / 0.12);
+  background: transparent;
   place-items: center;
 }
 
@@ -393,7 +403,10 @@ html[dir="rtl"] .m-menu__copyright {
   z-index: 100;
   inset: 0;
   overflow: hidden;
-  background: #e7ddd6;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(155deg, color-mix(in oklch, var(--color-rose) 13%, var(--color-ivory)) 0%, var(--color-ivory) 50%, color-mix(in oklch, var(--color-sage) 11%, var(--color-ivory)) 100%);
   direction: ltr;
   transition: opacity 560ms var(--ease-out), visibility 560ms var(--ease-out);
 }
@@ -404,74 +417,152 @@ html[dir="rtl"] .m-menu__copyright {
   pointer-events: none;
 }
 
-.m-intro__material {
+.m-intro__field {
   position: absolute;
-  z-index: 0;
   inset: 0;
-  background: #e8ded8 url("/brand/noor-final/intro-paper-texture.webp") center / cover;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(110deg, transparent 0 14%, color-mix(in oklch, var(--color-rose) 9%, transparent) 14% 42%, transparent 42% 64%, color-mix(in oklch, var(--color-sage) 9%, transparent) 64% 86%, transparent 86%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.54), rgba(255, 252, 247, 0.12));
   opacity: 0;
-  transform: scale(1.02);
-  animation: mIntroMaterial 760ms ease forwards;
+  transform: scaleX(1.08);
+  animation: mIntroField 760ms cubic-bezier(0.2, 0.72, 0.2, 1) forwards;
 }
 
 .m-intro__stage {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  inset: 0;
+  width: min(calc(100vw - (var(--m-gutter) * 2)), 420px);
+  min-height: min(68svh, 610px);
   overflow: hidden;
   isolation: isolate;
+  display: grid;
+  place-items: center;
 }
 
-.m-intro__atmosphere,
-.m-intro__shadow-drift,
+.m-intro__stage::before,
+.m-intro__stage::after,
+.m-intro__veil,
+.m-intro__axis,
+.m-intro__star,
 .m-intro__mark,
 .m-intro__light-pass {
   position: absolute;
 }
 
-.m-intro__atmosphere {
-  z-index: 1;
-  inset: -3%;
-  background: url("/brand/noor-final/intro-material-atmosphere.jpg") center / cover no-repeat;
+.m-intro__stage::before,
+.m-intro__stage::after {
+  content: "";
+  pointer-events: none;
   opacity: 0;
-  transform: translate3d(0, 1.5%, 0) scale(1.08);
-  will-change: transform, opacity;
-  animation: mIntroAtmosphere 3500ms cubic-bezier(0.2, 0.75, 0.25, 1) 80ms forwards;
 }
 
-.m-intro__shadow-drift {
-  z-index: 2;
-  inset: -8%;
+.m-intro__stage::before {
+  inset: 8% 12% 40% 2%;
+  z-index: 1;
+  background: color-mix(in oklch, var(--color-rose) 18%, var(--color-ivory));
+  clip-path: polygon(0 12%, 92% 0, 100% 86%, 14% 100%);
+  transform: translate3d(-12px, 8px, 0) rotate(-3deg);
+  animation: mIntroPlane 960ms var(--ease-out) 140ms forwards;
+}
+
+.m-intro__stage::after {
+  inset: 32% 4% 10% 23%;
+  z-index: 1;
+  background: color-mix(in oklch, var(--color-sage) 18%, var(--color-ivory));
+  clip-path: polygon(10% 0, 100% 8%, 88% 100%, 0 82%);
+  transform: translate3d(14px, -8px, 0) rotate(2.4deg);
+  animation: mIntroPlane 1040ms var(--ease-out) 260ms forwards;
+}
+
+.m-intro__veil {
+  left: 0;
+  right: 0;
+  z-index: 5;
+  height: 52%;
+  pointer-events: none;
   background:
-    linear-gradient(120deg, rgba(69, 77, 56, 0.12), transparent 30%, transparent 70%, rgba(151, 89, 87, 0.13)),
-    linear-gradient(165deg, rgba(255, 251, 247, 0.34), transparent 52%);
-  mix-blend-mode: multiply;
+    linear-gradient(180deg, rgba(255, 252, 247, 0.94), rgba(255, 252, 247, 0.44)),
+    color-mix(in oklch, var(--color-ivory) 96%, var(--color-rose));
+}
+
+.m-intro__veil--top {
+  top: 0;
+  animation: mIntroVeilTop 1260ms cubic-bezier(0.76, 0, 0.24, 1) 420ms forwards;
+}
+
+.m-intro__veil--bottom {
+  bottom: 0;
+  animation: mIntroVeilBottom 1260ms cubic-bezier(0.76, 0, 0.24, 1) 420ms forwards;
+}
+
+.m-intro__axis {
+  z-index: 2;
+  pointer-events: none;
+  background: color-mix(in oklch, var(--color-ink) 17%, transparent);
   opacity: 0;
-  transform: translate3d(4%, -1.5%, 0);
-  animation: mIntroShadowDrift 3300ms ease-in-out 180ms forwards;
+  animation: mIntroAxis 640ms var(--ease-out) 720ms forwards;
+}
+
+.m-intro__axis--horizontal {
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 1px;
+  transform: scaleX(0.08);
+}
+
+.m-intro__axis--vertical {
+  top: 8%;
+  bottom: 8%;
+  left: 50%;
+  width: 1px;
+  transform: scaleY(0.08);
+  transform-origin: center;
+}
+
+.m-intro__star {
+  z-index: 7;
+  color: color-mix(in oklch, var(--color-rose-deep) 82%, var(--color-ink));
+  font-size: 0.82rem;
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.76);
+  animation: mIntroStar 580ms var(--ease-out) 1200ms forwards;
+}
+
+.m-intro__star--one {
+  left: 13%;
+  top: 18%;
+}
+
+.m-intro__star--two {
+  right: 15%;
+  bottom: 18%;
+  animation-delay: 1380ms;
 }
 
 .m-intro__mark {
-  z-index: 4;
+  z-index: 6;
   top: 50%;
   left: 50%;
-  width: min(54vw, 220px);
+  width: clamp(170px, 54vw, 228px);
   opacity: 0;
-  clip-path: inset(48% 0 48% 0);
+  clip-path: inset(0 100% 0 0);
   transform: translate(-50%, -50%) scale(0.98);
-  animation: mIntroMark 1380ms var(--ease-out) 980ms forwards;
+  animation: mIntroMark 1080ms cubic-bezier(0.19, 1, 0.22, 1) 780ms forwards;
 }
 
 .m-intro__mark-shadow {
   position: absolute;
   z-index: -1;
-  top: 80%;
-  left: 18%;
-  width: 64%;
-  height: 1px;
-  box-shadow: 0 18px 30px 12px rgba(93, 76, 70, 0.11);
+  inset: 10% 6% 8%;
+  background: linear-gradient(135deg, rgba(255, 252, 247, 0.62), rgba(255, 252, 247, 0.1));
+  filter: blur(18px);
   opacity: 0;
-  animation: mIntroMarkShadow 800ms ease 1760ms forwards;
+  transform: scale(0.88);
+  animation: mIntroMarkShadow 760ms ease 860ms forwards;
 }
 
 .m-intro__mark .official-logo-wrap,
@@ -481,36 +572,14 @@ html[dir="rtl"] .m-menu__copyright {
   height: auto;
 }
 
-.m-intro__impression {
-  position: absolute;
-  z-index: 5;
-  bottom: max(30px, calc(env(safe-area-inset-bottom) + 18px));
-  left: 50%;
-  display: grid;
-  width: 48px;
-  height: 48px;
-  place-items: center;
-  opacity: 0;
-  transform: translate(-50%, 8px) scale(0.96);
-  animation: mIntroImpression 680ms var(--ease-out) 2760ms forwards;
-}
-
-.m-intro__impression img {
-  display: block;
-  width: 100%;
-  height: auto;
-  mix-blend-mode: multiply;
-  opacity: 0.3;
-}
-
 .m-intro__light-pass {
-  z-index: 5;
-  inset: -28%;
+  z-index: 8;
+  inset: -32%;
   pointer-events: none;
-  background: linear-gradient(108deg, transparent 36%, rgba(255, 251, 246, 0.06) 43%, rgba(255, 251, 246, 0.56) 50%, rgba(255, 251, 246, 0.1) 57%, transparent 64%);
+  background: linear-gradient(112deg, transparent 36%, rgba(255, 252, 247, 0.08) 43%, rgba(255, 252, 247, 0.62) 50%, rgba(255, 252, 247, 0.1) 57%, transparent 64%);
   opacity: 0;
   transform: translateX(-72%);
-  animation: mIntroLightPass 1500ms ease-in-out 2050ms forwards;
+  animation: mIntroLightPass 1160ms ease-in-out 1520ms forwards;
 }
 
 .m-intro__skip {
@@ -525,7 +594,7 @@ html[dir="rtl"] .m-menu__copyright {
   background: transparent;
   font: 600 11px/1 var(--m-sans);
   opacity: 0;
-  animation: mIntroSkip 420ms ease 2740ms forwards;
+  animation: mIntroSkip 320ms ease 1680ms forwards;
 }
 
 html[dir="rtl"] .m-intro__skip {
@@ -533,34 +602,38 @@ html[dir="rtl"] .m-intro__skip {
   left: max(var(--m-gutter), env(safe-area-inset-left));
 }
 
-@keyframes mIntroMaterial {
-  to { opacity: 1; transform: scale(1); }
+@keyframes mIntroField {
+  to { opacity: 1; transform: scaleX(1); }
 }
 
-@keyframes mIntroAtmosphere {
-  0% { opacity: 0; transform: translate3d(0, 1.5%, 0) scale(1.08); }
-  28% { opacity: 1; }
-  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(1.01); }
+@keyframes mIntroPlane {
+  to { opacity: 0.72; transform: translate3d(0, 0, 0) rotate(0deg); }
 }
 
-@keyframes mIntroShadowDrift {
-  0% { opacity: 0; transform: translate3d(4%, -1.5%, 0); }
-  42% { opacity: 0.8; }
-  100% { opacity: 0.46; transform: translate3d(-2.5%, 1%, 0); }
+@keyframes mIntroVeilTop {
+  to { opacity: 0; transform: translateY(-104%); }
+}
+
+@keyframes mIntroVeilBottom {
+  to { opacity: 0; transform: translateY(104%); }
+}
+
+@keyframes mIntroAxis {
+  to { opacity: 0.42; transform: scale(1); }
+}
+
+@keyframes mIntroStar {
+  to { opacity: 0.7; transform: scale(1); }
 }
 
 @keyframes mIntroMark {
-  0% { opacity: 0; clip-path: inset(48% 0 48% 0); transform: translate(-50%, -50%) scale(0.98); }
+  0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: translate(-50%, -50%) scale(0.98); }
   32% { opacity: 1; }
   100% { opacity: 1; clip-path: inset(0); transform: translate(-50%, -50%) scale(1); }
 }
 
 @keyframes mIntroMarkShadow {
-  to { opacity: 1; }
-}
-
-@keyframes mIntroImpression {
-  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes mIntroLightPass {
@@ -597,7 +670,7 @@ html[dir="rtl"] .m-intro__skip {
 .m-chapter-head h2 {
   max-width: 12ch;
   margin: 0;
-  font: 400 42px/1.08 var(--m-serif);
+  font: 400 38px/1.1 var(--m-serif);
   text-wrap: balance;
 }
 
@@ -628,7 +701,7 @@ html[dir="rtl"] .m-chapter-head h2 {
 
 html[dir="rtl"] .m-chapter-head h2 {
   max-width: 13ch;
-  font-size: 38px;
+  font-size: 34px;
   line-height: 1.48;
   text-wrap: pretty;
 }
@@ -676,51 +749,148 @@ html[dir="rtl"] .m-chapter-summary {
   object-fit: contain;
 }
 
-/* Chapter 01: publication cover */
+/* Chapter 01: Noor-first cover */
 .m-cover {
-  min-height: max(760px, 100svh);
-  padding-top: calc(var(--m-header) + env(safe-area-inset-top));
-  background: #e7ddd6;
-}
-
-.m-cover__visual {
   position: relative;
-  height: clamp(320px, 43svh, 380px);
+  min-height: max(650px, 100svh);
+  padding: calc(var(--m-header) + env(safe-area-inset-top) + var(--m-20)) var(--m-gutter) var(--m-56);
+  overflow: hidden;
+  background:
+    linear-gradient(156deg, color-mix(in oklch, var(--color-rose) 11%, var(--color-ivory)) 0%, var(--color-ivory) 54%, color-mix(in oklch, var(--color-sage) 12%, var(--color-ivory)) 100%);
+  isolation: isolate;
 }
 
-.m-cover__visual .m-visual {
-  height: 100%;
-}
-
-.m-cover__visual .m-visual img {
-  object-position: center 52%;
-}
-
-.m-cover__visual > p {
+.m-cover::after {
   position: absolute;
-  inset: var(--m-16) var(--m-gutter) auto;
-  display: flex;
-  margin: 0;
-  color: var(--color-ivory);
-  font: 700 10px/1.4 var(--m-sans);
-  text-shadow: 0 1px 10px rgba(35, 32, 29, 0.38);
-  justify-content: space-between;
+  inset: auto 0 0;
+  z-index: 0;
+  height: 34%;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(0deg, var(--color-ivory), transparent);
+}
+
+.m-cover__brand-field {
+  position: relative;
+  z-index: 1;
+  height: clamp(208px, 34svh, 300px);
+  margin: 0 0 clamp(18px, 5svh, 36px);
+  isolation: isolate;
+}
+
+.m-cover__brand-field::before,
+.m-cover__brand-field::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.m-cover__brand-field::before {
+  inset: 8% 8% 12% 3%;
+  z-index: 0;
+  background: linear-gradient(140deg, rgba(255, 252, 247, 0.72), color-mix(in oklch, var(--color-rose) 12%, var(--color-ivory)));
+  clip-path: polygon(0 10%, 92% 0, 100% 76%, 18% 100%);
+}
+
+.m-cover__brand-field::after {
+  inset: 20% 4% 8% 24%;
+  z-index: 1;
+  border: 1px solid color-mix(in oklch, var(--color-ink) 13%, transparent);
+  transform: rotate(2.2deg);
+}
+
+.m-cover__field,
+.m-cover__rule,
+.m-cover__star {
+  position: absolute;
+  pointer-events: none;
+}
+
+.m-cover__field {
+  z-index: 2;
+  border: 1px solid color-mix(in oklch, var(--color-ink) 8%, transparent);
+  box-shadow: 0 9px 22px rgba(57, 48, 43, 0.08);
+}
+
+.m-cover__field--rose {
+  left: 0;
+  top: 9%;
+  width: 58%;
+  aspect-ratio: 1.1;
+  background: color-mix(in oklch, var(--color-rose) 20%, var(--color-ivory));
+  clip-path: polygon(0 13%, 90% 0, 100% 80%, 14% 100%);
+  transform: rotate(-3deg);
+}
+
+.m-cover__field--sage {
+  right: 0;
+  top: 2%;
+  width: 42%;
+  aspect-ratio: 0.76;
+  background: color-mix(in oklch, var(--color-sage) 22%, var(--color-ivory));
+  clip-path: polygon(16% 0, 100% 8%, 86% 100%, 0 82%);
+  transform: rotate(3deg);
+}
+
+.m-cover__field--paper {
+  left: 21%;
+  bottom: 0;
+  z-index: 4;
+  width: 65%;
+  aspect-ratio: 1.86;
+  background: color-mix(in oklch, var(--color-paper) 72%, white);
+  clip-path: polygon(6% 0, 100% 12%, 92% 100%, 0 86%);
+  transform: rotate(1.3deg);
+}
+
+.m-cover__rule {
+  z-index: 5;
+  left: 7%;
+  right: 8%;
+  height: 1px;
+  background: color-mix(in oklch, var(--color-ink) 20%, transparent);
+  opacity: 0.58;
+}
+
+.m-cover__rule--one {
+  top: 36%;
+  transform: rotate(-2deg);
+}
+
+.m-cover__rule--two {
+  bottom: 27%;
+  transform: rotate(2.4deg);
+}
+
+.m-cover__star {
+  z-index: 6;
+  color: color-mix(in oklch, var(--color-rose-deep) 84%, var(--color-ink));
+  font-size: 0.82rem;
+  opacity: 0.76;
+}
+
+.m-cover__star--one {
+  left: 13%;
+  top: 19%;
+}
+
+.m-cover__star--two {
+  right: 13%;
+  bottom: 17%;
 }
 
 .m-cover__folio {
   position: relative;
   z-index: 2;
   display: grid;
-  margin: -96px var(--m-gutter) 0;
-  padding: var(--m-24);
-  background: var(--color-ivory) url("/brand/noor-final/intro-paper-texture.webp") center / cover;
-  box-shadow: 0 24px 58px rgba(46, 39, 36, 0.16);
-  gap: var(--m-16);
+  max-width: 35rem;
+  margin: 0;
+  gap: var(--m-14);
 }
 
 .m-cover__folio .official-logo-wrap--hero {
   display: block;
-  width: 70px;
+  width: clamp(66px, 18vw, 84px);
 }
 
 .m-cover__folio .official-logo--hero {
@@ -730,21 +900,22 @@ html[dir="rtl"] .m-chapter-summary {
 }
 
 .m-cover__folio h1 {
-  max-width: 12ch;
-  margin: var(--m-8) 0 0;
-  font: 400 44px/1.08 var(--m-serif);
+  max-width: 13ch;
+  margin: var(--m-6) 0 0;
+  color: var(--color-ink);
+  font: 400 clamp(34px, 9vw, 42px)/1.08 var(--m-serif);
   text-wrap: balance;
 }
 
 .m-cover__body {
-  max-width: 30rem;
+  max-width: 27rem;
   margin: 0;
   color: var(--color-muted);
-  font: 500 16px/1.68 var(--m-sans);
+  font: 500 clamp(15px, 3.9vw, 16px)/1.7 var(--m-sans);
 }
 
 .m-cover__folio .m-primary-link {
-  margin-top: var(--m-8);
+  margin-top: var(--m-10);
 }
 
 html[dir="rtl"] .m-cover__folio {
@@ -752,10 +923,15 @@ html[dir="rtl"] .m-cover__folio {
 }
 
 html[dir="rtl"] .m-cover__folio h1 {
-  max-width: 13ch;
-  font-size: 38px;
-  line-height: 1.5;
+  max-width: 12ch;
+  font-size: clamp(31px, 8.2vw, 37px);
+  line-height: 1.46;
   text-wrap: pretty;
+}
+
+html[dir="rtl"] .m-cover__body {
+  max-width: 24rem;
+  line-height: 1.9;
 }
 
 html[dir="rtl"] .m-cover__body {
@@ -768,19 +944,14 @@ html[dir="rtl"] .m-cover__body {
   background: var(--color-ivory);
 }
 
-.m-selected .m-section-rule {
-  padding-bottom: var(--m-32);
-  border-bottom: 1px solid color-mix(in oklch, var(--color-ink) 14%, transparent);
-}
-
 .m-selected > .m-chapter-head {
-  margin-top: var(--m-48);
+  margin-top: 0;
 }
 
 .m-selected__sequence {
   display: grid;
   margin-top: var(--m-64);
-  gap: var(--m-88);
+  gap: clamp(var(--m-64), 16vw, var(--m-88));
 }
 
 .m-project-feature > a {
@@ -825,7 +996,7 @@ html[dir="rtl"] .m-project-feature__number {
 
 .m-project-feature h3 {
   margin: 0;
-  font: 400 36px/1.08 var(--m-serif);
+  font: 400 32px/1.12 var(--m-serif);
   overflow-wrap: anywhere;
 }
 
@@ -857,7 +1028,7 @@ html[dir="rtl"] .m-project-feature__copy {
 }
 
 html[dir="rtl"] .m-project-feature h3 {
-  font-size: 31px;
+  font-size: 28px;
   line-height: 1.45;
 }
 
@@ -1182,7 +1353,7 @@ html[dir="rtl"] .m-archive-row__title {
 .m-contact-chapter h2 {
   max-width: 11ch;
   margin: var(--m-24) 0 0;
-  font: 400 42px/1.08 var(--m-serif);
+  font: 400 38px/1.1 var(--m-serif);
 }
 
 .m-contact-chapter > p:not(.m-chapter-label) {
@@ -1221,7 +1392,7 @@ html[dir="rtl"] .m-contact-chapter {
 }
 
 html[dir="rtl"] .m-contact-chapter h2 {
-  font-size: 38px;
+  font-size: 34px;
   line-height: 1.48;
 }
 
@@ -1232,22 +1403,14 @@ html[dir="rtl"] .m-contact-chapter > p:not(.m-chapter-label) {
 
 /* Chapter 08: compact footer */
 .m-footer {
-  padding: var(--m-48) var(--m-gutter) max(var(--m-24), env(safe-area-inset-bottom));
+  padding: calc(var(--m-32) + var(--m-8)) var(--m-gutter) max(var(--m-24), env(safe-area-inset-bottom));
   color: var(--color-ivory);
   background: var(--color-olive-dark);
 }
 
-.m-footer__chapter {
-  display: flex;
-  margin: 0 0 var(--m-32);
-  color: rgb(247 241 234 / 0.7);
-  font: 700 11px/1.4 var(--m-sans);
-  justify-content: space-between;
-}
-
 .m-footer__brand {
   display: grid;
-  grid-template-columns: 62px 1fr;
+  grid-template-columns: 54px 1fr;
   gap: var(--m-16);
   align-items: center;
 }
@@ -1267,13 +1430,13 @@ html[dir="rtl"] .m-contact-chapter > p:not(.m-chapter-label) {
 .m-footer__brand p {
   margin: 0;
   color: var(--color-ivory);
-  font: 400 24px/1.25 var(--m-serif);
+  font: 400 21px/1.32 var(--m-serif);
 }
 
 .m-footer__studio {
   display: grid;
-  min-height: 70px;
-  margin-top: var(--m-32);
+  min-height: 60px;
+  margin-top: var(--m-24);
   border-top: 1px solid rgb(247 241 234 / 0.24);
   border-bottom: 1px solid rgb(247 241 234 / 0.24);
   color: var(--color-ivory);
@@ -1287,7 +1450,8 @@ html[dir="rtl"] .m-contact-chapter > p:not(.m-chapter-label) {
   display: grid;
   width: 38px;
   height: 38px;
-  background: rgb(247 241 234 / 0.07);
+  border: 1px solid rgb(247 241 234 / 0.12);
+  background: transparent;
   place-items: center;
 }
 
@@ -1333,13 +1497,9 @@ html[dir="rtl"] .m-footer {
   text-align: right;
 }
 
-html[dir="rtl"] .m-footer__chapter {
-  color: rgb(247 241 234 / 0.7);
-  line-height: 1.4;
-}
-
 html[dir="rtl"] .m-footer__brand p {
-  font-size: 21px;
+  color: var(--color-ivory);
+  font-size: 19px;
   line-height: 1.65;
 }
 
@@ -1636,7 +1796,7 @@ html[dir="rtl"] .m-contact-cover__note {
 @media (min-height: 651px) and (max-width: 900px) {
   .m-menu__nav {
     align-content: start;
-    padding-top: var(--m-48);
+    padding-top: var(--m-12);
   }
 }
 
@@ -1670,7 +1830,7 @@ html[dir="rtl"] .m-contact-cover__note {
 }
 
 .m-project-cover__copy {
-  padding: var(--m-48) var(--m-gutter) var(--m-32);
+  padding: var(--m-40) var(--m-gutter) var(--m-28);
 }
 
 .m-project-cover__copy > p {
@@ -1682,7 +1842,7 @@ html[dir="rtl"] .m-contact-cover__note {
 .m-project-cover__copy h1 {
   max-width: 13ch;
   margin: var(--m-12) 0 var(--m-8);
-  font: 400 48px/1.04 var(--m-serif);
+  font: 400 42px/1.08 var(--m-serif);
   overflow-wrap: anywhere;
 }
 
@@ -1726,7 +1886,7 @@ html[dir="rtl"] .m-project-cover__copy {
 
 html[dir="rtl"] .m-project-cover__copy h1 {
   max-width: 14ch;
-  font-size: 42px;
+  font-size: 36px;
   line-height: 1.45;
 }
 
@@ -1855,6 +2015,11 @@ html[dir="rtl"] .m-project-direction blockquote {
   font: 700 10px/1 var(--m-sans);
 }
 
+.m-gallery-frame--bleed > span,
+.m-gallery-frame--wide > span {
+  margin-inline: var(--m-gutter);
+}
+
 .m-gallery-frame--bleed,
 .m-gallery-frame--wide {
   margin-inline: calc(var(--m-gutter) * -1);
@@ -1873,7 +2038,8 @@ html[dir="rtl"] .m-project-direction blockquote {
 
 .m-gallery-frame--paper {
   padding: var(--m-24);
-  background: #e7ddd6 url("/brand/noor-final/intro-paper-texture.webp") center / cover;
+  background:
+    linear-gradient(135deg, color-mix(in oklch, var(--color-paper) 86%, white), color-mix(in oklch, var(--color-rose) 9%, var(--color-ivory)));
 }
 
 .m-project-system {
@@ -2102,9 +2268,6 @@ html[dir="rtl"] .m-project-navigation a {
     width: min(56vw, 210px);
   }
 
-  .m-intro__impression {
-    bottom: max(22px, calc(env(safe-area-inset-bottom) + 12px));
-  }
 }
 
 @media (orientation: landscape) and (max-height: 560px) and (max-width: 900px) {

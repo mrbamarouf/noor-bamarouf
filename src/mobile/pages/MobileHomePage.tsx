@@ -8,7 +8,6 @@ import {
   MobileArchiveRow,
   MobileChapterHeader,
   MobileProjectFeature,
-  MobileSectionRule,
   MobileTextLink,
 } from "../MobilePrimitives";
 import { MobileVisual } from "../MobileVisual";
@@ -23,9 +22,14 @@ export function MobileHomePage() {
   return (
     <div className="m-page m-home">
       <section className="m-cover" aria-labelledby="mobile-home-title">
-        <div className="m-cover__visual" data-reveal>
-          <MobileVisual project={projects[1]} image={projects[1].coverImage} asset="cover" loading="eager" sizes="(max-width: 900px) 100vw, 1px" />
-          <p><span>{words.issue}</span><span>01</span></p>
+        <div className="m-cover__brand-field" data-reveal aria-hidden="true">
+          <span className="m-cover__field m-cover__field--rose" />
+          <span className="m-cover__field m-cover__field--sage" />
+          <span className="m-cover__field m-cover__field--paper" />
+          <span className="m-cover__rule m-cover__rule--one" />
+          <span className="m-cover__rule m-cover__rule--two" />
+          <span className="m-cover__star m-cover__star--one">✦</span>
+          <span className="m-cover__star m-cover__star--two">✦</span>
         </div>
         <div className="m-cover__folio" data-reveal>
           <LogoAsset variant="hero" priority />
@@ -40,7 +44,6 @@ export function MobileHomePage() {
       </section>
 
       <section className="m-chapter m-selected" aria-labelledby="mobile-selected-title">
-        <MobileSectionRule>{words.featuredLabel}</MobileSectionRule>
         <MobileChapterHeader
           id="mobile-selected-title"
           number="02"

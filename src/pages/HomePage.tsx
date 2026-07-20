@@ -232,7 +232,6 @@ export function HomePage() {
   const mobileSelected = projects.slice(0, 7);
   const archivePreviewProjects = projects.slice(selected.length);
   const mobileFeatured = projects.find((project) => project.slug === "rahaba-space") ?? projects[7];
-  const heroProject = matchaProject;
   const heroRef = useRef<HTMLElement>(null);
 
   const setHeroDepthFromPoint = (clientX: number, clientY: number) => {
@@ -307,58 +306,17 @@ export function HomePage() {
             </Link>
           </div>
         </div>
-        <div className="hero__desktop-canvas">
-          <ProjectVisual
-            className="hero__portrait-frame"
-            image={heroProject.coverImage}
-            projectSlug={heroProject.slug}
-            asset="cover"
-            ratio="portrait"
-            loading="eager"
-          />
-          <ProjectVisual
-            className="hero__detail-frame"
-            image={heroProject.gallery[1]}
-            projectSlug={heroProject.slug}
-            asset="gallery-2"
-            ratio="square"
-            loading="eager"
-          />
-          <ProjectVisual
-            className="hero__wide-frame"
-            image={heroProject.heroImage}
-            projectSlug={heroProject.slug}
-            asset="hero"
-            ratio="wide"
-            loading="eager"
-          />
-          <div className="hero__project-mark">
-            <span>01</span>
-            <strong>{heroProject.title}</strong>
-            <span>{heroProject.projectType[language]}</span>
+        <div className="hero__brand-canvas" aria-hidden="true">
+          <span className="hero__brand-plane hero__brand-plane--rose" />
+          <span className="hero__brand-plane hero__brand-plane--sage" />
+          <span className="hero__brand-plane hero__brand-plane--ivory" />
+          <span className="hero__brand-rule hero__brand-rule--one" />
+          <span className="hero__brand-rule hero__brand-rule--two" />
+          <span className="hero__brand-star hero__brand-star--one">✦</span>
+          <span className="hero__brand-star hero__brand-star--two">✦</span>
+          <div className="hero__brand-emblem">
+            <LogoAsset variant="intro" priority />
           </div>
-        </div>
-        <div className="hero__visual" aria-hidden="true">
-          <div className="hero__visual-stage">
-            <ProjectVisual
-              className="hero__main-frame"
-              image={projects[0].coverImage}
-              projectSlug={projects[0].slug}
-              asset="cover"
-              ratio="wide"
-              loading="eager"
-            />
-            <div className="hero__caption">
-              <span>{dictionary.hero.materialNote}</span>
-            </div>
-          </div>
-          <div className="hero__studio-note">
-            <span />
-            <p>{dictionary.hero.studioNote}</p>
-          </div>
-        </div>
-        <div className="hero__side-note">
-          <span>{dictionary.hero.cue}</span>
         </div>
       </section>
 

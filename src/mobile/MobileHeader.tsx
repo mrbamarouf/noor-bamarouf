@@ -36,7 +36,9 @@ export function MobileHeader() {
     if (!open) return;
 
     const previousOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     const timer = window.setTimeout(() => panelRef.current?.querySelector<HTMLButtonElement>(".m-menu__close")?.focus(), 80);
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -64,6 +66,7 @@ export function MobileHeader() {
       window.clearTimeout(timer);
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
     };
   }, [close, open]);
 
