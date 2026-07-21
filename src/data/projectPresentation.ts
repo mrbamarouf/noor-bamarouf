@@ -553,7 +553,7 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
   },
   "red-bull-marvel": {
     family: "packaging",
-    hero: { asset: "hero", kind: "square-post", emphasis: "full" },
+    hero: { asset: "gallery-5", kind: "landscape-presentation", emphasis: "full" },
     sections: [
       {
         id: "can-lineup",
@@ -587,7 +587,7 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         copyKey: "outcome",
         layout: "social-grid",
         visuals: [
-          { asset: "gallery-5", kind: "landscape-presentation", emphasis: "wide" },
+          { asset: "gallery-6", kind: "landscape-presentation", emphasis: "wide" },
           { asset: "gallery-7", kind: "landscape-presentation", emphasis: "wide" },
           { asset: "gallery-8", kind: "landscape-presentation", emphasis: "wide" },
         ],
