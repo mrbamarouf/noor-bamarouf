@@ -96,8 +96,19 @@ export function MobileProjectPage() {
   const title = getProjectDisplayTitle(project, language);
   const titleDirection = getProjectTitleDirection(project, language);
   const heroImage = getProjectImageByAsset(project, presentation.hero.source ?? presentation.hero.asset);
-  const mobileHeroAsset = project.slug === "zahy-store" ? "gallery-1" : presentation.family === "logo" ? "cover" : presentation.hero.asset;
-  const mobileHeroImage = project.slug === "zahy-store" ? project.gallery[0] : presentation.family === "logo" ? project.coverImage : heroImage;
+  const mobileHeroAsset =
+    project.slug === "zahy-store"
+      ? "gallery-1"
+      : project.slug === "rahaba-space" || presentation.family === "logo"
+        ? "cover"
+        : presentation.hero.asset;
+  const mobileHeroImage =
+    project.slug === "zahy-store"
+      ? project.gallery[0]
+      : project.slug === "rahaba-space" || presentation.family === "logo"
+        ? project.coverImage
+        : heroImage;
+  const mobileHeroFit = project.slug === "rahaba-space" ? "cover" : presentation.hero.fit ?? "contain";
   const mobileHeroFormat = presentation.family === "logo" ? undefined : presentation.hero.format;
   const themeStyle = getProjectThemeStyle(project) as CSSProperties;
 
@@ -117,7 +128,7 @@ export function MobileProjectPage() {
             project={project}
             image={mobileHeroImage}
             asset={mobileHeroAsset}
-            fit={presentation.hero.fit ?? "contain"}
+            fit={mobileHeroFit}
             loading="eager"
             formatOverride={mobileHeroFormat}
             sizes="(max-width: 900px) 100vw, 1px"
