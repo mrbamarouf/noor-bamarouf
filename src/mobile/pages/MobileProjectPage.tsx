@@ -62,11 +62,12 @@ function MobileCaseSection({
 }) {
   const { language } = useLanguage();
   const copy = resolveSectionCopy(project, section, language);
+  const sectionNumber = project.slug === "jeddah-railway" ? index + 2 : index + 3;
 
   return (
     <section className={`m-case-section m-case-section--${section.layout} m-case-section--${section.tone ?? "ivory"}`}>
       <MobileChapterHeader
-        number={String(index + 3).padStart(2, "0")}
+        number={String(sectionNumber).padStart(2, "0")}
         label={section.label[language]}
         title={section.title[language]}
         text={copy}
@@ -108,7 +109,7 @@ export function MobileProjectPage() {
       : project.slug === "rahaba-space" || presentation.family === "logo"
         ? project.coverImage
         : heroImage;
-  const mobileHeroFit = project.slug === "rahaba-space" ? "cover" : presentation.hero.fit ?? "contain";
+  const mobileHeroFit = presentation.hero.fit ?? "contain";
   const mobileHeroFormat = presentation.family === "logo" ? undefined : presentation.hero.format;
   const themeStyle = getProjectThemeStyle(project) as CSSProperties;
 

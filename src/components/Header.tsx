@@ -1,105 +1,26 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { navItems } from "../data/content";
+import { getProjectThemeStyle } from "../data/projectPresentation";
+import { getProject } from "../data/projects";
 import { useLanguage } from "../context/LanguageContext";
-import { LogoAsset } from "./LogoAsset";
-import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { BamaroufStudioLink } from "./BamaroufStudioLink";
+import { LogoAsset } from "./LogoAsset";
+import type { CSSProperties } from "react";
 
 function isHashLink(to: string) {
   return to.includes("#");
 }
 
 export function Header() {
-  const { dictionary, language, toggleLanguage } = useLanguage();
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { dictionary, direction, language, toggleLanguage } = useLanguage();
   const location = useLocation();
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const menuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const closeMenu = useCallback((returnFocus = true) => {
-    setMenuOpen(false);
-    if (returnFocus) {
-      window.requestAnimationFrame(() => menuButtonRef.current?.focus());
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!menuOpen) {
-      return;
-    }
-
-    const previousBodyOverflow = document.body.style.overflow;
-    const previousHtmlOverflow = document.documentElement.style.overflow;
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-
-    const focusableSelector = [
-      "a[href]",
-      "button:not([disabled])",
-      "[tabindex]:not([tabindex='-1'])",
-    ].join(",");
-
-    const focusFirstItem = () => {
-      const focusable = Array.from(menuRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? []);
-      focusable[0]?.focus();
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeMenu();
-        return;
-      }
-
-      if (event.key !== "Tab") {
-        return;
-      }
-
-      const focusable = Array.from(menuRef.current?.querySelectorAll<HTMLElement>(focusableSelector) ?? []);
-      if (!focusable.length) {
-        return;
-      }
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-
-    const focusTimer = window.setTimeout(focusFirstItem, 80);
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      window.clearTimeout(focusTimer);
-      document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = previousBodyOverflow;
-      document.documentElement.style.overflow = previousHtmlOverflow;
-    };
-  }, [closeMenu, menuOpen]);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location.pathname, location.hash]);
+  const projectSlug = location.pathname.startsWith("/work/") ? location.pathname.split("/").filter(Boolean)[1] : undefined;
+  const activeProject = getProject(projectSlug);
+  const projectThemeStyle = activeProject ? (getProjectThemeStyle(activeProject) as CSSProperties) : undefined;
 
   const handleHashNav = (to: string) => {
     const [, hash] = to.split("#");
-    if (location.pathname !== "/") {
-      return;
-    }
+    if (!hash || location.pathname !== "/") return;
 
     window.requestAnimationFrame(() => {
       document.getElementById(hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -107,10 +28,10 @@ export function Header() {
   };
 
   return (
-    <header className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}>
-      <div className="site-header__inner">
-        <LogoAsset variant="header" asLink priority />
-        <nav className="site-nav" aria-label="Primary navigation">
+    <header className={activeProject ? "desktop-header desktop-header--case" : "desktop-header"} style={projectThemeStyle}>
+      <div className="desktop-header__inner">
+        <LogoAsset variant="header" asLink priority className="desktop-header__logo" />
+        <nav className="desktop-header__nav" aria-label="Primary navigation" dir={direction}>
           {navItems.map((item) => {
             const label = dictionary.nav[item.labelKey];
             return (
@@ -119,7 +40,7 @@ export function Header() {
                 to={item.to}
                 end={item.to === "/"}
                 className={({ isActive }) =>
-                  `site-nav__link ${isActive && !isHashLink(item.to) ? "site-nav__link--active" : ""}`
+                  `desktop-header__link ${isActive && !isHashLink(item.to) ? "desktop-header__link--active" : ""}`
                 }
                 onClick={() => handleHashNav(item.to)}
               >
@@ -128,78 +49,11 @@ export function Header() {
             );
           })}
         </nav>
-        <div className="site-header__actions">
+        <div className="desktop-header__tools">
           <BamaroufStudioLink copy={dictionary.ecosystem} variant="header" />
-          <button className="language-toggle" type="button" onClick={toggleLanguage} aria-label="Switch language">
+          <button className="desktop-header__language" type="button" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
             <span>{language === "en" ? "AR" : "EN"}</span>
           </button>
-        </div>
-        <button
-          ref={menuButtonRef}
-          className={`mobile-menu-button ${menuOpen ? "mobile-menu-button--open" : ""}`}
-          type="button"
-          aria-label={menuOpen ? dictionary.ui.closeMenu : dictionary.ui.openMenu}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-        </button>
-      </div>
-      <div
-        className={`mobile-menu ${menuOpen ? "mobile-menu--open" : ""}`}
-        id="mobile-menu"
-        ref={menuRef}
-        aria-hidden={!menuOpen}
-      >
-        <div className="mobile-menu__panel" role="dialog" aria-modal="true" aria-label={dictionary.ui.menu}>
-          <div className="mobile-menu__top">
-            <LogoAsset variant="menu" priority />
-            <button className="mobile-menu__close" type="button" onClick={() => closeMenu()} aria-label={dictionary.ui.closeMenu}>
-              <span />
-              <span />
-            </button>
-          </div>
-          <nav className="mobile-menu__nav" aria-label={dictionary.ui.menu}>
-            {navItems.map((item) => {
-              const label = dictionary.nav[item.labelKey];
-              return (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.to === "/"}
-                  className={({ isActive }) =>
-                    `mobile-menu__link ${isActive && !isHashLink(item.to) ? "mobile-menu__link--active" : ""}`
-                  }
-                  onClick={() => {
-                    handleHashNav(item.to);
-                    closeMenu(false);
-                  }}
-                >
-                  {label}
-                </NavLink>
-              );
-            })}
-          </nav>
-          <div className="mobile-menu__studio">
-            <BamaroufStudioLink copy={dictionary.ecosystem} variant="menu" onClick={() => closeMenu(false)} />
-          </div>
-          <div className="mobile-menu__utility">
-            <button className="mobile-menu__language" type="button" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
-              <span>{language === "en" ? "العربية" : "English"}</span>
-            </button>
-          </div>
-          <div className="mobile-menu__actions">
-            <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer" onClick={() => closeMenu(false)}>
-              <span>{dictionary.ui.whatsapp}</span>
-              <span aria-hidden="true">↗</span>
-            </a>
-            <a href={getEmailHref(language)} onClick={() => closeMenu(false)}>
-              <span>{dictionary.ui.email}</span>
-              <span aria-hidden="true">{language === "ar" ? "←" : "→"}</span>
-            </a>
-          </div>
         </div>
       </div>
     </header>

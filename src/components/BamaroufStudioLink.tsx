@@ -1,4 +1,4 @@
-const BAMAROUF_STUDIO_URL = "https://bamaroufstudio.com";
+const BAMAROUF_STUDIO_URL = "https://bamaroufstudio.com/";
 const STUDIO_SYMBOL_SRC = "/brand/bamarouf-studio-symbol.png";
 const STUDIO_LOCKUP_SRC = "/brand/bamarouf-studio-compact.png";
 

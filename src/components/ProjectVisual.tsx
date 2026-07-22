@@ -10,7 +10,7 @@ const imageDimensions = {
   portrait: { width: 720, height: 984 },
   landscape: { width: 1536, height: 1024 },
   square: { width: 1024, height: 1024 },
-  wide: { width: 1536, height: 1024 },
+  wide: { width: 1600, height: 900 },
 } as const;
 
 interface ProjectVisualProps {

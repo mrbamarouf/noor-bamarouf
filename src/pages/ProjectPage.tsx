@@ -15,7 +15,7 @@ import {
   type PresentationSection,
   type PresentationVisual,
 } from "../data/projectPresentation";
-import type { Language, Project, LocalizedString } from "../types";
+import type { Language, LocalizedString, Project } from "../types";
 
 function resolveSectionCopy(project: Project, section: PresentationSection, language: Language) {
   if (section.copy) return section.copy[language];
@@ -23,10 +23,24 @@ function resolveSectionCopy(project: Project, section: PresentationSection, lang
   return undefined;
 }
 
+function visualRatio(visual: PresentationVisual): "portrait" | "landscape" | "square" | "wide" {
+  if (visual.ratio) return visual.ratio;
+  if (visual.kind === "portrait-presentation" || visual.kind === "story-frame") return "portrait";
+  if (visual.kind === "social-post" || visual.kind === "square-post" || visual.kind === "logo-presentation") return "square";
+  if (visual.kind === "billboard" || visual.kind === "ultrawide-presentation" || visual.emphasis === "full") return "wide";
+  return "landscape";
+}
+
+function visualFit(visual: PresentationVisual, project: Project): "contain" | "cover" {
+  if (visual.fit) return visual.fit;
+  if (project.category === "logoDesign") return "contain";
+  return "contain";
+}
+
 function CaseVisual({
   project,
   visual,
-  loading = "eager",
+  loading = "lazy",
 }: {
   project: Project;
   visual: PresentationVisual;
@@ -37,16 +51,16 @@ function CaseVisual({
 
   return (
     <article
-      className={`case-visual case-visual--${visual.kind} case-visual--${visual.emphasis ?? "regular"}`}
+      className={`desktop-case-visual desktop-case-visual--${visual.kind} desktop-case-visual--${visual.emphasis ?? "regular"}`}
       data-kind={visual.kind}
     >
       <ProjectVisual
-        className="case-visual__media"
+        className="desktop-case-visual__media"
         image={image}
         projectSlug={project.slug}
         asset={visual.asset}
-        ratio="wide"
-        fit={visual.fit ?? "contain"}
+        ratio={visualRatio(visual)}
+        fit={visualFit(visual, project)}
         loading={loading}
         formatOverride={visual.format}
       />
@@ -66,25 +80,26 @@ function CaseSection({
 }) {
   const { language } = useLanguage();
   const copy = resolveSectionCopy(project, section, language);
-  const sectionNumber = String(index + 1).padStart(2, "0");
+  const sectionNumber = project.slug === "jeddah-railway" ? index + 2 : index + 4;
 
   return (
     <section
-      className={`case-section case-section--${section.layout} case-section--${section.tone ?? "ivory"}`}
-      aria-labelledby={`case-section-${section.id}`}
+      className={`desktop-case-section desktop-case-section--${section.layout} desktop-case-section--${section.tone ?? "clear"}`}
+      aria-labelledby={`desktop-case-section-${section.id}`}
       data-reveal
     >
-      <div className="case-section__copy">
-        <span className="section__index">{sectionNumber} / {section.label[language]}</span>
-        <h2 id={`case-section-${section.id}`}>{section.title[language]}</h2>
+      <div className="desktop-case-section__copy">
+        <span className="desktop-kicker">{String(sectionNumber).padStart(2, "0")} / {section.label[language]}</span>
+        <h2 id={`desktop-case-section-${section.id}`}>{section.title[language]}</h2>
         {copy ? <p>{copy}</p> : null}
       </div>
-      <div className="case-section__visuals">
+      <div className="desktop-case-section__visuals">
         {section.visuals.map((visual) => (
           <CaseVisual
             key={`${project.slug}-${section.id}-${visual.asset}`}
             project={project}
             visual={visual}
+            loading="eager"
           />
         ))}
       </div>
@@ -98,9 +113,9 @@ function ProjectVideo({ project }: { project: Project }) {
   if (!project.video) return null;
 
   return (
-    <section className="case-video" aria-label={project.video.label[language]} data-reveal>
-      <div className="case-video__copy">
-        <span className="section__index">{project.video.label[language]}</span>
+    <section className="desktop-project-video" aria-label={project.video.label[language]} data-reveal>
+      <div>
+        <span className="desktop-kicker">{project.video.label[language]}</span>
         <p>{project.shortDescription[language]}</p>
       </div>
       <video controls muted playsInline preload="metadata" poster={project.video.poster}>
@@ -114,33 +129,29 @@ function ProjectSystem({ project }: { project: Project }) {
   const { dictionary, language } = useLanguage();
 
   return (
-    <section className="case-system" aria-label={dictionary.sections.system} data-reveal>
-      <div className="case-system__block">
-        <span className="section__index">{dictionary.sections.palette}</span>
-        <div className="palette-row palette-row--large">
+    <section className="desktop-project-system" aria-label={dictionary.sections.system} data-reveal>
+      <div>
+        <span className="desktop-kicker">{dictionary.sections.palette}</span>
+        <div className="desktop-palette">
           {project.colorPalette.map((color) => (
             <span key={color} style={{ backgroundColor: color }} />
           ))}
         </div>
       </div>
-      <div className="case-system__block case-system__type">
-        <span className="section__index">{dictionary.sections.typography}</span>
+      <div>
+        <span className="desktop-kicker">{dictionary.sections.typography}</span>
         <p>
-          <span>{project.typography.display}</span>
-          <span>{project.typography.body}</span>
+          <strong>{project.typography.display}</strong>
+          <small>{project.typography.body}</small>
         </p>
       </div>
-      <div className="case-system__block case-system__applications">
-        <span className="section__index">{dictionary.sections.applications}</span>
+      <div>
+        <span className="desktop-kicker">{dictionary.sections.applications}</span>
         <ul>
           {project.caseStudy.applications.map((application: LocalizedString) => (
             <li key={application.en}>{application[language]}</li>
           ))}
         </ul>
-      </div>
-      <div className="case-system__block case-system__outcome">
-        <span className="section__index">{dictionary.sections.outcome}</span>
-        <p>{project.caseStudy.outcome[language]}</p>
       </div>
     </section>
   );
@@ -166,47 +177,58 @@ export function ProjectPage() {
 
   return (
     <article
-      className={`page project-page project-page--asset-aware project-page--${presentation.family} project-page--${project.slug}`}
+      className={`desktop-project desktop-project--${presentation.family} desktop-project--${project.slug}`}
       data-project={project.slug}
       style={themeStyle}
     >
-      <header className="project-hero case-hero" data-reveal>
-        <Link className="text-link" to="/work">
+      <header className="desktop-project-hero" data-reveal>
+        <Link className="desktop-project-hero__back" to="/work">
           {direction === "rtl" ? `${dictionary.actions.backToWork} →` : `← ${dictionary.actions.backToWork}`}
         </Link>
         <ProjectVisual
-          className={`project-main-image project-main-image--${presentation.hero.kind}`}
+          className={`desktop-project-hero__visual desktop-project-hero__visual--${presentation.hero.kind}`}
           image={heroImage}
           projectSlug={project.slug}
           asset={presentation.hero.asset}
-          ratio="wide"
-          fit={presentation.hero.fit ?? "contain"}
+          ratio={visualRatio(presentation.hero)}
+          fit={visualFit(presentation.hero, project)}
           loading="eager"
           formatOverride={presentation.hero.format}
         />
-        <div className="project-hero__title">
-          <span>{project.year} / {dictionary.categories[project.category]} / {project.projectType[language]}</span>
-          <h1 dir={projectTitleDirection}>{projectTitle}</h1>
-          <p>{project.fullDescription[language]}</p>
+        <div className="desktop-project-hero__summary">
+          <span className="desktop-kicker">
+            {project.year} / {dictionary.categories[project.category]}
+          </span>
+          <h1 id="desktop-project-title" dir={projectTitleDirection}>{projectTitle}</h1>
+          <p>{project.shortDescription[language]}</p>
         </div>
-        <dl className="project-meta">
+      </header>
+
+      <section className="desktop-project-intro" aria-label={dictionary.sections.overview} data-reveal>
+        <dl className="desktop-project-meta">
           <div>
             <dt>{dictionary.nav.services}</dt>
             <dd>{project.services.map((service) => dictionary.services[service].title).join(", ")}</dd>
           </div>
           <div>
             <dt>{dictionary.ui.projectFormat}</dt>
+            <dd>{project.projectType[language]}</dd>
+          </div>
+          <div>
+            <dt>{dictionary.sections.overview}</dt>
             <dd>{project.credits[language]}</dd>
           </div>
         </dl>
-      </header>
+      </section>
 
-      <section className="case-overview" aria-label={dictionary.sections.overview} data-reveal>
+      <section className="desktop-project-overview" aria-label={dictionary.sections.overview} data-reveal>
+        <span className="desktop-kicker">
+          {project.slug === "jeddah-railway" ? dictionary.sections.overview : `03 / ${dictionary.sections.overview}`}
+        </span>
         <div>
-          <span className="section__index">{dictionary.sections.overview}</span>
-          <h2>{project.shortDescription[language]}</h2>
+          <p>{project.caseStudy.context[language]}</p>
+          <p>{project.caseStudy.direction[language]}</p>
         </div>
-        <p>{project.caseStudy.context[language]}</p>
       </section>
 
       <ProjectVideo project={project} />
@@ -218,10 +240,10 @@ export function ProjectPage() {
       <ProjectSystem project={project} />
 
       {project.legalNote ? (
-        <p className="project-legal-note" data-reveal>{project.legalNote[language]}</p>
+        <p className="desktop-project-legal" data-reveal>{project.legalNote[language]}</p>
       ) : null}
 
-      <nav className="next-project" aria-label={dictionary.actions.nextProject} data-reveal>
+      <nav className="desktop-next-project" aria-label={dictionary.actions.nextProject} data-reveal>
         <span>{dictionary.actions.nextProject}</span>
         <Link to={`/work/${nextProject.slug}`} data-cursor="view">
           {direction === "rtl" ? "← " : null}

@@ -1,9 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { BamaroufStudioLink } from "../components/BamaroufStudioLink";
 import { LogoAsset } from "../components/LogoAsset";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { useLanguage } from "../context/LanguageContext";
+import { getProjectThemeStyle } from "../data/projectPresentation";
+import { getProject } from "../data/projects";
+import { MobileChapterMenuIndex } from "./MobileChapterSystem";
 import { mobileCopy } from "./mobileCopy";
+import type { CSSProperties } from "react";
 
 const darkProjectHeaderSlugs = new Set([
   "egg-space",
@@ -18,14 +23,34 @@ export function MobileHeader() {
   const location = useLocation();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const lastScrollYRef = useRef(0);
 
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 12);
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const currentY = window.scrollY;
+      const previousY = lastScrollYRef.current;
+      setScrolled(currentY > 12);
+      setHidden(currentY > 140 && currentY > previousY + 18);
+      if (currentY < previousY - 10 || currentY < 80) {
+        setHidden(false);
+      }
+      lastScrollYRef.current = Math.max(0, currentY);
+    };
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
     update();
-    window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", requestUpdate);
+    };
   }, []);
 
   const close = useCallback((restoreFocus = false) => {
@@ -83,11 +108,17 @@ export function MobileHeader() {
     { to: "/contact", label: dictionary.nav.contact },
   ];
   const currentProjectSlug = location.pathname.startsWith("/work/") ? location.pathname.split("/")[2] : "";
+  const activeProject = getProject(currentProjectSlug);
   const isDarkProjectHeader = darkProjectHeaderSlugs.has(currentProjectSlug);
+  const projectThemeStyle = activeProject ? (getProjectThemeStyle(activeProject) as CSSProperties) : undefined;
 
   return (
     <>
-      <header className={`m-header ${scrolled ? "m-header--scrolled" : ""} ${isDarkProjectHeader ? "m-header--on-dark" : ""}`}>
+      <header
+        className={`m-header ${scrolled ? "m-header--scrolled" : ""} ${activeProject ? "m-header--case" : ""} ${isDarkProjectHeader ? "m-header--on-dark" : ""}`}
+        data-hidden={hidden && !open ? "true" : "false"}
+        style={projectThemeStyle}
+      >
         <LogoAsset variant="mobileHeader" asLink priority />
         <div className="m-header__tools">
           <button type="button" className="m-header__language" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
@@ -142,6 +173,10 @@ export function MobileHeader() {
               </NavLink>
             ))}
           </nav>
+
+          <MobileChapterMenuIndex onNavigate={() => close()} />
+
+          <BamaroufStudioLink copy={dictionary.ecosystem} variant="menu" onClick={() => close()} />
 
           <div className="m-menu__contact">
             <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.ui.whatsapp}<span aria-hidden="true">↗</span></a>

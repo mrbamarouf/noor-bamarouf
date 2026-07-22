@@ -3,11 +3,11 @@ import { useLanguage } from "../context/LanguageContext";
 import { LogoAsset } from "./LogoAsset";
 
 const INTRO_KEY = "noor-intro-played";
-const INTRO_ENTER_MS = 2380;
-const INTRO_EXIT_MS = 540;
-const INTRO_REDUCED_ENTER_MS = 680;
-const INTRO_REDUCED_EXIT_MS = 180;
-const INTRO_FAILSAFE_MS = 4300;
+const INTRO_ENTER_MS = 2320;
+const INTRO_EXIT_MS = 560;
+const INTRO_REDUCED_ENTER_MS = 520;
+const INTRO_REDUCED_EXIT_MS = 160;
+const INTRO_FAILSAFE_MS = 4200;
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -19,7 +19,7 @@ function isPageReload() {
 }
 
 export function Intro() {
-  const { dictionary } = useLanguage();
+  const { dictionary, language } = useLanguage();
   const [visible, setVisible] = useState(false);
   const [leaving, setLeaving] = useState(false);
   const completedRef = useRef(false);
@@ -34,9 +34,7 @@ export function Intro() {
     }
 
     const main = document.getElementById("main-content");
-    if (!main) {
-      return;
-    }
+    if (!main) return;
 
     const hadTabIndex = main.hasAttribute("tabindex");
     main.setAttribute("tabindex", "-1");
@@ -47,9 +45,7 @@ export function Intro() {
   }, []);
 
   const finish = useCallback((restore = true) => {
-    if (completedRef.current) {
-      return;
-    }
+    if (completedRef.current) return;
 
     completedRef.current = true;
     window.sessionStorage.setItem(INTRO_KEY, "true");
@@ -63,9 +59,7 @@ export function Intro() {
   }, [restoreFocus]);
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
+    if (typeof window === "undefined") return;
 
     const hasPlayedInSession = window.sessionStorage.getItem(INTRO_KEY) === "true";
     if (!isPageReload() && hasPlayedInSession) {
@@ -105,29 +99,29 @@ export function Intro() {
 
   const skip = () => {
     setLeaving(true);
-    window.setTimeout(() => finish(), 260);
+    window.setTimeout(() => finish(), 220);
   };
 
-  if (!visible) {
-    return null;
-  }
+  if (!visible) return null;
+
+  const name = language === "ar" ? "نور بامعروف" : "NOOR BAMAROUF";
 
   return (
-    <section className={`intro ${leaving ? "intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
-      <div className="intro__field" aria-hidden="true">
-        <span className="intro__aura intro__aura--blush" />
-        <span className="intro__aura intro__aura--olive" />
-        <span className="intro__light-pass" />
-        <span className="intro__texture" />
+    <section className={`intro desktop-intro ${leaving ? "intro--leaving desktop-intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
+      <div className="desktop-intro__atmosphere" aria-hidden="true">
+        <span className="desktop-intro__wash desktop-intro__wash--rose" />
+        <span className="desktop-intro__wash desktop-intro__wash--sage" />
+        <span className="desktop-intro__beam" />
+        <span className="desktop-intro__grain" />
       </div>
-      <div className="intro__stage" aria-hidden="true">
-        <div className="intro__mark-reveal">
+      <div className="desktop-intro__stage" aria-hidden="true">
+        <span className="desktop-intro__label">{dictionary.intro.descriptor}</span>
+        <div className="desktop-intro__mark">
           <LogoAsset variant="intro" priority />
         </div>
-        <p className="intro__wordmark">NOOR BAMAROUF</p>
-        <span className="intro__role">{dictionary.intro.descriptor}</span>
+        <p className="desktop-intro__name">{name}</p>
       </div>
-      <button className="intro__skip" type="button" onClick={skip}>
+      <button className="desktop-intro__skip" type="button" onClick={skip}>
         {dictionary.actions.skipIntro}
       </button>
     </section>
