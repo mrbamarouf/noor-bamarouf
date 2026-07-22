@@ -1,10 +1,9 @@
 import type { Language } from "../types";
 
-// TEMPORARY CONTACT DETAILS — replace with client-approved information before final launch.
 export const contactDetails = {
   email: "hello@noorbamarouf.com",
-  whatsappDisplay: "+966 50 000 0000",
-  whatsappUrl: "https://wa.me/966500000000",
+  whatsappDisplay: "WhatsApp",
+  whatsappUrl: "https://wa.me/",
 } as const;
 
 const whatsappMessages: Record<Language, string> = {
