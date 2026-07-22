@@ -1,111 +1,80 @@
-import { DecorativeNbLogo } from "../../components/DecorativeNbLogo";
+import { LogoAsset } from "../../components/LogoAsset";
 import { useLanguage } from "../../context/LanguageContext";
-import { makeMobileChapters, MobileChapterController, MobileChapterSection } from "../MobileChapterSystem";
+import { makeMobileChapters, MobileChapterController, MobileChapterSection, localizeMobileDigits } from "../MobileChapterSystem";
 import { MobileFooter } from "../MobileFooter";
-import { MobileArrow, MobileCtaLink } from "../MobilePrimitives";
+import { MobileArrow, MobileCtaLink, MobilePageCopy } from "../MobilePrimitives";
 import { mobileAboutCopy } from "../mobileCopy";
 
-const aboutChapters = makeMobileChapters([
+const chapters = makeMobileChapters([
   ["About Noor", "عن نور"],
-  ["Point of View", "وجهة النظر"],
-  ["Materials", "الخامات"],
-  ["Working Rhythm", "إيقاع العمل"],
-  ["Bilingual Design", "تصميم ثنائي اللغة"],
-  ["Closing", "الخاتمة"],
+  ["Point of view", "وجهة النظر"],
+  ["Principles", "المبادئ"],
+  ["Principles", "المبادئ"],
+  ["Working rhythm", "إيقاع العمل"],
+  ["Understanding", "الفهم"],
+  ["Selected work", "الأعمال المختارة"],
   ["Footer", "التذييل"],
 ]);
 
 export function MobileAboutPage() {
-  const { direction, language } = useLanguage();
+  const { language } = useLanguage();
   const copy = mobileAboutCopy[language];
-  const total = aboutChapters.length;
+  const principleGroups = [copy.materials.slice(0, 3), copy.materials.slice(3)];
 
   return (
-    <MobileChapterController chapters={aboutChapters} className="m-about-page">
-      <MobileChapterSection chapter={aboutChapters[0]} index={0} total={total} className="m-about-entry">
-        <div className="m-section-copy">
-          <span>{copy.entryLabel}</span>
-          <h1 id={`${aboutChapters[0].id}-title`}>{copy.entryTitle}</h1>
-          <p>{copy.entryBody}</p>
-          <MobileCtaLink to="/work">
-            {copy.entryLink} <MobileArrow />
-          </MobileCtaLink>
-        </div>
-        <DecorativeNbLogo className="m-about-entry__mark" priority />
+    <MobileChapterController chapters={chapters} className={`m-about m-about--${language}`}>
+      <MobileChapterSection chapter={chapters[0]} index={0} total={chapters.length} className="m-about-entry">
+        <MobilePageCopy label={copy.entryLabel} title={copy.entryTitle} body={copy.entryBody} titleId={`${chapters[0].id}-title`}>
+          <MobileCtaLink className="m-text-link" to="/work">{copy.entryLink} <MobileArrow /></MobileCtaLink>
+        </MobilePageCopy>
+        <LogoAsset className="m-about-entry__mark" variant="hero" priority />
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={aboutChapters[1]} index={1} total={total} className="m-about-thesis">
-        <div className="m-section-copy m-section-copy--large">
-          <span>{copy.entryLabel}</span>
-          <h2 id={`${aboutChapters[1].id}-title`}>{copy.thesis}</h2>
-          <p>{copy.thesisNote}</p>
-        </div>
-        <ul className="m-observation-list">
-          {copy.observations.map((observation) => (
-            <li key={observation}>{observation}</li>
-          ))}
-        </ul>
+      <MobileChapterSection chapter={chapters[1]} index={1} total={chapters.length} className="m-about-thesis">
+        <MobilePageCopy title={copy.thesis} body={copy.thesisNote} titleId={`${chapters[1].id}-title`} />
+        <ol className="m-observations">
+          {copy.observations.map((item, index) => <li key={item}><span dir="ltr">0{index + 1}</span><p>{item}</p></li>)}
+        </ol>
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={aboutChapters[2]} index={2} total={total} className="m-about-materials">
-        <div className="m-section-copy">
-          <span>{language === "ar" ? "تفاصيل محسوسة" : "Tactile Detail"}</span>
-          <h2 id={`${aboutChapters[2].id}-title`}>{copy.materialTitle}</h2>
-        </div>
-        <div className="m-material-rail">
-          {copy.materials.map(([title, text]) => (
-            <article key={title}>
-              <strong>{title}</strong>
-              <p>{text}</p>
-            </article>
-          ))}
-        </div>
-      </MobileChapterSection>
+      {principleGroups.map((group, groupIndex) => (
+        <MobileChapterSection key={groupIndex} chapter={chapters[2 + groupIndex]} index={2 + groupIndex} total={chapters.length} className={`m-about-principles m-about-principles--${groupIndex + 1}`}>
+          <MobilePageCopy title={copy.materialTitle} titleId={`${chapters[2 + groupIndex].id}-title`} />
+          <div className="m-principles">
+            {group.map(([title, body], index) => (
+              <article key={title}>
+                <span dir="ltr">{localizeMobileDigits(String(index + 1 + groupIndex * 3).padStart(2, "0"), language)}</span>
+                <strong>{title}</strong>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+        </MobileChapterSection>
+      ))}
 
-      <MobileChapterSection chapter={aboutChapters[3]} index={3} total={total} className="m-about-rhythm">
-        <div className="m-rhythm-words" aria-hidden="true">
-          {copy.rhythmWords.map((word) => (
-            <span key={word}>{word}</span>
-          ))}
-        </div>
-        <div className="m-section-copy">
-          <span>{language === "ar" ? "منهجية" : "Approach"}</span>
-          <h2 id={`${aboutChapters[3].id}-title`}>{copy.rhythmTitle}</h2>
-        </div>
-        <ol className="m-process-list m-process-list--compact">
-          {copy.rhythm.map(([title, text], index) => (
-            <li key={title}>
-              <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-              <strong>{title}</strong>
-              <p>{text}</p>
-            </li>
+      <MobileChapterSection chapter={chapters[4]} index={4} total={chapters.length} className="m-about-rhythm">
+        <div className="m-about-rhythm__words" aria-hidden="true">{copy.rhythmWords.map((word) => <span key={word}>{word}</span>)}</div>
+        <MobilePageCopy title={copy.rhythmTitle} titleId={`${chapters[4].id}-title`} />
+        <ol className="m-rhythm-list">
+          {copy.rhythm.map(([title, body], index) => (
+            <li key={title}><span dir="ltr">0{index + 1}</span><div><strong>{title}</strong><p>{body}</p></div></li>
           ))}
         </ol>
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={aboutChapters[4]} index={4} total={total} className="m-about-bilingual">
-        <div className="m-language-pair" aria-hidden="true">
-          <span>{copy.sampleOne}</span>
-          <span>{copy.sampleTwo}</span>
-        </div>
-        <div className="m-section-copy">
-          <span>{language === "ar" ? "إيقاع اللغة" : "Language Rhythm"}</span>
-          <h2 id={`${aboutChapters[4].id}-title`}>{copy.bilingualTitle}</h2>
-          <p>{copy.bilingualBody}</p>
-        </div>
+      <MobileChapterSection chapter={chapters[5]} index={5} total={chapters.length} className="m-about-understanding">
+        <span className="m-about-understanding__word" aria-hidden="true">{language === "ar" ? "الغاية" : "purpose"}</span>
+        <MobilePageCopy title={copy.understandingTitle} body={copy.understandingBody} titleId={`${chapters[5].id}-title`} />
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={aboutChapters[5]} index={5} total={total} className="m-about-closing">
-        <div className="m-section-copy m-section-copy--center">
-          <h2 id={`${aboutChapters[5].id}-title`}>{copy.closing}</h2>
-          <MobileCtaLink to="/work">
-            {copy.closingLink}
-            <span aria-hidden="true">{direction === "rtl" ? "←" : "→"}</span>
-          </MobileCtaLink>
-        </div>
+      <MobileChapterSection chapter={chapters[6]} index={6} total={chapters.length} className="m-about-closing">
+        <LogoAsset className="m-about-closing__mark" variant="hero" />
+        <MobilePageCopy title={copy.closing} titleId={`${chapters[6].id}-title`}>
+          <MobileCtaLink to="/work">{copy.closingLink} <MobileArrow /></MobileCtaLink>
+        </MobilePageCopy>
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={aboutChapters[6]} index={6} total={total} className="m-footer-chapter">
+      <MobileChapterSection chapter={chapters[7]} index={7} total={chapters.length} className="m-footer-page">
         <MobileFooter />
       </MobileChapterSection>
     </MobileChapterController>

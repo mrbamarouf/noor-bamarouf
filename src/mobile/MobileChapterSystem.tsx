@@ -41,47 +41,28 @@ export function getMobileChapterAnchor(index: number) {
   return `chapter-${String(index + 1).padStart(2, "0")}`;
 }
 
-function localized(en: string, ar: string): LocalizedString {
-  return { en, ar };
-}
-
 export function makeMobileChapters(titles: Array<LocalizedString | [string, string]>): MobileChapterDefinition[] {
   return titles.map((title, index) => ({
     id: getMobileChapterAnchor(index),
-    title: Array.isArray(title) ? localized(title[0], title[1]) : title,
+    title: Array.isArray(title) ? { en: title[0], ar: title[1] } : title,
   }));
-}
-
-function textDirection(value: string) {
-  return /[\u0600-\u06FF]/.test(value) ? "rtl" : "ltr";
-}
-
-function snapToChapter(root: HTMLElement, target: HTMLElement, behavior: ScrollBehavior = "auto") {
-  root.scrollTo({ top: target.offsetTop, behavior });
 }
 
 export function MobileChapterProvider({ children }: { children: ReactNode }) {
   const [chapters, updateChapters] = useState<MobileChapterDefinition[]>([]);
   const [activeChapterId, updateActiveChapterId] = useState("");
 
-  const setChapters = useCallback((nextChapters: MobileChapterDefinition[]) => {
-    updateChapters(nextChapters);
-    updateActiveChapterId((current) => {
-      if (nextChapters.some((chapter) => chapter.id === current)) return current;
-      return nextChapters[0]?.id ?? "";
-    });
+  const setChapters = useCallback((next: MobileChapterDefinition[]) => {
+    updateChapters(next);
+    updateActiveChapterId((current) => (next.some((chapter) => chapter.id === current) ? current : next[0]?.id ?? ""));
   }, []);
 
   const setActiveChapterId = useCallback((id: string) => {
     updateActiveChapterId((current) => (current === id ? current : id));
   }, []);
 
-  const activeChapterIndex = Math.max(
-    0,
-    chapters.findIndex((chapter) => chapter.id === activeChapterId),
-  );
-
-  const value = useMemo<MobileChapterContextValue>(
+  const activeChapterIndex = Math.max(0, chapters.findIndex((chapter) => chapter.id === activeChapterId));
+  const value = useMemo(
     () => ({ chapters, activeChapterId, activeChapterIndex, setChapters, setActiveChapterId }),
     [activeChapterId, activeChapterIndex, chapters, setActiveChapterId, setChapters],
   );
@@ -91,9 +72,7 @@ export function MobileChapterProvider({ children }: { children: ReactNode }) {
 
 export function useMobileChapterContext() {
   const context = useContext(MobileChapterContext);
-  if (!context) {
-    throw new Error("useMobileChapterContext must be used within MobileChapterProvider");
-  }
+  if (!context) throw new Error("useMobileChapterContext must be used within MobileChapterProvider");
   return context;
 }
 
@@ -106,15 +85,9 @@ export function MobileChapterController({
   className?: string;
   children: ReactNode;
 }) {
-  const { language } = useLanguage();
   const location = useLocation();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const { activeChapterId, setActiveChapterId, setChapters } = useMobileChapterContext();
-  const activeRef = useRef(activeChapterId);
-
-  useEffect(() => {
-    activeRef.current = activeChapterId;
-  }, [activeChapterId]);
 
   useEffect(() => {
     setChapters(chapters);
@@ -123,82 +96,53 @@ export function MobileChapterController({
 
   useEffect(() => {
     const root = scrollerRef.current;
-    if (!root) return;
+    if (!root || !chapters.length) return;
 
     const nodes = chapters
-      .map((chapter) => document.getElementById(chapter.id))
+      .map((chapter) => root.querySelector<HTMLElement>(`#${chapter.id}`))
       .filter((node): node is HTMLElement => Boolean(node));
-
     if (!nodes.length) return;
 
-    let frame = 0;
-    const updateActive = () => {
-      frame = 0;
-      const rootTop = root.getBoundingClientRect().top;
-      const closest = nodes
-        .map((node) => ({ id: node.id, distance: Math.abs(node.getBoundingClientRect().top - rootTop) }))
-        .sort((a, b) => a.distance - b.distance)[0];
-      if (closest) setActiveChapterId(closest.id);
-    };
+    const requested = location.hash.replace("#", "");
+    const initialId = [requested, chapters[0].id].find((id) => chapters.some((chapter) => chapter.id === id));
+    const initial = nodes.find((node) => node.id === initialId) ?? nodes[0];
 
-    const schedule = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(updateActive);
-    };
+    root.style.scrollBehavior = "auto";
+    root.scrollTop = initial.offsetTop;
+    const restoreScrollBehavior = window.requestAnimationFrame(() => {
+      root.style.removeProperty("scroll-behavior");
+    });
+    setActiveChapterId(initial.id);
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const visible = entries
+        const current = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActiveChapterId(visible.target.id);
+        if (!current?.target.id) return;
+        setActiveChapterId(current.target.id);
       },
-      { root, threshold: [0.52, 0.68, 0.84] },
+      { root, threshold: [0.55, 0.7, 0.9] },
     );
 
     nodes.forEach((node) => observer.observe(node));
-    root.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-    updateActive();
-
     return () => {
-      if (frame) window.cancelAnimationFrame(frame);
+      window.cancelAnimationFrame(restoreScrollBehavior);
+      root.style.removeProperty("scroll-behavior");
       observer.disconnect();
-      root.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
     };
-  }, [chapters, setActiveChapterId]);
+  }, [chapters, location.hash, location.pathname, setActiveChapterId]);
 
   useEffect(() => {
-    const root = scrollerRef.current;
-    if (!root) return;
-
-    const id = location.hash.replace("#", "");
-    const first = chapters[0] ? document.getElementById(chapters[0].id) : null;
-    const target = id && chapters.some((chapter) => chapter.id === id) ? document.getElementById(id) : first;
-
-    window.requestAnimationFrame(() => {
-      if (!target) return;
-      snapToChapter(root, target);
-      setActiveChapterId(target.id);
-      window.setTimeout(() => snapToChapter(root, target), 80);
-    });
-  }, [chapters, location.pathname, location.hash, setActiveChapterId]);
-
-  useEffect(() => {
-    const root = scrollerRef.current;
-    const current = activeRef.current;
-    if (!root || !current) return;
-
-    window.requestAnimationFrame(() => {
-      const target = document.getElementById(current);
-      if (!target) return;
-      snapToChapter(root, target);
-    });
-  }, [language]);
+    if (!activeChapterId || !chapters.some((chapter) => chapter.id === activeChapterId)) return;
+    const nextUrl = `${location.pathname}${location.search}#${activeChapterId}`;
+    if (`${location.pathname}${location.search}${location.hash}` !== nextUrl) {
+      window.history.replaceState(window.history.state, "", nextUrl);
+    }
+  }, [activeChapterId, chapters, location.hash, location.pathname, location.search]);
 
   return (
-    <div ref={scrollerRef} className={`m-chapter-scroll ${className}`} data-mobile-scroller>
+    <div ref={scrollerRef} className={`m-book ${className}`} data-mobile-scroller>
       {children}
     </div>
   );
@@ -218,44 +162,21 @@ export function MobileChapterSection({
   children: ReactNode;
 }) {
   const { language } = useLanguage();
-  const title = chapter.title[language];
 
   return (
     <section
       id={chapter.id}
-      className={`m-chapter ${className}`}
+      className={`m-page ${className}`}
       data-mobile-chapter
       data-chapter-index={index + 1}
       aria-labelledby={`${chapter.id}-title`}
     >
-      <p className="m-chapter__marker">
+      <div className="m-page__folio" aria-label={`${index + 1} of ${total}`}>
         <span dir="ltr">{formatMobileChapterNumber(index + 1, language)}</span>
-        <span aria-hidden="true">/</span>
+        <i aria-hidden="true" />
         <span dir="ltr">{formatMobileChapterNumber(total, language)}</span>
-        <strong dir={textDirection(title)}>
-          <bdi>{title}</bdi>
-        </strong>
-      </p>
-      <div className="m-chapter__body">{children}</div>
+      </div>
+      <div className="m-page__content">{children}</div>
     </section>
-  );
-}
-
-export function MobileChapterIndicator() {
-  const { language } = useLanguage();
-  const { activeChapterIndex, chapters } = useMobileChapterContext();
-
-  if (!chapters.length) return null;
-
-  const activeChapter = chapters[activeChapterIndex] ?? chapters[0];
-  const title = activeChapter.title[language];
-
-  return (
-    <aside className="m-chapter-indicator" aria-live="polite" aria-label={language === "ar" ? "الفصل الحالي" : "Current chapter"}>
-      <span dir="ltr">{formatMobileChapterNumber(activeChapterIndex + 1, language)}</span>
-      <strong dir={textDirection(title)}>
-        <bdi>{title}</bdi>
-      </strong>
-    </aside>
   );
 }

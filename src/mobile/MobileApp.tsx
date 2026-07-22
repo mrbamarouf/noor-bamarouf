@@ -1,7 +1,7 @@
 import { useEffect, type ReactNode } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { MobileChapterIndicator, MobileChapterProvider } from "./MobileChapterSystem";
+import { MobileChapterProvider } from "./MobileChapterSystem";
 import { MobileHeader } from "./MobileHeader";
 import { MobileIntro } from "./MobileIntro";
 import { MobileAboutPage } from "./pages/MobileAboutPage";
@@ -32,7 +32,6 @@ export function MobileApp({ manager }: { manager: ReactNode }) {
         </a>
         <MobileIntro />
         <MobileHeader />
-        <MobileChapterIndicator />
         {manager}
         <main id="main-content" className="m-main">
           <Routes>

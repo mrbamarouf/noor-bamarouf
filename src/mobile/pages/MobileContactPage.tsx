@@ -1,62 +1,42 @@
-import { DecorativeNbLogo } from "../../components/DecorativeNbLogo";
+import { LogoAsset } from "../../components/LogoAsset";
 import { contactDetails, getEmailHref, getWhatsAppHref } from "../../config/contact";
 import { useLanguage } from "../../context/LanguageContext";
 import { makeMobileChapters, MobileChapterController, MobileChapterSection } from "../MobileChapterSystem";
 import { MobileFooter } from "../MobileFooter";
-import { MobileArrow, MobileExternalCta } from "../MobilePrimitives";
+import { MobileArrow, MobileExternalCta, MobilePageCopy } from "../MobilePrimitives";
 
-const contactChapters = makeMobileChapters([
+const chapters = makeMobileChapters([
   ["Contact", "التواصل"],
-  ["Methods", "طرق التواصل"],
+  ["Contact methods", "طرق التواصل"],
   ["Footer", "التذييل"],
 ]);
 
 export function MobileContactPage() {
   const { dictionary, language } = useLanguage();
-  const total = contactChapters.length;
-  const whatsappHref = getWhatsAppHref(language);
-  const emailHref = getEmailHref(language);
+  const whatsapp = getWhatsAppHref(language);
+  const email = getEmailHref(language);
 
   return (
-    <MobileChapterController chapters={contactChapters} className="m-contact-page">
-      <MobileChapterSection chapter={contactChapters[0]} index={0} total={total} className="m-contact-opening">
-        <div className="m-section-copy">
-          <span>{dictionary.nav.contact}</span>
-          <h1 id={`${contactChapters[0].id}-title`}>{dictionary.contactPage.title}</h1>
-          <p>{dictionary.contactPage.body}</p>
-          <div className="m-actions">
-            <MobileExternalCta href={whatsappHref} target="_blank" rel="noopener noreferrer">
-              {dictionary.actions.contactByWhatsApp} <MobileArrow />
-            </MobileExternalCta>
-            <MobileExternalCta className="m-cta--ghost" href={emailHref}>
-              {dictionary.actions.sendEmail}
-            </MobileExternalCta>
+    <MobileChapterController chapters={chapters} className="m-contact">
+      <MobileChapterSection chapter={chapters[0]} index={0} total={chapters.length} className="m-contact-hero">
+        <MobilePageCopy label={dictionary.nav.contact} title={dictionary.contactPage.title} body={dictionary.contactPage.body} titleId={`${chapters[0].id}-title`}>
+          <div className="m-actions m-actions--stack">
+            <MobileExternalCta href={whatsapp} target="_blank" rel="noopener noreferrer">{dictionary.actions.contactByWhatsApp} <MobileArrow /></MobileExternalCta>
+            <MobileExternalCta className="m-cta--quiet" href={email}>{dictionary.actions.sendEmail}</MobileExternalCta>
           </div>
-        </div>
-        <DecorativeNbLogo className="m-contact-opening__mark" priority />
+        </MobilePageCopy>
+        <LogoAsset className="m-contact-hero__mark" variant="hero" priority />
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={contactChapters[1]} index={1} total={total} className="m-contact-methods">
-        <div className="m-section-copy">
-          <span>{dictionary.ui.connect}</span>
-          <h2 id={`${contactChapters[1].id}-title`}>{dictionary.contactPage.methodTitle}</h2>
-          <p>{dictionary.contactPage.methodBody}</p>
-        </div>
-        <div className="m-contact-ledger">
-          <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
-            <span>{dictionary.ui.whatsapp}</span>
-            <strong>{contactDetails.whatsappDisplay}</strong>
-          </a>
-          <a href={emailHref}>
-            <span>{dictionary.ui.email}</span>
-            <strong>{contactDetails.email}</strong>
-          </a>
+      <MobileChapterSection chapter={chapters[1]} index={1} total={chapters.length} className="m-contact-methods">
+        <MobilePageCopy label={dictionary.ui.connect} title={dictionary.contactPage.methodTitle} body={dictionary.contactPage.methodBody} titleId={`${chapters[1].id}-title`} />
+        <div className="m-contact-methods__links">
+          <a href={whatsapp} target="_blank" rel="noopener noreferrer"><span>{dictionary.ui.whatsapp}</span><strong>{contactDetails.whatsappDisplay}</strong><MobileArrow /></a>
+          <a href={email}><span>{dictionary.ui.email}</span><strong>{contactDetails.email}</strong><MobileArrow /></a>
         </div>
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={contactChapters[2]} index={2} total={total} className="m-footer-chapter">
-        <MobileFooter />
-      </MobileChapterSection>
+      <MobileChapterSection chapter={chapters[2]} index={2} total={chapters.length} className="m-footer-page"><MobileFooter /></MobileChapterSection>
     </MobileChapterController>
   );
 }

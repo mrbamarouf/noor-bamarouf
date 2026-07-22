@@ -3,70 +3,62 @@ import { Link, useLocation } from "react-router-dom";
 import { BamaroufStudioLink } from "../components/BamaroufStudioLink";
 import { LogoAsset } from "../components/LogoAsset";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
+import { useLanguage } from "../context/LanguageContext";
 import { navItems } from "../data/content";
 import { getProjectThemeStyle } from "../data/projectPresentation";
 import { getProject } from "../data/projects";
-import { useLanguage } from "../context/LanguageContext";
+import { useMobileChapterContext } from "./MobileChapterSystem";
 
-function navTarget(to: string) {
+function mobileTarget(to: string) {
   return to === "/#services" ? "/services" : to;
 }
 
 export function MobileHeader() {
   const { dictionary, language, toggleLanguage } = useLanguage();
+  const { activeChapterId } = useMobileChapterContext();
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const activeProject = useMemo(() => {
-    const parts = location.pathname.split("/").filter(Boolean);
-    return location.pathname.startsWith("/work/") ? getProject(parts[1]) : undefined;
+    const slug = location.pathname.startsWith("/work/") ? location.pathname.split("/")[2] : undefined;
+    return getProject(slug);
   }, [location.pathname]);
-  const projectStyle = activeProject ? (getProjectThemeStyle(activeProject) as CSSProperties) : undefined;
+  const style = activeProject ? (getProjectThemeStyle(activeProject) as CSSProperties) : undefined;
 
-  const close = (restoreFocus = false) => {
-    setOpen(false);
-    if (restoreFocus) window.setTimeout(() => triggerRef.current?.focus(), 80);
-  };
+  useEffect(() => setOpen(false), [location.pathname]);
 
   useEffect(() => {
-    close();
-  }, [location.pathname]);
-
-  useEffect(() => {
-    if (!open) return undefined;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const timer = window.setTimeout(() => panelRef.current?.querySelector<HTMLButtonElement>(".m-menu__close")?.focus(), 80);
+    if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") close(true);
+      if (event.key === "Escape") setOpen(false);
     };
-
     window.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.clearTimeout(timer);
-      window.removeEventListener("keydown", onKeyDown);
-    };
+    window.requestAnimationFrame(() => closeRef.current?.focus());
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [open]);
+
+  const switchLanguage = () => {
+    if (activeChapterId) {
+      window.history.replaceState(window.history.state, "", `${location.pathname}${location.search}#${activeChapterId}`);
+    }
+    toggleLanguage();
+  };
 
   return (
     <>
-      <header className={`m-header ${activeProject ? "m-header--case" : ""}`} data-project={activeProject?.slug} style={projectStyle}>
+      <header className={`m-header ${activeProject ? "m-header--project" : ""}`} style={style}>
         <LogoAsset variant="mobileHeader" asLink priority />
-        <div className="m-header__actions">
-          <button type="button" className="m-header__language" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
+        <div className="m-header__tools">
+          <button type="button" className="m-language" onClick={switchLanguage} aria-label={dictionary.ui.languageSwitch}>
             {language === "en" ? "AR" : "EN"}
           </button>
           <button
-            ref={triggerRef}
             type="button"
-            className="m-menu-trigger"
+            className="m-menu-button"
             onClick={() => setOpen(true)}
-            aria-label={dictionary.ui.openMenu}
             aria-expanded={open}
-            aria-controls="mobile-navigation"
+            aria-controls="mobile-menu"
+            aria-label={dictionary.ui.openMenu}
           >
             <span />
             <span />
@@ -74,48 +66,35 @@ export function MobileHeader() {
         </div>
       </header>
 
-      <div id="mobile-navigation" className={`m-menu ${open ? "is-open" : ""}`} aria-hidden={!open}>
-        <div className="m-menu__scrim" onClick={() => close(true)} aria-hidden="true" />
-        <div ref={panelRef} className="m-menu__panel" role="dialog" aria-modal="true" aria-label={dictionary.ui.menu}>
-          <div className="m-menu__top">
-            <Link to="/" className="m-menu__logo-link" aria-label="NOOR BAMAROUF home" onClick={() => close()}>
-              <LogoAsset variant="menu" priority />
-            </Link>
-            <button type="button" className="m-menu__close" onClick={() => close(true)} aria-label={dictionary.ui.closeMenu}>
+      <div id="mobile-menu" className={`m-menu ${open ? "is-open" : ""}`} aria-hidden={!open}>
+        <div className="m-menu__surface">
+          <div className="m-menu__head">
+            <LogoAsset variant="menu" asLink priority />
+            <button ref={closeRef} type="button" className="m-menu__close" onClick={() => setOpen(false)} aria-label={dictionary.ui.closeMenu}>
               <span />
               <span />
-            </button>
-          </div>
-
-          <div className="m-menu__language-row">
-            <span>NOOR BAMAROUF</span>
-            <button type="button" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
-              {language === "en" ? "العربية" : "English"}
             </button>
           </div>
 
           <nav className="m-menu__nav" aria-label={dictionary.ui.menu}>
-            {navItems.map((item, index) => {
-              const to = navTarget(item.to);
+            {navItems.map((item) => {
+              const to = mobileTarget(item.to);
               const active = to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
-
               return (
-                <Link key={item.labelKey} to={to} className={active ? "is-active" : ""} onClick={() => close()}>
-                  <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-                  <strong>{dictionary.nav[item.labelKey]}</strong>
+                <Link key={item.labelKey} to={to} onClick={() => setOpen(false)} className={active ? "is-active" : ""}>
+                  {dictionary.nav[item.labelKey]}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="m-menu__contact" aria-label={dictionary.ui.connect}>
-            <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
-              {dictionary.ui.whatsapp}
-            </a>
+          <div className="m-menu__actions">
+            <button type="button" onClick={switchLanguage}>{language === "en" ? "العربية" : "English"}</button>
+            <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.ui.whatsapp}</a>
             <a href={getEmailHref(language)}>{dictionary.ui.email}</a>
           </div>
 
-          <BamaroufStudioLink copy={dictionary.ecosystem} variant="menu" onClick={() => close()} />
+          <BamaroufStudioLink copy={dictionary.ecosystem} variant="menu" onClick={() => setOpen(false)} />
         </div>
       </div>
     </>
