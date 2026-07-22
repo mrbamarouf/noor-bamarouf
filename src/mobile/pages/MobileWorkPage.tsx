@@ -1,94 +1,119 @@
-import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
-import { categoryOrder } from "../../data/content";
+import { getProjectImageByAsset, getProjectPresentation } from "../../data/projectPresentation";
 import { getProjectDisplayTitle, getProjectTitleDirection, projects } from "../../data/projects";
-import type { CategoryKey } from "../../types";
-import { MobileVisual, type MobileAsset } from "../MobileVisual";
+import type { MobileChapterDefinition } from "../MobileChapterSystem";
+import {
+  getMobileChapterAnchor,
+  localizeMobileDigits,
+  MobileChapterController,
+  MobileChapterSection,
+} from "../MobileChapterSystem";
+import { MobileFooter } from "../MobileFooter";
+import { MobileArrow, MobileProjectLine } from "../MobilePrimitives";
+import { MobileVisual } from "../MobileVisual";
+import { getMobileProjectWorld } from "../mobileProjectWorlds";
 import { mobileCopy } from "../mobileCopy";
 
-const workAssets: MobileAsset[] = [
-  "hero", "cover", "hero", "cover",
-  "cover", "hero", "hero", "cover",
-  "hero", "cover", "hero",
-];
+function getWorkChapters(): MobileChapterDefinition[] {
+  return [
+    { id: getMobileChapterAnchor(0), title: { en: "Archive opening", ar: "افتتاحية الأرشيف" } },
+    ...projects.slice(0, 5).map((project, index) => ({
+      id: getMobileChapterAnchor(index + 1),
+      title: { en: project.title, ar: project.displayTitle?.ar ?? project.title },
+    })),
+    { id: getMobileChapterAnchor(6), title: { en: "Project index", ar: "فهرس المشاريع" } },
+    { id: getMobileChapterAnchor(7), title: { en: "Contact", ar: "التواصل" } },
+  ];
+}
+
+function WorkSpotlight({ project, index }: { project: (typeof projects)[number]; index: number }) {
+  const { dictionary, language } = useLanguage();
+  const presentation = getProjectPresentation(project);
+  const image = getProjectImageByAsset(project, presentation.hero.asset);
+  const world = getMobileProjectWorld(project);
+
+  return (
+    <Link className="m-work-spotlight" to={`/work/${project.slug}`} style={world.style} data-project={project.slug}>
+      <MobileVisual
+        project={project}
+        image={image}
+        asset={presentation.hero.asset}
+        fit={presentation.hero.fit ?? "contain"}
+        formatOverride={presentation.hero.format}
+        loading="eager"
+      />
+      <span className="m-work-spotlight__meta">
+        <small dir="ltr">
+          {localizeMobileDigits(String(index + 1).padStart(2, "0"), language)} / {localizeMobileDigits(String(projects.length).padStart(2, "0"), language)}
+        </small>
+        <strong>
+          <bdi dir={getProjectTitleDirection(project, language)}>{getProjectDisplayTitle(project, language)}</bdi>
+        </strong>
+        <em>{dictionary.categories[project.category]}</em>
+        <span>
+          {dictionary.actions.openProject}
+          <MobileArrow />
+        </span>
+      </span>
+    </Link>
+  );
+}
 
 export function MobileWorkPage() {
   const { dictionary, language } = useLanguage();
-  const [category, setCategory] = useState<CategoryKey>("all");
   const words = mobileCopy[language];
-  const availableCategories = useMemo(
-    () => categoryOrder.filter((key) => key === "all" || projects.some((project) => project.category === key)),
-    [],
-  );
-  const visible = category === "all" ? projects : projects.filter((project) => project.category === category);
+  const chapters = getWorkChapters();
+  const total = chapters.length;
+  const categoryCount = new Set(projects.map((project) => project.category)).size;
 
   return (
-    <div className="m-page m-work-page m-work-page--v2">
-      <section className="m-room m-room--work-route" aria-labelledby="mobile-work-title">
-        <div className="m-room__heading" data-reveal>
-          <p>{words.archiveLabel}</p>
-          <h1 id="mobile-work-title">{words.archiveTitle}</h1>
-          <span>{words.archiveBody}</span>
+    <MobileChapterController chapters={chapters} className="m-work-page">
+      <MobileChapterSection chapter={chapters[0]} index={0} total={total} className="m-work-intro">
+        <div className="m-chapter-copy">
+          <p>{dictionary.nav.work}</p>
+          <h1 id={`${chapters[0].id}-title`}>
+            {language === "ar" ? "أرشيف بصري لعوالم مختلفة." : "A curated archive of visual worlds."}
+          </h1>
+          <p>
+            {language === "ar"
+              ? "مشاريع في الهوية والتغليف والمطبوعات والتصميم التحريري والتواصل الاجتماعي، لكل مشروع لغته الخاصة."
+              : "Identity, packaging, print, editorial, and social work, each project shaped through its own visual language."}
+          </p>
         </div>
-        <div className="m-work-route__visual" data-reveal>
-          <MobileVisual
-            project={projects[2]}
-            image={projects[2].heroImage}
-            asset="hero"
-            fit="cover"
-            loading="eager"
-            sizes="(max-width: 900px) 100vw, 1px"
-          />
-          <span>{String(projects.length).padStart(2, "0")} / {words.allProjects}</span>
+        <div className="m-metrics m-metrics--work">
+          <span>
+            <strong>{localizeMobileDigits(String(projects.length), language)}</strong>
+            <small>{words.projects}</small>
+          </span>
+          <span>
+            <strong>{localizeMobileDigits(String(categoryCount), language)}</strong>
+            <small>{words.categories}</small>
+          </span>
         </div>
-      </section>
+      </MobileChapterSection>
 
-      <div className="m-filter-shell m-filter-shell--v2">
-        <p>{words.filterLabel}</p>
-        <div className="m-filter-rail" role="tablist" aria-label={dictionary.ui.projectCategories}>
-          {availableCategories.map((key) => (
-            <button
-              type="button"
-              key={key}
-              role="tab"
-              aria-selected={category === key}
-              className={category === key ? "is-active" : ""}
-              onClick={() => setCategory(key)}
-            >
-              {dictionary.categories[key]}
-            </button>
+      {projects.slice(0, 5).map((project, index) => (
+        <MobileChapterSection key={project.slug} chapter={chapters[index + 1]} index={index + 1} total={total} className="m-work-project">
+          <WorkSpotlight project={project} index={index} />
+        </MobileChapterSection>
+      ))}
+
+      <MobileChapterSection chapter={chapters[6]} index={6} total={total} className="m-work-index">
+        <div className="m-chapter-copy">
+          <h2 id={`${chapters[6].id}-title`}>{words.allProjects}</h2>
+          <p>{dictionary.home.workNote}</p>
+        </div>
+        <div className="m-line-list">
+          {projects.map((project, index) => (
+            <MobileProjectLine key={project.slug} project={project} index={index} />
           ))}
         </div>
-      </div>
+      </MobileChapterSection>
 
-      <section className="m-work-index m-work-index--v2" aria-live="polite">
-        {visible.map((project) => {
-          const index = projects.findIndex((item) => item.slug === project.slug);
-          const title = getProjectDisplayTitle(project, language);
-          const asset = workAssets[index];
-          const image = asset === "hero" ? project.heroImage : project.coverImage;
-
-          return (
-            <Link
-              key={project.slug}
-              className={`m-work-project m-work-project--${index % 3}`}
-              to={`/work/${project.slug}`}
-              data-reveal
-            >
-              <div className="m-work-project__visual">
-                <MobileVisual project={project} image={image} asset={asset} sizes="(max-width: 900px) 100vw, 1px" />
-                <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-              </div>
-              <div className="m-work-project__copy">
-                <p>{dictionary.categories[project.category]} / {project.year}</p>
-                <h2><bdi dir={getProjectTitleDirection(project, language)}>{title}</bdi></h2>
-                <span>{project.projectType[language]}</span>
-              </div>
-            </Link>
-          );
-        })}
-      </section>
-    </div>
+      <MobileChapterSection chapter={chapters[7]} index={7} total={total} className="m-global-end">
+        <MobileFooter />
+      </MobileChapterSection>
+    </MobileChapterController>
   );
 }

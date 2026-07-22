@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { ComingSoon } from "./components/ComingSoon";
 import { CustomCursor } from "./components/CustomCursor";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -19,7 +18,6 @@ import { useMobileViewport } from "./mobile/useMobileViewport";
 const PRODUCTION_ORIGIN = "https://noorbamarouf.com";
 const BRAND_TITLE = "NOOR BAMAROUF";
 const BRAND_IMAGE = `${PRODUCTION_ORIGIN}/brand/noor-final/noor-nb-social.png`;
-const SHOW_PORTFOLIO_IN_PRODUCTION = import.meta.env.VITE_PORTFOLIO_APPROVED === "true";
 
 function setNamedMeta(selector: string, content: string) {
   document.querySelector<HTMLMetaElement>(selector)?.setAttribute("content", content);
@@ -121,10 +119,6 @@ export function App() {
   const { dictionary } = useLanguage();
   const isMobile = useMobileViewport();
 
-  if (import.meta.env.PROD && !SHOW_PORTFOLIO_IN_PRODUCTION) {
-    return <ComingSoon />;
-  }
-
   if (isMobile) {
     return <MobileApp manager={<ScrollManager />} />;
   }
@@ -144,6 +138,7 @@ export function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/work" element={<WorkPage />} />
           <Route path="/work/:slug" element={<ProjectPage />} />
+          <Route path="/services" element={<Navigate to="/#services" replace />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

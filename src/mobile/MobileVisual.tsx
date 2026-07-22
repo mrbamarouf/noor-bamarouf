@@ -1,7 +1,7 @@
-import { useLanguage } from "../context/LanguageContext";
-import type { Project, ProjectImage } from "../types";
-import { getProjectAssetDimensions } from "../data/projectAssetDimensions";
 import type { CSSProperties } from "react";
+import { useLanguage } from "../context/LanguageContext";
+import { getProjectAssetDimensions } from "../data/projectAssetDimensions";
+import type { Project, ProjectImage } from "../types";
 
 export type MobileAsset = "cover" | "hero" | `gallery-${number}` | (string & {});
 
@@ -13,7 +13,6 @@ interface MobileVisualProps {
   loading?: "lazy" | "eager";
   sizes?: string;
   fit?: "cover" | "contain";
-  preserveAspect?: boolean;
   formatOverride?: ProjectImage["format"];
 }
 
@@ -31,22 +30,21 @@ export function MobileVisual({
   loading = "lazy",
   sizes = "100vw",
   fit = "contain",
-  preserveAspect = true,
   formatOverride,
 }: MobileVisualProps) {
   const { language } = useLanguage();
   const src = getMobileAssetSource(project, image, asset, formatOverride);
   const dimensions = getProjectAssetDimensions(src.slice(1));
-  const visualStyle =
-    preserveAspect && dimensions
-      ? ({
-          "--m-visual-ratio": `${dimensions.width} / ${dimensions.height}`,
-        } as CSSProperties)
-      : undefined;
+  const visualStyle = dimensions
+    ? ({
+        "--m-visual-ratio": `${dimensions.width} / ${dimensions.height}`,
+        "--m-visual-fit": fit,
+      } as CSSProperties)
+    : ({ "--m-visual-ratio": "1 / 1", "--m-visual-fit": fit } as CSSProperties);
 
   return (
     <figure
-      className={`m-visual m-visual--${fit} ${className}`}
+      className={`m-visual ${className}`}
       data-project={project.slug}
       data-asset={asset}
       data-fit={fit}
@@ -57,7 +55,7 @@ export function MobileVisual({
         alt={image.alt[language]}
         loading={loading}
         decoding="async"
-        width={dimensions?.width ?? 1600}
+        width={dimensions?.width ?? 1200}
         height={dimensions?.height ?? 1200}
         sizes={sizes}
       />

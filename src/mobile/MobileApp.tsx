@@ -1,9 +1,7 @@
-import { useEffect } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { ScrollProgress } from "../components/ScrollProgress";
+import { useEffect, type ReactNode } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { MobileChapterIndicator, MobileChapterProvider } from "./MobileChapterSystem";
-import { MobileFooter } from "./MobileFooter";
+import { MobileChapterProvider } from "./MobileChapterSystem";
 import { MobileHeader } from "./MobileHeader";
 import { MobileIntro } from "./MobileIntro";
 import { MobileAboutPage } from "./pages/MobileAboutPage";
@@ -13,26 +11,29 @@ import { MobileProjectPage } from "./pages/MobileProjectPage";
 import { MobileServicesPage } from "./pages/MobileServicesPage";
 import { MobileWorkPage } from "./pages/MobileWorkPage";
 
-export function MobileApp({ manager }: { manager: React.ReactNode }) {
+export function MobileApp({ manager }: { manager: ReactNode }) {
   const { dictionary } = useLanguage();
-  const location = useLocation();
-  const isHome = location.pathname === "/";
 
   useEffect(() => {
     document.body.classList.add("mobile-experience");
-    return () => document.body.classList.remove("mobile-experience");
+    document.documentElement.classList.add("mobile-experience-root");
+
+    return () => {
+      document.body.classList.remove("mobile-experience");
+      document.documentElement.classList.remove("mobile-experience-root");
+    };
   }, []);
 
   return (
     <MobileChapterProvider>
       <div className="m-app noor-mobile-shell">
-        <a className="skip-link" href="#main-content">{dictionary.actions.skipToContent}</a>
+        <a className="skip-link" href="#main-content">
+          {dictionary.actions.skipToContent}
+        </a>
         <MobileIntro />
         <MobileHeader />
-        <MobileChapterIndicator />
-        <ScrollProgress />
         {manager}
-        <main id="main-content">
+        <main id="main-content" className="m-main">
           <Routes>
             <Route path="/" element={<MobileHomePage />} />
             <Route path="/about" element={<MobileAboutPage />} />
@@ -43,7 +44,6 @@ export function MobileApp({ manager }: { manager: React.ReactNode }) {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
-        {isHome ? null : <MobileFooter />}
       </div>
     </MobileChapterProvider>
   );

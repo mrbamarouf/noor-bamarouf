@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { BamaroufStudioLink } from "../components/BamaroufStudioLink";
 import { LogoAsset } from "../components/LogoAsset";
@@ -6,52 +6,18 @@ import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { useLanguage } from "../context/LanguageContext";
 import { getProjectThemeStyle } from "../data/projectPresentation";
 import { getProject } from "../data/projects";
-import { MobileChapterMenuIndex } from "./MobileChapterSystem";
 import { mobileCopy } from "./mobileCopy";
-import type { CSSProperties } from "react";
-
-const darkProjectHeaderSlugs = new Set([
-  "egg-space",
-  "red-bull-marvel",
-  "impostor",
-  "nirto-cold-brew",
-]);
 
 export function MobileHeader() {
   const { dictionary, language, toggleLanguage } = useLanguage();
   const words = mobileCopy[language];
   const location = useLocation();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  const lastScrollYRef = useRef(0);
-
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const currentY = window.scrollY;
-      const previousY = lastScrollYRef.current;
-      setScrolled(currentY > 12);
-      setHidden(currentY > 140 && currentY > previousY + 18);
-      if (currentY < previousY - 10 || currentY < 80) {
-        setHidden(false);
-      }
-      lastScrollYRef.current = Math.max(0, currentY);
-    };
-    const requestUpdate = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(update);
-    };
-    update();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    return () => {
-      if (frame) window.cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", requestUpdate);
-    };
-  }, []);
+  const projectSlug = location.pathname.startsWith("/work/") ? location.pathname.split("/").filter(Boolean)[1] : undefined;
+  const activeProject = getProject(projectSlug);
+  const projectStyle = activeProject ? (getProjectThemeStyle(activeProject) as CSSProperties) : undefined;
 
   const close = useCallback((restoreFocus = false) => {
     setOpen(false);
@@ -65,23 +31,27 @@ export function MobileHeader() {
   useEffect(() => {
     if (!open) return;
 
-    const previousOverflow = document.body.style.overflow;
-    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousRootOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
-    const timer = window.setTimeout(() => panelRef.current?.querySelector<HTMLButtonElement>(".m-menu__close")?.focus(), 80);
+
+    const timer = window.setTimeout(() => panelRef.current?.querySelector<HTMLButtonElement>(".m-menu__close")?.focus(), 90);
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         close(true);
         return;
       }
+
       if (event.key !== "Tab") return;
 
-      const items = Array.from(panelRef.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])") ?? []);
-      if (!items.length) return;
-      const first = items[0];
-      const last = items[items.length - 1];
+      const controls = Array.from(panelRef.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])") ?? []);
+      if (!controls.length) return;
+
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+
       if (event.shiftKey && document.activeElement === first) {
         event.preventDefault();
         last.focus();
@@ -92,11 +62,12 @@ export function MobileHeader() {
     };
 
     document.addEventListener("keydown", onKeyDown);
+
     return () => {
       window.clearTimeout(timer);
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = previousOverflow;
-      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousRootOverflow;
     };
   }, [close, open]);
 
@@ -107,20 +78,16 @@ export function MobileHeader() {
     { to: "/services", label: dictionary.nav.services },
     { to: "/contact", label: dictionary.nav.contact },
   ];
-  const currentProjectSlug = location.pathname.startsWith("/work/") ? location.pathname.split("/")[2] : "";
-  const activeProject = getProject(currentProjectSlug);
-  const isDarkProjectHeader = darkProjectHeaderSlugs.has(currentProjectSlug);
-  const projectThemeStyle = activeProject ? (getProjectThemeStyle(activeProject) as CSSProperties) : undefined;
 
   return (
     <>
       <header
-        className={`m-header ${scrolled ? "m-header--scrolled" : ""} ${activeProject ? "m-header--case" : ""} ${isDarkProjectHeader ? "m-header--on-dark" : ""}`}
-        data-hidden={hidden && !open ? "true" : "false"}
-        style={projectThemeStyle}
+        className={`m-header ${activeProject ? "m-header--case" : ""}`}
+        data-project={activeProject?.slug}
+        style={projectStyle}
       >
         <LogoAsset variant="mobileHeader" asLink priority />
-        <div className="m-header__tools">
+        <div className="m-header__actions">
           <button type="button" className="m-header__language" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
             {language === "en" ? "AR" : "EN"}
           </button>
@@ -142,7 +109,7 @@ export function MobileHeader() {
       <div id="mobile-navigation" className={`m-menu ${open ? "is-open" : ""}`} aria-hidden={!open}>
         <div ref={panelRef} className="m-menu__panel" role="dialog" aria-modal="true" aria-label={words.menuLabel}>
           <div className="m-menu__top">
-            <Link to="/" className="m-menu__brand" aria-label="NOOR BAMAROUF home" onClick={() => close()}>
+            <Link to="/" className="m-menu__logo-link" aria-label="NOOR BAMAROUF home" onClick={() => close()}>
               <LogoAsset variant="menu" priority />
             </Link>
             <button type="button" className="m-menu__close" onClick={() => close(true)} aria-label={words.closeMenu}>
@@ -151,8 +118,8 @@ export function MobileHeader() {
             </button>
           </div>
 
-          <div className="m-menu__heading">
-            <span>{words.chapters}</span>
+          <div className="m-menu__language-row">
+            <span>{words.menuTitle}</span>
             <button type="button" onClick={toggleLanguage} aria-label={dictionary.ui.languageSwitch}>
               {language === "en" ? "العربية" : "English"}
             </button>
@@ -169,21 +136,18 @@ export function MobileHeader() {
               >
                 <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
                 <strong>{item.label}</strong>
-                <i aria-hidden="true">{language === "ar" ? "←" : "→"}</i>
               </NavLink>
             ))}
           </nav>
 
-          <MobileChapterMenuIndex onNavigate={() => close()} />
-
-          <BamaroufStudioLink copy={dictionary.ecosystem} variant="menu" onClick={() => close()} />
-
-          <div className="m-menu__contact">
-            <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.ui.whatsapp}<span aria-hidden="true">↗</span></a>
-            <a href={getEmailHref(language)}>{dictionary.ui.email}<span aria-hidden="true">↗</span></a>
+          <div className="m-menu__contact" aria-label={dictionary.ui.connect}>
+            <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
+              {dictionary.ui.whatsapp}
+            </a>
+            <a href={getEmailHref(language)}>{dictionary.ui.email}</a>
           </div>
 
-          <p className="m-menu__copyright">© 2026 {language === "ar" ? "نور بامعروف" : "NOOR BAMAROUF"}</p>
+          <BamaroufStudioLink copy={dictionary.ecosystem} variant="menu" onClick={() => close()} />
         </div>
       </div>
     </>

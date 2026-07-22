@@ -1,39 +1,90 @@
 import { useLanguage } from "../../context/LanguageContext";
-import { MobileTextLink } from "../MobilePrimitives";
-import { MobileServicesShowcase } from "../MobileServicesShowcase";
-import { mobileCopy } from "../mobileCopy";
+import { serviceOrder } from "../../data/content";
+import { projects } from "../../data/projects";
+import { MobileChapterController, MobileChapterSection, type MobileChapterDefinition } from "../MobileChapterSystem";
+import { MobileFooter } from "../MobileFooter";
+import { MobileProjectLine, MobileTextLink } from "../MobilePrimitives";
+
+const chapters: MobileChapterDefinition[] = [
+  { id: "chapter-01", title: { en: "Services", ar: "الخدمات" } },
+  { id: "chapter-02", title: { en: "Identity and objects", ar: "الهوية والمواد" } },
+  { id: "chapter-03", title: { en: "Print and social", ar: "المطبوعات والتواصل" } },
+  { id: "chapter-04", title: { en: "Process", ar: "المنهجية" } },
+  { id: "chapter-05", title: { en: "Contact", ar: "التواصل" } },
+];
 
 export function MobileServicesPage() {
   const { dictionary, language } = useLanguage();
-  const words = mobileCopy[language];
+  const total = chapters.length;
+  const firstGroup = serviceOrder.slice(0, 4);
+  const secondGroup = serviceOrder.slice(4);
+  const referenceProjects = projects.slice(0, 4);
 
   return (
-    <div className="m-page m-services-page m-services-page--v2">
-      <section className="m-room m-room--services-route" aria-labelledby="mobile-services-page-title">
-        <div className="m-room__heading" data-reveal>
-          <p>{words.servicesLabel}</p>
-          <h1 id="mobile-services-page-title">{words.servicesTitle}</h1>
-          <span>{words.servicesBody}</span>
+    <MobileChapterController chapters={chapters} className="m-services-page">
+      <MobileChapterSection chapter={chapters[0]} index={0} total={total} className="m-services-intro">
+        <div className="m-chapter-copy">
+          <p>{dictionary.nav.services}</p>
+          <h1 id={`${chapters[0].id}-title`}>
+            {language === "ar" ? "خدمات مصممة حول وضوح العلامة." : "Services shaped around brand clarity."}
+          </h1>
+          <p>{dictionary.home.servicesIntro}</p>
         </div>
-        <MobileServicesShowcase />
-      </section>
+        <div className="m-line-list m-line-list--soft">
+          {referenceProjects.map((project, index) => (
+            <MobileProjectLine key={project.slug} project={project} index={index} />
+          ))}
+        </div>
+      </MobileChapterSection>
 
-      <section className="m-room m-room--process m-room--process-route" aria-labelledby="mobile-services-process-title">
-        <div className="m-room__heading m-room__heading--dark" data-reveal>
-          <p>{words.processLabel}</p>
-          <h2 id="mobile-services-process-title">{words.processTitle}</h2>
-          <span>{words.processBody}</span>
-        </div>
-        <ol>
-          {dictionary.process.map((step, index) => (
-            <li key={step.title} data-reveal>
+      <MobileChapterSection chapter={chapters[1]} index={1} total={total} className="m-services-group">
+        <div className="m-service-list">
+          {firstGroup.map((service, index) => (
+            <article key={service}>
               <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-              <div><h3>{step.title}</h3><p>{step.text}</p></div>
+              <h2 id={index === 0 ? `${chapters[1].id}-title` : undefined}>{dictionary.services[service].title}</h2>
+              <p>{dictionary.services[service].description}</p>
+            </article>
+          ))}
+        </div>
+      </MobileChapterSection>
+
+      <MobileChapterSection chapter={chapters[2]} index={2} total={total} className="m-services-group m-services-group--alt">
+        <div className="m-service-list">
+          {secondGroup.map((service, index) => (
+            <article key={service}>
+              <span dir="ltr">{String(index + 5).padStart(2, "0")}</span>
+              <h2 id={index === 0 ? `${chapters[2].id}-title` : undefined}>{dictionary.services[service].title}</h2>
+              <p>{dictionary.services[service].description}</p>
+            </article>
+          ))}
+        </div>
+      </MobileChapterSection>
+
+      <MobileChapterSection chapter={chapters[3]} index={3} total={total} className="m-services-process">
+        <div className="m-chapter-copy">
+          <h2 id={`${chapters[3].id}-title`}>{dictionary.home.processTitle}</h2>
+          <p>{dictionary.home.processIntro}</p>
+        </div>
+        <ol className="m-process-list">
+          {dictionary.process.map((step, index) => (
+            <li key={step.title}>
+              <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{step.title}</strong>
+              <p>{step.text}</p>
             </li>
           ))}
         </ol>
-        <MobileTextLink to="/contact">{dictionary.actions.startProject}</MobileTextLink>
-      </section>
-    </div>
+      </MobileChapterSection>
+
+      <MobileChapterSection chapter={chapters[4]} index={4} total={total} className="m-global-end">
+        <div className="m-chapter-copy">
+          <h2 id={`${chapters[4].id}-title`}>{dictionary.home.contactTitle}</h2>
+          <p>{dictionary.home.contactBody}</p>
+          <MobileTextLink to="/contact">{dictionary.actions.startProject}</MobileTextLink>
+        </div>
+        <MobileFooter />
+      </MobileChapterSection>
+    </MobileChapterController>
   );
 }

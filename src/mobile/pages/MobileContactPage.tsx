@@ -1,54 +1,40 @@
 import { getEmailHref, getWhatsAppHref } from "../../config/contact";
 import { useLanguage } from "../../context/LanguageContext";
-import { projects } from "../../data/projects";
-import { MobileVisual } from "../MobileVisual";
-import { mobileCopy } from "../mobileCopy";
+import { MobileChapterController, MobileChapterSection, type MobileChapterDefinition } from "../MobileChapterSystem";
+import { MobileFooter } from "../MobileFooter";
+
+const chapters: MobileChapterDefinition[] = [
+  { id: "chapter-01", title: { en: "Contact", ar: "التواصل" } },
+  { id: "chapter-02", title: { en: "Begin", ar: "البدء" } },
+];
 
 export function MobileContactPage() {
   const { dictionary, language } = useLanguage();
-  const words = mobileCopy[language];
+  const total = chapters.length;
 
   return (
-    <div className="m-page m-contact-page m-contact-page--v2">
-      <section className="m-room m-room--contact-route" aria-labelledby="mobile-contact-page-title">
-        <div className="m-room__heading" data-reveal>
-          <p>{words.contactLabel}</p>
-          <h1 id="mobile-contact-page-title">{dictionary.contactPage.title}</h1>
-          <span>{dictionary.contactPage.body}</span>
+    <MobileChapterController chapters={chapters} className="m-contact-page">
+      <MobileChapterSection chapter={chapters[0]} index={0} total={total} className="m-contact-opening">
+        <div className="m-chapter-copy">
+          <p>{dictionary.nav.contact}</p>
+          <h1 id={`${chapters[0].id}-title`}>{dictionary.contactPage.title}</h1>
+          <p>{dictionary.contactPage.body}</p>
         </div>
-
-        <div className="m-room--contact__methods" data-reveal>
+        <div className="m-contact-actions">
           <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
-            <strong>{dictionary.actions.contactByWhatsApp}</strong>
-            <span aria-hidden="true">↗</span>
+            {dictionary.actions.contactByWhatsApp}
           </a>
-          <a href={getEmailHref(language)}>
-            <strong>{dictionary.actions.sendEmail}</strong>
-            <span aria-hidden="true">↗</span>
-          </a>
+          <a href={getEmailHref(language)}>{dictionary.actions.sendEmail}</a>
         </div>
+      </MobileChapterSection>
 
-        <p className="m-contact-route__note" data-reveal>{dictionary.contactPage.methodBody}</p>
-      </section>
-
-      <section className="m-room m-room--contact-visual" aria-label={words.contactLabel}>
-        <MobileVisual
-          project={projects[6]}
-          image={projects[6].gallery[4]}
-          asset="gallery-5"
-          sizes="(max-width: 900px) 100vw, 1px"
-        />
-        <div className="m-room--contact-visual__actions" data-reveal>
-          <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
-            <span>{dictionary.ui.whatsapp}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-          <a href={getEmailHref(language)}>
-            <span>{dictionary.ui.email}</span>
-            <span aria-hidden="true">↗</span>
-          </a>
+      <MobileChapterSection chapter={chapters[1]} index={1} total={total} className="m-global-end">
+        <div className="m-chapter-copy">
+          <h2 id={`${chapters[1].id}-title`}>{dictionary.contactPage.methodTitle}</h2>
+          <p>{dictionary.contactPage.methodBody}</p>
         </div>
-      </section>
-    </div>
+        <MobileFooter />
+      </MobileChapterSection>
+    </MobileChapterController>
   );
 }

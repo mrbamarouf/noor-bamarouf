@@ -1,123 +1,51 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { LogoAsset } from "../components/LogoAsset";
 import { useLanguage } from "../context/LanguageContext";
 
-const INTRO_KEY = "noor-intro-played";
-const MOBILE_INTRO_ENTER_MS = 2360;
-const MOBILE_INTRO_EXIT_MS = 520;
-const MOBILE_INTRO_REDUCED_ENTER_MS = 620;
-const MOBILE_INTRO_REDUCED_EXIT_MS = 180;
-const MOBILE_INTRO_FAILSAFE_MS = 4200;
-
-function isReload() {
-  const navigation = performance.getEntriesByType("navigation")[0];
-  return navigation instanceof PerformanceNavigationTiming && navigation.type === "reload";
-}
+const INTRO_STORAGE_KEY = "noor-mobile-intro-complete";
 
 export function MobileIntro() {
   const { dictionary } = useLanguage();
-  const [visible, setVisible] = useState(false);
+  const reduceMotion = useMemo(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    [],
+  );
+  const [visible, setVisible] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return !window.sessionStorage.getItem(INTRO_STORAGE_KEY);
+  });
   const [leaving, setLeaving] = useState(false);
-  const completedRef = useRef(false);
-  const cleanupRef = useRef<(() => void) | null>(null);
-  const focusTargetRef = useRef<HTMLElement | null>(null);
 
-  const restoreFocus = useCallback(() => {
-    const previousTarget = focusTargetRef.current;
-    if (previousTarget && document.contains(previousTarget) && previousTarget !== document.body) {
-      previousTarget.focus({ preventScroll: true });
-      return;
-    }
-
-    const main = document.getElementById("main-content");
-    if (!main) {
-      return;
-    }
-
-    const hadTabIndex = main.hasAttribute("tabindex");
-    main.setAttribute("tabindex", "-1");
-    main.focus({ preventScroll: true });
-    if (!hadTabIndex) {
-      main.addEventListener("blur", () => main.removeAttribute("tabindex"), { once: true });
-    }
-  }, []);
-
-  const finish = useCallback((restore = true) => {
-    if (completedRef.current) {
-      return;
-    }
-
-    completedRef.current = true;
-    window.sessionStorage.setItem(INTRO_KEY, "true");
-    cleanupRef.current?.();
-    cleanupRef.current = null;
-    setVisible(false);
-
-    if (restore) {
-      window.requestAnimationFrame(restoreFocus);
-    }
-  }, [restoreFocus]);
+  const finish = useCallback(() => {
+    window.sessionStorage.setItem(INTRO_STORAGE_KEY, "true");
+    setLeaving(true);
+    window.setTimeout(() => setVisible(false), reduceMotion ? 1 : 420);
+  }, [reduceMotion]);
 
   useEffect(() => {
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const played = window.sessionStorage.getItem(INTRO_KEY) === "true";
-    if (played && !isReload()) {
-      window.sessionStorage.setItem(INTRO_KEY, "true");
+    if (!visible) return;
+    if (reduceMotion) {
+      finish();
       return;
     }
 
-    const enterMs = reducedMotion ? MOBILE_INTRO_REDUCED_ENTER_MS : MOBILE_INTRO_ENTER_MS;
-    const exitMs = reducedMotion ? MOBILE_INTRO_REDUCED_EXIT_MS : MOBILE_INTRO_EXIT_MS;
-    const previousBodyOverflow = document.body.style.overflow;
-    const previousHtmlOverflow = document.documentElement.style.overflow;
-    const activeElement = document.activeElement;
-
-    focusTargetRef.current = activeElement instanceof HTMLElement ? activeElement : null;
-    completedRef.current = false;
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-    cleanupRef.current = () => {
-      document.body.style.overflow = previousBodyOverflow;
-      document.documentElement.style.overflow = previousHtmlOverflow;
-    };
-
-    setVisible(true);
-    const leaveTimer = window.setTimeout(() => setLeaving(true), enterMs);
-    const finishTimer = window.setTimeout(() => finish(), enterMs + exitMs);
-    const failSafeTimer = window.setTimeout(() => finish(false), MOBILE_INTRO_FAILSAFE_MS);
-
-    return () => {
-      window.clearTimeout(leaveTimer);
-      window.clearTimeout(finishTimer);
-      window.clearTimeout(failSafeTimer);
-      cleanupRef.current?.();
-      cleanupRef.current = null;
-    };
-  }, [finish]);
-
-  const skip = () => {
-    setLeaving(true);
-    window.setTimeout(() => finish(), 260);
-  };
+    const timer = window.setTimeout(finish, 2700);
+    return () => window.clearTimeout(timer);
+  }, [finish, reduceMotion, visible]);
 
   if (!visible) return null;
 
   return (
-    <section className={`m-intro ${leaving ? "m-intro--leaving" : ""}`} aria-label={dictionary.intro.descriptor}>
-      <div className="m-intro__field" aria-hidden="true">
-        <span className="m-intro__aura m-intro__aura--blush" />
-        <span className="m-intro__aura m-intro__aura--olive" />
-        <span className="m-intro__light-pass" />
-        <span className="m-intro__texture" />
+    <div className={`m-intro ${leaving ? "is-leaving" : ""}`} role="status" aria-label={dictionary.intro.descriptor}>
+      <div className="m-intro__paper m-intro__paper--one" aria-hidden="true" />
+      <div className="m-intro__paper m-intro__paper--two" aria-hidden="true" />
+      <div className="m-intro__light" aria-hidden="true" />
+      <div className="m-intro__mark">
+        <LogoAsset variant="hero" priority />
       </div>
-      <div className="m-intro__stage" aria-hidden="true">
-        <div className="m-intro__mark">
-          <LogoAsset variant="intro" priority />
-        </div>
-        <p className="m-intro__wordmark">NOOR BAMAROUF</p>
-        <span className="m-intro__role">{dictionary.intro.descriptor}</span>
-      </div>
-      <button type="button" className="m-intro__skip" onClick={skip}>{dictionary.actions.skipIntro}</button>
-    </section>
+      <button type="button" className="m-intro__skip" onClick={finish}>
+        {dictionary.actions.skipIntro}
+      </button>
+    </div>
   );
 }

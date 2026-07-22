@@ -7,7 +7,7 @@
   "scope": "https://noorbamarouf.com/",
   "display": "standalone",
   "background_color": "#f6efea",
-  "theme_color": "#66745f",
+  "theme_color": "#999c81",
   "icons": [
     {
       "src": "/brand/noor-final/icon-192.png",
