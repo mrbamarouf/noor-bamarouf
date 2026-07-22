@@ -26,7 +26,6 @@ interface MobileChapterContextValue {
 }
 
 const MobileChapterContext = createContext<MobileChapterContextValue | undefined>(undefined);
-
 const arabicDigits = ["٠", "١", "٢", "٣", "٤", "٥", "٦", "٧", "٨", "٩"];
 
 export function localizeMobileDigits(value: string, language: Language) {
@@ -38,16 +37,27 @@ export function formatMobileChapterNumber(value: number, language: Language) {
   return localizeMobileDigits(String(value).padStart(2, "0"), language);
 }
 
-function getMobileTextDirection(value: string) {
+export function getMobileChapterAnchor(index: number) {
+  return `chapter-${String(index + 1).padStart(2, "0")}`;
+}
+
+function localized(en: string, ar: string): LocalizedString {
+  return { en, ar };
+}
+
+export function makeMobileChapters(titles: Array<LocalizedString | [string, string]>): MobileChapterDefinition[] {
+  return titles.map((title, index) => ({
+    id: getMobileChapterAnchor(index),
+    title: Array.isArray(title) ? localized(title[0], title[1]) : title,
+  }));
+}
+
+function textDirection(value: string) {
   return /[\u0600-\u06FF]/.test(value) ? "rtl" : "ltr";
 }
 
-function scrollMobileChapterIntoPlace(root: HTMLElement, target: HTMLElement) {
-  root.scrollTo({ top: target.offsetTop, behavior: "auto" });
-}
-
-export function getMobileChapterAnchor(index: number) {
-  return `chapter-${String(index + 1).padStart(2, "0")}`;
+function snapToChapter(root: HTMLElement, target: HTMLElement, behavior: ScrollBehavior = "auto") {
+  root.scrollTo({ top: target.offsetTop, behavior });
 }
 
 export function MobileChapterProvider({ children }: { children: ReactNode }) {
@@ -100,10 +110,10 @@ export function MobileChapterController({
   const location = useLocation();
   const scrollerRef = useRef<HTMLDivElement>(null);
   const { activeChapterId, setActiveChapterId, setChapters } = useMobileChapterContext();
-  const activeChapterRef = useRef(activeChapterId);
+  const activeRef = useRef(activeChapterId);
 
   useEffect(() => {
-    activeChapterRef.current = activeChapterId;
+    activeRef.current = activeChapterId;
   }, [activeChapterId]);
 
   useEffect(() => {
@@ -115,33 +125,25 @@ export function MobileChapterController({
     const root = scrollerRef.current;
     if (!root) return;
 
-    const chapterNodes = chapters
+    const nodes = chapters
       .map((chapter) => document.getElementById(chapter.id))
       .filter((node): node is HTMLElement => Boolean(node));
 
-    if (!chapterNodes.length) return;
+    if (!nodes.length) return;
 
     let frame = 0;
-
-    const updateNearest = () => {
+    const updateActive = () => {
       frame = 0;
-      const rootRect = root.getBoundingClientRect();
-      const target = chapterNodes
-        .map((node) => {
-          const rect = node.getBoundingClientRect();
-          return {
-            id: node.id,
-            distance: Math.abs(rect.top - rootRect.top),
-          };
-        })
+      const rootTop = root.getBoundingClientRect().top;
+      const closest = nodes
+        .map((node) => ({ id: node.id, distance: Math.abs(node.getBoundingClientRect().top - rootTop) }))
         .sort((a, b) => a.distance - b.distance)[0];
-
-      if (target) setActiveChapterId(target.id);
+      if (closest) setActiveChapterId(closest.id);
     };
 
-    const requestUpdate = () => {
+    const schedule = () => {
       if (frame) return;
-      frame = window.requestAnimationFrame(updateNearest);
+      frame = window.requestAnimationFrame(updateActive);
     };
 
     const observer = new IntersectionObserver(
@@ -149,28 +151,21 @@ export function MobileChapterController({
         const visible = entries
           .filter((entry) => entry.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-        if (visible?.target.id) {
-          setActiveChapterId(visible.target.id);
-        }
+        if (visible?.target.id) setActiveChapterId(visible.target.id);
       },
-      {
-        root,
-        threshold: [0.45, 0.6, 0.75],
-        rootMargin: "-18% 0px -28% 0px",
-      },
+      { root, threshold: [0.52, 0.68, 0.84] },
     );
 
-    chapterNodes.forEach((node) => observer.observe(node));
-    root.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    updateNearest();
+    nodes.forEach((node) => observer.observe(node));
+    root.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    updateActive();
 
     return () => {
       if (frame) window.cancelAnimationFrame(frame);
       observer.disconnect();
-      root.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
+      root.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
     };
   }, [chapters, setActiveChapterId]);
 
@@ -179,32 +174,26 @@ export function MobileChapterController({
     if (!root) return;
 
     const id = location.hash.replace("#", "");
-    const target = id && chapters.some((chapter) => chapter.id === id) ? document.getElementById(id) : undefined;
+    const first = chapters[0] ? document.getElementById(chapters[0].id) : null;
+    const target = id && chapters.some((chapter) => chapter.id === id) ? document.getElementById(id) : first;
 
     window.requestAnimationFrame(() => {
-      if (target) {
-        scrollMobileChapterIntoPlace(root, target);
-        setActiveChapterId(target.id);
-        window.setTimeout(() => scrollMobileChapterIntoPlace(root, target), 80);
-        return;
-      }
-
-      root.scrollTo({ top: 0, behavior: "auto" });
-      if (chapters[0]) setActiveChapterId(chapters[0].id);
+      if (!target) return;
+      snapToChapter(root, target);
+      setActiveChapterId(target.id);
+      window.setTimeout(() => snapToChapter(root, target), 80);
     });
   }, [chapters, location.pathname, location.hash, setActiveChapterId]);
 
   useEffect(() => {
     const root = scrollerRef.current;
-    const current = activeChapterRef.current;
+    const current = activeRef.current;
     if (!root || !current) return;
 
     window.requestAnimationFrame(() => {
       const target = document.getElementById(current);
-      if (target) {
-        scrollMobileChapterIntoPlace(root, target);
-        window.setTimeout(() => scrollMobileChapterIntoPlace(root, target), 80);
-      }
+      if (!target) return;
+      snapToChapter(root, target);
     });
   }, [language]);
 
@@ -243,11 +232,11 @@ export function MobileChapterSection({
         <span dir="ltr">{formatMobileChapterNumber(index + 1, language)}</span>
         <span aria-hidden="true">/</span>
         <span dir="ltr">{formatMobileChapterNumber(total, language)}</span>
-        <strong dir={getMobileTextDirection(title)}>
+        <strong dir={textDirection(title)}>
           <bdi>{title}</bdi>
         </strong>
       </p>
-      {children}
+      <div className="m-chapter__body">{children}</div>
     </section>
   );
 }
@@ -264,13 +253,9 @@ export function MobileChapterIndicator() {
   return (
     <aside className="m-chapter-indicator" aria-live="polite" aria-label={language === "ar" ? "الفصل الحالي" : "Current chapter"}>
       <span dir="ltr">{formatMobileChapterNumber(activeChapterIndex + 1, language)}</span>
-      <strong dir={getMobileTextDirection(title)}>
+      <strong dir={textDirection(title)}>
         <bdi>{title}</bdi>
       </strong>
     </aside>
   );
-}
-
-export function MobileChapterMenuIndex() {
-  return null;
 }

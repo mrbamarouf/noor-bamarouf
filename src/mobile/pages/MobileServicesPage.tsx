@@ -1,88 +1,134 @@
+import type { CSSProperties } from "react";
 import { useLanguage } from "../../context/LanguageContext";
-import { serviceOrder } from "../../data/content";
+import { getProjectImageByAsset, getProjectThemeStyle, type PresentationAsset } from "../../data/projectPresentation";
 import { projects } from "../../data/projects";
-import { MobileChapterController, MobileChapterSection, type MobileChapterDefinition } from "../MobileChapterSystem";
+import type { Project, ServiceKey } from "../../types";
+import { makeMobileChapters, MobileChapterController, MobileChapterSection } from "../MobileChapterSystem";
 import { MobileFooter } from "../MobileFooter";
-import { MobileProjectLine, MobileTextLink } from "../MobilePrimitives";
+import { MobileArrow, MobileCtaLink } from "../MobilePrimitives";
+import { MobileVisual } from "../MobileVisual";
+import { approvedMobileServices, mobileHomeCopy } from "../mobileCopy";
 
-const chapters: MobileChapterDefinition[] = [
-  { id: "chapter-01", title: { en: "Services", ar: "الخدمات" } },
-  { id: "chapter-02", title: { en: "Identity and objects", ar: "الهوية والمواد" } },
-  { id: "chapter-03", title: { en: "Print and social", ar: "المطبوعات والتواصل" } },
-  { id: "chapter-04", title: { en: "Process", ar: "المنهجية" } },
-  { id: "chapter-05", title: { en: "Contact", ar: "التواصل" } },
-];
+interface ServiceMoment {
+  project: Project;
+  asset: PresentationAsset;
+  fit?: "contain" | "cover";
+  format?: "jpg" | "png" | "webp";
+}
+
+const servicePreviewMoments: Record<ServiceKey, ServiceMoment> = {
+  brandIdentity: { project: projects[6], asset: "hero", fit: "cover" },
+  logoDesign: { project: projects[10], asset: "hero", fit: "cover" },
+  graphicDesign: { project: projects[2], asset: "showcase/showcase-01", fit: "contain", format: "png" },
+  packagingDesign: { project: projects[8], asset: "hero", fit: "cover" },
+  printDesign: { project: projects[3], asset: "cover", fit: "cover" },
+  socialMediaDesign: { project: projects[7], asset: "gallery-8", fit: "cover" },
+  editorialDesign: { project: projects[1], asset: "gallery-3", fit: "cover" },
+  creativeDirection: { project: projects[4], asset: "gallery-2", fit: "contain" },
+};
+
+const servicesChapters = makeMobileChapters([
+  ["Services", "الخدمات"],
+  ...approvedMobileServices.map((service) => [service, service] as [string, string]),
+  ["Process", "المنهجية"],
+  ["Contact", "التواصل"],
+  ["Footer", "التذييل"],
+]);
 
 export function MobileServicesPage() {
   const { dictionary, language } = useLanguage();
-  const total = chapters.length;
-  const firstGroup = serviceOrder.slice(0, 4);
-  const secondGroup = serviceOrder.slice(4);
-  const referenceProjects = projects.slice(0, 4);
+  const copy = mobileHomeCopy[language];
+  const total = servicesChapters.length;
 
   return (
-    <MobileChapterController chapters={chapters} className="m-services-page">
-      <MobileChapterSection chapter={chapters[0]} index={0} total={total} className="m-services-intro">
-        <div className="m-chapter-copy">
-          <p>{dictionary.nav.services}</p>
-          <h1 id={`${chapters[0].id}-title`}>
-            {language === "ar" ? "خدمات مصممة حول وضوح العلامة." : "Services shaped around brand clarity."}
-          </h1>
+    <MobileChapterController chapters={servicesChapters} className="m-services-page">
+      <MobileChapterSection chapter={servicesChapters[0]} index={0} total={total} className="m-services-intro">
+        <div className="m-section-copy">
+          <span>{copy.capabilitiesLabel}</span>
+          <h1 id={`${servicesChapters[0].id}-title`}>{copy.capabilitiesTitle}</h1>
           <p>{dictionary.home.servicesIntro}</p>
         </div>
-        <div className="m-line-list m-line-list--soft">
-          {referenceProjects.map((project, index) => (
-            <MobileProjectLine key={project.slug} project={project} index={index} />
-          ))}
-        </div>
-      </MobileChapterSection>
-
-      <MobileChapterSection chapter={chapters[1]} index={1} total={total} className="m-services-group">
-        <div className="m-service-list">
-          {firstGroup.map((service, index) => (
-            <article key={service}>
+        <ol className="m-service-ledger m-service-ledger--index">
+          {approvedMobileServices.map((service, index) => (
+            <li key={service}>
               <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-              <h2 id={index === 0 ? `${chapters[1].id}-title` : undefined}>{dictionary.services[service].title}</h2>
-              <p>{dictionary.services[service].description}</p>
-            </article>
-          ))}
-        </div>
-      </MobileChapterSection>
-
-      <MobileChapterSection chapter={chapters[2]} index={2} total={total} className="m-services-group m-services-group--alt">
-        <div className="m-service-list">
-          {secondGroup.map((service, index) => (
-            <article key={service}>
-              <span dir="ltr">{String(index + 5).padStart(2, "0")}</span>
-              <h2 id={index === 0 ? `${chapters[2].id}-title` : undefined}>{dictionary.services[service].title}</h2>
-              <p>{dictionary.services[service].description}</p>
-            </article>
-          ))}
-        </div>
-      </MobileChapterSection>
-
-      <MobileChapterSection chapter={chapters[3]} index={3} total={total} className="m-services-process">
-        <div className="m-chapter-copy">
-          <h2 id={`${chapters[3].id}-title`}>{dictionary.home.processTitle}</h2>
-          <p>{dictionary.home.processIntro}</p>
-        </div>
-        <ol className="m-process-list">
-          {dictionary.process.map((step, index) => (
-            <li key={step.title}>
-              <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-              <strong>{step.title}</strong>
-              <p>{step.text}</p>
+              <div>
+                <strong>{dictionary.services[service].title}</strong>
+                <p>{dictionary.services[service].description}</p>
+              </div>
             </li>
           ))}
         </ol>
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={chapters[4]} index={4} total={total} className="m-global-end">
-        <div className="m-chapter-copy">
-          <h2 id={`${chapters[4].id}-title`}>{dictionary.home.contactTitle}</h2>
-          <p>{dictionary.home.contactBody}</p>
-          <MobileTextLink to="/contact">{dictionary.actions.startProject}</MobileTextLink>
+      {approvedMobileServices.map((service, index) => {
+        const moment = servicePreviewMoments[service];
+        const chapter = servicesChapters[index + 1];
+
+        return (
+          <MobileChapterSection key={service} chapter={chapter} index={index + 1} total={total} className="m-service-chapter">
+            <div className="m-section-copy">
+              <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
+              <h2 id={`${chapter.id}-title`}>{dictionary.services[service].title}</h2>
+              <p>{dictionary.services[service].description}</p>
+            </div>
+            <div className="m-service-preview" style={getProjectThemeStyle(moment.project) as CSSProperties}>
+              <MobileVisual
+                project={moment.project}
+                image={getProjectImageByAsset(moment.project, moment.asset)}
+                asset={moment.asset}
+                fit={moment.fit}
+                formatOverride={moment.format}
+              />
+            </div>
+          </MobileChapterSection>
+        );
+      })}
+
+      <MobileChapterSection
+        chapter={servicesChapters[approvedMobileServices.length + 1]}
+        index={approvedMobileServices.length + 1}
+        total={total}
+        className="m-services-process"
+      >
+        <div className="m-section-copy">
+          <span>{copy.processLabel}</span>
+          <h2 id={`${servicesChapters[approvedMobileServices.length + 1].id}-title`}>{copy.processTitle}</h2>
+          <p>{dictionary.home.processIntro}</p>
         </div>
+        <ol className="m-process-list">
+          {dictionary.process.map((stage, index) => (
+            <li key={stage.title}>
+              <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{stage.title}</strong>
+              <p>{stage.text}</p>
+            </li>
+          ))}
+        </ol>
+      </MobileChapterSection>
+
+      <MobileChapterSection
+        chapter={servicesChapters[approvedMobileServices.length + 2]}
+        index={approvedMobileServices.length + 2}
+        total={total}
+        className="m-global-contact"
+      >
+        <div className="m-section-copy">
+          <span>{copy.contactLabel}</span>
+          <h2 id={`${servicesChapters[approvedMobileServices.length + 2].id}-title`}>{copy.contactTitle}</h2>
+          <p>{copy.contactBody}</p>
+          <MobileCtaLink to="/contact">
+            {dictionary.actions.startProject} <MobileArrow />
+          </MobileCtaLink>
+        </div>
+      </MobileChapterSection>
+
+      <MobileChapterSection
+        chapter={servicesChapters[approvedMobileServices.length + 3]}
+        index={approvedMobileServices.length + 3}
+        total={total}
+        className="m-footer-chapter"
+      >
         <MobileFooter />
       </MobileChapterSection>
     </MobileChapterController>

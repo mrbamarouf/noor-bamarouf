@@ -1,19 +1,32 @@
-import { Link } from "react-router-dom";
+import type { AnchorHTMLAttributes } from "react";
+import { Link, type LinkProps } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 import { getProjectDisplayTitle, getProjectTitleDirection } from "../data/projects";
 import type { Project } from "../types";
+import { localizeMobileDigits } from "./MobileChapterSystem";
 
 export function MobileArrow() {
-  const { language } = useLanguage();
-  return <span aria-hidden="true">{language === "ar" ? "←" : "→"}</span>;
+  const { direction } = useLanguage();
+  return <span aria-hidden="true">{direction === "rtl" ? "←" : "→"}</span>;
 }
 
-export function MobileTextLink({ to, children }: { to: string; children: React.ReactNode }) {
+export function MobileCtaLink({ className = "", children, ...props }: LinkProps) {
   return (
-    <Link className="m-text-link" to={to}>
-      <span>{children}</span>
-      <MobileArrow />
+    <Link className={`m-cta ${className}`} {...props}>
+      {children}
     </Link>
+  );
+}
+
+export function MobileExternalCta({
+  className = "",
+  children,
+  ...props
+}: AnchorHTMLAttributes<HTMLAnchorElement>) {
+  return (
+    <a className={`m-cta ${className}`} {...props}>
+      {children}
+    </a>
   );
 }
 
@@ -22,9 +35,9 @@ export function MobileProjectLine({ project, index }: { project: Project; index:
 
   return (
     <Link className="m-project-line" to={`/work/${project.slug}`}>
-      <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
-      <strong>
-        <bdi dir={getProjectTitleDirection(project, language)}>{getProjectDisplayTitle(project, language)}</bdi>
+      <span dir="ltr">{localizeMobileDigits(String(index + 1).padStart(2, "0"), language)}</span>
+      <strong dir={getProjectTitleDirection(project, language)}>
+        <bdi>{getProjectDisplayTitle(project, language)}</bdi>
       </strong>
       <small>{dictionary.categories[project.category]}</small>
     </Link>

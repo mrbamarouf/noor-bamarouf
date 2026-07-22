@@ -1,8 +1,10 @@
+import { useMemo, type CSSProperties } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { useLanguage } from "../../context/LanguageContext";
 import {
   getProjectImageByAsset,
   getProjectPresentation,
+  getProjectThemeStyle,
   type PresentationSection,
   type PresentationVisual,
 } from "../../data/projectPresentation";
@@ -19,10 +21,10 @@ import {
   MobileChapterSection,
   type MobileChapterDefinition,
 } from "../MobileChapterSystem";
+import { MobileFooter } from "../MobileFooter";
 import { MobileArrow } from "../MobilePrimitives";
 import { MobileVisual, type MobileAsset } from "../MobileVisual";
-import { mobileCopy } from "../mobileCopy";
-import { getMobileProjectWorld } from "../mobileProjectWorlds";
+import { mobileProjectCopy } from "../mobileCopy";
 
 function chapterTitle(en: string, ar: string): LocalizedString {
   return { en, ar };
@@ -245,7 +247,7 @@ function ProjectOverviewChapter({
   return (
     <MobileChapterSection chapter={chapter} index={index} total={total} className="m-project-overview">
       <div className="m-chapter-copy">
-        <p>{mobileCopy[language].projectStory}</p>
+        <p>{mobileProjectCopy[language].projectStory}</p>
         <h2 id={`${chapter.id}-title`}>{dictionary.sections.overview}</h2>
         <p>{project.caseStudy.context[language]}</p>
       </div>
@@ -269,7 +271,7 @@ function ProjectDirectionChapter({
   return (
     <MobileChapterSection chapter={chapter} index={index} total={total} className="m-project-direction">
       <div className="m-chapter-copy">
-        <p>{mobileCopy[language].projectWorld}</p>
+        <p>{mobileProjectCopy[language].projectWorld}</p>
         <h2 id={`${chapter.id}-title`}>{dictionary.sections.creativeDirection}</h2>
         <p>{project.caseStudy.direction[language]}</p>
       </div>
@@ -416,7 +418,7 @@ function ProjectFinalChapter({
   const projectIndex = projects.findIndex((item) => item.slug === project.slug);
   const previous = projects[(projectIndex - 1 + projects.length) % projects.length];
   const next = projects[(projectIndex + 1) % projects.length];
-  const words = mobileCopy[language];
+  const words = mobileProjectCopy[language];
   const presentation = getProjectPresentation(project);
   const closingAsset = (presentation.hero.source ?? presentation.hero.asset) as MobileAsset;
   const closingImage = getProjectImageByAsset(project, closingAsset);
@@ -453,6 +455,7 @@ function ProjectFinalChapter({
           </strong>
         </Link>
       </nav>
+      <MobileFooter caseMode />
     </MobileChapterSection>
   );
 }
@@ -460,15 +463,18 @@ function ProjectFinalChapter({
 export function MobileProjectPage() {
   const { slug } = useParams();
   const project = getProject(slug);
+  const chapters = useMemo(() => (project ? buildProjectFlow(project) : []), [project]);
 
   if (!project) return <Navigate to="/work" replace />;
 
-  const world = getMobileProjectWorld(project);
-  const chapters = buildProjectFlow(project);
   const total = chapters.length;
 
   return (
-    <article className={`m-project-page m-project-page--${project.slug}`} data-project={project.slug} style={world.style}>
+    <article
+      className={`m-project-page m-project-page--${project.slug}`}
+      data-project={project.slug}
+      style={getProjectThemeStyle(project) as CSSProperties}
+    >
       <MobileChapterController chapters={chapters} className="m-project-scroll">
         {chapters.map((chapter, index) => {
           if (chapter.kind === "hero") return <ProjectHeroChapter key={chapter.id} chapter={chapter} index={index} total={total} project={project} />;

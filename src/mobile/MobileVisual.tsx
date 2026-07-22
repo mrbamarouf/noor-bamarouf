@@ -11,7 +11,6 @@ interface MobileVisualProps {
   asset: MobileAsset;
   className?: string;
   loading?: "lazy" | "eager";
-  sizes?: string;
   fit?: "cover" | "contain";
   formatOverride?: ProjectImage["format"];
 }
@@ -28,28 +27,19 @@ export function MobileVisual({
   asset,
   className = "",
   loading = "lazy",
-  sizes = "100vw",
   fit = "contain",
   formatOverride,
 }: MobileVisualProps) {
   const { language } = useLanguage();
   const src = getMobileAssetSource(project, image, asset, formatOverride);
   const dimensions = getProjectAssetDimensions(src.slice(1));
-  const visualStyle = dimensions
-    ? ({
-        "--m-visual-ratio": `${dimensions.width} / ${dimensions.height}`,
-        "--m-visual-fit": fit,
-      } as CSSProperties)
-    : ({ "--m-visual-ratio": "1 / 1", "--m-visual-fit": fit } as CSSProperties);
+  const style = {
+    "--m-visual-ratio": dimensions ? `${dimensions.width} / ${dimensions.height}` : "1 / 1",
+    "--m-visual-fit": fit,
+  } as CSSProperties;
 
   return (
-    <figure
-      className={`m-visual ${className}`}
-      data-project={project.slug}
-      data-asset={asset}
-      data-fit={fit}
-      style={visualStyle}
-    >
+    <figure className={`m-visual ${className}`} data-project={project.slug} data-asset={asset} data-fit={fit} style={style}>
       <img
         src={src}
         alt={image.alt[language]}
@@ -57,7 +47,7 @@ export function MobileVisual({
         decoding="async"
         width={dimensions?.width ?? 1200}
         height={dimensions?.height ?? 1200}
-        sizes={sizes}
+        sizes="(max-width: 900px) 100vw, 50vw"
       />
     </figure>
   );

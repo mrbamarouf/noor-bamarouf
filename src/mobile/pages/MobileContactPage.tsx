@@ -1,38 +1,60 @@
-import { getEmailHref, getWhatsAppHref } from "../../config/contact";
+import { DecorativeNbLogo } from "../../components/DecorativeNbLogo";
+import { contactDetails, getEmailHref, getWhatsAppHref } from "../../config/contact";
 import { useLanguage } from "../../context/LanguageContext";
-import { MobileChapterController, MobileChapterSection, type MobileChapterDefinition } from "../MobileChapterSystem";
+import { makeMobileChapters, MobileChapterController, MobileChapterSection } from "../MobileChapterSystem";
 import { MobileFooter } from "../MobileFooter";
+import { MobileArrow, MobileExternalCta } from "../MobilePrimitives";
 
-const chapters: MobileChapterDefinition[] = [
-  { id: "chapter-01", title: { en: "Contact", ar: "التواصل" } },
-  { id: "chapter-02", title: { en: "Begin", ar: "البدء" } },
-];
+const contactChapters = makeMobileChapters([
+  ["Contact", "التواصل"],
+  ["Methods", "طرق التواصل"],
+  ["Footer", "التذييل"],
+]);
 
 export function MobileContactPage() {
   const { dictionary, language } = useLanguage();
-  const total = chapters.length;
+  const total = contactChapters.length;
+  const whatsappHref = getWhatsAppHref(language);
+  const emailHref = getEmailHref(language);
 
   return (
-    <MobileChapterController chapters={chapters} className="m-contact-page">
-      <MobileChapterSection chapter={chapters[0]} index={0} total={total} className="m-contact-opening">
-        <div className="m-chapter-copy">
-          <p>{dictionary.nav.contact}</p>
-          <h1 id={`${chapters[0].id}-title`}>{dictionary.contactPage.title}</h1>
+    <MobileChapterController chapters={contactChapters} className="m-contact-page">
+      <MobileChapterSection chapter={contactChapters[0]} index={0} total={total} className="m-contact-opening">
+        <div className="m-section-copy">
+          <span>{dictionary.nav.contact}</span>
+          <h1 id={`${contactChapters[0].id}-title`}>{dictionary.contactPage.title}</h1>
           <p>{dictionary.contactPage.body}</p>
+          <div className="m-actions">
+            <MobileExternalCta href={whatsappHref} target="_blank" rel="noopener noreferrer">
+              {dictionary.actions.contactByWhatsApp} <MobileArrow />
+            </MobileExternalCta>
+            <MobileExternalCta className="m-cta--ghost" href={emailHref}>
+              {dictionary.actions.sendEmail}
+            </MobileExternalCta>
+          </div>
         </div>
-        <div className="m-contact-actions">
-          <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
-            {dictionary.actions.contactByWhatsApp}
+        <DecorativeNbLogo className="m-contact-opening__mark" priority />
+      </MobileChapterSection>
+
+      <MobileChapterSection chapter={contactChapters[1]} index={1} total={total} className="m-contact-methods">
+        <div className="m-section-copy">
+          <span>{dictionary.ui.connect}</span>
+          <h2 id={`${contactChapters[1].id}-title`}>{dictionary.contactPage.methodTitle}</h2>
+          <p>{dictionary.contactPage.methodBody}</p>
+        </div>
+        <div className="m-contact-ledger">
+          <a href={whatsappHref} target="_blank" rel="noopener noreferrer">
+            <span>{dictionary.ui.whatsapp}</span>
+            <strong>{contactDetails.whatsappDisplay}</strong>
           </a>
-          <a href={getEmailHref(language)}>{dictionary.actions.sendEmail}</a>
+          <a href={emailHref}>
+            <span>{dictionary.ui.email}</span>
+            <strong>{contactDetails.email}</strong>
+          </a>
         </div>
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={chapters[1]} index={1} total={total} className="m-global-end">
-        <div className="m-chapter-copy">
-          <h2 id={`${chapters[1].id}-title`}>{dictionary.contactPage.methodTitle}</h2>
-          <p>{dictionary.contactPage.methodBody}</p>
-        </div>
+      <MobileChapterSection chapter={contactChapters[2]} index={2} total={total} className="m-footer-chapter">
         <MobileFooter />
       </MobileChapterSection>
     </MobileChapterController>
