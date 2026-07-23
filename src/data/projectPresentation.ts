@@ -547,7 +547,7 @@ const desktopProjectCovers: Record<string, DesktopProjectCover> = {
   impostor: { asset: "hero", ratio: "landscape", fit: "contain" },
   "wemo-delights": { asset: "hero", ratio: "landscape", fit: "cover" },
   "rahaba-space": { asset: "gallery-8", ratio: "portrait", fit: "cover" },
-  "nirto-cold-brew": { asset: "gallery-8", ratio: "wide", fit: "contain", format: "png" },
+  "nirto-cold-brew": { asset: "hero", ratio: "wide", fit: "contain", format: "png" },
   "zahy-store": { asset: "gallery-1", ratio: "square", fit: "contain" },
   "ansab-holding": { asset: "hero", ratio: "landscape", fit: "cover" },
   "red-sea-transport-logistics": { asset: "cover", ratio: "landscape", fit: "cover", format: "png" },

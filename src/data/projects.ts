@@ -699,11 +699,11 @@ export const projects: Project[] = [
     coverImage: {
       variant: "nirtoColdBrew",
       scene: "packaging",
-      format: "webp",
+      format: "png",
       folder: "projects",
       alt: {
-        en: "NIRTO COLD BREW cover image with a cold brew can, coffee glass, and roasted coffee beans.",
-        ar: "غلاف NIRTO COLD BREW مع عبوة كولد برو، كأس قهوة، وحبوب قهوة محمصة.",
+        en: "CofiQue PRIVE Nitro Cold Brew hero image with the finished can centered in an espresso and bronze presentation.",
+        ar: "صورة رئيسية لـ CofiQue PRIVE Nitro Cold Brew تعرض العبوة النهائية في تكوين بدرجات الإسبريسو والبرونز.",
       },
     },
     heroImage: {
