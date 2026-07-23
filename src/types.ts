@@ -37,6 +37,7 @@ export type ArtVariant =
   | "nirtoColdBrew"
   | "zahyStore"
   | "ansabHolding"
+  | "redSeaTransport"
   | "studio"
   | "materials"
   | "archive";
@@ -56,7 +57,7 @@ export type ArtScene =
 export interface ProjectImage {
   variant: ArtVariant;
   scene?: ArtScene;
-  format?: "jpg" | "png" | "webp";
+  format?: "jpg" | "png" | "svg" | "webp";
   folder?: "concept-projects" | "projects";
   alt: LocalizedString;
 }

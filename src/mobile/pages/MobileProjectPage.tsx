@@ -142,11 +142,15 @@ function ProjectHero({ project, chapter, index, total }: { project: Project; cha
 
 function ProjectOverview({ project, chapter, index, total }: { project: Project; chapter: ProjectChapter; index: number; total: number }) {
   const { dictionary, language } = useLanguage();
+  const overviewTitle =
+    project.slug === "red-sea-transport-logistics"
+      ? localized("About the company", "عن الشركة")[language]
+      : project.projectType[language];
   return (
     <MobileChapterSection chapter={chapter} index={index} total={total} className="m-case-overview">
       <div className="m-case-copy">
         <span>{mobileProjectCopy[language].overview}</span>
-        <h1 id={`${chapter.id}-title`}>{project.projectType[language]}</h1>
+        <h1 id={`${chapter.id}-title`}>{overviewTitle}</h1>
         <p>{project.caseStudy.context[language]}</p>
       </div>
       <dl className="m-case-facts">

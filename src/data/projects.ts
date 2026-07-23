@@ -919,6 +919,99 @@ export const projects: Project[] = [
       ar: "شعار ثنائي اللغة يُعرض من خلال الرمز، الكلمة، واللون.",
     },
   },
+  {
+    title: "RED SEA Transport & Logistics",
+    displayTitle: {
+      en: "RED SEA Transport & Logistics",
+      ar: "البحر الأحمر للنقل والخدمات اللوجستية",
+    },
+    slug: "red-sea-transport-logistics",
+    year: "2024",
+    category: "branding",
+    projectType: {
+      en: "Brand Identity • Company Profile • Social Media Design",
+      ar: "الهوية البصرية • الملف التعريفي • تصميم محتوى التواصل الاجتماعي",
+    },
+    shortDescription: {
+      en: "A complete corporate communication project combining brand identity, company profile design, and a consistent social media system developed across approximately 40 branded posts.",
+      ar: "مشروع متكامل للاتصال المؤسسي يجمع بين تصميم الهوية البصرية، والملف التعريفي، وبناء نظام متكامل لمحتوى التواصل الاجتماعي، شمل ما يقارب 40 منشورًا للعلامة.",
+    },
+    fullDescription: {
+      en: "RED SEA Transport & Logistics is an official client project shaped as a full corporate communication system. The case study preserves the company profile content and adds official social media, campaign, fleet, and service communications within the brand's red, blue, and white logistics world.",
+      ar: "البحر الأحمر للنقل والخدمات اللوجستية مشروع عميل رسمي صُمم كنظام اتصال مؤسسي متكامل. تحافظ دراسة الحالة على محتوى الملف التعريفي وتضيف مواد التواصل الاجتماعي والحملات والأسطول والخدمات ضمن عالم العلامة الأحمر والأزرق والأبيض.",
+    },
+    services: ["brandIdentity", "editorialDesign", "socialMediaDesign", "graphicDesign"],
+    credits: officialClientCredits,
+    coverImage: {
+      variant: "redSeaTransport",
+      scene: "cover",
+      format: "png",
+      folder: "projects",
+      alt: {
+        en: "RED SEA Transport and Logistics company profile cover with a branded truck moving through a cinematic night road.",
+        ar: "غلاف الملف التعريفي للبحر الأحمر للنقل والخدمات اللوجستية مع شاحنة تحمل الهوية على طريق ليلي سينمائي.",
+      },
+    },
+    heroImage: {
+      variant: "redSeaTransport",
+      scene: "hero",
+      format: "png",
+      folder: "projects",
+      alt: {
+        en: "RED SEA Transport and Logistics hero truck image with blue night atmosphere and red light accents.",
+        ar: "صورة رئيسية للبحر الأحمر للنقل والخدمات اللوجستية تعرض الشاحنة في أجواء زرقاء ليلية ولمسات ضوء حمراء.",
+      },
+    },
+    gallery: [
+      { variant: "redSeaTransport", scene: "hero", format: "png", folder: "projects", alt: { en: "Truck detail from the RED SEA services profile section.", ar: "تفصيل شاحنة من قسم الخدمات في ملف RED SEA." } },
+      { variant: "redSeaTransport", scene: "materials", format: "svg", folder: "projects", alt: { en: "Responsive regional map showing the countries served by RED SEA Transport and Logistics.", ar: "خريطة إقليمية متجاوبة تعرض الدول التي تخدمها شركة البحر الأحمر للنقل والخدمات اللوجستية." } },
+      { variant: "redSeaTransport", scene: "materials", format: "svg", folder: "projects", alt: { en: "RED SEA fleet and truck type diagram with six land transport vehicle types.", ar: "رسم بياني لأسطول RED SEA وأنواع الشاحنات الست المستخدمة في النقل البري." } },
+      { variant: "redSeaTransport", scene: "materials", format: "svg", folder: "projects", alt: { en: "RED SEA growth chart from 2015 to 2024 with annual values.", ar: "مخطط نمو RED SEA من 2015 إلى 2024 مع القيم السنوية." } },
+      { variant: "redSeaTransport", scene: "materials", format: "png", folder: "projects", alt: { en: "Some of RED SEA Transport and Logistics key client logos from the supplied company profile.", ar: "بعض شعارات عملاء البحر الأحمر للنقل والخدمات اللوجستية من الملف التعريفي المقدم." } },
+      { variant: "redSeaTransport", scene: "materials", format: "svg", folder: "projects", alt: { en: "RED SEA contact information card with phone, email, and Jeddah office address.", ar: "بطاقة معلومات التواصل لـ RED SEA مع الهاتف والبريد الإلكتروني وعنوان المكتب في جدة." } },
+      { variant: "redSeaTransport", scene: "hero", format: "png", folder: "projects", alt: { en: "Closing RED SEA truck image on a warm road at sunset.", ar: "صورة ختامية لشاحنة RED SEA على طريق دافئ وقت الغروب." } },
+      { variant: "redSeaTransport", scene: "materials", format: "svg", folder: "projects", alt: { en: "RED SEA brand geometry with red and blue circular marks and route lines.", ar: "هندسة بصرية لهوية RED SEA باستخدام الدوائر الحمراء والزرقاء وخطوط المسارات." } },
+      { variant: "redSeaTransport", scene: "social", format: "jpg", folder: "projects", alt: { en: "RED SEA Arabic brand communication post presenting the company's transport-sector vision.", ar: "منشور تواصل عربي لـ RED SEA يعرض رؤية الشركة في قطاع النقل." } },
+      { variant: "redSeaTransport", scene: "social", format: "jpg", folder: "projects", alt: { en: "RED SEA Arabic service post presenting specialized shipping services.", ar: "منشور خدمة عربي لـ RED SEA يعرض خدمات الشحن المتخصصة." } },
+      { variant: "redSeaTransport", scene: "social", format: "jpg", folder: "projects", alt: { en: "RED SEA Arabic logistics post for partial shipments and border shipping.", ar: "منشور لوجستي عربي لـ RED SEA عن الشحن الجزئي والشحنات عبر الحدود." } },
+      { variant: "redSeaTransport", scene: "social", format: "jpg", folder: "projects", alt: { en: "RED SEA Arabic communication post presenting customized transport solutions.", ar: "منشور تواصل عربي لـ RED SEA يعرض حلول نقل متكاملة للاحتياجات الخاصة." } },
+      { variant: "redSeaTransport", scene: "materials", format: "jpg", folder: "projects", alt: { en: "RED SEA truck-type communication graphic for Dyna and lorry vehicles.", ar: "رسم تواصلي لأنواع شاحنات RED SEA يشمل دينا ولوري." } },
+      { variant: "redSeaTransport", scene: "materials", format: "jpg", folder: "projects", alt: { en: "RED SEA truck-type communication graphic for flatbed and curtain-side vehicles.", ar: "رسم تواصلي لأنواع شاحنات RED SEA يشمل الفلاتبد والكيرتن سايد." } },
+      { variant: "redSeaTransport", scene: "campaign", format: "jpg", folder: "projects", alt: { en: "RED SEA UAE National Day seasonal campaign artwork.", ar: "تصميم حملة موسمية لـ RED SEA بمناسبة اليوم الوطني الإماراتي." } },
+    ],
+    caseStudy: {
+      context: {
+        en: "The Red Sea Transport and Logistics Corporation is an institution specialized in providing integrated solutions for transportation and logistics services, with an exclusive focus on land transportation. We seek to provide reliable and efficient services that support the supply chain to our customers, by adhering to the highest standards of quality and safety. Our vision is to achieve excellence in the land transportation sector by providing innovative solutions that meet market needs and contribute to the success of our customers.",
+        ar: "مؤسسة البحر الأحمر للنقليات والخدمات اللوجستية هي مؤسسة متخصصة في تقديم حلول متكاملة للنقل والخدمات اللوجستية، مع تركيز حصري على النقل البري. نسعى لتوفير خدمات موثوقة وفعالة تدعم سلسلة التوريد لعملائنا، من خلال الالتزام بأعلى معايير الجودة والسلامة. رؤيتنا هي تحقيق التميز في قطاع النقل البري عبر تقديم حلول مبتكرة تلبي احتياجات السوق وتساهم في نجاح عملائنا.",
+      },
+      direction: {
+        en: "The communication system uses cinematic truck imagery, deep transport blues, red route accents, white corporate surfaces, oversized circular marks, movement geometry, bilingual profile pages, and social media posts built to repeat the same logistics language across every touchpoint.",
+        ar: "يعتمد نظام الاتصال على صور شاحنات سينمائية، أزرق عميق لعالم النقل، لمسات مسارات حمراء، مساحات مؤسسية بيضاء، علامات دائرية كبيرة، هندسة حركة، صفحات ملف ثنائية اللغة، ومنشورات تواصل تعيد اللغة اللوجستية نفسها عبر كل نقطة ظهور.",
+      },
+      applications: [
+        { en: "Brand identity and corporate communication system", ar: "هوية بصرية ونظام اتصال مؤسسي" },
+        { en: "Bilingual company profile cover, sections, and closing page", ar: "غلاف وأقسام وصفحة ختامية للملف التعريفي ثنائي اللغة" },
+        { en: "Regional countries-served map", ar: "خريطة الدول التي تخدمها الشركة" },
+        { en: "Fleet and truck-type information system", ar: "نظام معلومات الأسطول وأنواع الشاحنات" },
+        { en: "Approximately 40 branded social media posts", ar: "ما يقارب 40 منشورًا احترافيًا للعلامة" },
+        { en: "Service, fleet, vision, and seasonal campaign content", ar: "محتوى للخدمات والأسطول والرؤية والحملات الموسمية" },
+        { en: "Growth chart, client logos, and contact page", ar: "مخطط النمو، شعارات العملاء، وصفحة التواصل" },
+      ],
+      outcome: {
+        en: "A complete transport brand world: corporate, bilingual, operational, and extended from the company profile into a consistent social media and campaign system.",
+        ar: "عالم بصري متكامل لعلامة نقل: مؤسسي، ثنائي اللغة، تشغيلي، ويمتد من الملف التعريفي إلى نظام متسق للتواصل الاجتماعي والحملات.",
+      },
+    },
+    colorPalette: ["#0C1724", "#2F4E9B", "#CF1D2A", "#F7F8FA", "#FFFFFF", "#3D83A6"],
+    typography: {
+      display: "Corporate geometric sans",
+      body: "Bilingual company profile sans",
+    },
+    quote: {
+      en: "A corporate communication system shaped around land movement, regional reach, and operational clarity.",
+      ar: "نظام اتصال مؤسسي يتشكل حول حركة النقل البري، الامتداد الإقليمي، والوضوح التشغيلي.",
+    },
+  },
 ];
 
 export function getProject(slug: string | undefined) {

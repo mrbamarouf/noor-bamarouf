@@ -176,6 +176,12 @@ export function ProjectPage() {
   const nextProjectTitleDirection = getProjectTitleDirection(nextProject, language);
   const heroImage = getProjectImageByAsset(project, presentation.hero.source ?? presentation.hero.asset);
   const themeStyle = getProjectThemeStyle(project) as CSSProperties;
+  const overviewKicker =
+    project.slug === "jeddah-railway"
+      ? dictionary.sections.overview
+      : project.slug === "red-sea-transport-logistics"
+        ? language === "ar" ? "02 / عن الشركة" : "02 / About the company"
+        : `03 / ${dictionary.sections.overview}`;
 
   return (
     <article
@@ -225,9 +231,7 @@ export function ProjectPage() {
       </section>
 
       <section className="desktop-project-overview" aria-label={dictionary.sections.overview} data-reveal>
-        <span className="desktop-kicker">
-          {project.slug === "jeddah-railway" ? dictionary.sections.overview : `03 / ${dictionary.sections.overview}`}
-        </span>
+        <span className="desktop-kicker">{overviewKicker}</span>
         <div>
           <p>{project.caseStudy.context[language]}</p>
           <p>{project.caseStudy.direction[language]}</p>

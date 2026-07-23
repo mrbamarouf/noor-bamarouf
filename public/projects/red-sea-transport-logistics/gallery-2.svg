@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+<title id="title">Countries served by Red Sea Transport and Logistics</title>
+<desc id="desc">A regional logistics map listing Saudi Arabia, Jordan, Kuwait, Bahrain, Qatar, United Arab Emirates, Oman, and Yemen.</desc>
+<rect width="1600" height="1100" fill="#F7F8FA"/>
+<path d="M-120 935 C180 800 310 965 520 860 C740 750 875 815 1080 705 C1285 594 1468 620 1710 480" fill="none" stroke="#E7E9EF" stroke-width="115" stroke-linecap="round" opacity=".72"/>
+<path d="M-90 188 C205 70 338 258 548 152 C764 43 950 110 1160 25 C1380 -64 1510 38 1700 -28" fill="none" stroke="#E7E9EF" stroke-width="82" stroke-linecap="round" opacity=".54"/>
+<circle cx="1326" cy="155" r="205" fill="none" stroke="#2F4E9B" stroke-width="76"/>
+<circle cx="170" cy="972" r="230" fill="none" stroke="#CF1D2A" stroke-width="82"/>
+<g transform="translate(350 215)">
+  <path d="M276 110 C395 80 517 118 607 190 C699 262 786 330 897 354 C980 372 1015 421 1038 494 C1063 574 1019 648 968 706 C916 766 846 766 785 803 C720 844 682 928 599 941 C500 958 431 879 385 807 C338 734 261 704 224 625 C179 530 110 474 110 372 C110 260 176 139 276 110 Z" fill="#2F4E9B"/>
+  <path d="M128 145 L292 83 C314 134 310 193 288 240 L182 276 L105 245 Z" fill="#CF1D2A"/>
+  <path d="M812 806 C900 798 962 725 1035 682 C1128 627 1188 670 1208 749 C1222 806 1178 876 1112 890 C1048 904 1010 963 939 954 C870 945 839 875 812 806 Z" fill="#CF1D2A"/>
+  <path d="M598 941 C680 914 737 844 812 806 C839 875 870 945 939 954 C838 1006 732 1025 602 1005 C545 996 519 974 598 941 Z" fill="#C8CDD2"/>
+  <path d="M945 322 C988 320 1018 342 1035 375 C1054 413 1045 455 1017 478 C979 459 946 433 924 397 C902 360 908 329 945 322 Z" fill="#C8CDD2"/>
+  <path d="M1075 520 C1110 505 1145 523 1155 558 C1164 590 1138 625 1097 631 C1069 607 1058 547 1075 520 Z" fill="#C8CDD2"/>
+  <circle cx="650" cy="512" r="5" fill="#fff" opacity=".9"/>
+  <text x="650" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" fill="#fff" font-weight="700">Saudi Arabia</text>
+  <text x="650" y="520" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" fill="#fff" font-weight="700">المملكة العربية السعودية</text>
+  <text x="194" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" fill="#fff">Jordan</text>
+  <text x="194" y="240" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#fff">الأردن</text>
+  <text x="1140" y="770" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" fill="#fff">Oman</text>
+  <text x="1140" y="812" text-anchor="middle" font-family="Arial, sans-serif" font-size="31" fill="#fff">عمان</text>
+  <text x="720" y="995" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#2F4E9B">Yemen</text>
+  <text x="720" y="1030" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" fill="#2F4E9B">اليمن</text>
+  <g font-family="Arial, sans-serif" font-size="24" fill="#2F4E9B">
+    <text x="938" y="290">Kuwait</text><text x="938" y="320">الكويت</text>
+    <text x="1088" y="300">Bahrain</text><text x="1088" y="330">البحرين</text>
+    <text x="1210" y="535">Qatar</text><text x="1210" y="565">قطر</text>
+    <text x="1016" y="672">UAE</text><text x="1016" y="704">الإمارات العربية المتحدة</text>
+  </g>
+  <g stroke="#2F4E9B" stroke-width="2" fill="none" opacity=".62"><path d="M922 305 h-40 v30"/><path d="M1076 313 h-28 v24"/><path d="M1195 548 h-38 v30"/><path d="M997 680 h-45 v34"/></g>
+</g>
+</svg>

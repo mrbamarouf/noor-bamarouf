@@ -487,6 +487,28 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     line: "rgb(255 255 255 / 0.18)",
     glow: "rgb(94 198 61 / 0.14)",
   },
+  "red-sea-transport-logistics": {
+    background: "#0C1724",
+    surface: "#F7F8FA",
+    surfaceAlt: "#2F4E9B",
+    foreground: "#F7F8FA",
+    mutedForeground: "#D8E2F2",
+    ink: "#0C1724",
+    muted: "#536073",
+    accent: "#CF1D2A",
+    accentForeground: "#FFFFFF",
+    accent2: "#2F4E9B",
+    deep: "#07111D",
+    onDeep: "#FFFFFF",
+    divider: "rgb(255 255 255 / 0.2)",
+    buttonBackground: "#CF1D2A",
+    buttonForeground: "#FFFFFF",
+    navigationBackground: "#07111D",
+    navigationForeground: "#FFFFFF",
+    line: "rgb(255 255 255 / 0.2)",
+    glow: "rgb(207 29 42 / 0.2)",
+    heroAccent: "#3D83A6",
+  },
 };
 
 export function getProjectThemeStyle(project: Project): Record<string, string> {
@@ -528,6 +550,7 @@ const desktopProjectCovers: Record<string, DesktopProjectCover> = {
   "nirto-cold-brew": { asset: "gallery-8", ratio: "wide", fit: "contain", format: "png" },
   "zahy-store": { asset: "gallery-1", ratio: "square", fit: "contain" },
   "ansab-holding": { asset: "hero", ratio: "landscape", fit: "cover" },
+  "red-sea-transport-logistics": { asset: "cover", ratio: "landscape", fit: "cover", format: "png" },
 };
 
 export function getDesktopProjectCover(project: Project): DesktopProjectCover {
@@ -1003,6 +1026,154 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         layout: "stack",
         visuals: [
           { asset: "gallery-6", kind: "landscape-presentation", emphasis: "full" },
+        ],
+      },
+    ],
+  },
+  "red-sea-transport-logistics": {
+    family: "transport",
+    hero: { asset: "hero", kind: "landscape-presentation", ratio: "wide", emphasis: "full", fit: "cover", format: "png" },
+    sections: [
+      {
+        id: "profile-foundation",
+        label: text("Company Profile", "الملف التعريفي"),
+        title: text("A corporate profile built around movement", "ملف مؤسسي مبني حول الحركة"),
+        copy: text(
+          "The company profile introduces RED SEA as a land-transport specialist through cinematic trucking imagery, bilingual corporate messaging, directional geometry, and a red and blue identity system built for clarity.",
+          "يقدم الملف التعريفي RED SEA بوصفها جهة متخصصة في النقل البري من خلال صور شاحنات سينمائية، ورسائل مؤسسية ثنائية اللغة، وهندسة اتجاهية، ونظام أحمر وأزرق قائم على الوضوح.",
+        ),
+        layout: "editorial",
+        tone: "brand",
+        visuals: [
+          { asset: "gallery-1", kind: "portrait-presentation", ratio: "portrait", emphasis: "feature", fit: "contain", format: "png" },
+          { asset: "gallery-8", kind: "landscape-presentation", ratio: "landscape", emphasis: "wide", fit: "contain", format: "svg" },
+        ],
+      },
+      {
+        id: "countries",
+        label: text("Countries Served", "الدول التي نخدمها"),
+        title: text("A regional land-transport footprint", "امتداد إقليمي للنقل البري"),
+        copy: text(
+          "The profile identifies the service footprint across Saudi Arabia, Jordan, Kuwait, Bahrain, Qatar, the United Arab Emirates, Oman, and Yemen.",
+          "يعرض الملف نطاق الخدمة في المملكة العربية السعودية، الأردن، الكويت، البحرين، قطر، الإمارات العربية المتحدة، عمان، واليمن.",
+        ),
+        layout: "stack",
+        tone: "paper",
+        visuals: [
+          { asset: "gallery-2", kind: "full-artwork", ratio: "wide", emphasis: "full", fit: "contain", format: "svg" },
+        ],
+      },
+      {
+        id: "social-system",
+        label: text("Social Media System", "نظام محتوى التواصل الاجتماعي"),
+        title: text("Approximately 40 branded posts, one logistics language", "ما يقارب 40 منشورًا بلغة لوجستية واحدة"),
+        copy: text(
+          "A complete communication system was developed across approximately 40 branded social media posts to communicate RED SEA's services, fleet, logistics expertise, company values, and seasonal campaigns.",
+          "تم تطوير نظام متكامل لمحتوى التواصل الاجتماعي يضم ما يقارب 40 منشورًا احترافيًا يعرض خدمات البحر الأحمر، أسطولها، خبرتها اللوجستية، قيمها، وحملاتها الموسمية.",
+        ),
+        layout: "social-grid",
+        tone: "dark",
+        visuals: [
+          { asset: "gallery-9", kind: "social-post", ratio: "square", emphasis: "feature", fit: "contain", format: "jpg" },
+          { asset: "gallery-10", kind: "social-post", ratio: "square", fit: "contain", format: "jpg" },
+        ],
+      },
+      {
+        id: "logistics-services",
+        label: text("Logistics Services", "الخدمات اللوجستية"),
+        title: text("Service communication for specialized transport", "محتوى خدمات للنقل المتخصص"),
+        copy: text(
+          "Service posts translate the corporate offer into clear, direct visual messages for specialized shipping, partial shipments, and tailored logistics solutions.",
+          "تحول منشورات الخدمات العرض المؤسسي إلى رسائل بصرية واضحة ومباشرة للشحن المتخصص، والشحن الجزئي، والحلول اللوجستية المصممة حسب الحاجة.",
+        ),
+        layout: "social-grid",
+        tone: "brand",
+        visuals: [
+          { asset: "gallery-11", kind: "social-post", ratio: "square", emphasis: "feature", fit: "contain", format: "jpg" },
+          { asset: "gallery-12", kind: "social-post", ratio: "square", fit: "contain", format: "jpg" },
+        ],
+      },
+      {
+        id: "fleet",
+        label: text("Truck Types", "أنواع الشاحنات"),
+        title: text("Fleet range for express, partial, and cross-border shipments", "تنوع أسطول للشحن السريع والجزئي وعبر الحدود"),
+        copy: text(
+          "The Red Sea Transport and Logistics Company is distinguished by providing a diverse range of vehicles designed to meet all requirements of land transport. We offer comprehensive solutions tailored to our clients' needs, whether they require same-day express shipments, cost-effective long-distance shipping services, or specialized services for partial transportation and cross-border shipments.",
+          "تتميز مؤسسة البحر الأحمر للنقليات بتقديم مجموعة متنوعة من المركبات المصممة لتلبية جميع متطلبات النقل البري. نحن نوفر حلولًا شاملة تناسب احتياجات عملائنا، سواء كانت تتطلب شحنات سريعة في نفس اليوم، أو خدمات شحن طويلة المدى بتكلفة فعالة، أو خدمات متخصصة للنقل الجزئي والشحنات عبر الحدود.",
+        ),
+        layout: "stack",
+        tone: "ivory",
+        visuals: [
+          { asset: "gallery-3", kind: "full-artwork", ratio: "wide", emphasis: "full", fit: "contain", format: "svg" },
+          { asset: "gallery-13", kind: "social-post", ratio: "square", fit: "contain", format: "jpg" },
+          { asset: "gallery-14", kind: "social-post", ratio: "square", fit: "contain", format: "jpg" },
+        ],
+      },
+      {
+        id: "growth",
+        label: text("Our Growth", "نموّنا"),
+        title: text("Every step leads toward a better future", "كل خطوة تقود نحو مستقبل أفضل"),
+        copy: text(
+          "The supplied profile presents annual growth values from 2015 through 2024, moving from 1,855 in 2015 to 10,040 in 2024.",
+          "يعرض الملف التعريفي قيم النمو السنوية من 2015 حتى 2024، من 1,855 في عام 2015 إلى 10,040 في عام 2024.",
+        ),
+        layout: "document",
+        tone: "paper",
+        visuals: [
+          { asset: "gallery-4", kind: "full-artwork", ratio: "wide", emphasis: "full", fit: "contain", format: "svg" },
+        ],
+      },
+      {
+        id: "clients",
+        label: text("Key Clients", "عملاؤنا الرئيسيون"),
+        title: text("A client field built into the profile system", "حقل عملاء ضمن نظام الملف التعريفي"),
+        copy: text(
+          "The company profile presents a selection of key clients as a dense corporate logo field, keeping the client page clear, direct, and easy to scan.",
+          "يعرض الملف التعريفي مجموعة من العملاء الرئيسيين على هيئة حقل شعارات مؤسسي كثيف وواضح وسهل القراءة.",
+        ),
+        layout: "document",
+        tone: "ivory",
+        visuals: [
+          { asset: "gallery-5", kind: "landscape-presentation", ratio: "wide", emphasis: "wide", fit: "contain", format: "png" },
+        ],
+      },
+      {
+        id: "campaigns",
+        label: text("Campaign Design", "تصميم الحملات"),
+        title: text("Seasonal communication within the same brand system", "تواصل موسمي ضمن نظام العلامة نفسه"),
+        copy: text(
+          "The UAE National Day artwork shows how the RED SEA system extends into seasonal campaign communication while keeping the brand mark, bilingual copy, and transport identity present.",
+          "يوضح تصميم اليوم الوطني الإماراتي كيف يمتد نظام RED SEA إلى التواصل الموسمي مع الحفاظ على الشعار، والنص ثنائي اللغة، وهوية النقل.",
+        ),
+        layout: "stack",
+        tone: "dark",
+        visuals: [
+          { asset: "gallery-15", kind: "social-post", ratio: "square", emphasis: "feature", fit: "contain", format: "jpg" },
+        ],
+      },
+      {
+        id: "contact",
+        label: text("Contact", "التواصل"),
+        title: text("Contact information carried as a final profile page", "بيانات التواصل كصفحة ختامية في الملف"),
+        copy: text(
+          "The contact page includes the phone number 0126650555, the email Info@redsealgx.com, and the office location G5FJ+WF3, Al Sharafeyah, Jeddah 23218, Gulf Plaza, North Tower, third floor, office 311.",
+          "تتضمن صفحة التواصل رقم الهاتف 0126650555، والبريد الإلكتروني Info@redsealgx.com، وموقع المكتب G5FJ+WF3، الشرفية، جدة 23218، الخليج بلازا، البرج الشمالي، الدور الثالث، مكتب ٣١١.",
+        ),
+        layout: "document",
+        tone: "paper",
+        visuals: [
+          { asset: "gallery-6", kind: "full-artwork", ratio: "wide", emphasis: "full", fit: "contain", format: "svg" },
+        ],
+      },
+      {
+        id: "closing",
+        label: text("Closing", "الختام"),
+        title: text("Thank you", "شكرًا"),
+        copyKey: "outcome",
+        layout: "stack",
+        tone: "dark",
+        visuals: [
+          { asset: "gallery-7", kind: "ultrawide-presentation", ratio: "wide", emphasis: "full", fit: "cover", format: "png" },
         ],
       },
     ],

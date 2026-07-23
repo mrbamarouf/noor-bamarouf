@@ -935,7 +935,9 @@
   .m-case--impostor .m-case-gallery__head h1,
   .m-case--impostor .m-case-hero__copy h1,
   .m-case--nirto-cold-brew .m-case-gallery__head h1,
-  .m-case--nirto-cold-brew .m-case-hero__copy h1 {
+  .m-case--nirto-cold-brew .m-case-hero__copy h1,
+  .m-case--red-sea-transport-logistics .m-case-gallery__head h1,
+  .m-case--red-sea-transport-logistics .m-case-hero__copy h1 {
     font-family: var(--font-body);
     font-weight: 900;
     text-transform: uppercase;
@@ -949,7 +951,9 @@
   html[dir="rtl"] .m-case--impostor .m-case-gallery__head h1,
   html[dir="rtl"] .m-case--impostor .m-case-hero__copy h1,
   html[dir="rtl"] .m-case--nirto-cold-brew .m-case-gallery__head h1,
-  html[dir="rtl"] .m-case--nirto-cold-brew .m-case-hero__copy h1 {
+  html[dir="rtl"] .m-case--nirto-cold-brew .m-case-hero__copy h1,
+  html[dir="rtl"] .m-case--red-sea-transport-logistics .m-case-gallery__head h1,
+  html[dir="rtl"] .m-case--red-sea-transport-logistics .m-case-hero__copy h1 {
     font-family: var(--font-arabic);
     text-transform: none;
   }
@@ -983,6 +987,93 @@
       linear-gradient(132deg, #050403 0 54%, #2a120c 76%, #5f2d14 100%) !important;
   }
   .m-case--ansab-holding .m-case-hero { background: linear-gradient(132deg, #f6b51e 0 10%, #5ec63d 10% 24%, #1d2a18 24% 42%, #111 42%) !important; }
+
+  .m-case--red-sea-transport-logistics {
+    background: #0c1724;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-hero {
+    background:
+      radial-gradient(circle at 18% 10%, rgb(207 29 42 / 0.28), transparent 32%),
+      linear-gradient(90deg, transparent 0 91%, #cf1d2a 91% 96%, #f7f8fa 96% 100%),
+      linear-gradient(132deg, #07111d 0 45%, #0c3154 45% 100%) !important;
+  }
+
+  html[dir="rtl"] .m-case--red-sea-transport-logistics .m-case-hero {
+    background:
+      radial-gradient(circle at 82% 10%, rgb(207 29 42 / 0.22), transparent 32%),
+      linear-gradient(90deg, #f7f8fa 0 4%, #cf1d2a 4% 9%, transparent 9% 100%),
+      linear-gradient(132deg, #07111d 0 45%, #0c3154 45% 100%) !important;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-overview,
+  .m-case--red-sea-transport-logistics .m-case-system {
+    color: #f7f8fa !important;
+    background:
+      radial-gradient(circle at 84% 12%, rgb(61 131 166 / 0.16), transparent 30%),
+      linear-gradient(180deg, #0c1724, #07111d) !important;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-direction,
+  .m-case--red-sea-transport-logistics .m-case-gallery--brand,
+  .m-case--red-sea-transport-logistics .m-case-gallery--dark {
+    color: #ffffff !important;
+    background:
+      radial-gradient(circle at 12% 16%, rgb(207 29 42 / 0.26), transparent 30%),
+      linear-gradient(132deg, #07111d 0 46%, #143a63 46% 74%, #cf1d2a 74% 80%, #07111d 80%) !important;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-gallery--paper,
+  .m-case--red-sea-transport-logistics .m-case-gallery--ivory {
+    color: #0c1724 !important;
+    background:
+      radial-gradient(circle at 88% 8%, rgb(47 78 155 / 0.12), transparent 32%),
+      linear-gradient(180deg, #f7f8fa, #e8edf4) !important;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-gallery--paper .m-case-gallery__head > span,
+  .m-case--red-sea-transport-logistics .m-case-gallery--ivory .m-case-gallery__head > span {
+    color: #cf1d2a;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-gallery--paper .m-case-gallery__head p,
+  .m-case--red-sea-transport-logistics .m-case-gallery--ivory .m-case-gallery__head p {
+    color: #26374f;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-copy p,
+  .m-case--red-sea-transport-logistics .m-case-hero__copy span,
+  .m-case--red-sea-transport-logistics .m-case-facts dd,
+  .m-case--red-sea-transport-logistics .m-case-system__content small,
+  .m-case--red-sea-transport-logistics .m-case-system__content ul {
+    color: #d8e2f2;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-facts div,
+  .m-case--red-sea-transport-logistics .m-case-system__content > div,
+  .m-case--red-sea-transport-logistics .m-case-navigation nav,
+  .m-case--red-sea-transport-logistics .m-case-navigation nav a,
+  .m-case--red-sea-transport-logistics .m-case-footer .m-footer__contact,
+  .m-case--red-sea-transport-logistics .m-case-footer .m-footer__contact a,
+  .m-case--red-sea-transport-logistics .m-case-footer .bamarouf-studio-link {
+    border-color: rgb(255 255 255 / 0.2);
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-navigation,
+  .m-case--red-sea-transport-logistics .m-case-footer {
+    color: #ffffff !important;
+    background:
+      linear-gradient(126deg, #07111d 0 58%, #102642 58% 78%, #cf1d2a 78% 100%) !important;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-gallery__media[data-count="2"] > .m-case-media--social-post:first-child {
+    grid-column: 1 / span 8;
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-gallery__media[data-count="2"] > .m-case-media--social-post:last-child {
+    grid-column: 5 / -1;
+    margin-top: clamp(-56px, -7vw, -30px);
+  }
 
   .m-intro {
     position: fixed;

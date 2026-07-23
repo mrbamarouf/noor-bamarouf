@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1050" role="img" aria-labelledby="title desc">
+<title id="title">Red Sea fleet and truck types</title><desc id="desc">Six truck types: 3 Ton Dyna, 7 Ton Lorry, 10 Ton Lorry, 13.6m Flatbed, 15m Flatbed, and 13.6m Curtain Side.</desc>
+<rect width="1600" height="1050" fill="#F7F8FA"/>
+<path d="M-110 270 C175 125 355 245 568 142 C790 35 940 92 1130 25 C1345 -50 1510 35 1700 -42" fill="none" stroke="#E8EAF0" stroke-width="95" stroke-linecap="round" opacity=".65"/>
+<circle cx="1326" cy="148" r="203" fill="none" stroke="#2F4E9B" stroke-width="76"/>
+<circle cx="820" cy="1094" r="242" fill="none" stroke="#CF1D2A" stroke-width="84"/>
+<text x="80" y="115" font-family="Arial, sans-serif" font-size="62" fill="#CF1D2A" font-weight="300">Truck Types</text>
+<text x="80" y="182" font-family="Arial, sans-serif" font-size="68" fill="#2F4E9B" font-weight="800">أنواع الشاحنات</text>
+<text x="80" y="245" font-family="Arial, sans-serif" font-size="22" fill="#0C1724" opacity=".82">A fleet range built for express, long-distance, partial, and cross-border land transportation.</text>
+<g transform="translate(80 300)"><g fill="none" stroke="#2F4E9B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M32 92 H214 V132 H32 Z"/><path d="M32 92 L62 42 H112 L128 92"/><circle cx="74" cy="146" r="18"/><circle cx="178" cy="146" r="18"/><path d="M26 132 H230"/>
+</g><text x="290" y="118" font-family="Arial, sans-serif" font-size="42" fill="#CF1D2A" font-weight="800">3 Ton Dyna</text></g>
+<g transform="translate(80 535)"><g fill="none" stroke="#2F4E9B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M32 92 H214 V132 H32 Z"/><path d="M32 92 L62 42 H112 L128 92"/><circle cx="74" cy="146" r="18"/><circle cx="178" cy="146" r="18"/><path d="M26 132 H230"/>
+</g><text x="290" y="118" font-family="Arial, sans-serif" font-size="42" fill="#CF1D2A" font-weight="800">7 Ton Lorry</text></g>
+<g transform="translate(80 770)"><g fill="none" stroke="#2F4E9B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M32 92 H214 V132 H32 Z"/><path d="M32 92 L62 42 H112 L128 92"/><circle cx="74" cy="146" r="18"/><circle cx="178" cy="146" r="18"/><path d="M26 132 H230"/>
+</g><text x="290" y="118" font-family="Arial, sans-serif" font-size="42" fill="#CF1D2A" font-weight="800">10 Ton Lorry</text></g>
+<g transform="translate(850 300)"><g fill="none" stroke="#2F4E9B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 98 H300 V133 H22 Z"/><path d="M22 98 L54 54 H94 L112 98"/><circle cx="70" cy="148" r="16"/><circle cx="236" cy="148" r="16"/><circle cx="274" cy="148" r="16"/><path d="M16 133 H316"/>
+</g><text x="290" y="118" font-family="Arial, sans-serif" font-size="42" fill="#CF1D2A" font-weight="800">13.6m Flatbed</text></g>
+<g transform="translate(850 535)"><g fill="none" stroke="#2F4E9B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 98 H300 V133 H22 Z"/><path d="M22 98 L54 54 H94 L112 98"/><circle cx="70" cy="148" r="16"/><circle cx="236" cy="148" r="16"/><circle cx="274" cy="148" r="16"/><path d="M16 133 H316"/>
+</g><text x="290" y="118" font-family="Arial, sans-serif" font-size="42" fill="#CF1D2A" font-weight="800">15m Flatbed</text></g>
+<g transform="translate(850 770)"><g fill="none" stroke="#2F4E9B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 98 H300 V133 H22 Z"/><path d="M22 98 L54 54 H94 L112 98"/><circle cx="70" cy="148" r="16"/><circle cx="236" cy="148" r="16"/><circle cx="274" cy="148" r="16"/><path d="M16 133 H316"/>
+</g><text x="290" y="118" font-family="Arial, sans-serif" font-size="42" fill="#CF1D2A" font-weight="800">13.6m Curtain Side</text></g>
+</svg>

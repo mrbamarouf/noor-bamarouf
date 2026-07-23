@@ -13702,6 +13702,266 @@ body:has(.desktop-project) .desktop-footer--case .desktop-footer__studio .bamaro
     linear-gradient(132deg, #111111 0 58%, #1d2a18 58% 78%, #5ec63d 78% 90%, #f6b51e 90% 100%);
 }
 
+.desktop-project--red-sea-transport-logistics {
+  --case-readable: #d8e2f2;
+  color: #f7f8fa;
+  background:
+    radial-gradient(circle at 6% 12%, rgb(207 29 42 / 0.18), transparent 24%),
+    radial-gradient(circle at 91% 24%, rgb(61 131 166 / 0.2), transparent 28%),
+    linear-gradient(124deg, transparent 0 68%, rgb(207 29 42 / 0.16) 68% 72%, transparent 72% 100%),
+    linear-gradient(180deg, #07111d 0%, #0c1724 42%, #102642 72%, #07111d 100%);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-hero {
+  grid-template-columns: minmax(620px, 0.62fr) minmax(360px, 0.38fr);
+  min-height: clamp(680px, 82svh, 920px);
+  color: #ffffff;
+  direction: ltr;
+  background:
+    linear-gradient(90deg, transparent 0 calc(100% - 1px), rgb(255 255 255 / 0.16) calc(100% - 1px)),
+    linear-gradient(0deg, transparent 0 calc(100% - 1px), rgb(255 255 255 / 0.08) calc(100% - 1px)),
+    linear-gradient(90deg, transparent 0 92%, #cf1d2a 92% 96%, #f7f8fa 96% 100%),
+    linear-gradient(130deg, #07111d 0 34%, #0c3154 34% 100%);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-hero__visual {
+  align-self: center;
+  min-height: clamp(420px, 42vw, 720px);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-hero__visual[data-asset="hero"] img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-hero__summary {
+  gap: clamp(18px, 2vw, 30px);
+  border-top-color: rgb(255 255 255 / 0.32);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-hero__summary h1,
+.desktop-project--red-sea-transport-logistics .desktop-case-section__copy h2,
+.desktop-project--red-sea-transport-logistics .desktop-project-system strong,
+.desktop-project--red-sea-transport-logistics .desktop-next-project a {
+  font-family: var(--font-body);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-hero__summary p,
+.desktop-project--red-sea-transport-logistics .desktop-project-meta dd,
+.desktop-project--red-sea-transport-logistics .desktop-project-overview p,
+.desktop-project--red-sea-transport-logistics .desktop-project-system p,
+.desktop-project--red-sea-transport-logistics .desktop-project-system li,
+.desktop-project--red-sea-transport-logistics .desktop-project-legal {
+  color: #d8e2f2;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-kicker,
+.desktop-project--red-sea-transport-logistics .desktop-project-meta dt,
+.desktop-project--red-sea-transport-logistics .desktop-project-system .desktop-kicker,
+.desktop-project--red-sea-transport-logistics .desktop-next-project > span {
+  color: #f05b65;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-intro,
+.desktop-project--red-sea-transport-logistics .desktop-project-overview,
+.desktop-project--red-sea-transport-logistics .desktop-case-section,
+.desktop-project--red-sea-transport-logistics .desktop-project-system,
+.desktop-project--red-sea-transport-logistics .desktop-project-legal {
+  border-top-color: rgb(255 255 255 / 0.2);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-meta div,
+.desktop-project--red-sea-transport-logistics .desktop-project-system li {
+  border-top-color: rgb(255 255 255 / 0.2);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section {
+  width: 100%;
+  max-width: none;
+  grid-template-columns: minmax(260px, 0.27fr) minmax(760px, 0.73fr);
+  padding-inline: max(clamp(48px, 7vw, 124px), calc((100vw - 1720px) / 2));
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section__copy {
+  max-width: 520px;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section__copy h2 {
+  color: inherit;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section__visuals {
+  gap: clamp(24px, 2.8vw, 46px);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-visual__media {
+  background: transparent;
+}
+
+.desktop-project--red-sea-transport-logistics .project-visual,
+.desktop-project--red-sea-transport-logistics .desktop-project .project-visual {
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.desktop-project--red-sea-transport-logistics .project-visual img {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section--brand,
+.desktop-project--red-sea-transport-logistics .desktop-case-section--dark {
+  color: #ffffff;
+  background:
+    radial-gradient(circle at 14% 18%, rgb(207 29 42 / 0.26), transparent 28%),
+    linear-gradient(128deg, rgb(255 255 255 / 0.08) 0 1px, transparent 1px 100%),
+    linear-gradient(132deg, #07111d 0 46%, #143a63 46% 74%, #cf1d2a 74% 79%, #07111d 79% 100%);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section--paper,
+.desktop-project--red-sea-transport-logistics .desktop-case-section--ivory {
+  color: #0c1724;
+  background:
+    radial-gradient(circle at 88% 8%, rgb(47 78 155 / 0.12), transparent 30%),
+    linear-gradient(128deg, rgb(47 78 155 / 0.08) 0 1px, transparent 1px 100%),
+    linear-gradient(180deg, #f7f8fa 0%, #e8edf4 100%);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section--paper .desktop-case-section__copy p,
+.desktop-project--red-sea-transport-logistics .desktop-case-section--ivory .desktop-case-section__copy p {
+  color: #26374f;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section--paper .desktop-kicker,
+.desktop-project--red-sea-transport-logistics .desktop-case-section--ivory .desktop-kicker {
+  color: #cf1d2a;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section--paper .desktop-case-section__copy h2,
+.desktop-project--red-sea-transport-logistics .desktop-case-section--ivory .desktop-case-section__copy h2 {
+  color: #0c1724;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-1"]) .desktop-case-section__visuals {
+  grid-template-columns: minmax(280px, 0.42fr) minmax(0, 0.58fr);
+  align-items: center;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-1"]) .desktop-case-visual:first-child {
+  justify-self: end;
+  width: min(100%, 520px);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-5"]) .desktop-case-visual__media {
+  min-height: clamp(260px, 24vw, 430px);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-system,
+.desktop-project--red-sea-transport-logistics .desktop-project-legal,
+.desktop-project--red-sea-transport-logistics .desktop-next-project {
+  color: #ffffff;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-project-system strong,
+.desktop-project--red-sea-transport-logistics .desktop-project-system small,
+.desktop-project--red-sea-transport-logistics .desktop-project-system li,
+.desktop-project--red-sea-transport-logistics .desktop-project-legal {
+  color: #d8e2f2;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-next-project {
+  background:
+    linear-gradient(124deg, #07111d 0 58%, #2f4e9b 58% 74%, #cf1d2a 74% 100%);
+  border-color: rgb(255 255 255 / 0.22);
+}
+
+body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case {
+  color: #ffffff;
+  background:
+    linear-gradient(126deg, #07111d 0 58%, #102642 58% 78%, #cf1d2a 78% 100%);
+}
+
+body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case .desktop-footer__identity p,
+body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case .desktop-footer__base p,
+body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case a,
+body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case .desktop-footer__studio .bamarouf-studio-link {
+  color: rgb(255 255 255 / 0.84);
+}
+
+body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case .desktop-footer__base,
+body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case .desktop-footer__studio .bamarouf-studio-link {
+  border-color: rgb(255 255 255 / 0.22);
+}
+
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-hero__summary h1,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-case-section__copy h2,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-system strong,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-next-project a {
+  font-family: var(--font-arabic);
+  line-height: 1.18;
+  text-transform: none;
+}
+
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-hero__visual {
+  grid-column: 1;
+}
+
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-hero {
+  background:
+    linear-gradient(90deg, transparent 0 calc(100% - 1px), rgb(255 255 255 / 0.16) calc(100% - 1px)),
+    linear-gradient(0deg, transparent 0 calc(100% - 1px), rgb(255 255 255 / 0.08) calc(100% - 1px)),
+    linear-gradient(90deg, #f7f8fa 0 4%, #cf1d2a 4% 8%, transparent 8% 100%),
+    linear-gradient(130deg, #07111d 0 34%, #0c3154 34% 100%);
+}
+
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-hero__summary {
+  grid-column: 2;
+  justify-items: end;
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-hero__back {
+  justify-self: end;
+  direction: rtl;
+}
+
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-hero__summary p,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-meta dd,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-overview p,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-case-section__copy p,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-system p,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-system li,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-legal {
+  color: color-mix(in oklch, var(--case-on-deep) 90%, transparent);
+  line-height: 1.82;
+}
+
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-case-section--paper .desktop-case-section__copy p,
+html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-case-section--ivory .desktop-case-section__copy p {
+  color: #26374f;
+}
+
+@media (max-width: 1080px) {
+  .desktop-project--red-sea-transport-logistics .desktop-project-hero,
+  .desktop-project--red-sea-transport-logistics .desktop-case-section,
+  .desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-1"]) .desktop-case-section__visuals {
+    grid-template-columns: 1fr;
+  }
+
+  .desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-1"]) .desktop-case-visual:first-child {
+    justify-self: stretch;
+    width: 100%;
+  }
+}
+
 .desktop-project--wello .desktop-project-hero__summary h1,
 .desktop-project--wello .desktop-project-hero__summary p,
 .desktop-project--matcha .desktop-project-hero__summary h1,
