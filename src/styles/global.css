@@ -864,7 +864,7 @@ html[dir="rtl"] .intro__skip {
 
 .project-page--asset-aware .case-section--dark .case-section__copy p,
 .project-page--asset-aware .case-section--brand .case-section__copy p {
-  color: color-mix(in oklch, var(--case-on-deep) 78%, transparent);
+  color: color-mix(in oklch, var(--case-on-deep) 94%, transparent);
 }
 
 .project-page--asset-aware .case-system__applications li,
@@ -9296,7 +9296,7 @@ html[dir="rtl"] .case-system__outcome p {
 
 .project-page--asset-aware .case-section--dark .case-section__copy p,
 .project-page--asset-aware .case-section--brand .case-section__copy p {
-  color: color-mix(in oklch, var(--case-on-deep) 78%, transparent);
+  color: color-mix(in oklch, var(--case-on-deep) 94%, transparent);
 }
 
 @media (max-width: 1180px) {
@@ -10482,7 +10482,7 @@ html[dir="rtl"] .home-contact__actions {
 }
 
 .project-page--asset-aware {
-  --case-readable: color-mix(in oklch, var(--case-foreground) 78%, var(--case-muted-foreground));
+  --case-readable: color-mix(in oklch, var(--case-foreground) 88%, var(--case-muted-foreground));
   background:
     radial-gradient(circle at 82% 12%, var(--case-glow), transparent 30%),
     linear-gradient(180deg, var(--case-bg), color-mix(in oklch, var(--case-bg) 78%, var(--case-surface)));
@@ -12126,7 +12126,7 @@ html[dir="rtl"] .desktop-hero__scene-caption {
 .desktop-footer--case .desktop-footer__base p,
 .desktop-footer--case a,
 .desktop-footer--case .desktop-footer__studio .bamarouf-studio-link {
-  color: color-mix(in oklch, var(--case-on-deep) 82%, transparent);
+  color: color-mix(in oklch, var(--case-on-deep) 94%, transparent);
 }
 
 .desktop-footer--case a:hover,
@@ -12403,7 +12403,7 @@ html[dir="rtl"] .desktop-hero__scene-caption {
 }
 
 .desktop-project {
-  --case-readable: color-mix(in oklch, var(--case-foreground) 78%, var(--case-muted-foreground));
+  --case-readable: color-mix(in oklch, var(--case-foreground) 88%, var(--case-muted-foreground));
   color: var(--case-foreground);
   background:
     linear-gradient(180deg, color-mix(in oklch, var(--case-bg) 84%, var(--case-deep)) 0%, var(--case-bg) 28%, color-mix(in oklch, var(--case-surface-alt) 42%, var(--case-bg)) 64%, var(--case-bg) 100%);
@@ -12441,7 +12441,7 @@ html[dir="rtl"] .desktop-hero__scene-caption {
 .desktop-project-hero__back {
   grid-column: 1 / -1;
   width: fit-content;
-  color: color-mix(in oklch, var(--case-on-deep) 84%, transparent);
+  color: color-mix(in oklch, var(--case-on-deep) 94%, transparent);
   font-size: 0.82rem;
   font-weight: 800;
   text-decoration: none;
@@ -12476,7 +12476,7 @@ html[dir="rtl"] .desktop-hero__scene-caption {
 .desktop-project-hero__summary p {
   max-width: 56ch;
   margin: 0;
-  color: color-mix(in oklch, var(--case-on-deep) 82%, transparent);
+  color: color-mix(in oklch, var(--case-on-deep) 94%, transparent);
   font-size: clamp(1rem, 0.22vw + 0.94rem, 1.14rem);
   line-height: 1.72;
 }
@@ -12719,7 +12719,7 @@ html[dir="rtl"] .desktop-hero__scene-caption {
 }
 
 .desktop-project--red-bull-marvel .desktop-project-hero__back {
-  color: rgb(255 255 255 / 0.86);
+  color: rgb(255 255 255 / 0.94);
 }
 
 .desktop-project--red-bull-marvel .desktop-project-hero__visual,
@@ -12839,7 +12839,7 @@ body:has(.desktop-project--red-bull-marvel) .desktop-footer--case .desktop-foote
 body:has(.desktop-project--red-bull-marvel) .desktop-footer--case .desktop-footer__base p,
 body:has(.desktop-project--red-bull-marvel) .desktop-footer--case a,
 body:has(.desktop-project--red-bull-marvel) .desktop-footer--case .desktop-footer__studio .bamarouf-studio-link {
-  color: rgb(234 248 255 / 0.84);
+  color: rgb(234 248 255 / 0.94);
 }
 
 body:has(.desktop-project--red-bull-marvel) .desktop-footer--case a:hover,
@@ -12866,7 +12866,7 @@ body:has(.desktop-project--red-bull-marvel) .desktop-footer--case .desktop-foote
 }
 
 .desktop-project--jeddah-railway .desktop-project-hero__back {
-  color: rgb(238 242 230 / 0.78);
+  color: rgb(238 242 230 / 0.94);
 }
 
 .desktop-project--jeddah-railway .desktop-project-hero__visual {
@@ -13542,7 +13542,7 @@ body:has(.desktop-project) .desktop-footer--case .desktop-footer__identity p,
 body:has(.desktop-project) .desktop-footer--case .desktop-footer__base p,
 body:has(.desktop-project) .desktop-footer--case a,
 body:has(.desktop-project) .desktop-footer--case .desktop-footer__studio .bamarouf-studio-link {
-  color: color-mix(in oklch, var(--case-on-deep) 86%, transparent);
+  color: color-mix(in oklch, var(--case-on-deep) 94%, transparent);
 }
 
 body:has(.desktop-project) .desktop-footer--case a:hover,
@@ -13931,7 +13931,7 @@ body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case .d
 body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case .desktop-footer__base p,
 body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case a,
 body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case .desktop-footer__studio .bamarouf-studio-link {
-  color: rgb(255 255 255 / 0.84);
+  color: rgb(255 255 255 / 0.94);
 }
 
 body:has(.desktop-project--red-sea-transport-logistics) .desktop-footer--case .desktop-footer__base,
@@ -13979,7 +13979,7 @@ html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-case-sect
 html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-system p,
 html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-system li,
 html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-project-legal {
-  color: color-mix(in oklch, var(--case-on-deep) 90%, transparent);
+  color: color-mix(in oklch, var(--case-on-deep) 94%, transparent);
   line-height: 1.82;
 }
 
@@ -14088,7 +14088,7 @@ html[dir="rtl"] .desktop-project--zahy-store .desktop-project-hero .desktop-kick
 .desktop-project--zahy-store .desktop-project-system small,
 .desktop-project--zahy-store .desktop-project-system li,
 .desktop-project--zahy-store .desktop-project-legal {
-  color: color-mix(in oklch, var(--case-on-deep) 90%, transparent);
+  color: color-mix(in oklch, var(--case-on-deep) 94%, transparent);
 }
 
 .desktop-project--wello .desktop-project-system .desktop-kicker,
@@ -14204,7 +14204,7 @@ html[dir="rtl"] .desktop-project--rahaba-space .desktop-project-video p,
 html[dir="rtl"] .desktop-project--rahaba-space .desktop-project-system p,
 html[dir="rtl"] .desktop-project--rahaba-space .desktop-project-system li,
 html[dir="rtl"] .desktop-project--rahaba-space .desktop-project-legal {
-  color: color-mix(in oklch, var(--case-on-deep) 90%, transparent);
+  color: color-mix(in oklch, var(--case-on-deep) 94%, transparent);
 }
 
 html[dir="rtl"] .desktop-project--jeddah-railway .desktop-kicker,
@@ -14231,7 +14231,7 @@ html[dir="rtl"] .desktop-project--ansab-holding .desktop-next-project > span,
 html[dir="rtl"] .desktop-project--rahaba-space .desktop-kicker,
 html[dir="rtl"] .desktop-project--rahaba-space .desktop-project-meta dt,
 html[dir="rtl"] .desktop-project--rahaba-space .desktop-next-project > span {
-  color: color-mix(in oklch, var(--case-on-deep) 78%, var(--case-accent));
+  color: color-mix(in oklch, var(--case-on-deep) 92%, var(--case-accent));
 }
 
 /* Desktop exhibition rebuild */
