@@ -13667,7 +13667,7 @@ body:has(.desktop-project) .desktop-footer--case .desktop-footer__studio .bamaro
 .desktop-project--nirto-cold-brew .desktop-case-section--paper {
   color: #ffefd2;
   background:
-    linear-gradient(132deg, #050403 0 54%, #2a120c 54% 76%, #d99a38 76% 100%);
+    linear-gradient(132deg, #050403 0 62%, #2a120c 62% 90%, #d99a38 90% 100%);
 }
 
 .desktop-project--zahy-store {
@@ -20626,5 +20626,143 @@ body:has(.desktop-project--red-bull-marvel) .desktop-footer.noor-global-footer-v
 
   html[dir="rtl"] .desktop-section-flow :is(.noor-home-v3__actions, .desktop-contact-page__actions) {
     justify-content: flex-start;
+  }
+}
+
+/* Project media exhibition: artwork determines the frame, scale, and rhythm. */
+@media (min-width: 901px) {
+  .desktop-project .project-visual,
+  .desktop-project-hero__visual,
+  .desktop-case-visual__media {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: var(--visual-ratio);
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .desktop-project .project-visual[data-project][data-asset] {
+    background: transparent;
+  }
+
+  .desktop-project .project-visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .desktop-project .desktop-case-section__visuals {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(16px, 1.8vw, 30px);
+    align-content: start;
+    align-items: start;
+  }
+
+  .desktop-case-visual {
+    grid-column: 1 / -1;
+    min-width: 0;
+  }
+
+  .desktop-case-section__visuals[data-count="2"] > .desktop-case-visual:not(.desktop-case-visual--wide, .desktop-case-visual--full) {
+    grid-column: span 6;
+  }
+
+  .desktop-case-section__visuals[data-count="2"] > .desktop-case-visual--wide + .desktop-case-visual,
+  .desktop-case-section__visuals[data-count="2"] > .desktop-case-visual--full + .desktop-case-visual {
+    grid-column: 3 / span 8;
+  }
+
+  .desktop-case-section__visuals[data-count="3"] > .desktop-case-visual:first-child {
+    grid-column: span 7;
+  }
+
+  .desktop-case-section__visuals[data-count="3"] > .desktop-case-visual:nth-child(2) {
+    grid-column: span 5;
+    align-self: end;
+  }
+
+  .desktop-case-section__visuals[data-count="3"] > .desktop-case-visual:nth-child(3):not(.desktop-case-visual--wide, .desktop-case-visual--full) {
+    grid-column: 3 / span 8;
+  }
+
+  .desktop-case-section--portrait-grid .desktop-case-section__visuals[data-count="3"] > .desktop-case-visual:is(:first-child, :nth-child(2), :nth-child(3)) {
+    grid-column: span 4;
+  }
+
+  .desktop-case-section__visuals[data-count="4"] > .desktop-case-visual {
+    grid-column: span 6;
+  }
+
+  .desktop-case-section__visuals[data-count="4"] > .desktop-case-visual--feature {
+    grid-column: span 7;
+  }
+
+  .desktop-case-section__visuals[data-count="4"] > .desktop-case-visual--feature + .desktop-case-visual {
+    grid-column: span 5;
+  }
+
+  .desktop-case-section__visuals[data-count="5"] > .desktop-case-visual,
+  .desktop-case-section__visuals[data-count="6"] > .desktop-case-visual {
+    grid-column: span 4;
+  }
+
+  .desktop-case-section__visuals > .desktop-case-visual--wide,
+  .desktop-case-section__visuals > .desktop-case-visual--full {
+    grid-column: 1 / -1;
+  }
+
+  .desktop-case-section__visuals[data-count="5"] > .desktop-case-visual:nth-child(2),
+  .desktop-case-section__visuals[data-count="6"] > .desktop-case-visual:nth-child(2),
+  .desktop-case-section__visuals[data-count="5"] > .desktop-case-visual:nth-child(5),
+  .desktop-case-section__visuals[data-count="6"] > .desktop-case-visual:nth-child(5) {
+    margin-top: clamp(24px, 3vw, 54px);
+  }
+
+  html .desktop-project .desktop-project-hero__visual--shape-circle,
+  html .desktop-project .desktop-case-visual--shape-circle .project-visual {
+    justify-self: center;
+    width: min(100%, 620px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    clip-path: circle(50% at 50% 50%);
+  }
+
+  html .desktop-project .desktop-project-hero__visual--shape-circle {
+    width: min(42vw, 620px);
+  }
+
+  html .desktop-project .desktop-project-hero__visual--shape-circle img,
+  html .desktop-project .desktop-case-visual--shape-circle .project-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    object-position: center;
+  }
+
+  .desktop-case-visual--shape-circle {
+    justify-items: center;
+  }
+
+  .desktop-project--nirto-cold-brew .desktop-case-section:has([data-asset="gallery-7"]) .desktop-case-section__visuals {
+    justify-items: center;
+  }
+
+  .desktop-project--nirto-cold-brew .desktop-case-section:has([data-asset="gallery-7"]) .desktop-case-visual,
+  .desktop-project--nirto-cold-brew .desktop-case-section:has([data-asset="gallery-7"]) .desktop-case-visual__media {
+    width: min(100%, 560px);
+  }
+
+  .desktop-project--jeddah-railway .desktop-case-section__visuals,
+  .desktop-project--jeddah-railway .desktop-case-section__visuals > .desktop-case-visual {
+    grid-column: 1 / -1;
+  }
+
+  .desktop-project--jeddah-railway .desktop-case-section__visuals {
+    grid-template-columns: 1fr;
   }
 }

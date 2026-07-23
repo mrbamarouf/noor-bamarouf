@@ -21,6 +21,7 @@ interface ProjectVisualProps {
   className?: string;
   loading?: "lazy" | "eager";
   fit?: ProjectVisualFit;
+  shape?: "circle";
   preserveAspect?: boolean;
   formatOverride?: ProjectImage["format"];
 }
@@ -33,6 +34,7 @@ export function ProjectVisual({
   className = "",
   loading = "lazy",
   fit = "contain",
+  shape,
   preserveAspect = true,
   formatOverride,
 }: ProjectVisualProps) {
@@ -64,10 +66,11 @@ export function ProjectVisual({
 
   return (
     <figure
-      className={`project-visual project-visual--${ratio} project-visual--fit-${fit} ${className}`}
+      className={`project-visual project-visual--${ratio} project-visual--fit-${fit} ${shape ? `project-visual--shape-${shape}` : ""} ${className}`}
       data-project={projectSlug}
       data-asset={asset}
       data-fit={fit}
+      data-shape={shape}
       style={visualStyle}
     >
       <img

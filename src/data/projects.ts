@@ -723,6 +723,8 @@ export const projects: Project[] = [
       { variant: "nirtoColdBrew", scene: "materials", format: "webp", folder: "projects", alt: { en: "NIRTO COLD BREW nutrition and ingredients panel crop from the packaging artwork.", ar: "لقطة من لوحة الحقائق الغذائية والمكونات ضمن عمل NIRTO COLD BREW الفني." } },
       { variant: "nirtoColdBrew", scene: "materials", format: "webp", folder: "projects", alt: { en: "NIRTO COLD BREW side information panel with bilingual usage and storage details.", ar: "لوحة معلومات جانبية لـ NIRTO COLD BREW تتضمن إرشادات ثنائية اللغة للاستخدام والحفظ." } },
       { variant: "nirtoColdBrew", scene: "packaging", format: "webp", folder: "projects", alt: { en: "Close-up packaging artwork showing the upper label and cold brew title area.", ar: "لقطة قريبة من العمل الفني تعرض الملصق العلوي ومنطقة عنوان الكولد برو." } },
+      { variant: "nirtoColdBrew", scene: "packaging", format: "jpg", folder: "projects", alt: { en: "Lifestyle photograph of CofiQue PRIVE Nitro Cold Brew cans served in a warm outdoor coffee moment.", ar: "صورة أسلوب حياة لعبوات CofiQue PRIVE Nitro Cold Brew ضمن لحظة قهوة خارجية دافئة." } },
+      { variant: "nirtoColdBrew", scene: "packaging", format: "png", folder: "projects", alt: { en: "CofiQue PRIVE Nitro Cold Brew product hero image with the finished can on a warm coffee-toned gradient.", ar: "صورة عرض رئيسية لعبوة CofiQue PRIVE Nitro Cold Brew النهائية على تدرج دافئ بدرجات القهوة." } },
     ],
     caseStudy: {
       context: {

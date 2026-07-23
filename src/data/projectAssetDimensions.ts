@@ -89,6 +89,8 @@ export const projectAssetDimensions = {
   "projects/nirto-cold-brew/gallery-4.webp": { width: 900, height: 1200 },
   "projects/nirto-cold-brew/gallery-5.webp": { width: 900, height: 1200 },
   "projects/nirto-cold-brew/gallery-6.webp": { width: 900, height: 1200 },
+  "projects/nirto-cold-brew/gallery-7.jpg": { width: 1206, height: 1494 },
+  "projects/nirto-cold-brew/gallery-8.png": { width: 1671, height: 941 },
   "projects/nirto-cold-brew/hero.webp": { width: 1536, height: 1024 },
   "projects/rahaba-space/cover.webp": { width: 1800, height: 1800 },
   "projects/rahaba-space/gallery-1.webp": { width: 1500, height: 1875 },

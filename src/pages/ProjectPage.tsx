@@ -51,8 +51,9 @@ function CaseVisual({
 
   return (
     <article
-      className={`desktop-case-visual desktop-case-visual--${visual.kind} desktop-case-visual--${visual.emphasis ?? "regular"}`}
+      className={`desktop-case-visual desktop-case-visual--${visual.kind} desktop-case-visual--${visual.emphasis ?? "regular"} desktop-case-visual--shape-${visual.shape ?? "rect"}`}
       data-kind={visual.kind}
+      data-shape={visual.shape ?? "rect"}
     >
       <ProjectVisual
         className="desktop-case-visual__media"
@@ -61,6 +62,7 @@ function CaseVisual({
         asset={visual.asset}
         ratio={visualRatio(visual)}
         fit={visualFit(visual, project)}
+        shape={visual.shape}
         loading={loading}
         formatOverride={visual.format}
       />
@@ -93,7 +95,7 @@ function CaseSection({
         <h2 id={`desktop-case-section-${section.id}`}>{section.title[language]}</h2>
         {copy ? <p>{copy}</p> : null}
       </div>
-      <div className="desktop-case-section__visuals">
+      <div className="desktop-case-section__visuals" data-count={section.visuals.length}>
         {section.visuals.map((visual) => (
           <CaseVisual
             key={`${project.slug}-${section.id}-${visual.asset}`}
@@ -186,12 +188,13 @@ export function ProjectPage() {
           {direction === "rtl" ? `${dictionary.actions.backToWork} →` : `← ${dictionary.actions.backToWork}`}
         </Link>
         <ProjectVisual
-          className={`desktop-project-hero__visual desktop-project-hero__visual--${presentation.hero.kind}`}
+          className={`desktop-project-hero__visual desktop-project-hero__visual--${presentation.hero.kind} desktop-project-hero__visual--shape-${presentation.hero.shape ?? "rect"}`}
           image={heroImage}
           projectSlug={project.slug}
           asset={presentation.hero.asset}
           ratio={visualRatio(presentation.hero)}
           fit={visualFit(presentation.hero, project)}
+          shape={presentation.hero.shape}
           loading="eager"
           formatOverride={presentation.hero.format}
         />

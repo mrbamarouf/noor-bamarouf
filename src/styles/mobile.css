@@ -1009,3 +1009,81 @@
     .m-intro__identity { clip-path: none; opacity: 1; }
   }
 }
+
+@media (max-width: 900px) {
+  .m-case .m-visual {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: var(--m-visual-ratio);
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .m-case .m-visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .m-case-gallery__media {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(8px, 2.8vw, 14px);
+    align-content: center;
+    align-items: center;
+    min-height: 0;
+  }
+
+  .m-case-gallery__media[data-count="1"] > .m-visual {
+    grid-column: 1 / -1;
+    max-height: 100%;
+  }
+
+  .m-case-gallery__media[data-count="2"] > .m-visual:first-child {
+    grid-column: 1 / span 7;
+  }
+
+  .m-case-gallery__media[data-count="2"] > .m-visual:last-child {
+    grid-column: 8 / -1;
+  }
+
+  .m-case-gallery__media[data-count="2"] > .m-case-media--portrait-presentation:first-child,
+  .m-case-gallery__media[data-count="2"] > .m-case-media--story-frame:first-child,
+  .m-case-gallery__media[data-count="2"] > .m-case-media--social-post:first-child,
+  .m-case-gallery__media[data-count="2"] > .m-case-media--square-post:first-child {
+    align-self: start;
+  }
+
+  .m-case-gallery__media[data-count="2"] > .m-case-media--portrait-presentation:last-child,
+  .m-case-gallery__media[data-count="2"] > .m-case-media--story-frame:last-child,
+  .m-case-gallery__media[data-count="2"] > .m-case-media--social-post:last-child,
+  .m-case-gallery__media[data-count="2"] > .m-case-media--square-post:last-child {
+    align-self: end;
+    margin-top: clamp(18px, 6vw, 34px);
+  }
+
+  .m-visual--shape-circle {
+    justify-self: center;
+    width: min(76vw, 42dvh);
+    aspect-ratio: 1 !important;
+    border-radius: 50%;
+    clip-path: circle(50% at 50% 50%);
+  }
+
+  .m-visual--shape-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    object-position: center;
+  }
+
+  .m-case-hero > .m-page__content > .m-visual--shape-circle {
+    align-self: center;
+    justify-self: center;
+    width: min(72vw, 38dvh);
+    height: auto;
+  }
+}

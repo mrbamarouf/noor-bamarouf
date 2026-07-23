@@ -43,7 +43,15 @@ function chunkVisuals(visuals: PresentationVisual[]) {
   };
 
   visuals.forEach((visual) => {
-    const single = visual.kind === "full-artwork" || visual.kind === "billboard" || visual.kind === "ultrawide-presentation" || visual.emphasis === "full";
+    const single =
+      visual.kind === "full-artwork" ||
+      visual.kind === "billboard" ||
+      visual.kind === "document-page" ||
+      visual.kind === "document-spread" ||
+      visual.kind === "landscape-presentation" ||
+      visual.kind === "packaging-mockup" ||
+      visual.kind === "ultrawide-presentation" ||
+      visual.emphasis === "full";
     if (single) {
       flush();
       chunks.push([visual]);
@@ -114,7 +122,15 @@ function ProjectHero({ project, chapter, index, total }: { project: Project; cha
         <Link to="/work"><MobileArrow /> {dictionary.actions.backToWork}</Link>
         <span dir="ltr">{localizeMobileDigits(String(projectIndex + 1).padStart(2, "0"), language)} / {localizeMobileDigits(String(projects.length).padStart(2, "0"), language)}</span>
       </div>
-      <MobileVisual project={project} image={image} asset={asset} fit={visualFit(project, presentation.hero)} formatOverride={presentation.hero.format} loading="eager" />
+      <MobileVisual
+        project={project}
+        image={image}
+        asset={asset}
+        fit={visualFit(project, presentation.hero)}
+        shape={presentation.hero.shape}
+        formatOverride={presentation.hero.format}
+        loading="eager"
+      />
       <div className="m-case-hero__copy">
         <p>{project.year} / {dictionary.categories[project.category]}</p>
         <h1 id={`${chapter.id}-title`} dir={getProjectTitleDirection(project, language)}><bdi>{getProjectDisplayTitle(project, language)}</bdi></h1>
@@ -183,8 +199,9 @@ function ProjectSection({ project, chapter, index, total }: { project: Project; 
               image={getProjectImageByAsset(project, asset)}
               asset={asset}
               fit={visualFit(project, visual)}
+              shape={visual.shape}
               formatOverride={visual.format}
-              className={`m-case-media m-case-media--${visual.kind}`}
+              className={`m-case-media m-case-media--${visual.kind} m-case-media--shape-${visual.shape ?? "rect"}`}
               loading="eager"
             />
           );

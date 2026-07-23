@@ -12,6 +12,7 @@ interface MobileVisualProps {
   className?: string;
   loading?: "lazy" | "eager";
   fit?: "cover" | "contain";
+  shape?: "circle";
   formatOverride?: ProjectImage["format"];
 }
 
@@ -28,6 +29,7 @@ export function MobileVisual({
   className = "",
   loading = "lazy",
   fit = "contain",
+  shape,
   formatOverride,
 }: MobileVisualProps) {
   const { language } = useLanguage();
@@ -39,7 +41,14 @@ export function MobileVisual({
   } as CSSProperties;
 
   return (
-    <figure className={`m-visual ${className}`} data-project={project.slug} data-asset={asset} data-fit={fit} style={style}>
+    <figure
+      className={`m-visual ${shape ? `m-visual--shape-${shape}` : ""} ${className}`}
+      data-project={project.slug}
+      data-asset={asset}
+      data-fit={fit}
+      data-shape={shape}
+      style={style}
+    >
       <img
         src={src}
         alt={image.alt[language]}

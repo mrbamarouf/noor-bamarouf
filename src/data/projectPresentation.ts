@@ -33,6 +33,7 @@ export interface PresentationVisual {
   source?: PresentationAsset;
   kind: PresentationKind;
   ratio?: "portrait" | "landscape" | "square" | "wide";
+  shape?: "circle";
   format?: ProjectImage["format"];
   fit?: "contain" | "cover";
   emphasis?: "feature" | "full" | "regular" | "wide";
@@ -524,7 +525,7 @@ const desktopProjectCovers: Record<string, DesktopProjectCover> = {
   impostor: { asset: "hero", ratio: "landscape", fit: "contain" },
   "wemo-delights": { asset: "hero", ratio: "landscape", fit: "cover" },
   "rahaba-space": { asset: "gallery-8", ratio: "portrait", fit: "cover" },
-  "nirto-cold-brew": { asset: "hero", ratio: "landscape", fit: "cover" },
+  "nirto-cold-brew": { asset: "gallery-8", ratio: "wide", fit: "contain", format: "png" },
   "zahy-store": { asset: "gallery-1", ratio: "square", fit: "contain" },
   "ansab-holding": { asset: "hero", ratio: "landscape", fit: "cover" },
 };
@@ -582,19 +583,7 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         layout: "editorial",
         tone: "paper",
         visuals: [
-          { asset: "hero", kind: "landscape-presentation", emphasis: "wide", fit: "cover" },
-          { asset: "gallery-3", kind: "landscape-presentation" },
-          { asset: "gallery-4", kind: "landscape-presentation", emphasis: "wide" },
-        ],
-      },
-      {
-        id: "morning-applications",
-        label: text("Final Gallery", "المعرض النهائي"),
-        title: text("Breakfast campaign applications", "تطبيقات حملة الإفطار"),
-        copyKey: "outcome",
-        layout: "stack",
-        visuals: [
-          { asset: "gallery-4", kind: "landscape-presentation", emphasis: "full" },
+          { asset: "gallery-4", kind: "landscape-presentation", emphasis: "full", fit: "cover" },
         ],
       },
     ],
@@ -611,8 +600,8 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         layout: "portrait-grid",
         visuals: [
           { asset: "gallery-2", kind: "square-post", emphasis: "feature" },
-          { asset: "gallery-4", kind: "portrait-presentation" },
           { asset: "cover", kind: "portrait-presentation" },
+          { asset: "gallery-1", kind: "portrait-presentation" },
         ],
       },
       {
@@ -623,8 +612,6 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         layout: "editorial",
         tone: "paper",
         visuals: [
-          { asset: "hero", kind: "packaging-mockup", emphasis: "wide" },
-          { asset: "gallery-1", kind: "document-page" },
           { asset: "gallery-3", kind: "document-page", emphasis: "feature" },
         ],
       },
@@ -722,7 +709,7 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
   },
   "egg-space": {
     family: "packaging",
-    hero: { asset: "cover", kind: "packaging-mockup", ratio: "square", emphasis: "full", fit: "cover" },
+    hero: { asset: "hero", kind: "packaging-mockup", ratio: "landscape", emphasis: "full", fit: "contain" },
     sections: [
       {
         id: "final-package",
@@ -733,7 +720,6 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         visuals: [
           { asset: "cover", kind: "packaging-mockup", emphasis: "feature" },
           { asset: "gallery-5", kind: "square-post" },
-          { asset: "hero", kind: "packaging-mockup", emphasis: "wide", fit: "cover" },
         ],
       },
       {
@@ -773,8 +759,7 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         layout: "social-grid",
         tone: "brand",
         visuals: [
-          { asset: "gallery-3", kind: "square-post" },
-          { asset: "cover", kind: "square-post", emphasis: "feature" },
+          { asset: "gallery-1", kind: "square-post", emphasis: "feature" },
         ],
       },
       {
@@ -784,18 +769,7 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         copyKey: "direction",
         layout: "packaging",
         visuals: [
-          { asset: "gallery-1", kind: "square-post" },
           { asset: "gallery-2", kind: "square-post" },
-        ],
-      },
-      {
-        id: "campaign-applications",
-        label: text("Applications", "التطبيقات"),
-        title: text("Final collectible packaging set", "مجموعة التغليف النهائية القابلة للاقتناء"),
-        copyKey: "outcome",
-        layout: "stack",
-        visuals: [
-          { asset: "gallery-3", kind: "square-post", emphasis: "feature" },
         ],
       },
     ],
@@ -809,7 +783,7 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         label: text("Campaign Elements", "عناصر الحملة"),
         title: text("Logo, icon, and warning system", "الشعار والأيقونة ونظام التحذير"),
         copyKey: "context",
-        layout: "portrait-grid",
+        layout: "editorial",
         tone: "dark",
         visuals: [
           { asset: "gallery-1", kind: "landscape-presentation", emphasis: "wide" },
@@ -837,7 +811,6 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         visuals: [
           { asset: "gallery-6", kind: "landscape-presentation", emphasis: "wide" },
           { asset: "gallery-7", kind: "landscape-presentation", emphasis: "wide" },
-          { asset: "cover", kind: "square-post" },
         ],
       },
     ],
@@ -853,7 +826,7 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         copyKey: "context",
         layout: "stack",
         visuals: [
-          { asset: "gallery-1", kind: "brand-application", ratio: "portrait", emphasis: "full" },
+          { asset: "gallery-2", kind: "brand-application", ratio: "landscape", emphasis: "full" },
         ],
       },
       {
@@ -876,7 +849,6 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         copyKey: "outcome",
         layout: "social-grid",
         visuals: [
-          { asset: "cover", kind: "square-post" },
           { asset: "gallery-6", kind: "portrait-presentation" },
         ],
       },
@@ -918,21 +890,27 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         title: text("A calm Pilates social presence", "حضور اجتماعي هادئ لعالم البيلاتس"),
         copyKey: "outcome",
         layout: "stack",
-        visuals: [{ asset: "gallery-3", kind: "square-post", emphasis: "full" }],
+        visuals: [{ asset: "gallery-2", kind: "landscape-presentation", emphasis: "full" }],
       },
     ],
   },
   "nirto-cold-brew": {
     family: "packaging",
-    hero: { asset: "hero", kind: "packaging-mockup", ratio: "landscape", emphasis: "full" },
+    hero: { asset: "gallery-8", kind: "packaging-mockup", ratio: "wide", emphasis: "full", fit: "contain", format: "png" },
     sections: [
       {
-        id: "finished-can",
-        label: text("Finished Visuals", "المرئيات النهائية"),
-        title: text("Cold brew can presentation", "عرض عبوة الكولد برو"),
-        copyKey: "context",
-        layout: "packaging",
-        visuals: [{ asset: "cover", kind: "packaging-mockup", emphasis: "wide" }],
+        id: "lifestyle",
+        label: text("Lifestyle", "مشهد استخدام"),
+        title: text("Cold brew in a real coffee moment", "الكولد برو في لحظة قهوة حقيقية"),
+        copy: text(
+          "The approved lifestyle image adds atmosphere and scale while keeping the can and label clearly present.",
+          "تضيف الصورة المعتمدة إحساسًا واقعيًا وحضورًا واضحًا للعبوة مع بقاء الملصق مقروءًا.",
+        ),
+        layout: "stack",
+        tone: "brand",
+        visuals: [
+          { asset: "gallery-7", kind: "portrait-presentation", emphasis: "feature", format: "jpg" },
+        ],
       },
       {
         id: "label-panels",
@@ -956,14 +934,6 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         layout: "document",
         tone: "dark",
         visuals: [{ asset: "gallery-2", kind: "landscape-presentation", emphasis: "wide" }],
-      },
-      {
-        id: "closeups",
-        label: text("Closing Detail", "تفصيل ختامي"),
-        title: text("Coffee texture and label finish", "ملمس القهوة ولمسة الملصق النهائية"),
-        copyKey: "direction",
-        layout: "stack",
-        visuals: [{ asset: "gallery-3", kind: "square-post", emphasis: "feature" }],
       },
     ],
   },
@@ -1033,7 +1003,6 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         layout: "stack",
         visuals: [
           { asset: "gallery-6", kind: "landscape-presentation", emphasis: "full" },
-          { asset: "cover", kind: "portrait-presentation" },
         ],
       },
     ],
