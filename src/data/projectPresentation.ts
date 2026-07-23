@@ -709,9 +709,8 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
         title: text("Product scenes and breakfast cues", "مشاهد المنتج وإشارات الإفطار"),
         copyKey: "direction",
         layout: "editorial",
-        tone: "paper",
         visuals: [
-          { asset: "gallery-4", kind: "landscape-presentation", emphasis: "full", fit: "cover" },
+          { asset: "hero", kind: "landscape-presentation", emphasis: "full", fit: "cover" },
         ],
       },
     ],
