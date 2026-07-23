@@ -4,6 +4,7 @@ import { navItems } from "../data/content";
 import { useLanguage } from "../context/LanguageContext";
 import { BamaroufStudioLink } from "./BamaroufStudioLink";
 import { LogoAsset } from "./LogoAsset";
+import { StudioSocialLinks } from "./StudioSocialLinks";
 
 export function Footer() {
   const { dictionary, language } = useLanguage();
@@ -30,6 +31,7 @@ export function Footer() {
         </div>
         <div className="desktop-footer__studio">
           <BamaroufStudioLink copy={dictionary.ecosystem} variant="footer" />
+          <StudioSocialLinks language={language} variant="footer" />
         </div>
         <div className="desktop-footer__base">
           <p>© 2026 {dictionary.footer.copyright}</p>

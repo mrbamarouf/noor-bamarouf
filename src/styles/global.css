@@ -13667,7 +13667,13 @@ body:has(.desktop-project) .desktop-footer--case .desktop-footer__studio .bamaro
 .desktop-project--nirto-cold-brew .desktop-case-section--paper {
   color: #ffefd2;
   background:
-    linear-gradient(132deg, #050403 0 62%, #2a120c 62% 90%, #d99a38 90% 100%);
+    radial-gradient(circle at 36% 48%, rgb(217 154 56 / 0.24), transparent 34%),
+    linear-gradient(132deg, #050403 0 54%, #2a120c 72%, #5f2d14 100%);
+}
+
+.desktop-project--nirto-cold-brew .desktop-project-hero__visual[data-asset="hero"] {
+  align-self: center;
+  background: transparent;
 }
 
 .desktop-project--zahy-store {
@@ -18490,6 +18496,86 @@ body:has(.desktop-project--red-bull-marvel) .desktop-footer.noor-global-footer-v
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+.studio-social-links {
+  display: grid;
+  gap: 8px;
+  color: inherit;
+}
+
+.studio-social-links__label {
+  color: inherit;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  opacity: 0.76;
+  text-transform: uppercase;
+}
+
+html[dir="rtl"] .studio-social-links__label {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.studio-social-links__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+}
+
+.studio-social-links__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: 2px;
+  color: inherit;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 220ms var(--ease-out), opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
+}
+
+.studio-social-links__link svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.65;
+}
+
+.studio-social-links__link span {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.studio-social-links__link:hover {
+  color: #a7635f;
+}
+
+.studio-social-links__link:focus-visible {
+  color: #a7635f;
+  outline: 1px solid currentColor;
+  outline-offset: 5px;
+}
+
+.studio-social-links__link:active {
+  transform: translateY(1px);
+}
+
+.desktop-footer__studio .studio-social-links {
+  margin-top: 2px;
+}
+
+.desktop-footer--case .studio-social-links__link:hover,
+.desktop-footer--case .studio-social-links__link:focus-visible {
+  color: var(--case-on-deep);
 }
 
 @media (min-width: 1081px) {

@@ -896,7 +896,7 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
   },
   "nirto-cold-brew": {
     family: "packaging",
-    hero: { asset: "gallery-8", kind: "packaging-mockup", ratio: "wide", emphasis: "full", fit: "contain", format: "png" },
+    hero: { asset: "hero", kind: "packaging-mockup", ratio: "wide", emphasis: "full", fit: "contain", format: "png" },
     sections: [
       {
         id: "lifestyle",

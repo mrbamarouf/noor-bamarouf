@@ -229,6 +229,11 @@
 
   .m-menu__actions > * + * { border-inline-start: 1px solid rgb(45 41 36 / 0.2); }
 
+  .m-menu__studio {
+    display: grid;
+    gap: 10px;
+  }
+
   .m-menu .bamarouf-studio-link {
     display: flex;
     align-items: center;
@@ -241,6 +246,37 @@
   .m-menu .bamarouf-studio-link__mark { width: 38px; height: 38px; }
   .m-menu .bamarouf-studio-link__mark img { width: 100%; height: 100%; object-fit: contain; }
   .m-menu .bamarouf-studio-link__name { font-size: 0.78rem; font-weight: 800; }
+
+  .m-menu .studio-social-links {
+    gap: 6px;
+  }
+
+  .m-menu .studio-social-links__label,
+  .m-footer .studio-social-links__label {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+  }
+
+  html[dir="rtl"] .m-menu .studio-social-links__label,
+  html[dir="rtl"] .m-footer .studio-social-links__label {
+    letter-spacing: 0;
+  }
+
+  .m-menu .studio-social-links__items,
+  .m-footer .studio-social-links__items {
+    gap: 4px 14px;
+  }
+
+  .m-menu .studio-social-links__link,
+  .m-footer .studio-social-links__link {
+    min-height: 44px;
+    padding-inline: 0;
+  }
+
+  .m-menu .studio-social-links__link span,
+  .m-footer .studio-social-links__link span {
+    font-size: 0.72rem;
+  }
 
   .m-book {
     width: 100%;
@@ -655,6 +691,7 @@
   .m-footer__contact { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgb(45 41 36 / 0.22); border-bottom: 1px solid rgb(45 41 36 / 0.22); }
   .m-footer__contact a { display: grid; place-items: center; min-height: 48px; color: inherit; text-decoration: none; }
   .m-footer__contact a + a { border-inline-start: 1px solid rgb(45 41 36 / 0.22); }
+  .m-footer__studio { display: grid; gap: 12px; }
   .m-footer .bamarouf-studio-link { display: grid; grid-template-columns: 50px 1fr; gap: 14px; align-items: center; color: inherit; text-decoration: none; }
   .m-footer .bamarouf-studio-link__mark { width: 50px; height: 58px; }
   .m-footer .bamarouf-studio-link__mark img { width: 100%; height: 100%; object-fit: contain; }
@@ -940,7 +977,11 @@
   .m-case--impostor .m-case-hero,
   .m-case--impostor .m-case-direction { background: linear-gradient(132deg, #ffd84d 0 16%, #e50909 16% 42%, #000 42%) !important; }
   .m-case--wemo-delights .m-case-hero { background: linear-gradient(132deg, #f4c6d1 0 18%, #5f4467 18% 42%, #2e1d3d 42%) !important; }
-  .m-case--nirto-cold-brew .m-case-hero { background: linear-gradient(132deg, #d99a38 0 17%, #2a120c 17% 42%, #050403 42%) !important; }
+  .m-case--nirto-cold-brew .m-case-hero {
+    background:
+      radial-gradient(circle at 50% 42%, rgb(217 154 56 / 0.22), transparent 38%),
+      linear-gradient(132deg, #050403 0 54%, #2a120c 76%, #5f2d14 100%) !important;
+  }
   .m-case--ansab-holding .m-case-hero { background: linear-gradient(132deg, #f6b51e 0 10%, #5ec63d 10% 24%, #1d2a18 24% 42%, #111 42%) !important; }
 
   .m-intro {

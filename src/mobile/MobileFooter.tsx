@@ -1,5 +1,6 @@
 import { BamaroufStudioLink } from "../components/BamaroufStudioLink";
 import { LogoAsset } from "../components/LogoAsset";
+import { StudioSocialLinks } from "../components/StudioSocialLinks";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -16,7 +17,10 @@ export function MobileFooter({ caseMode = false }: { caseMode?: boolean }) {
         <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.ui.whatsapp}</a>
         <a href={getEmailHref(language)}>{dictionary.ui.email}</a>
       </div>
-      <BamaroufStudioLink copy={dictionary.ecosystem} variant="footer" />
+      <div className="m-footer__studio">
+        <BamaroufStudioLink copy={dictionary.ecosystem} variant="footer" />
+        <StudioSocialLinks language={language} variant="footer" />
+      </div>
       <p className="m-footer__copyright">© 2026 {dictionary.footer.copyright}</p>
     </footer>
   );

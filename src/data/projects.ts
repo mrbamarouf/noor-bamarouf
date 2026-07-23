@@ -709,11 +709,11 @@ export const projects: Project[] = [
     heroImage: {
       variant: "nirtoColdBrew",
       scene: "packaging",
-      format: "webp",
+      format: "png",
       folder: "projects",
       alt: {
-        en: "NIRTO COLD BREW hero image showing a chilled can beside a glass of cold brew coffee.",
-        ar: "صورة رئيسية لـ NIRTO COLD BREW تعرض عبوة مبردة بجانب كأس قهوة كولد برو.",
+        en: "CofiQue PRIVE Nitro Cold Brew hero image with the finished can centered in an espresso and bronze presentation.",
+        ar: "صورة رئيسية لـ CofiQue PRIVE Nitro Cold Brew تعرض العبوة النهائية في تكوين بدرجات الإسبريسو والبرونز.",
       },
     },
     gallery: [

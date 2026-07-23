@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import { Link, useLocation } from "react-router-dom";
 import { BamaroufStudioLink } from "../components/BamaroufStudioLink";
 import { LogoAsset } from "../components/LogoAsset";
+import { StudioSocialLinks } from "../components/StudioSocialLinks";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { useLanguage } from "../context/LanguageContext";
 import { navItems } from "../data/content";
@@ -94,7 +95,10 @@ export function MobileHeader() {
             <a href={getEmailHref(language)}>{dictionary.ui.email}</a>
           </div>
 
-          <BamaroufStudioLink copy={dictionary.ecosystem} variant="menu" onClick={() => setOpen(false)} />
+          <div className="m-menu__studio">
+            <BamaroufStudioLink copy={dictionary.ecosystem} variant="menu" onClick={() => setOpen(false)} />
+            <StudioSocialLinks language={language} variant="menu" />
+          </div>
         </div>
       </div>
     </>
