@@ -228,6 +228,110 @@ const jeddahShowcaseImages: Record<string, ProjectImage> = {
   },
 };
 
+const redSeaProfilePages: Array<{ asset: string; en: string; ar: string }> = [
+  {
+    asset: "profile/profile-01",
+    en: "RED SEA Company Profile page 01 - Cover.",
+    ar: "صفحة 01 من الملف التعريفي للبحر الأحمر - الغلاف.",
+  },
+  {
+    asset: "profile/profile-02",
+    en: "RED SEA Company Profile page 02 - About Us.",
+    ar: "صفحة 02 من الملف التعريفي للبحر الأحمر - من نحن.",
+  },
+  {
+    asset: "profile/profile-03",
+    en: "RED SEA Company Profile page 03 - Our Services.",
+    ar: "صفحة 03 من الملف التعريفي للبحر الأحمر - خدماتنا.",
+  },
+  {
+    asset: "profile/profile-04",
+    en: "RED SEA Company Profile page 04 - The Countries We Serve.",
+    ar: "صفحة 04 من الملف التعريفي للبحر الأحمر - الدول التي نخدمها.",
+  },
+  {
+    asset: "profile/profile-05",
+    en: "RED SEA Company Profile page 05 - Truck Types.",
+    ar: "صفحة 05 من الملف التعريفي للبحر الأحمر - أنواع الشاحنات.",
+  },
+  {
+    asset: "profile/profile-06",
+    en: "RED SEA Company Profile page 06 - Growth.",
+    ar: "صفحة 06 من الملف التعريفي للبحر الأحمر - النمو.",
+  },
+  {
+    asset: "profile/profile-07",
+    en: "RED SEA Company Profile page 07 - Key Clients.",
+    ar: "صفحة 07 من الملف التعريفي للبحر الأحمر - العملاء الرئيسيون.",
+  },
+  {
+    asset: "profile/profile-08",
+    en: "RED SEA Company Profile page 08 - Contact Us.",
+    ar: "صفحة 08 من الملف التعريفي للبحر الأحمر - تواصل معنا.",
+  },
+  {
+    asset: "profile/profile-09",
+    en: "RED SEA Company Profile page 09 - Thank You closing page.",
+    ar: "صفحة 09 من الملف التعريفي للبحر الأحمر - صفحة الشكر والختام.",
+  },
+];
+
+const redSeaSocialPosts: Array<{ asset: string; en: string; ar: string }> = [
+  {
+    asset: "social/social-01",
+    en: "RED SEA social media post 01 - truck types Ton Dyna 3, Ton Lorry 7, and Ton Lorry 10.",
+    ar: "منشور 01 للبحر الأحمر - أنواع الشاحنات دينا 3 طن، لوري 7 طن، ولوري 10 طن.",
+  },
+  {
+    asset: "social/social-02",
+    en: "RED SEA social media post 02 - flatbed and curtain-side truck types.",
+    ar: "منشور 02 للبحر الأحمر - أنواع شاحنات الفلاتبد والكيرتن سايد.",
+  },
+  {
+    asset: "social/social-03",
+    en: "RED SEA social media post 03 - specialized shipping services.",
+    ar: "منشور 03 للبحر الأحمر - خدمات شحن متخصصة.",
+  },
+  {
+    asset: "social/social-04",
+    en: "RED SEA social media post 04 - customized transport solutions.",
+    ar: "منشور 04 للبحر الأحمر - حلول نقل متكاملة للاحتياجات الخاصة.",
+  },
+  {
+    asset: "social/social-05",
+    en: "RED SEA social media post 05 - transport-sector vision.",
+    ar: "منشور 05 للبحر الأحمر - رؤية الشركة في قطاع النقل البري.",
+  },
+  {
+    asset: "social/social-06",
+    en: "RED SEA social media post 06 - partial shipments and border shipping.",
+    ar: "منشور 06 للبحر الأحمر - الشحن الجزئي والشحنات عبر الحدود.",
+  },
+];
+
+const redSeaPresentationImages: Record<string, ProjectImage> = Object.fromEntries([
+  ...redSeaProfilePages.map(({ asset, en, ar }) => [
+    asset,
+    {
+      variant: "redSeaTransport",
+      scene: "materials",
+      format: "png",
+      folder: "projects",
+      alt: text(en, ar),
+    } satisfies ProjectImage,
+  ]),
+  ...redSeaSocialPosts.map(({ asset, en, ar }) => [
+    asset,
+    {
+      variant: "redSeaTransport",
+      scene: "social",
+      format: "jpg",
+      folder: "projects",
+      alt: text(en, ar),
+    } satisfies ProjectImage,
+  ]),
+]);
+
 const defaultProjectWorld: ProjectWorldTheme = {
   background: "#F7F1EA",
   surface: "#FFFBF5",
@@ -563,6 +667,7 @@ export function getDesktopProjectCover(project: Project): DesktopProjectCover {
 
 const presentationAssetImages: Record<string, Record<string, ProjectImage>> = {
   "jeddah-railway": jeddahShowcaseImages,
+  "red-sea-transport-logistics": redSeaPresentationImages,
 };
 
 export function getProjectImageByAsset(project: Project, asset: PresentationAsset): ProjectImage {
@@ -1035,146 +1140,67 @@ export const projectPresentations: Record<string, ProjectPresentation> = {
     hero: { asset: "hero", kind: "landscape-presentation", ratio: "wide", emphasis: "full", fit: "cover", format: "png" },
     sections: [
       {
-        id: "profile-foundation",
+        id: "company-profile-pages",
         label: text("Company Profile", "الملف التعريفي"),
-        title: text("A corporate profile built around movement", "ملف مؤسسي مبني حول الحركة"),
+        title: text("Original nine-page company profile", "الملف التعريفي الأصلي من تسع صفحات"),
         copy: text(
-          "The company profile introduces RED SEA as a land-transport specialist through cinematic trucking imagery, bilingual corporate messaging, directional geometry, and a red and blue identity system built for clarity.",
-          "يقدم الملف التعريفي RED SEA بوصفها جهة متخصصة في النقل البري من خلال صور شاحنات سينمائية، ورسائل مؤسسية ثنائية اللغة، وهندسة اتجاهية، ونظام أحمر وأزرق قائم على الوضوح.",
+          "The following pages are reproduced directly from the approved Red Sea Profile.pdf in their original order: cover, about us, services, countries served, truck types, growth, key clients, contact, and closing.",
+          "تعرض الصفحات التالية مباشرة من ملف Red Sea Profile.pdf المعتمد وبترتيبها الأصلي: الغلاف، من نحن، الخدمات، الدول التي نخدمها، أنواع الشاحنات، النمو، العملاء الرئيسيون، التواصل، والختام.",
         ),
-        layout: "editorial",
-        tone: "brand",
-        visuals: [
-          { asset: "gallery-1", kind: "portrait-presentation", ratio: "portrait", emphasis: "feature", fit: "contain", format: "png" },
-          { asset: "gallery-8", kind: "landscape-presentation", ratio: "landscape", emphasis: "wide", fit: "contain", format: "svg" },
-        ],
-      },
-      {
-        id: "countries",
-        label: text("Countries Served", "الدول التي نخدمها"),
-        title: text("A regional land-transport footprint", "امتداد إقليمي للنقل البري"),
-        copy: text(
-          "The profile identifies the service footprint across Saudi Arabia, Jordan, Kuwait, Bahrain, Qatar, the United Arab Emirates, Oman, and Yemen.",
-          "يعرض الملف نطاق الخدمة في المملكة العربية السعودية، الأردن، الكويت، البحرين، قطر، الإمارات العربية المتحدة، عمان، واليمن.",
-        ),
-        layout: "stack",
         tone: "paper",
-        visuals: [
-          { asset: "gallery-2", kind: "full-artwork", ratio: "wide", emphasis: "full", fit: "contain", format: "svg" },
-        ],
-      },
-      {
-        id: "social-system",
-        label: text("Social Media System", "نظام محتوى التواصل الاجتماعي"),
-        title: text("Approximately 40 branded posts, one logistics language", "ما يقارب 40 منشورًا بلغة لوجستية واحدة"),
-        copy: text(
-          "A complete communication system was developed across approximately 40 branded social media posts to communicate RED SEA's services, fleet, logistics expertise, company values, and seasonal campaigns.",
-          "تم تطوير نظام متكامل لمحتوى التواصل الاجتماعي يضم ما يقارب 40 منشورًا احترافيًا يعرض خدمات البحر الأحمر، أسطولها، خبرتها اللوجستية، قيمها، وحملاتها الموسمية.",
-        ),
-        layout: "social-grid",
-        tone: "dark",
-        visuals: [
-          { asset: "gallery-9", kind: "social-post", ratio: "square", emphasis: "feature", fit: "contain", format: "jpg" },
-          { asset: "gallery-10", kind: "social-post", ratio: "square", fit: "contain", format: "jpg" },
-        ],
-      },
-      {
-        id: "logistics-services",
-        label: text("Logistics Services", "الخدمات اللوجستية"),
-        title: text("Service communication for specialized transport", "محتوى خدمات للنقل المتخصص"),
-        copy: text(
-          "Service posts translate the corporate offer into clear, direct visual messages for specialized shipping, partial shipments, and tailored logistics solutions.",
-          "تحول منشورات الخدمات العرض المؤسسي إلى رسائل بصرية واضحة ومباشرة للشحن المتخصص، والشحن الجزئي، والحلول اللوجستية المصممة حسب الحاجة.",
-        ),
-        layout: "social-grid",
-        tone: "brand",
-        visuals: [
-          { asset: "gallery-11", kind: "social-post", ratio: "square", emphasis: "feature", fit: "contain", format: "jpg" },
-          { asset: "gallery-12", kind: "social-post", ratio: "square", fit: "contain", format: "jpg" },
-        ],
-      },
-      {
-        id: "fleet",
-        label: text("Truck Types", "أنواع الشاحنات"),
-        title: text("Fleet range for express, partial, and cross-border shipments", "تنوع أسطول للشحن السريع والجزئي وعبر الحدود"),
-        copy: text(
-          "The Red Sea Transport and Logistics Company is distinguished by providing a diverse range of vehicles designed to meet all requirements of land transport. We offer comprehensive solutions tailored to our clients' needs, whether they require same-day express shipments, cost-effective long-distance shipping services, or specialized services for partial transportation and cross-border shipments.",
-          "تتميز مؤسسة البحر الأحمر للنقليات بتقديم مجموعة متنوعة من المركبات المصممة لتلبية جميع متطلبات النقل البري. نحن نوفر حلولًا شاملة تناسب احتياجات عملائنا، سواء كانت تتطلب شحنات سريعة في نفس اليوم، أو خدمات شحن طويلة المدى بتكلفة فعالة، أو خدمات متخصصة للنقل الجزئي والشحنات عبر الحدود.",
-        ),
-        layout: "stack",
-        tone: "ivory",
-        visuals: [
-          { asset: "gallery-3", kind: "full-artwork", ratio: "wide", emphasis: "full", fit: "contain", format: "svg" },
-          { asset: "gallery-13", kind: "social-post", ratio: "square", fit: "contain", format: "jpg" },
-          { asset: "gallery-14", kind: "social-post", ratio: "square", fit: "contain", format: "jpg" },
-        ],
-      },
-      {
-        id: "growth",
-        label: text("Our Growth", "نموّنا"),
-        title: text("Every step leads toward a better future", "كل خطوة تقود نحو مستقبل أفضل"),
-        copy: text(
-          "The supplied profile presents annual growth values from 2015 through 2024, moving from 1,855 in 2015 to 10,040 in 2024.",
-          "يعرض الملف التعريفي قيم النمو السنوية من 2015 حتى 2024، من 1,855 في عام 2015 إلى 10,040 في عام 2024.",
-        ),
         layout: "document",
-        tone: "paper",
-        visuals: [
-          { asset: "gallery-4", kind: "full-artwork", ratio: "wide", emphasis: "full", fit: "contain", format: "svg" },
-        ],
+        visuals: redSeaProfilePages.map(({ asset }, index): PresentationVisual => ({
+          asset,
+          kind: "document-page",
+          ratio: "wide",
+          emphasis: index === 0 || index === redSeaProfilePages.length - 1 ? "full" : "wide",
+          fit: "contain",
+          format: "png",
+          caption: text(
+            `Company Profile page ${String(index + 1).padStart(2, "0")}`,
+            `صفحة الملف التعريفي ${String(index + 1).padStart(2, "0")}`,
+          ),
+        })),
       },
       {
-        id: "clients",
-        label: text("Key Clients", "عملاؤنا الرئيسيون"),
-        title: text("A client field built into the profile system", "حقل عملاء ضمن نظام الملف التعريفي"),
+        id: "social-media-divider",
+        label: text("Social Media Design", "تصميم محتوى التواصل الاجتماعي"),
+        title: text("Social Media Design", "تصميم محتوى التواصل الاجتماعي"),
         copy: text(
-          "The company profile presents a selection of key clients as a dense corporate logo field, keeping the client page clear, direct, and easy to scan.",
-          "يعرض الملف التعريفي مجموعة من العملاء الرئيسيين على هيئة حقل شعارات مؤسسي كثيف وواضح وسهل القراءة.",
-        ),
-        layout: "document",
-        tone: "ivory",
-        visuals: [
-          { asset: "gallery-5", kind: "landscape-presentation", ratio: "wide", emphasis: "wide", fit: "contain", format: "png" },
-        ],
-      },
-      {
-        id: "campaigns",
-        label: text("Campaign Design", "تصميم الحملات"),
-        title: text("Seasonal communication within the same brand system", "تواصل موسمي ضمن نظام العلامة نفسه"),
-        copy: text(
-          "The UAE National Day artwork shows how the RED SEA system extends into seasonal campaign communication while keeping the brand mark, bilingual copy, and transport identity present.",
-          "يوضح تصميم اليوم الوطني الإماراتي كيف يمتد نظام RED SEA إلى التواصل الموسمي مع الحفاظ على الشعار، والنص ثنائي اللغة، وهوية النقل.",
+          "A curated selection of 6 posts from a complete social media system of 40 branded posts designed for RED SEA.",
+          "مجموعة مختارة من 6 منشورات ضمن نظام متكامل يضم 40 منشورًا صممته نور للبحر الأحمر.",
         ),
         layout: "stack",
         tone: "dark",
-        visuals: [
-          { asset: "gallery-15", kind: "social-post", ratio: "square", emphasis: "feature", fit: "contain", format: "jpg" },
-        ],
+        visuals: [],
       },
       {
-        id: "contact",
-        label: text("Contact", "التواصل"),
-        title: text("Contact information carried as a final profile page", "بيانات التواصل كصفحة ختامية في الملف"),
+        id: "social-media-posts",
+        label: text("Selected Posts", "منشورات مختارة"),
+        title: text("Six approved social media posts", "ستة منشورات معتمدة"),
         copy: text(
-          "The contact page includes the phone number 0126650555, the email Info@redsealgx.com, and the office location G5FJ+WF3, Al Sharafeyah, Jeddah 23218, Gulf Plaza, North Tower, third floor, office 311.",
-          "تتضمن صفحة التواصل رقم الهاتف 0126650555، والبريد الإلكتروني Info@redsealgx.com، وموقع المكتب G5FJ+WF3، الشرفية، جدة 23218، الخليج بلازا، البرج الشمالي، الدور الثالث، مكتب ٣١١.",
+          "The six selected posts are kept separate from the company profile and shown in the exact supplied order.",
+          "تُعرض المنشورات الستة المختارة منفصلة عن الملف التعريفي وبالترتيب المقدم نفسه.",
         ),
-        layout: "document",
-        tone: "paper",
-        visuals: [
-          { asset: "gallery-6", kind: "full-artwork", ratio: "wide", emphasis: "full", fit: "contain", format: "svg" },
-        ],
+        layout: "social-grid",
+        tone: "dark",
+        visuals: redSeaSocialPosts.map(({ asset }): PresentationVisual => ({
+          asset,
+          kind: "social-post",
+          ratio: "square",
+          emphasis: "full",
+          fit: "contain",
+          format: "jpg",
+        })),
       },
       {
-        id: "closing",
-        label: text("Closing", "الختام"),
-        title: text("Thank you", "شكرًا"),
+        id: "final-presentation",
+        label: text("Final Presentation", "العرض الختامي"),
+        title: text("A complete RED SEA communication system", "نظام اتصال متكامل للبحر الأحمر"),
         copyKey: "outcome",
         layout: "stack",
-        tone: "dark",
-        visuals: [
-          { asset: "gallery-7", kind: "ultrawide-presentation", ratio: "wide", emphasis: "full", fit: "cover", format: "png" },
-        ],
+        tone: "brand",
+        visuals: [],
       },
     ],
   },

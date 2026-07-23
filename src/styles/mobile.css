@@ -867,6 +867,14 @@
   html[dir="rtl"] .m-case-direction blockquote { font-family: var(--font-arabic); line-height: 1.42; text-align: right; }
 
   .m-case-gallery .m-page__content { grid-template-rows: auto minmax(0, 1fr); align-content: stretch; gap: 14px; }
+  .m-case-gallery--text-only .m-page__content { grid-template-rows: auto; align-content: center; }
+  .m-case-gallery--text-only .m-case-gallery__head {
+    align-self: center;
+    gap: 12px;
+  }
+  .m-case-gallery--text-only .m-case-gallery__head h1 {
+    max-width: none;
+  }
   .m-case-gallery__head { display: grid; gap: 7px; }
   .m-case-gallery__head h1 { max-width: 16ch; font-size: clamp(1.65rem, 7.8vw, 2.55rem); }
   .m-case-gallery__head p { font-size: 0.78rem; line-height: 1.5; }
@@ -1073,6 +1081,12 @@
   .m-case--red-sea-transport-logistics .m-case-gallery__media[data-count="2"] > .m-case-media--social-post:last-child {
     grid-column: 5 / -1;
     margin-top: clamp(-56px, -7vw, -30px);
+  }
+
+  .m-case--red-sea-transport-logistics .m-case-media--document-page,
+  .m-case--red-sea-transport-logistics .m-case-media--social-post {
+    align-self: center;
+    background: transparent;
   }
 
   .m-intro {

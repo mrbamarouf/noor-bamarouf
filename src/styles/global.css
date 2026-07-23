@@ -13849,18 +13849,57 @@ body:has(.desktop-project) .desktop-footer--case .desktop-footer__studio .bamaro
   color: #0c1724;
 }
 
-.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-1"]) .desktop-case-section__visuals {
-  grid-template-columns: minmax(280px, 0.42fr) minmax(0, 0.58fr);
-  align-items: center;
+.desktop-project--red-sea-transport-logistics .desktop-case-section--text-only {
+  grid-template-columns: minmax(0, 920px);
+  justify-content: center;
+  min-height: clamp(420px, 52vw, 680px);
+  text-align: center;
 }
 
-.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-1"]) .desktop-case-visual:first-child {
-  justify-self: end;
-  width: min(100%, 520px);
+.desktop-project--red-sea-transport-logistics .desktop-case-section--text-only .desktop-case-section__copy {
+  max-width: 840px;
+  justify-self: center;
 }
 
-.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-5"]) .desktop-case-visual__media {
-  min-height: clamp(260px, 24vw, 430px);
+.desktop-project--red-sea-transport-logistics .desktop-case-section--text-only .desktop-case-section__copy h2 {
+  max-width: none;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="profile/profile-01"]) .desktop-case-section__visuals {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  max-width: min(100%, 1400px);
+  margin-inline: auto;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="profile/profile-01"]) .desktop-case-visual--wide {
+  grid-column: auto;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="profile/profile-01"]) .desktop-case-visual:first-child,
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="profile/profile-09"]) .desktop-case-visual:last-child {
+  grid-column: 1 / -1;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="profile/profile-01"]) .desktop-case-visual__media {
+  background: transparent;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="social/social-01"]) .desktop-case-section__visuals {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: min(100%, 1180px);
+  margin-inline: auto;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="social/social-01"]) .desktop-case-visual--full {
+  grid-column: auto;
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="social/social-01"]) .desktop-case-visual:first-child,
+.desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="social/social-06"]) .desktop-case-visual:last-child {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: min(100%, 760px);
 }
 
 .desktop-project--red-sea-transport-logistics .desktop-project-system,
@@ -13952,11 +13991,14 @@ html[dir="rtl"] .desktop-project--red-sea-transport-logistics .desktop-case-sect
 @media (max-width: 1080px) {
   .desktop-project--red-sea-transport-logistics .desktop-project-hero,
   .desktop-project--red-sea-transport-logistics .desktop-case-section,
-  .desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-1"]) .desktop-case-section__visuals {
+  .desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="profile/profile-01"]) .desktop-case-section__visuals,
+  .desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="social/social-01"]) .desktop-case-section__visuals {
     grid-template-columns: 1fr;
   }
 
-  .desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="gallery-1"]) .desktop-case-visual:first-child {
+  .desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="profile/profile-01"]) .desktop-case-visual:first-child,
+  .desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="social/social-01"]) .desktop-case-visual:first-child,
+  .desktop-project--red-sea-transport-logistics .desktop-case-section:has([data-asset="social/social-06"]) .desktop-case-visual:last-child {
     justify-self: stretch;
     width: 100%;
   }

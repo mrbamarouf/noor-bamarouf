@@ -82,11 +82,17 @@ function CaseSection({
 }) {
   const { language } = useLanguage();
   const copy = resolveSectionCopy(project, section, language);
-  const sectionNumber = project.slug === "jeddah-railway" ? index + 2 : index + 4;
+  const hasVisuals = section.visuals.length > 0;
+  const sectionNumber =
+    project.slug === "jeddah-railway"
+      ? index + 2
+      : project.slug === "red-sea-transport-logistics"
+        ? index + 3
+        : index + 4;
 
   return (
     <section
-      className={`desktop-case-section desktop-case-section--${section.layout} desktop-case-section--${section.tone ?? "clear"}`}
+      className={`desktop-case-section desktop-case-section--${section.layout} desktop-case-section--${section.tone ?? "clear"} ${hasVisuals ? "" : "desktop-case-section--text-only"}`}
       aria-labelledby={`desktop-case-section-${section.id}`}
       data-reveal
     >
@@ -95,16 +101,18 @@ function CaseSection({
         <h2 id={`desktop-case-section-${section.id}`}>{section.title[language]}</h2>
         {copy ? <p>{copy}</p> : null}
       </div>
-      <div className="desktop-case-section__visuals" data-count={section.visuals.length}>
-        {section.visuals.map((visual) => (
-          <CaseVisual
-            key={`${project.slug}-${section.id}-${visual.asset}`}
-            project={project}
-            visual={visual}
-            loading="eager"
-          />
-        ))}
-      </div>
+      {hasVisuals ? (
+        <div className="desktop-case-section__visuals" data-count={section.visuals.length}>
+          {section.visuals.map((visual) => (
+            <CaseVisual
+              key={`${project.slug}-${section.id}-${visual.asset}`}
+              project={project}
+              visual={visual}
+              loading="eager"
+            />
+          ))}
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -244,7 +252,7 @@ export function ProjectPage() {
         <CaseSection key={section.id} index={index} project={project} section={section} />
       ))}
 
-      <ProjectSystem project={project} />
+      {project.slug === "red-sea-transport-logistics" ? null : <ProjectSystem project={project} />}
 
       {project.legalNote ? (
         <p className="desktop-project-legal" data-reveal>{project.legalNote[language]}</p>

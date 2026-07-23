@@ -71,7 +71,9 @@ function buildFlow(project: Project): ProjectChapter[] {
 
   add({ kind: "hero", title: localized(project.title, project.displayTitle?.ar ?? project.title) });
   add({ kind: "overview", title: localized("Overview", "نظرة عامة") });
-  add({ kind: "direction", title: localized("Creative direction", "التوجيه الإبداعي") });
+  if (project.slug !== "red-sea-transport-logistics") {
+    add({ kind: "direction", title: localized("Creative direction", "التوجيه الإبداعي") });
+  }
   if (project.video) add({ kind: "video", title: project.video.label });
 
   presentation.sections.forEach((section) => {
@@ -85,10 +87,14 @@ function buildFlow(project: Project): ProjectChapter[] {
     });
   });
 
-  add({ kind: "system", title: localized("Design system", "نظام التصميم") });
+  if (project.slug !== "red-sea-transport-logistics") {
+    add({ kind: "system", title: localized("Design system", "نظام التصميم") });
+  }
   if (project.legalNote) add({ kind: "legal", title: localized("Project note", "ملاحظة المشروع") });
   add({ kind: "navigation", title: localized("Continue exploring", "مواصلة الاستكشاف") });
-  add({ kind: "footer", title: localized("Footer", "التذييل") });
+  if (project.slug !== "red-sea-transport-logistics") {
+    add({ kind: "footer", title: localized("Footer", "التذييل") });
+  }
   return result;
 }
 
@@ -147,6 +153,7 @@ function ProjectOverview({ project, chapter, index, total }: { project: Project;
         <span>{mobileProjectCopy[language].overview}</span>
         <h1 id={`${chapter.id}-title`}>{overviewTitle}</h1>
         <p>{project.caseStudy.context[language]}</p>
+        {project.slug === "red-sea-transport-logistics" ? <p>{project.caseStudy.direction[language]}</p> : null}
       </div>
       <dl className="m-case-facts">
         <div><dt>{dictionary.nav.services}</dt><dd>{project.services.map((service) => dictionary.services[service].title).join(" · ")}</dd></div>
@@ -176,37 +183,40 @@ function ProjectSection({ project, chapter, index, total }: { project: Project; 
   const section = chapter.section!;
   const visuals = chapter.visuals ?? [];
   const copy = chapter.part === 0 ? sectionCopy(project, section, language) : undefined;
+  const hasVisuals = visuals.length > 0;
 
   return (
     <MobileChapterSection
       chapter={chapter}
       index={index}
       total={total}
-      className={`m-case-gallery m-case-gallery--${section.layout} m-case-gallery--${section.tone ?? "clear"}`}
+      className={`m-case-gallery m-case-gallery--${section.layout} m-case-gallery--${section.tone ?? "clear"} ${hasVisuals ? "" : "m-case-gallery--text-only"}`}
     >
       <div className="m-case-gallery__head">
         <span>{section.label[language]}{chapter.part ? ` / ${localizeMobileDigits(String(chapter.part + 1), language)}` : ""}</span>
         <h1 id={`${chapter.id}-title`}>{section.title[language]}</h1>
         {copy ? <p>{copy}</p> : null}
       </div>
-      <div className="m-case-gallery__media" data-count={visuals.length}>
-        {visuals.map((visual, visualIndex) => {
-          const asset = visualKey(visual) as MobileAsset;
-          return (
-            <MobileVisual
-              key={`${section.id}-${asset}-${visualIndex}`}
-              project={project}
-              image={getProjectImageByAsset(project, asset)}
-              asset={asset}
-              fit={visualFit(project, visual)}
-              shape={visual.shape}
-              formatOverride={visual.format}
-              className={`m-case-media m-case-media--${visual.kind} m-case-media--shape-${visual.shape ?? "rect"}`}
-              loading="eager"
-            />
-          );
-        })}
-      </div>
+      {hasVisuals ? (
+        <div className="m-case-gallery__media" data-count={visuals.length}>
+          {visuals.map((visual, visualIndex) => {
+            const asset = visualKey(visual) as MobileAsset;
+            return (
+              <MobileVisual
+                key={`${section.id}-${asset}-${visualIndex}`}
+                project={project}
+                image={getProjectImageByAsset(project, asset)}
+                asset={asset}
+                fit={visualFit(project, visual)}
+                shape={visual.shape}
+                formatOverride={visual.format}
+                className={`m-case-media m-case-media--${visual.kind} m-case-media--shape-${visual.shape ?? "rect"}`}
+                loading="eager"
+              />
+            );
+          })}
+        </div>
+      ) : null}
     </MobileChapterSection>
   );
 }
