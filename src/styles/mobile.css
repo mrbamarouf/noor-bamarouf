@@ -996,6 +996,18 @@
   }
   .m-case--ansab-holding .m-case-hero { background: linear-gradient(132deg, #f6b51e 0 10%, #5ec63d 10% 24%, #1d2a18 24% 42%, #111 42%) !important; }
 
+  .m-case--wello .m-case-hero .m-page__folio,
+  .m-case--wello .m-case-hero__nav,
+  .m-case--matcha .m-case-hero .m-page__folio,
+  .m-case--matcha .m-case-hero__nav,
+  .m-case--rahaba-space .m-case-hero .m-page__folio,
+  .m-case--rahaba-space .m-case-hero__nav,
+  .m-case--zahy-store .m-case-hero .m-page__folio,
+  .m-case--zahy-store .m-case-hero__nav {
+    color: var(--case-foreground);
+    text-shadow: none;
+  }
+
   .m-case--red-sea-transport-logistics {
     background: #0c1724;
   }
