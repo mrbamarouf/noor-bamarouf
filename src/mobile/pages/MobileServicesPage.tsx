@@ -8,7 +8,7 @@ import { localizeMobileDigits, makeMobileChapters, MobileChapterController, Mobi
 import { MobileFooter } from "../MobileFooter";
 import { MobileArrow, MobileExternalCta, MobilePageCopy } from "../MobilePrimitives";
 import { MobileVisual } from "../MobileVisual";
-import { approvedMobileServices, mobileHomeCopy } from "../mobileCopy";
+import { approvedMobileServices, mobileContactCopy, mobileHomeCopy, mobileProcessCopy } from "../mobileCopy";
 
 const serviceMoments: Record<ServiceKey, { project: Project; asset: PresentationAsset; fit?: "contain" | "cover" }> = {
   brandIdentity: { project: projects[6], asset: "hero", fit: "cover" },
@@ -25,6 +25,7 @@ const chapters = makeMobileChapters([
   ["Services", "الخدمات"],
   ...approvedMobileServices.map((service) => [service, service] as [string, string]),
   ["Process", "المنهجية"],
+  ["Process", "المنهجية"],
   ["Contact", "التواصل"],
   ["Footer", "التذييل"],
 ]);
@@ -32,6 +33,8 @@ const chapters = makeMobileChapters([
 export function MobileServicesPage() {
   const { dictionary, language } = useLanguage();
   const copy = mobileHomeCopy[language];
+  const contactCopy = mobileContactCopy[language];
+  const processCopy = mobileProcessCopy[language];
 
   return (
     <MobileChapterController chapters={chapters} className="m-services">
@@ -66,22 +69,32 @@ export function MobileServicesPage() {
       <MobileChapterSection chapter={chapters[7]} index={7} total={chapters.length} className="m-services-process">
         <MobilePageCopy label={copy.processLabel} title={copy.processTitle} titleId={`${chapters[7].id}-title`} />
         <ol className="m-process-index">
-          {dictionary.process.map((stage, index) => (
+          {processCopy.slice(0, 3).map((stage, index) => (
             <li key={stage.title}><span dir="ltr">0{index + 1}</span><div><strong>{stage.title}</strong><p>{stage.text}</p></div></li>
           ))}
         </ol>
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={chapters[8]} index={8} total={chapters.length} className="m-services-contact">
-        <MobilePageCopy label={copy.contactLabel} title={copy.contactTitle} body={copy.contactBody} titleId={`${chapters[8].id}-title`}>
+      <MobileChapterSection chapter={chapters[8]} index={8} total={chapters.length} className="m-services-process m-services-process--closing">
+        <MobilePageCopy label={copy.processLabel} title={copy.processContinuationTitle} titleId={`${chapters[8].id}-title`} />
+        <ol className="m-process-index" start={4}>
+          {processCopy.slice(3).map((stage, index) => (
+            <li key={stage.title}><span dir="ltr">0{index + 4}</span><div><strong>{stage.title}</strong><p>{stage.text}</p></div></li>
+          ))}
+        </ol>
+        <p className="m-process-closing">{copy.processClosing}</p>
+      </MobileChapterSection>
+
+      <MobileChapterSection chapter={chapters[9]} index={9} total={chapters.length} className="m-services-contact">
+        <MobilePageCopy label={contactCopy.label} title={contactCopy.title} body={contactCopy.body} titleId={`${chapters[9].id}-title`}>
           <div className="m-actions m-actions--stack">
-            <MobileExternalCta href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.actions.contactByWhatsApp} <MobileArrow /></MobileExternalCta>
-            <MobileExternalCta className="m-cta--quiet" href={getEmailHref(language)}>{dictionary.actions.sendEmail}</MobileExternalCta>
+            <MobileExternalCta href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{contactCopy.whatsapp} <MobileArrow /></MobileExternalCta>
+            <MobileExternalCta className="m-cta--quiet" href={getEmailHref(language)}>{contactCopy.email}</MobileExternalCta>
           </div>
         </MobilePageCopy>
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={chapters[9]} index={9} total={chapters.length} className="m-footer-page"><MobileFooter /></MobileChapterSection>
+      <MobileChapterSection chapter={chapters[10]} index={10} total={chapters.length} className="m-footer-page"><MobileFooter /></MobileChapterSection>
     </MobileChapterController>
   );
 }

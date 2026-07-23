@@ -1,5 +1,6 @@
 import { LogoAsset } from "../../components/LogoAsset";
 import { useLanguage } from "../../context/LanguageContext";
+import { aboutSharedContent } from "../../data/aboutContent";
 import { makeMobileChapters, MobileChapterController, MobileChapterSection, localizeMobileDigits } from "../MobileChapterSystem";
 import { MobileFooter } from "../MobileFooter";
 import { MobileArrow, MobileCtaLink, MobilePageCopy } from "../MobilePrimitives";
@@ -19,7 +20,8 @@ const chapters = makeMobileChapters([
 export function MobileAboutPage() {
   const { language } = useLanguage();
   const copy = mobileAboutCopy[language];
-  const principleGroups = [copy.materials.slice(0, 3), copy.materials.slice(3)];
+  const shared = aboutSharedContent[language];
+  const principleGroups = [shared.principles.items.slice(0, 3), shared.principles.items.slice(3)];
 
   return (
     <MobileChapterController chapters={chapters} className={`m-about m-about--${language}`}>
@@ -39,13 +41,13 @@ export function MobileAboutPage() {
 
       {principleGroups.map((group, groupIndex) => (
         <MobileChapterSection key={groupIndex} chapter={chapters[2 + groupIndex]} index={2 + groupIndex} total={chapters.length} className={`m-about-principles m-about-principles--${groupIndex + 1}`}>
-          <MobilePageCopy title={copy.materialTitle} titleId={`${chapters[2 + groupIndex].id}-title`} />
+          <MobilePageCopy title={shared.principles.title} titleId={`${chapters[2 + groupIndex].id}-title`} />
           <div className="m-principles">
-            {group.map(([title, body], index) => (
-              <article key={title}>
+            {group.map((item, index) => (
+              <article key={item.title}>
                 <span dir="ltr">{localizeMobileDigits(String(index + 1 + groupIndex * 3).padStart(2, "0"), language)}</span>
-                <strong>{title}</strong>
-                <p>{body}</p>
+                <strong>{item.title}</strong>
+                <p>{item.body}</p>
               </article>
             ))}
           </div>
@@ -63,8 +65,8 @@ export function MobileAboutPage() {
       </MobileChapterSection>
 
       <MobileChapterSection chapter={chapters[5]} index={5} total={chapters.length} className="m-about-understanding">
-        <span className="m-about-understanding__word" aria-hidden="true">{language === "ar" ? "الغاية" : "purpose"}</span>
-        <MobilePageCopy title={copy.understandingTitle} body={copy.understandingBody} titleId={`${chapters[5].id}-title`} />
+        <span className="m-about-understanding__phrase" aria-hidden="true">{shared.philosophy.visualPhrase}</span>
+        <MobilePageCopy title={shared.philosophy.title} body={shared.philosophy.body} titleId={`${chapters[5].id}-title`} />
       </MobileChapterSection>
 
       <MobileChapterSection chapter={chapters[6]} index={6} total={chapters.length} className="m-about-closing">

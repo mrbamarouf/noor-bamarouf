@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { DecorativeNbLogo } from "../components/DecorativeNbLogo";
 import { useLanguage } from "../context/LanguageContext";
+import { aboutSharedContent } from "../data/aboutContent";
 
 const aboutAtelierCopy = {
   en: {
@@ -17,14 +18,6 @@ const aboutAtelierCopy = {
       "Let type, color, and space carry the idea.",
       "Remove anything that does not sharpen the work.",
     ],
-    materialTitle: "The principles behind the work",
-    materials: [
-      ["Clarity", "Every decision should make the brand easier to recognize, understand, and remember."],
-      ["Purpose", "Visual choices begin with the reason behind the brand, not decoration."],
-      ["Balance", "Type, color, image, and space are held in a calm, considered relationship."],
-      ["Detail", "Small refinements carry the feeling of the whole system."],
-      ["Consistency", "Each touchpoint should feel connected without becoming repetitive."],
-    ],
     rhythmTitle: "A working rhythm with room for instinct.",
     rhythmWords: ["look", "shape", "edit"],
     rhythm: [
@@ -33,11 +26,6 @@ const aboutAtelierCopy = {
       ["Refine", "Reduce the system until the strongest idea remains clear."],
       ["Prepare", "Organize final assets so the work can live beyond the screen."],
     ],
-    bilingualTitle: "Understanding comes before form.",
-    bilingualBody:
-      "Before a mark, layout, or visual system is created, the brand is read closely: its purpose, audience, tone, and the feeling it needs to leave behind. Noor's work begins there, then turns that understanding into visuals that feel calm, precise, and memorable.",
-    sampleOne: "purpose",
-    sampleTwo: "clarity",
     closing: "See the work as a set of visual worlds, each shaped with its own atmosphere.",
     closingLink: "Explore selected work",
   },
@@ -55,14 +43,6 @@ const aboutAtelierCopy = {
       "ترك الخط واللون والمسافة تحمل الفكرة.",
       "حذف ما لا يزيد العمل وضوحًا.",
     ],
-    materialTitle: "المبادئ التي توجه العمل",
-    materials: [
-      ["الوضوح", "كل قرار بصري يساعد العلامة على أن تُفهم وتُتذكر بثقة."],
-      ["الغاية", "تبدأ المعالجة من سبب وجود العلامة قبل الشكل أو الزخرفة."],
-      ["الاتزان", "يتكوّن العمل من علاقة هادئة بين الخط واللون والصورة والمساحة."],
-      ["العناية", "التفاصيل الصغيرة تمنح النظام إحساسه الكامل."],
-      ["الاتساق", "كل نقطة ظهور يجب أن تبدو مرتبطة بما قبلها دون تكرار جامد."],
-    ],
     rhythmTitle: "إيقاع عمل يترك مساحة للحدس.",
     rhythmWords: ["النظر", "الصياغة", "الصقل"],
     rhythm: [
@@ -71,11 +51,6 @@ const aboutAtelierCopy = {
       ["التهذيب", "اختصار النظام حتى تبقى الفكرة الأقوى واضحة."],
       ["التجهيز", "تنظيم الملفات النهائية ليعيش العمل خارج الشاشة."],
     ],
-    bilingualTitle: "الفهم يسبق الشكل.",
-    bilingualBody:
-      "قبل الشعار أو التخطيط أو النظام البصري، تبدأ نور بقراءة العلامة بهدوء: غايتها، جمهورها، نبرتها، والأثر الذي ينبغي أن تتركه. من هذا الفهم تتكوّن حلول بصرية واضحة، دقيقة، وقابلة للتذكر.",
-    sampleOne: "الغاية",
-    sampleTwo: "الوضوح",
     closing: "شاهدي الأعمال كعوالم بصرية مختلفة، لكل مشروع مناخه الخاص.",
     closingLink: "استعراض الأعمال المختارة",
   },
@@ -88,6 +63,7 @@ function Arrow({ direction }: { direction: "ltr" | "rtl" }) {
 export function AboutPage() {
   const { language, direction } = useLanguage();
   const copy = aboutAtelierCopy[language];
+  const shared = aboutSharedContent[language];
 
   return (
     <div className={`desktop-page noor-about-atelier noor-about-atelier--${language}`}>
@@ -119,12 +95,13 @@ export function AboutPage() {
       </section>
 
       <section className="noor-about-atelier__materials" aria-labelledby="about-atelier-materials" data-reveal>
-        <h2 id="about-atelier-materials">{copy.materialTitle}</h2>
-        <div className="noor-about-atelier__material-rail">
-          {copy.materials.map(([title, text]) => (
-            <article key={title}>
-              <strong>{title}</strong>
-              <p>{text}</p>
+        <h2 id="about-atelier-materials">{shared.principles.title}</h2>
+        <div className="noor-about-atelier__principles">
+          {shared.principles.items.map((item, index) => (
+            <article key={item.title}>
+              <span dir="ltr">{String(index + 1).padStart(2, "0")}</span>
+              <strong>{item.title}</strong>
+              <p>{item.body}</p>
             </article>
           ))}
         </div>
@@ -152,14 +129,13 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="noor-about-atelier__bilingual" aria-labelledby="about-atelier-bilingual" data-reveal>
-        <div className="noor-about-atelier__language-samples" aria-hidden="true">
-          <span>{copy.sampleOne}</span>
-          <span>{copy.sampleTwo}</span>
+      <section className="noor-about-atelier__philosophy" aria-labelledby="about-atelier-philosophy" data-reveal>
+        <div className="noor-about-atelier__philosophy-phrase" aria-hidden="true">
+          <span>{shared.philosophy.visualPhrase}</span>
         </div>
-        <div className="noor-about-atelier__bilingual-copy">
-          <h2 id="about-atelier-bilingual">{copy.bilingualTitle}</h2>
-          <p>{copy.bilingualBody}</p>
+        <div className="noor-about-atelier__philosophy-copy">
+          <h2 id="about-atelier-philosophy">{shared.philosophy.title}</h2>
+          <p>{shared.philosophy.body}</p>
         </div>
       </section>
 

@@ -1,14 +1,16 @@
 import { useMemo, type CSSProperties } from "react";
+import { Link } from "react-router-dom";
 import { LogoAsset } from "../../components/LogoAsset";
 import { getEmailHref, getWhatsAppHref } from "../../config/contact";
 import { useLanguage } from "../../context/LanguageContext";
-import { getDesktopProjectCover, getProjectImageByAsset, getProjectThemeStyle } from "../../data/projectPresentation";
+import { getProjectImageByAsset, getProjectThemeStyle, type PresentationAsset } from "../../data/projectPresentation";
 import { getProjectDisplayTitle, getProjectTitleDirection, projects } from "../../data/projects";
 import { makeMobileChapters, MobileChapterController, MobileChapterSection, localizeMobileDigits } from "../MobileChapterSystem";
+import { MobileFeaturedShowcase } from "../MobileFeaturedShowcase";
 import { MobileFooter } from "../MobileFooter";
 import { MobileArrow, MobileCtaLink, MobileExternalCta, MobilePageCopy } from "../MobilePrimitives";
 import { MobileVisual } from "../MobileVisual";
-import { approvedMobileServices, mobileHomeCopy } from "../mobileCopy";
+import { approvedMobileServices, mobileContactCopy, mobileHomeCopy, mobileProcessCopy } from "../mobileCopy";
 
 const chapters = makeMobileChapters([
   ["Home", "الرئيسية"],
@@ -18,19 +20,30 @@ const chapters = makeMobileChapters([
   ["Capabilities", "القدرات"],
   ["Capabilities", "القدرات"],
   ["Process", "المنهجية"],
+  ["Process", "المنهجية"],
   ["Project archive", "أرشيف المشاريع"],
   ["Project archive", "أرشيف المشاريع"],
   ["Contact", "التواصل"],
   ["Footer", "التذييل"],
 ]);
 
+const selectedMoments: Array<{ slug: string; asset: PresentationAsset; fit?: "contain" | "cover"; format?: "jpg" | "png" | "webp" }> = [
+  { slug: "wello", asset: "cover", fit: "contain" },
+  { slug: "matcha", asset: "hero", fit: "cover" },
+  { slug: "red-bull-marvel", asset: "hero", fit: "contain" },
+  { slug: "rahaba-space", asset: "gallery-8", fit: "cover" },
+  { slug: "wemo-delights", asset: "hero", fit: "cover" },
+  { slug: "jeddah-railway", asset: "showcase/showcase-01", fit: "contain", format: "png" },
+  { slug: "ansab-holding", asset: "hero", fit: "cover" },
+];
+
 export function MobileHomePage() {
   const { dictionary, language } = useLanguage();
   const copy = mobileHomeCopy[language];
+  const contactCopy = mobileContactCopy[language];
+  const processCopy = mobileProcessCopy[language];
   const disciplines = useMemo(() => new Set(projects.flatMap((project) => project.services)).size, []);
   const categories = useMemo(() => new Set(projects.map((project) => project.category)).size, []);
-  const featured = projects[0];
-  const featuredCover = getDesktopProjectCover(featured);
   const archiveGroups = [projects.slice(0, 6), projects.slice(6)];
   const metrics = [projects.length, disciplines, categories];
 
@@ -56,30 +69,30 @@ export function MobileHomePage() {
 
       <MobileChapterSection chapter={chapters[1]} index={1} total={chapters.length} className="m-home-selected">
         <MobilePageCopy label={copy.selectedLabel} title={copy.selectedTitle} body={copy.selectedBody} titleId={`${chapters[1].id}-title`} />
-        <div className="m-selected-composition">
-          {[projects[1], projects[4], projects[5]].map((project, index) => {
-            const cover = getDesktopProjectCover(project);
+        <div className="m-selected-rail" aria-label={copy.selectedLabel}>
+          {selectedMoments.map((moment, index) => {
+            const project = projects.find((item) => item.slug === moment.slug);
+            if (!project) return null;
             return (
-              <MobileCtaLink key={project.slug} to={`/work/${project.slug}`} style={getProjectThemeStyle(project) as CSSProperties}>
-                <MobileVisual project={project} image={getProjectImageByAsset(project, cover.asset)} asset={cover.asset} fit={cover.fit} formatOverride={cover.format} loading="eager" />
-                <span dir={getProjectTitleDirection(project, language)}><bdi>{getProjectDisplayTitle(project, language)}</bdi></span>
-                <small dir="ltr">0{index + 1}</small>
-              </MobileCtaLink>
+              <Link className="m-selected-card" key={project.slug} to={`/work/${project.slug}`} style={getProjectThemeStyle(project) as CSSProperties}>
+                <MobileVisual project={project} image={getProjectImageByAsset(project, moment.asset)} asset={moment.asset} fit={moment.fit} formatOverride={moment.format} loading="eager" />
+                <span className="m-selected-card__meta">
+                  <small dir="ltr">{localizeMobileDigits(String(index + 1).padStart(2, "0"), language)}</small>
+                  <span>
+                    <strong dir={getProjectTitleDirection(project, language)}><bdi>{getProjectDisplayTitle(project, language)}</bdi></strong>
+                    <small>{dictionary.categories[project.category]}</small>
+                  </span>
+                  <MobileArrow />
+                </span>
+              </Link>
             );
           })}
         </div>
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={chapters[2]} index={2} total={chapters.length} className="m-home-featured" >
-        <div className="m-featured-world" style={getProjectThemeStyle(featured) as CSSProperties}>
-          <MobileVisual project={featured} image={getProjectImageByAsset(featured, featuredCover.asset)} asset={featuredCover.asset} fit={featuredCover.fit} formatOverride={featuredCover.format} loading="eager" />
-          <div>
-            <span>{copy.featuredLabel}</span>
-            <h2 id={`${chapters[2].id}-title`}>{getProjectDisplayTitle(featured, language)}</h2>
-            <p>{featured.shortDescription[language]}</p>
-            <MobileCtaLink to={`/work/${featured.slug}`}>{dictionary.actions.openProject} <MobileArrow /></MobileCtaLink>
-          </div>
-        </div>
+      <MobileChapterSection chapter={chapters[2]} index={2} total={chapters.length} className="m-home-featured">
+        <h1 id={`${chapters[2].id}-title`} className="m-visually-hidden">{copy.featuredLabel}</h1>
+        <MobileFeaturedShowcase />
       </MobileChapterSection>
 
       <MobileChapterSection chapter={chapters[3]} index={3} total={chapters.length} className="m-home-point">
@@ -115,7 +128,7 @@ export function MobileHomePage() {
       <MobileChapterSection chapter={chapters[6]} index={6} total={chapters.length} className="m-home-process">
         <MobilePageCopy label={copy.processLabel} title={copy.processTitle} titleId={`${chapters[6].id}-title`} />
         <ol className="m-process-index">
-          {dictionary.process.map((stage, index) => (
+          {processCopy.slice(0, 3).map((stage, index) => (
             <li key={stage.title}>
               <span dir="ltr">{localizeMobileDigits(String(index + 1).padStart(2, "0"), language)}</span>
               <div><strong>{stage.title}</strong><p>{stage.text}</p></div>
@@ -124,9 +137,27 @@ export function MobileHomePage() {
         </ol>
       </MobileChapterSection>
 
+      <MobileChapterSection chapter={chapters[7]} index={7} total={chapters.length} className="m-home-process m-home-process--closing">
+        <MobilePageCopy label={copy.processLabel} title={copy.processContinuationTitle} titleId={`${chapters[7].id}-title`} />
+        <ol className="m-process-index" start={4}>
+          {processCopy.slice(3).map((stage, index) => (
+            <li key={stage.title}>
+              <span dir="ltr">{localizeMobileDigits(String(index + 4).padStart(2, "0"), language)}</span>
+              <div><strong>{stage.title}</strong><p>{stage.text}</p></div>
+            </li>
+          ))}
+        </ol>
+        <p className="m-process-closing">{copy.processClosing}</p>
+      </MobileChapterSection>
+
       {archiveGroups.map((group, groupIndex) => (
-        <MobileChapterSection key={groupIndex} chapter={chapters[7 + groupIndex]} index={7 + groupIndex} total={chapters.length} className="m-home-archive">
-          <MobilePageCopy label={copy.archiveLabel} title={groupIndex === 0 ? copy.archiveTitle : dictionary.actions.viewAllProjects} titleId={`${chapters[7 + groupIndex].id}-title`} />
+        <MobileChapterSection key={groupIndex} chapter={chapters[8 + groupIndex]} index={8 + groupIndex} total={chapters.length} className={`m-home-archive m-home-archive--${groupIndex === 0 ? "opening" : "closing"}`}>
+          <MobilePageCopy
+            label={copy.archiveLabel}
+            title={groupIndex === 0 ? copy.archiveTitle : copy.archiveContinuationTitle}
+            body={groupIndex === 0 ? copy.archiveBody : copy.archiveContinuationBody}
+            titleId={`${chapters[8 + groupIndex].id}-title`}
+          />
           <div className="m-archive-list">
             {group.map((project) => {
               const index = projects.findIndex((item) => item.slug === project.slug);
@@ -143,17 +174,17 @@ export function MobileHomePage() {
         </MobileChapterSection>
       ))}
 
-      <MobileChapterSection chapter={chapters[9]} index={9} total={chapters.length} className="m-home-contact">
-        <MobilePageCopy label={copy.contactLabel} title={copy.contactTitle} body={copy.contactBody} titleId={`${chapters[9].id}-title`}>
+      <MobileChapterSection chapter={chapters[10]} index={10} total={chapters.length} className="m-home-contact">
+        <MobilePageCopy label={contactCopy.label} title={contactCopy.title} body={contactCopy.body} titleId={`${chapters[10].id}-title`}>
           <div className="m-actions m-actions--stack">
-            <MobileExternalCta href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.actions.contactByWhatsApp} <MobileArrow /></MobileExternalCta>
-            <MobileExternalCta className="m-cta--quiet" href={getEmailHref(language)}>{dictionary.actions.sendEmail}</MobileExternalCta>
+            <MobileExternalCta href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{contactCopy.whatsapp} <MobileArrow /></MobileExternalCta>
+            <MobileExternalCta className="m-cta--quiet" href={getEmailHref(language)}>{contactCopy.email}</MobileExternalCta>
           </div>
         </MobilePageCopy>
         <LogoAsset className="m-home-contact__mark" variant="hero" />
       </MobileChapterSection>
 
-      <MobileChapterSection chapter={chapters[10]} index={10} total={chapters.length} className="m-footer-page">
+      <MobileChapterSection chapter={chapters[11]} index={11} total={chapters.length} className="m-footer-page">
         <MobileFooter />
       </MobileChapterSection>
     </MobileChapterController>

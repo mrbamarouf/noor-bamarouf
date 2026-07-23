@@ -84,7 +84,7 @@ function buildFlow(project: Project): ProjectChapter[] {
   });
 
   add({ kind: "system", title: localized("Design system", "نظام التصميم") });
-  add({ kind: "navigation", title: localized("Continue exploring", "تابعي الاستكشاف") });
+  add({ kind: "navigation", title: localized("Continue exploring", "مواصلة الاستكشاف") });
   add({ kind: "footer", title: localized("Footer", "التذييل") });
   return result;
 }
