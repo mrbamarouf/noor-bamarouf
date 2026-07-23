@@ -16,7 +16,7 @@ import { MobileArrow } from "../MobilePrimitives";
 import { MobileVisual, type MobileAsset } from "../MobileVisual";
 import { mobileProjectCopy } from "../mobileCopy";
 
-type FlowKind = "direction" | "footer" | "hero" | "navigation" | "overview" | "section" | "system" | "video";
+type FlowKind = "direction" | "footer" | "hero" | "legal" | "navigation" | "overview" | "section" | "system" | "video";
 
 interface ProjectChapter extends MobileChapterDefinition {
   kind: FlowKind;
@@ -68,11 +68,6 @@ function buildFlow(project: Project): ProjectChapter[] {
   const presentation = getProjectPresentation(project);
   const result: ProjectChapter[] = [];
   const add = (chapter: Omit<ProjectChapter, "id">) => result.push({ ...chapter, id: `chapter-${String(result.length + 1).padStart(2, "0")}` });
-  const flat = presentation.sections.flatMap((section) => section.visuals);
-  const heroKey = visualKey(presentation.hero);
-  const lastOccurrence = new Map<string, number>();
-  flat.forEach((visual, index) => lastOccurrence.set(visualKey(visual), index));
-  let flatIndex = 0;
 
   add({ kind: "hero", title: localized(project.title, project.displayTitle?.ar ?? project.title) });
   add({ kind: "overview", title: localized("Overview", "نظرة عامة") });
@@ -80,18 +75,18 @@ function buildFlow(project: Project): ProjectChapter[] {
   if (project.video) add({ kind: "video", title: project.video.label });
 
   presentation.sections.forEach((section) => {
-    const uniqueVisuals = section.visuals.filter((visual) => {
-      const key = visualKey(visual);
-      const keep = key !== heroKey && lastOccurrence.get(key) === flatIndex;
-      flatIndex += 1;
-      return keep;
-    });
-    chunkVisuals(uniqueVisuals).forEach((visuals, part) => {
+    const sectionChunks = chunkVisuals(section.visuals);
+    if (!sectionChunks.length) {
+      add({ kind: "section", title: section.label, section, visuals: [], part: 0 });
+      return;
+    }
+    sectionChunks.forEach((visuals, part) => {
       add({ kind: "section", title: section.label, section, visuals, part });
     });
   });
 
   add({ kind: "system", title: localized("Design system", "نظام التصميم") });
+  if (project.legalNote) add({ kind: "legal", title: localized("Project note", "ملاحظة المشروع") });
   add({ kind: "navigation", title: localized("Continue exploring", "مواصلة الاستكشاف") });
   add({ kind: "footer", title: localized("Footer", "التذييل") });
   return result;
@@ -155,7 +150,8 @@ function ProjectOverview({ project, chapter, index, total }: { project: Project;
       </div>
       <dl className="m-case-facts">
         <div><dt>{dictionary.nav.services}</dt><dd>{project.services.map((service) => dictionary.services[service].title).join(" · ")}</dd></div>
-        <div><dt>{dictionary.ui.projectFormat}</dt><dd>{project.credits[language]}</dd></div>
+        <div><dt>{dictionary.ui.projectFormat}</dt><dd>{project.projectType[language]}</dd></div>
+        <div><dt>{dictionary.sections.overview}</dt><dd>{project.credits[language]}</dd></div>
       </dl>
     </MobileChapterSection>
   );
@@ -194,11 +190,11 @@ function ProjectSection({ project, chapter, index, total }: { project: Project; 
         {copy ? <p>{copy}</p> : null}
       </div>
       <div className="m-case-gallery__media" data-count={visuals.length}>
-        {visuals.map((visual) => {
+        {visuals.map((visual, visualIndex) => {
           const asset = visualKey(visual) as MobileAsset;
           return (
             <MobileVisual
-              key={`${section.id}-${asset}`}
+              key={`${section.id}-${asset}-${visualIndex}`}
               project={project}
               image={getProjectImageByAsset(project, asset)}
               asset={asset}
@@ -210,6 +206,21 @@ function ProjectSection({ project, chapter, index, total }: { project: Project; 
             />
           );
         })}
+      </div>
+    </MobileChapterSection>
+  );
+}
+
+function ProjectLegal({ project, chapter, index, total }: { project: Project; chapter: ProjectChapter; index: number; total: number }) {
+  const { language } = useLanguage();
+  if (!project.legalNote) return null;
+
+  return (
+    <MobileChapterSection chapter={chapter} index={index} total={total} className="m-case-legal">
+      <div className="m-case-copy">
+        <span>{chapter.title[language]}</span>
+        <h1 id={`${chapter.id}-title`}>{chapter.title[language]}</h1>
+        <p>{project.legalNote[language]}</p>
       </div>
     </MobileChapterSection>
   );
@@ -265,6 +276,7 @@ export function MobileProjectPage() {
           if (chapter.kind === "direction") return <ProjectDirection key={chapter.id} project={project} chapter={chapter} index={index} total={flow.length} />;
           if (chapter.kind === "section") return <ProjectSection key={chapter.id} project={project} chapter={chapter} index={index} total={flow.length} />;
           if (chapter.kind === "system") return <ProjectSystem key={chapter.id} project={project} chapter={chapter} index={index} total={flow.length} />;
+          if (chapter.kind === "legal") return <ProjectLegal key={chapter.id} project={project} chapter={chapter} index={index} total={flow.length} />;
           if (chapter.kind === "navigation") return <ProjectNavigation key={chapter.id} project={project} chapter={chapter} index={index} total={flow.length} />;
           if (chapter.kind === "video" && project.video) return (
             <MobileChapterSection key={chapter.id} chapter={chapter} index={index} total={flow.length} className="m-case-video">
