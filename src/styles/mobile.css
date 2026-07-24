@@ -1264,6 +1264,18 @@
   color: var(--case-label-on-deep);
 }
 
+.m-case-direction .m-page__folio,
+.m-case-video .m-page__folio,
+.m-case-gallery--dark .m-page__folio,
+.m-case-gallery--brand .m-page__folio {
+  color: var(--case-label-on-deep);
+}
+
+.m-case-navigation .m-page__folio,
+.m-case-footer .m-page__folio {
+  color: var(--case-label-on-nav);
+}
+
 .m-case-navigation nav span {
   color: var(--case-label-on-nav);
 }
@@ -1276,7 +1288,41 @@
 .m-case--matcha .m-case-hero .m-page__folio,
 .m-case--rahaba-space .m-case-hero .m-page__folio,
 .m-case--zahy-store .m-case-hero .m-page__folio {
-  color: var(--case-label-on-deep);
+  color: var(--case-label);
+}
+
+.m-case--red-bull-marvel .m-case-overview .m-page__folio,
+.m-case--red-bull-marvel .m-case-overview .m-case-copy > span,
+.m-case--red-bull-marvel .m-case-system .m-page__folio,
+.m-case--red-bull-marvel .m-case-system .m-case-copy > span,
+.m-case--red-bull-marvel .m-case-system__content > div > span,
+.m-case--red-bull-marvel .m-case-gallery:not(.m-case-gallery--dark):not(.m-case-gallery--brand):not(.m-case-gallery--paper) .m-page__folio,
+.m-case--red-bull-marvel .m-case-gallery:not(.m-case-gallery--dark):not(.m-case-gallery--brand):not(.m-case-gallery--paper) .m-case-gallery__head > span {
+  color: var(--case-label);
+}
+
+.m-case--red-bull-marvel .m-case-direction .m-page__folio,
+.m-case--red-bull-marvel .m-case-direction .m-case-copy > span,
+.m-case--red-bull-marvel .m-case-gallery--dark .m-page__folio,
+.m-case--red-bull-marvel .m-case-gallery--dark .m-case-gallery__head > span,
+.m-case--red-bull-marvel .m-case-gallery--brand .m-page__folio,
+.m-case--red-bull-marvel .m-case-gallery--brand .m-case-gallery__head > span,
+.m-case--red-bull-marvel .m-case-gallery--paper .m-page__folio,
+.m-case--red-bull-marvel .m-case-gallery--paper .m-case-gallery__head > span {
+  color: var(--case-label);
+}
+
+.m-case--red-bull-marvel .m-case-hero,
+.m-case--red-bull-marvel .m-case-navigation,
+.m-case--red-bull-marvel .m-case-footer {
+  background-color: #050505 !important;
+}
+
+.m-case--red-bull-marvel .m-case-direction,
+.m-case--red-bull-marvel .m-case-gallery--dark,
+.m-case--red-bull-marvel .m-case-gallery--brand,
+.m-case--red-bull-marvel .m-case-gallery--paper {
+  background-color: #ed1c24 !important;
 }
 
 .m-case--red-sea-transport-logistics .m-case-gallery--paper .m-case-gallery__head > span,

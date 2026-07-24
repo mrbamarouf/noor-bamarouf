@@ -483,7 +483,7 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     heroAccent: "#FFD600",
     label: "#050505",
     labelOnDeep: "#FFFFFF",
-    labelOnNav: "#050505",
+    labelOnNav: "#FFFFFF",
   },
   impostor: {
     background: "#080808",
