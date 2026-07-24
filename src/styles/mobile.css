@@ -1245,3 +1245,41 @@
     height: auto;
   }
 }
+
+.m-case .m-page__folio,
+.m-case .m-copy__label,
+.m-case-copy > span,
+.m-case-gallery__head > span,
+.m-case-facts dt,
+.m-case-system__content > div > span {
+  color: var(--case-label);
+}
+
+.m-case-hero .m-page__folio,
+.m-case .m-case-hero__copy p,
+.m-case-direction .m-case-copy > span,
+.m-case-video .m-case-copy > span,
+.m-case-gallery--dark .m-case-gallery__head > span,
+.m-case-gallery--brand .m-case-gallery__head > span {
+  color: var(--case-label-on-deep);
+}
+
+.m-case-navigation nav span {
+  color: var(--case-label-on-nav);
+}
+
+.m-case--red-bull-marvel .m-case-navigation nav span {
+  color: var(--case-on-deep);
+}
+
+.m-case--wello .m-case-hero .m-page__folio,
+.m-case--matcha .m-case-hero .m-page__folio,
+.m-case--rahaba-space .m-case-hero .m-page__folio,
+.m-case--zahy-store .m-case-hero .m-page__folio {
+  color: var(--case-label-on-deep);
+}
+
+.m-case--red-sea-transport-logistics .m-case-gallery--paper .m-case-gallery__head > span,
+.m-case--red-sea-transport-logistics .m-case-gallery--ivory .m-case-gallery__head > span {
+  color: #cf1d2a;
+}

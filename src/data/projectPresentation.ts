@@ -91,6 +91,9 @@ interface ProjectWorldTheme {
   line: string;
   glow: string;
   heroAccent?: string;
+  label?: string;
+  labelOnDeep?: string;
+  labelOnNav?: string;
 }
 
 const text = (en: string, ar: string): LocalizedString => ({ en, ar });
@@ -352,6 +355,9 @@ const defaultProjectWorld: ProjectWorldTheme = {
   navigationForeground: "#2D2924",
   line: "rgb(45 41 36 / 0.15)",
   glow: "rgb(185 104 102 / 0.16)",
+  label: "#6C3E3D",
+  labelOnDeep: "#F8F1E8",
+  labelOnNav: "#2D2924",
 };
 
 const projectWorlds: Record<string, ProjectWorldTheme> = {
@@ -376,6 +382,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     line: "rgb(30 45 40 / 0.16)",
     glow: "rgb(241 91 36 / 0.18)",
     heroAccent: "#FFE76B",
+    label: "#0A1714",
+    labelOnDeep: "#FFF7E8",
+    labelOnNav: "#FFF7E8",
   },
   matcha: {
     background: "#E6D2C8",
@@ -398,6 +407,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     line: "rgb(47 59 39 / 0.15)",
     glow: "rgb(216 184 179 / 0.2)",
     heroAccent: "#F5E8DC",
+    label: "#26311F",
+    labelOnDeep: "#FFF8F1",
+    labelOnNav: "#FFF8F1",
   },
   "jeddah-railway": {
     background: "#064B5A",
@@ -420,6 +432,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     line: "rgb(238 242 230 / 0.2)",
     glow: "rgb(104 184 93 / 0.16)",
     heroAccent: "#F58A4A",
+    label: "#F2F2E5",
+    labelOnDeep: "#F2F2E5",
+    labelOnNav: "#F3F1E3",
   },
   "egg-space": {
     background: "#17072F",
@@ -441,6 +456,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     navigationForeground: "#FFF7E5",
     line: "rgb(248 243 234 / 0.16)",
     glow: "rgb(253 185 20 / 0.18)",
+    label: "#FFF7E5",
+    labelOnDeep: "#FFF7E5",
+    labelOnNav: "#FFF7E5",
   },
   "red-bull-marvel": {
     background: "#087DC2",
@@ -463,6 +481,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     line: "rgb(255 255 255 / 0.24)",
     glow: "rgb(255 214 0 / 0.24)",
     heroAccent: "#FFD600",
+    label: "#050505",
+    labelOnDeep: "#FFFFFF",
+    labelOnNav: "#050505",
   },
   impostor: {
     background: "#080808",
@@ -484,6 +505,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     navigationForeground: "#FFFFFF",
     line: "rgb(255 255 255 / 0.17)",
     glow: "rgb(229 9 9 / 0.2)",
+    label: "#FFFFFF",
+    labelOnDeep: "#FFFFFF",
+    labelOnNav: "#FFFFFF",
   },
   "wemo-delights": {
     background: "#5F4467",
@@ -506,6 +530,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     line: "rgb(255 244 228 / 0.2)",
     glow: "rgb(244 198 209 / 0.2)",
     heroAccent: "#F4C6D1",
+    label: "#FFF4E4",
+    labelOnDeep: "#FFF4E4",
+    labelOnNav: "#FFF4E4",
   },
   "rahaba-space": {
     background: "#B99A7B",
@@ -527,6 +554,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     navigationForeground: "#FFF4E6",
     line: "rgb(74 47 33 / 0.16)",
     glow: "rgb(170 149 132 / 0.22)",
+    label: "#4A2F21",
+    labelOnDeep: "#FFF4E6",
+    labelOnNav: "#FFF4E6",
   },
   "nirto-cold-brew": {
     background: "#080706",
@@ -548,6 +578,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     navigationForeground: "#FFEFD2",
     line: "rgb(240 215 162 / 0.18)",
     glow: "rgb(217 154 56 / 0.18)",
+    label: "#FFEFD2",
+    labelOnDeep: "#FFEFD2",
+    labelOnNav: "#FFEFD2",
   },
   "zahy-store": {
     background: "#DDECE5",
@@ -569,6 +602,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     navigationForeground: "#FFFFFF",
     line: "rgb(14 90 77 / 0.16)",
     glow: "rgb(14 90 77 / 0.12)",
+    label: "#0E5A4D",
+    labelOnDeep: "#FFFFFF",
+    labelOnNav: "#FFFFFF",
   },
   "ansab-holding": {
     background: "#111111",
@@ -590,6 +626,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     navigationForeground: "#FFFFFF",
     line: "rgb(255 255 255 / 0.18)",
     glow: "rgb(94 198 61 / 0.14)",
+    label: "#FFFFFF",
+    labelOnDeep: "#FFFFFF",
+    labelOnNav: "#FFFFFF",
   },
   "red-sea-transport-logistics": {
     background: "#0C1724",
@@ -612,6 +651,9 @@ const projectWorlds: Record<string, ProjectWorldTheme> = {
     line: "rgb(255 255 255 / 0.2)",
     glow: "rgb(207 29 42 / 0.2)",
     heroAccent: "#3D83A6",
+    label: "#F7F8FA",
+    labelOnDeep: "#FFFFFF",
+    labelOnNav: "#FFFFFF",
   },
 };
 
@@ -639,6 +681,9 @@ export function getProjectThemeStyle(project: Project): Record<string, string> {
     "--case-line": theme.line,
     "--case-glow": theme.glow,
     "--case-hero-accent": theme.heroAccent ?? theme.accent,
+    "--case-label": theme.label ?? theme.ink,
+    "--case-label-on-deep": theme.labelOnDeep ?? theme.onDeep,
+    "--case-label-on-nav": theme.labelOnNav ?? theme.navigationForeground,
   };
 }
 

@@ -21154,3 +21154,63 @@ html[dir="rtl"] .studio-social-links__label {
     grid-template-columns: 1fr;
   }
 }
+
+.desktop-project .desktop-kicker,
+.desktop-project-meta dt,
+.desktop-project-system .desktop-kicker {
+  color: var(--case-label);
+}
+
+.desktop-project .desktop-project-hero .desktop-kicker,
+.desktop-case-section--dark .desktop-kicker,
+.desktop-case-section--brand .desktop-kicker,
+.desktop-project-video .desktop-kicker {
+  color: var(--case-label-on-deep);
+}
+
+.desktop-next-project > span {
+  color: var(--case-label-on-nav);
+}
+
+.desktop-project--wello .desktop-project-system .desktop-kicker,
+.desktop-project--matcha .desktop-project-system .desktop-kicker,
+.desktop-project--rahaba-space .desktop-project-system .desktop-kicker,
+.desktop-project--zahy-store .desktop-project-system .desktop-kicker {
+  color: var(--case-label-on-deep);
+}
+
+.desktop-project--red-sea-transport-logistics .desktop-case-section--paper .desktop-kicker,
+.desktop-project--red-sea-transport-logistics .desktop-case-section--ivory .desktop-kicker {
+  color: #cf1d2a;
+}
+
+.desktop-project--wello .desktop-project-hero .desktop-kicker,
+.desktop-project--matcha .desktop-project-hero .desktop-kicker,
+.desktop-project--zahy-store .desktop-project-hero .desktop-kicker,
+html[dir="rtl"] .desktop-project--wello .desktop-project-hero .desktop-kicker,
+html[dir="rtl"] .desktop-project--matcha .desktop-project-hero .desktop-kicker,
+html[dir="rtl"] .desktop-project--zahy-store .desktop-project-hero .desktop-kicker {
+  color: var(--case-label-on-deep);
+}
+
+.desktop-project--red-bull-marvel .desktop-project-meta dt,
+.desktop-project--red-bull-marvel .desktop-project-overview .desktop-kicker,
+.desktop-project--red-bull-marvel .desktop-case-section:not(.desktop-case-section--dark):not(.desktop-case-section--brand) .desktop-kicker,
+.desktop-project--red-bull-marvel .desktop-project-system .desktop-kicker,
+.desktop-project--red-bull-marvel .desktop-next-project > span,
+html[dir="rtl"] .desktop-project--red-bull-marvel .desktop-project-meta dt,
+html[dir="rtl"] .desktop-project--red-bull-marvel .desktop-project-overview .desktop-kicker,
+html[dir="rtl"] .desktop-project--red-bull-marvel .desktop-case-section:not(.desktop-case-section--dark):not(.desktop-case-section--brand) .desktop-kicker,
+html[dir="rtl"] .desktop-project--red-bull-marvel .desktop-project-system .desktop-kicker,
+html[dir="rtl"] .desktop-project--red-bull-marvel .desktop-next-project > span {
+  color: var(--case-label);
+}
+
+.desktop-project--red-bull-marvel .desktop-project-hero .desktop-kicker,
+.desktop-project--red-bull-marvel .desktop-case-section--dark .desktop-kicker,
+.desktop-project--red-bull-marvel .desktop-case-section--brand .desktop-kicker,
+html[dir="rtl"] .desktop-project--red-bull-marvel .desktop-project-hero .desktop-kicker,
+html[dir="rtl"] .desktop-project--red-bull-marvel .desktop-case-section--dark .desktop-kicker,
+html[dir="rtl"] .desktop-project--red-bull-marvel .desktop-case-section--brand .desktop-kicker {
+  color: var(--case-label-on-deep);
+}
