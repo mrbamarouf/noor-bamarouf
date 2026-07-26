@@ -16322,14 +16322,68 @@ html[dir="rtl"] .desktop-header__tools {
   color: var(--case-foreground);
 }
 
-.noor-home-v3__service-preview .project-visual {
+.noor-home-v3__service-preview-stage {
+  position: relative;
   min-height: clamp(440px, 42vw, 680px);
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.noor-home-v3__service-preview > span {
+.noor-home-v3__service-preview-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 220ms var(--ease-out);
+  will-change: opacity;
+}
+
+.noor-home-v3__service-preview-layer.is-current {
+  opacity: 1;
+}
+
+.noor-home-v3__service-preview-layer.is-exiting {
+  opacity: 0;
+}
+
+.noor-home-v3__service-preview .project-visual {
+  height: 100%;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+.noor-home-v3__service-preview .project-visual img {
+  transition: none;
+}
+
+.noor-home-v3__service-preview-caption {
+  position: relative;
+  min-height: calc(clamp(1.35rem, 1.8vw, 2.35rem) * 1.12);
+}
+
+.noor-home-v3__service-preview-title {
+  position: absolute;
+  inset: 0 auto auto 0;
   color: #5d554d;
   font-family: var(--font-display);
   font-size: clamp(1.35rem, 1.8vw, 2.35rem);
+  line-height: 1.12;
+  opacity: 0;
+  transition: opacity 220ms var(--ease-out);
+  will-change: opacity;
+}
+
+.noor-home-v3__service-preview-title.is-current {
+  opacity: 1;
+}
+
+.noor-home-v3__service-preview-title.is-exiting {
+  opacity: 0;
+}
+
+html[dir="rtl"] .noor-home-v3__service-preview-title {
+  inset: 0 0 auto auto;
+  line-height: 1.35;
 }
 
 .noor-home-v3__service-list {

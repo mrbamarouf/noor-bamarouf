@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { DecorativeNbLogo } from "../components/DecorativeNbLogo";
 import { ProjectVisual, type ProjectVisualAsset } from "../components/ProjectVisual";
@@ -72,6 +72,21 @@ const servicePreviewMoments: Record<ServiceKey, HomeProjectMoment> = {
   editorialDesign: { project: findProject("matcha"), asset: "gallery-3", ratio: "landscape", fit: "cover" },
   creativeDirection: { project: findProject("red-bull-marvel"), asset: "gallery-2", ratio: "square", fit: "contain" },
 };
+
+function getServicePreview(service: ServiceKey, language: "en" | "ar") {
+  const moment = servicePreviewMoments[service];
+  const image = getProjectImageByAsset(moment.project, moment.asset);
+  const imageFormat = moment.format ?? image.format ?? "jpg";
+  const imageFolder = image.folder ?? "concept-projects";
+
+  return {
+    image,
+    imageSrc: `/${imageFolder}/${moment.project.slug}/${moment.asset}.${imageFormat}`,
+    moment,
+    title: getProjectDisplayTitle(moment.project, language),
+    titleDir: getProjectTitleDirection(moment.project, language),
+  };
+}
 
 const homeCopy = {
   en: {
@@ -396,14 +411,105 @@ function PointOfView() {
 function Capabilities() {
   const { dictionary, language } = useLanguage();
   const copy = homeCopy[language];
+  const defaultService: ServiceKey = "brandIdentity";
   const [activeService, setActiveService] = useState<ServiceKey>("brandIdentity");
-  const activeMoment = servicePreviewMoments[activeService];
-  const activeImage = getProjectImageByAsset(activeMoment.project, activeMoment.asset);
-  const activeTitle = getProjectDisplayTitle(activeMoment.project, language);
-  const activePreviewKey = `${activeService}-${activeMoment.project.slug}-${activeMoment.asset}-${language}`;
+  const [displayService, setDisplayService] = useState<ServiceKey>("brandIdentity");
+  const [incomingService, setIncomingService] = useState<ServiceKey | null>(null);
+  const transitionTimeoutRef = useRef<number | null>(null);
+  const requestIdRef = useRef(0);
+  const loadedImagesRef = useRef<Set<string>>(new Set());
+  const reduceMotionRef = useRef(false);
+  const displayedPreview = getServicePreview(displayService, language);
+  const incomingPreview = incomingService ? getServicePreview(incomingService, language) : null;
+  const themePreview = incomingPreview ?? displayedPreview;
+
+  useEffect(() => {
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = () => {
+      reduceMotionRef.current = motionQuery.matches;
+    };
+
+    updateMotionPreference();
+    if (typeof motionQuery.addEventListener === "function") {
+      motionQuery.addEventListener("change", updateMotionPreference);
+    } else {
+      motionQuery.addListener(updateMotionPreference);
+    }
+
+    return () => {
+      if (typeof motionQuery.removeEventListener === "function") {
+        motionQuery.removeEventListener("change", updateMotionPreference);
+      } else {
+        motionQuery.removeListener(updateMotionPreference);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    approvedServices.forEach((service) => {
+      const { imageSrc } = getServicePreview(service, language);
+      if (loadedImagesRef.current.has(imageSrc)) return;
+
+      const image = new Image();
+      image.decoding = "async";
+      image.onload = () => {
+        loadedImagesRef.current.add(imageSrc);
+      };
+      image.src = imageSrc;
+    });
+  }, [language]);
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimeoutRef.current !== null) window.clearTimeout(transitionTimeoutRef.current);
+    };
+  }, []);
 
   const activateService = (service: ServiceKey) => {
-    setActiveService((currentService) => (currentService === service ? currentService : service));
+    setActiveService(service);
+
+    const requestId = requestIdRef.current + 1;
+    requestIdRef.current = requestId;
+
+    if (transitionTimeoutRef.current !== null) {
+      window.clearTimeout(transitionTimeoutRef.current);
+      transitionTimeoutRef.current = null;
+    }
+
+    setIncomingService(null);
+
+    if (service === displayService) return;
+
+    const { imageSrc } = getServicePreview(service, language);
+    const completeTransition = () => {
+      if (requestIdRef.current !== requestId) return;
+
+      if (reduceMotionRef.current) {
+        setDisplayService(service);
+        return;
+      }
+
+      setIncomingService(service);
+      transitionTimeoutRef.current = window.setTimeout(() => {
+        if (requestIdRef.current !== requestId) return;
+        setDisplayService(service);
+        setIncomingService(null);
+        transitionTimeoutRef.current = null;
+      }, 220);
+    };
+
+    if (loadedImagesRef.current.has(imageSrc)) {
+      completeTransition();
+      return;
+    }
+
+    const image = new Image();
+    image.decoding = "async";
+    image.onload = () => {
+      loadedImagesRef.current.add(imageSrc);
+      completeTransition();
+    };
+    image.src = imageSrc;
   };
 
   return (
@@ -414,26 +520,50 @@ function Capabilities() {
       </div>
       <div className="noor-home-v3__service-shell">
         <div
-          key={activePreviewKey}
           className="noor-home-v3__service-preview"
-          style={getProjectThemeStyle(activeMoment.project) as CSSProperties}
+          style={getProjectThemeStyle(themePreview.moment.project) as CSSProperties}
           data-active-service={activeService}
         >
-          <ProjectVisual
-            key={`visual-${activePreviewKey}`}
-            image={activeImage}
-            projectSlug={activeMoment.project.slug}
-            asset={activeMoment.asset}
-            ratio={activeMoment.ratio}
-            fit={activeMoment.fit}
-            formatOverride={activeMoment.format}
-            preserveAspect={false}
-          />
-          <span key={`title-${activePreviewKey}`} dir={getProjectTitleDirection(activeMoment.project, language)}>
-            {activeTitle}
-          </span>
+          <div className="noor-home-v3__service-preview-stage">
+            <div className={`noor-home-v3__service-preview-layer${incomingPreview ? " is-exiting" : " is-current"}`}>
+              <ProjectVisual
+                image={displayedPreview.image}
+                projectSlug={displayedPreview.moment.project.slug}
+                asset={displayedPreview.moment.asset}
+                ratio={displayedPreview.moment.ratio}
+                fit={displayedPreview.moment.fit}
+                formatOverride={displayedPreview.moment.format}
+                preserveAspect={false}
+                loading="eager"
+              />
+            </div>
+            {incomingPreview ? (
+              <div className="noor-home-v3__service-preview-layer is-current">
+                <ProjectVisual
+                  image={incomingPreview.image}
+                  projectSlug={incomingPreview.moment.project.slug}
+                  asset={incomingPreview.moment.asset}
+                  ratio={incomingPreview.moment.ratio}
+                  fit={incomingPreview.moment.fit}
+                  formatOverride={incomingPreview.moment.format}
+                  preserveAspect={false}
+                  loading="eager"
+                />
+              </div>
+            ) : null}
+          </div>
+          <div className="noor-home-v3__service-preview-caption" aria-live="polite">
+            <span className={`noor-home-v3__service-preview-title${incomingPreview ? " is-exiting" : " is-current"}`} dir={displayedPreview.titleDir}>
+              {displayedPreview.title}
+            </span>
+            {incomingPreview ? (
+              <span className="noor-home-v3__service-preview-title is-current" dir={incomingPreview.titleDir}>
+                {incomingPreview.title}
+              </span>
+            ) : null}
+          </div>
         </div>
-        <ol className="noor-home-v3__service-list">
+        <ol className="noor-home-v3__service-list" onMouseLeave={() => activateService(defaultService)}>
           {approvedServices.map((service, index) => (
             <li key={service}>
               <button
