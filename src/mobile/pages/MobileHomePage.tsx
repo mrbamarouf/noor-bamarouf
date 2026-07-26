@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LogoAsset } from "../../components/LogoAsset";
 import { getEmailHref, getWhatsAppHref } from "../../config/contact";
 import { useLanguage } from "../../context/LanguageContext";
+import { accreditationCopy, accreditationsPath } from "../../data/accreditations";
 import { getProjectImageByAsset, getProjectThemeStyle, type PresentationAsset } from "../../data/projectPresentation";
 import { getProjectDisplayTitle, getProjectTitleDirection, projects } from "../../data/projects";
 import { makeMobileChapters, MobileChapterController, MobileChapterSection, localizeMobileDigits } from "../MobileChapterSystem";
@@ -40,6 +41,7 @@ const selectedMoments: Array<{ slug: string; asset: PresentationAsset; fit?: "co
 export function MobileHomePage() {
   const { dictionary, language } = useLanguage();
   const copy = mobileHomeCopy[language];
+  const accreditation = accreditationCopy[language];
   const contactCopy = mobileContactCopy[language];
   const processCopy = mobileProcessCopy[language];
   const disciplines = useMemo(() => new Set(projects.flatMap((project) => project.services)).size, []);
@@ -55,6 +57,10 @@ export function MobileHomePage() {
             <MobileCtaLink to="/work">{dictionary.actions.viewWork} <MobileArrow /></MobileCtaLink>
             <MobileCtaLink className="m-cta--quiet" to="/contact">{dictionary.actions.startProject}</MobileCtaLink>
           </div>
+          <Link className="m-home-accreditation-link" to={accreditationsPath}>
+            <span>{accreditation.credibilityTitle}</span>
+            <small>{accreditation.credibilityBody}</small>
+          </Link>
         </MobilePageCopy>
         <LogoAsset className="m-home-hero__mark" variant="hero" priority />
         <dl className="m-metrics">

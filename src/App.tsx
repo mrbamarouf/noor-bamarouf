@@ -5,8 +5,10 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Intro } from "./components/Intro";
 import { ScrollProgress } from "./components/ScrollProgress";
+import { accreditationCopy } from "./data/accreditations";
 import { getProject, getProjectDisplayTitle } from "./data/projects";
 import { useLanguage } from "./context/LanguageContext";
+import { AccreditationsPage } from "./pages/AccreditationsPage";
 import { AboutPage } from "./pages/AboutPage";
 import { ContactPage } from "./pages/ContactPage";
 import { HomePage } from "./pages/HomePage";
@@ -47,6 +49,7 @@ function ScrollManager() {
       "/": `${BRAND_TITLE} | ${dictionary.hero.descriptor}`,
       "/about": `${dictionary.nav.about} | ${BRAND_TITLE}`,
       "/work": `${dictionary.nav.work} | ${BRAND_TITLE}`,
+      "/accreditations": accreditationCopy[language].metaTitle,
       "/contact": `${dictionary.nav.contact} | ${BRAND_TITLE}`,
     };
     const title = project
@@ -60,7 +63,9 @@ function ScrollManager() {
         ? dictionary.contactPage.body
         : location.pathname === "/about"
           ? dictionary.aboutPage.body
-          : dictionary.hero.body;
+          : location.pathname === "/accreditations"
+            ? accreditationCopy[language].intro
+            : dictionary.hero.body;
     const canonicalPath = project || pageTitleMap[location.pathname] ? location.pathname : "/";
     const canonicalUrl = `${PRODUCTION_ORIGIN}${canonicalPath === "/" ? "/" : canonicalPath}`;
 
@@ -139,6 +144,7 @@ export function App() {
           <Route path="/work" element={<WorkPage />} />
           <Route path="/work/:slug" element={<ProjectPage />} />
           <Route path="/services" element={<Navigate to="/#services" replace />} />
+          <Route path="/accreditations" element={<AccreditationsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

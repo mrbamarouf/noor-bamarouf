@@ -5,6 +5,7 @@ import { MobileChapterProvider } from "./MobileChapterSystem";
 import { MobileHeader } from "./MobileHeader";
 import { MobileIntro } from "./MobileIntro";
 import { MobileAboutPage } from "./pages/MobileAboutPage";
+import { MobileAccreditationsPage } from "./pages/MobileAccreditationsPage";
 import { MobileContactPage } from "./pages/MobileContactPage";
 import { MobileHomePage } from "./pages/MobileHomePage";
 import { MobileProjectPage } from "./pages/MobileProjectPage";
@@ -40,6 +41,7 @@ export function MobileApp({ manager }: { manager: ReactNode }) {
             <Route path="/work" element={<MobileWorkPage />} />
             <Route path="/work/:slug" element={<MobileProjectPage />} />
             <Route path="/services" element={<MobileServicesPage />} />
+            <Route path="/accreditations" element={<MobileAccreditationsPage />} />
             <Route path="/contact" element={<MobileContactPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

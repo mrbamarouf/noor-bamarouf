@@ -3,6 +3,8 @@ import { LogoAsset } from "../components/LogoAsset";
 import { StudioSocialLinks } from "../components/StudioSocialLinks";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
 import { useLanguage } from "../context/LanguageContext";
+import { accreditationCopy, accreditationsPath } from "../data/accreditations";
+import { Link } from "react-router-dom";
 
 export function MobileFooter({ caseMode = false }: { caseMode?: boolean }) {
   const { dictionary, language } = useLanguage();
@@ -12,6 +14,9 @@ export function MobileFooter({ caseMode = false }: { caseMode?: boolean }) {
       <div className="m-footer__brand">
         <LogoAsset variant="footer" />
         <p>{dictionary.footer.line}</p>
+        <Link className="m-footer__accreditation" to={accreditationsPath}>
+          {accreditationCopy[language].footerReference}
+        </Link>
       </div>
       <div className="m-footer__contact">
         <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.ui.whatsapp}</a>

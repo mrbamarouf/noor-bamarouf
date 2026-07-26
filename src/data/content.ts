@@ -10,6 +10,7 @@ export const navItems = [
   { labelKey: "about", to: "/about" },
   { labelKey: "work", to: "/work" },
   { labelKey: "services", to: "/#services" },
+  { labelKey: "accreditations", to: "/accreditations" },
   { labelKey: "contact", to: "/contact" },
 ] as const;
 
@@ -44,6 +45,7 @@ export const copy = {
       about: "About",
       work: "Work",
       services: "Services",
+      accreditations: "Accreditations",
       contact: "Contact",
     },
     actions: {
@@ -207,6 +209,7 @@ export const copy = {
       about: "عن نور",
       work: "الأعمال",
       services: "الخدمات",
+      accreditations: "الاعتمادات",
       contact: "التواصل",
     },
     actions: {

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
+import { accreditationCopy, accreditationsPath } from "../data/accreditations";
 import { navItems } from "../data/content";
 import { useLanguage } from "../context/LanguageContext";
 import { BamaroufStudioLink } from "./BamaroufStudioLink";
@@ -15,6 +16,9 @@ export function Footer() {
         <div className="desktop-footer__identity">
           <LogoAsset variant="footer" />
           <p>{dictionary.footer.line}</p>
+          <Link className="desktop-footer__accreditation" to={accreditationsPath}>
+            {accreditationCopy[language].footerReference}
+          </Link>
         </div>
         <nav className="desktop-footer__nav" aria-label={dictionary.ui.footerNavigation}>
           {navItems.map((item) => (

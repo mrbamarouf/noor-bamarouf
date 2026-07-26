@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { DecorativeNbLogo } from "../components/DecorativeNbLogo";
 import { ProjectVisual, type ProjectVisualAsset } from "../components/ProjectVisual";
 import { getEmailHref, getWhatsAppHref } from "../config/contact";
+import { accreditationCopy, accreditationsPath } from "../data/accreditations";
 import {
   getDesktopProjectCover,
   getProjectImageByAsset,
@@ -252,6 +253,19 @@ function SelectedWork() {
         ))}
       </div>
     </section>
+  );
+}
+
+function AccreditationStrip() {
+  const { language } = useLanguage();
+  const copy = accreditationCopy[language];
+
+  return (
+    <Link className="noor-home-v3__accreditation-strip" to={accreditationsPath} data-reveal>
+      <span>{copy.credibilityTitle}</span>
+      <strong>{copy.credibilityBody}</strong>
+      <i aria-hidden="true">↗</i>
+    </Link>
   );
 }
 
@@ -543,6 +557,7 @@ export function HomePage() {
   return (
     <div className="desktop-page noor-home-v3">
       <SignatureHero />
+      <AccreditationStrip />
       <SelectedWork />
       <FeaturedInterruption />
       <PointOfView />
