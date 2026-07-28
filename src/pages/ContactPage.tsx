@@ -1,3 +1,4 @@
+import { ContactIcon } from "../components/ContactIcon";
 import { DecorativeNbLogo } from "../components/DecorativeNbLogo";
 import { contactDetails, getEmailHref, getWhatsAppHref } from "../config/contact";
 import { useLanguage } from "../context/LanguageContext";
@@ -15,11 +16,19 @@ export function ContactPage() {
           <h1 id="contact-title">{dictionary.contactPage.title}</h1>
           <p>{dictionary.contactPage.body}</p>
           <div className="desktop-contact-page__actions">
-            <a className="desktop-button desktop-button--primary" href={whatsappHref} target="_blank" rel="noopener noreferrer">
-              {dictionary.actions.contactByWhatsApp}
+            <a
+              className="desktop-button desktop-button--primary contact-action-link"
+              href={whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={contactDetails.aria.whatsapp[language]}
+            >
+              <ContactIcon type="whatsapp" />
+              <span>{contactDetails.whatsappDisplay}</span>
             </a>
-            <a className="desktop-button desktop-button--ghost" href={emailHref}>
-              {dictionary.actions.sendEmail}
+            <a className="desktop-button desktop-button--ghost contact-action-link" href={emailHref} aria-label={contactDetails.aria.email[language]}>
+              <ContactIcon type="email" />
+              <span>{contactDetails.emailDisplay}</span>
             </a>
           </div>
         </div>
@@ -32,11 +41,17 @@ export function ContactPage() {
       <section className="desktop-contact-page__methods" aria-label={dictionary.ui.connect} data-reveal>
         <article>
           <span>{dictionary.ui.whatsapp}</span>
-          <a href={whatsappHref} target="_blank" rel="noopener noreferrer">{contactDetails.whatsappDisplay}</a>
+          <a href={whatsappHref} target="_blank" rel="noopener noreferrer" aria-label={contactDetails.aria.whatsapp[language]}>
+            <ContactIcon type="whatsapp" />
+            <bdi>{contactDetails.whatsappDisplay}</bdi>
+          </a>
         </article>
         <article>
           <span>{dictionary.ui.email}</span>
-          <a href={emailHref}>{contactDetails.email}</a>
+          <a href={emailHref} aria-label={contactDetails.aria.email[language]}>
+            <ContactIcon type="email" />
+            <bdi>{contactDetails.emailDisplay}</bdi>
+          </a>
         </article>
         <p>{dictionary.contactPage.methodBody}</p>
       </section>

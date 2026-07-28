@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
-import { getEmailHref, getWhatsAppHref } from "../../config/contact";
+import { ContactIcon } from "../../components/ContactIcon";
+import { contactDetails, getEmailHref, getWhatsAppHref } from "../../config/contact";
 import { useLanguage } from "../../context/LanguageContext";
 import { getProjectImageByAsset, getProjectThemeStyle, type PresentationAsset } from "../../data/projectPresentation";
 import { getProjectDisplayTitle, projects } from "../../data/projects";
@@ -88,8 +89,15 @@ export function MobileServicesPage() {
       <MobileChapterSection chapter={chapters[9]} index={9} total={chapters.length} className="m-services-contact">
         <MobilePageCopy label={contactCopy.label} title={contactCopy.title} body={contactCopy.body} titleId={`${chapters[9].id}-title`}>
           <div className="m-actions m-actions--stack">
-            <MobileExternalCta href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{contactCopy.whatsapp} <MobileArrow /></MobileExternalCta>
-            <MobileExternalCta className="m-cta--quiet" href={getEmailHref(language)}>{contactCopy.email}</MobileExternalCta>
+            <MobileExternalCta className="m-cta--contact" href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer" aria-label={contactDetails.aria.whatsapp[language]}>
+              <ContactIcon type="whatsapp" />
+              <span className="m-contact-action-value">{contactDetails.whatsappDisplay}</span>
+              <MobileArrow />
+            </MobileExternalCta>
+            <MobileExternalCta className="m-cta--quiet m-cta--contact" href={getEmailHref(language)} aria-label={contactDetails.aria.email[language]}>
+              <ContactIcon type="email" />
+              <span className="m-contact-action-value">{contactDetails.emailDisplay}</span>
+            </MobileExternalCta>
           </div>
         </MobilePageCopy>
       </MobileChapterSection>

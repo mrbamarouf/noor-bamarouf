@@ -218,13 +218,31 @@
   }
 
   .m-menu__actions > * {
-    display: grid;
-    place-items: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
     min-height: 48px;
     padding: 6px;
     background: transparent;
     font-size: 0.76rem;
     text-decoration: none;
+  }
+
+  .contact-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.45;
+  }
+
+  .m-menu__actions .contact-icon {
+    width: 15px;
+    height: 15px;
   }
 
   .m-menu__actions > * + * { border-inline-start: 1px solid rgb(45 41 36 / 0.2); }
@@ -438,6 +456,21 @@
     color: currentColor;
     background: transparent;
     border-color: color-mix(in srgb, currentColor 34%, transparent);
+  }
+
+  .m-cta--contact {
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .m-cta--contact > span[aria-hidden="true"] {
+    margin-inline-start: auto;
+  }
+
+  .m-contact-action-value {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .m-text-link {
@@ -689,7 +722,7 @@
   .m-app .m-footer__brand p { max-width: 22ch; margin: 0; color: inherit; font-family: var(--font-display); font-size: 1.65rem; line-height: 1.05; }
   html[dir="rtl"] .m-app .m-footer__brand p { font-family: var(--font-arabic); line-height: 1.35; }
   .m-footer__contact { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgb(45 41 36 / 0.22); border-bottom: 1px solid rgb(45 41 36 / 0.22); }
-  .m-footer__contact a { display: grid; place-items: center; min-height: 48px; color: inherit; text-decoration: none; }
+  .m-footer__contact a { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; color: inherit; text-decoration: none; }
   .m-footer__contact a + a { border-inline-start: 1px solid rgb(45 41 36 / 0.22); }
   .m-footer__studio { display: grid; gap: 12px; }
   .m-footer .bamarouf-studio-link { display: grid; grid-template-columns: 50px 1fr; gap: 14px; align-items: center; color: inherit; text-decoration: none; }
@@ -787,10 +820,11 @@
   .m-contact-methods { background: #efe4d8; }
   .m-contact-methods .m-page__content { align-content: space-between; }
   .m-contact-methods__links { display: grid; border-top: 1px solid var(--m-line); }
-  .m-contact-methods__links a { display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; align-items: center; min-height: 82px; color: var(--m-ink); border-bottom: 1px solid var(--m-line); text-decoration: none; }
-  .m-contact-methods__links span { color: var(--m-rose); font-size: 0.7rem; font-weight: 800; }
-  .m-contact-methods__links strong { grid-row: 2; font-family: var(--font-display); font-size: 1.1rem; }
-  .m-contact-methods__links a > span:last-child { grid-column: 2; grid-row: 1 / span 2; }
+  .m-contact-methods__links a { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 6px 10px; align-items: center; min-height: 82px; color: var(--m-ink); border-bottom: 1px solid var(--m-line); text-decoration: none; }
+  .m-contact-methods__links .contact-icon { grid-row: 1 / span 2; }
+  .m-contact-methods__links a > span:not(:last-child) { grid-column: 2; color: var(--m-rose); font-size: 0.7rem; font-weight: 800; }
+  .m-contact-methods__links strong { grid-column: 2; grid-row: 2; min-width: 0; overflow-wrap: anywhere; font-family: var(--font-display); font-size: 1.1rem; }
+  .m-contact-methods__links a > span:last-child { grid-column: 3; grid-row: 1 / span 2; }
   html[dir="rtl"] .m-contact-methods__links a { direction: rtl; }
   html[dir="rtl"] .m-contact-methods__links strong { font-family: var(--font-arabic); }
 

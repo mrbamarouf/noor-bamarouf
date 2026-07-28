@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { ContactIcon } from "../components/ContactIcon";
 import { DecorativeNbLogo } from "../components/DecorativeNbLogo";
 import { ProjectVisual, type ProjectVisualAsset } from "../components/ProjectVisual";
-import { getEmailHref, getWhatsAppHref } from "../config/contact";
+import { contactDetails, getEmailHref, getWhatsAppHref } from "../config/contact";
 import { accreditationCopy, accreditationsPath } from "../data/accreditations";
 import {
   getDesktopProjectCover,
@@ -668,11 +669,20 @@ function ContactChapter() {
         <h2 id="noor-home-v3-contact-title">{copy.contactTitle}</h2>
         <p>{copy.contactBody}</p>
         <div className="noor-home-v3__actions">
-          <a className="desktop-button desktop-button--primary" href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">
-            {copy.whatsapp} <Arrow />
+          <a
+            className="desktop-button desktop-button--primary contact-action-link"
+            href={getWhatsAppHref(language)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={contactDetails.aria.whatsapp[language]}
+          >
+            <ContactIcon type="whatsapp" />
+            <span>{contactDetails.whatsappDisplay}</span>
+            <Arrow />
           </a>
-          <a className="desktop-button desktop-button--ghost" href={getEmailHref(language)}>
-            {copy.email}
+          <a className="desktop-button desktop-button--ghost contact-action-link" href={getEmailHref(language)} aria-label={contactDetails.aria.email[language]}>
+            <ContactIcon type="email" />
+            <span>{contactDetails.emailDisplay}</span>
           </a>
         </div>
       </div>

@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { BamaroufStudioLink } from "../components/BamaroufStudioLink";
+import { ContactIcon } from "../components/ContactIcon";
 import { LogoAsset } from "../components/LogoAsset";
 import { StudioSocialLinks } from "../components/StudioSocialLinks";
-import { getEmailHref, getWhatsAppHref } from "../config/contact";
+import { contactDetails, getEmailHref, getWhatsAppHref } from "../config/contact";
 import { useLanguage } from "../context/LanguageContext";
 import { navItems } from "../data/content";
 import { getProjectThemeStyle } from "../data/projectPresentation";
@@ -91,8 +92,14 @@ export function MobileHeader() {
 
           <div className="m-menu__actions">
             <button type="button" onClick={switchLanguage}>{language === "en" ? "العربية" : "English"}</button>
-            <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer">{dictionary.ui.whatsapp}</a>
-            <a href={getEmailHref(language)}>{dictionary.ui.email}</a>
+            <a href={getWhatsAppHref(language)} target="_blank" rel="noopener noreferrer" aria-label={contactDetails.aria.whatsapp[language]}>
+              <ContactIcon type="whatsapp" />
+              <span>{dictionary.ui.whatsapp}</span>
+            </a>
+            <a href={getEmailHref(language)} aria-label={contactDetails.aria.email[language]}>
+              <ContactIcon type="email" />
+              <span>{dictionary.ui.email}</span>
+            </a>
           </div>
 
           <div className="m-menu__studio">

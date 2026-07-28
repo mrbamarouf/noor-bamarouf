@@ -1,26 +1,29 @@
 import type { Language } from "../types";
 
 export const contactDetails = {
-  email: "hello@noorbamarouf.com",
-  whatsappDisplay: "WhatsApp",
-  whatsappUrl: "https://wa.me/",
+  email: "Noor.bamarouf0@gmail.com",
+  emailDisplay: "Noor.bamarouf0@gmail.com",
+  whatsappNumber: "966505805234",
+  whatsappDisplay: "+966 50 580 5234",
+  whatsappUrl: "https://wa.me/966505805234",
+  aria: {
+    whatsapp: {
+      en: "Contact Noor Bamarouf on WhatsApp at +966 50 580 5234",
+      ar: "التواصل مع نور بامعروف عبر واتساب على الرقم +966 50 580 5234",
+    },
+    email: {
+      en: "Email Noor Bamarouf at Noor.bamarouf0@gmail.com",
+      ar: "مراسلة نور بامعروف عبر البريد الإلكتروني Noor.bamarouf0@gmail.com",
+    },
+  },
 } as const;
 
-const whatsappMessages: Record<Language, string> = {
-  en: "Hello Noor, I would like to discuss a design project.",
-  ar: "مرحبًا نور، أرغب في مناقشة مشروع تصميم.",
-};
-
-const emailSubjects: Record<Language, string> = {
-  en: "Project inquiry: Noor Bamarouf",
-  ar: "استفسار عن مشروع: نور بامعروف",
-};
-
 export function getWhatsAppHref(language: Language) {
-  return `${contactDetails.whatsappUrl}?text=${encodeURIComponent(whatsappMessages[language])}`;
+  void language;
+  return contactDetails.whatsappUrl;
 }
 
 export function getEmailHref(language: Language) {
-  const params = new URLSearchParams({ subject: emailSubjects[language] });
-  return `mailto:${contactDetails.email}?${params.toString()}`;
+  void language;
+  return `mailto:${contactDetails.email}`;
 }
