@@ -5,6 +5,7 @@ import { App } from "./App";
 import { LanguageProvider } from "./context/LanguageContext";
 import "./styles/global.css";
 import "./styles/mobile.css";
+import "./styles/noor-atmosphere.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
