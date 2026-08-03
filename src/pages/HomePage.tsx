@@ -91,7 +91,7 @@ function getServicePreview(service: ServiceKey, language: "en" | "ar") {
 
 const homeCopy = {
   en: {
-    heroRole: "Independent Graphic Designer",
+    heroRole: "Graphic Designer",
     heroTitle: "NOOR BAMAROUF",
     heroBody:
       "I create visual identities, packaging, print, editorial, and social experiences shaped with intention and thoughtful detail.",
@@ -122,7 +122,7 @@ const homeCopy = {
     nextFeatured: "Next featured project",
   },
   ar: {
-    heroRole: "مصممة جرافيك مستقلة",
+    heroRole: "مصممة جرافيك",
     heroTitle: "نور بامعروف",
     heroBody: "أصمم هويات بصرية وتغليفًا ومطبوعات وتجارب تحريرية واجتماعية بتفاصيل مدروسة وغاية واضحة.",
     metrics: ["المشاريع", "التخصصات", "الفئات"],

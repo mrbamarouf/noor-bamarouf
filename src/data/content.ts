@@ -67,7 +67,7 @@ export const copy = {
       descriptor: "Graphic Designer",
     },
     hero: {
-      descriptor: "Independent graphic designer",
+      descriptor: "Graphic Designer",
       edition: "Identity, print, packaging, editorial",
       materialNote: "Thoughtful systems, tactile detail",
       studioNote: "Visual identities shaped for print, packaging, editorial, and social moments.",
@@ -231,7 +231,7 @@ export const copy = {
       descriptor: "مصممة جرافيك",
     },
     hero: {
-      descriptor: "مصممة جرافيك مستقلة",
+      descriptor: "مصممة جرافيك",
       edition: "هوية بصرية، مطبوعات، تغليف، وتصميم تحريري",
       materialNote: "أنظمة بصرية مدروسة وتفاصيل ملموسة",
       studioNote: "هويات بصرية تصاغ للمطبوعات والتغليف والتحرير والحضور الاجتماعي.",

@@ -2,7 +2,7 @@ import type { LocalizedString, ServiceKey } from "../types";
 
 export const mobileHomeCopy = {
   en: {
-    heroRole: "Independent Graphic Designer",
+    heroRole: "Graphic Designer",
     heroTitle: "NOOR BAMAROUF",
     heroBody: "Visual identities, packaging, print, editorial, and social experiences shaped with intention and thoughtful detail.",
     metrics: ["Projects", "Disciplines", "Categories"],
@@ -30,7 +30,7 @@ export const mobileHomeCopy = {
     contactBody: "Share a short overview of your project, its scope, timeline, and the direction you would like the work to express.",
   },
   ar: {
-    heroRole: "مصممة جرافيك مستقلة",
+    heroRole: "مصممة جرافيك",
     heroTitle: "نور بامعروف",
     heroBody: "هويات بصرية وتغليف ومطبوعات وتجارب تحريرية واجتماعية تُصاغ بعناية وغاية واضحة.",
     metrics: ["المشاريع", "التخصصات", "الفئات"],
