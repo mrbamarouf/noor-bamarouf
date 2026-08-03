@@ -1302,6 +1302,415 @@ body,
   }
 }
 
+/* Final quiet-luxury refinement: atmosphere frames content instead of sitting behind it. */
+@media (min-width: 901px) {
+  .desktop-intro {
+    background:
+      radial-gradient(circle at 4% 94%, color-mix(in srgb, var(--noor-blush) 30%, transparent), transparent 28%),
+      radial-gradient(circle at 96% 8%, color-mix(in srgb, var(--noor-sage) 10%, transparent), transparent 24%),
+      var(--noor-ivory);
+  }
+
+  .desktop-intro__wash--rose {
+    background: radial-gradient(circle, color-mix(in srgb, var(--noor-blush) 34%, transparent), transparent 70%);
+  }
+
+  .desktop-intro__wash--sage {
+    background: radial-gradient(circle, color-mix(in srgb, var(--noor-sage) 12%, transparent), transparent 72%);
+  }
+
+  .desktop-intro__grain {
+    opacity: 0.055;
+  }
+
+  .noor-home-v3__hero {
+    background:
+      radial-gradient(circle at 100% 14%, color-mix(in srgb, var(--noor-blush) 38%, transparent), transparent 31%),
+      var(--noor-ivory);
+  }
+
+  .noor-home-v3__hero::before {
+    opacity: 0.07;
+  }
+
+  .noor-home-v3__hero::after,
+  .noor-home-v3__hero-visual::before,
+  .noor-home-v3__hero-visual::after {
+    content: none;
+  }
+
+  .noor-home-v3__hero-visual .decorative-nb-logo,
+  .noor-home-v3__point-material .decorative-nb-logo,
+  .noor-home-v3__contact-art .decorative-nb-logo,
+  .desktop-work__hero-identity .decorative-nb-logo,
+  .desktop-contact-page__signature .decorative-nb-logo,
+  .noor-about-atelier__entry-mark .decorative-nb-logo {
+    filter: drop-shadow(0 14px 24px rgb(43 43 43 / 0.055));
+  }
+
+  .noor-home-v3__metrics {
+    background: color-mix(in srgb, var(--noor-ivory) 96%, transparent);
+    box-shadow: 0 14px 34px rgb(43 43 43 / 0.045);
+    backdrop-filter: none;
+  }
+
+  .noor-home-v3__accreditation-strip {
+    background:
+      radial-gradient(circle at 0% 50%, color-mix(in srgb, var(--noor-blush) 34%, transparent), transparent 25%),
+      var(--noor-ivory);
+  }
+
+  .noor-home-v3__selected {
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-blush) 38%, transparent), transparent 27%),
+      var(--noor-ivory);
+  }
+
+  .noor-home-v3__selected::before,
+  .noor-home-v3__selected::after,
+  .noor-home-v3__point::after,
+  .noor-home-v3__capabilities::before,
+  .noor-home-v3__process::after,
+  .noor-home-v3__archive::before,
+  .noor-home-v3__contact::before,
+  .noor-home-v3__contact::after,
+  .noor-about-atelier__entry::before,
+  .noor-about-atelier__rhythm::after,
+  .desktop-work__hero::after,
+  .desktop-contact-page__hero::after,
+  .desktop-accreditations__hero::after,
+  .noor-global-footer-v3::before {
+    content: none;
+  }
+
+  .noor-home-v3__work-grid > * {
+    box-shadow: 0 18px 46px rgb(43 43 43 / 0.07);
+  }
+
+  .noor-home-v3__point {
+    background:
+      radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--noor-beige) 46%, transparent), transparent 32%),
+      var(--noor-ivory);
+  }
+
+  .noor-home-v3__point-material {
+    background:
+      radial-gradient(circle at 10% 10%, color-mix(in srgb, var(--noor-blush) 34%, transparent), transparent 34%),
+      var(--noor-beige);
+    box-shadow: 0 22px 54px rgb(43 43 43 / 0.065);
+  }
+
+  .noor-home-v3__capabilities {
+    background:
+      radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--noor-beige) 42%, transparent), transparent 31%),
+      var(--noor-ivory);
+  }
+
+  .noor-home-v3__service-preview {
+    outline-color: color-mix(in srgb, var(--noor-blush) 18%, transparent);
+    box-shadow: 0 20px 52px rgb(43 43 43 / 0.065);
+  }
+
+  .noor-home-v3__process {
+    background:
+      radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--noor-blush) 40%, transparent), transparent 31%),
+      var(--noor-ivory);
+  }
+
+  .noor-home-v3__process li {
+    background: color-mix(in srgb, var(--noor-ivory) 90%, transparent);
+  }
+
+  .noor-home-v3__archive {
+    background:
+      radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--noor-beige) 42%, transparent), transparent 29%),
+      var(--noor-ivory);
+  }
+
+  .noor-home-v3__archive-preview {
+    box-shadow: 0 18px 48px rgb(43 43 43 / 0.065);
+  }
+
+  .noor-home-v3__contact {
+    background:
+      radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--noor-blush) 46%, transparent), transparent 34%),
+      var(--noor-ivory);
+  }
+
+  .noor-about-atelier {
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-blush) 34%, transparent), transparent 24%),
+      var(--noor-ivory);
+  }
+
+  .noor-about-atelier__thesis,
+  .noor-about-atelier--ar .noor-about-atelier__thesis {
+    background:
+      radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--noor-blush) 40%, transparent), transparent 31%),
+      var(--noor-ivory);
+  }
+
+  .noor-about-atelier__materials {
+    background:
+      radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--noor-sage) 18%, transparent), transparent 31%),
+      var(--noor-ivory);
+  }
+
+  .noor-about-atelier__philosophy {
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-blush) 34%, transparent), transparent 28%),
+      var(--noor-ivory);
+  }
+
+  .noor-about-atelier__philosophy-phrase span {
+    opacity: 0.32;
+  }
+
+  .noor-about-atelier__closing {
+    background:
+      radial-gradient(circle at 0% 50%, color-mix(in srgb, var(--noor-blush) 38%, transparent), transparent 28%),
+      var(--noor-ivory);
+  }
+
+  .desktop-work__hero {
+    background:
+      radial-gradient(circle at 100% 18%, color-mix(in srgb, var(--noor-blush) 38%, transparent), transparent 30%),
+      var(--noor-ivory);
+  }
+
+  .desktop-work__archive {
+    background:
+      radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--noor-beige) 40%, transparent), transparent 26%),
+      var(--noor-ivory);
+  }
+
+  .desktop-contact-page {
+    background: var(--noor-ivory);
+  }
+
+  .desktop-contact-page__hero {
+    background:
+      radial-gradient(circle at 100% 20%, color-mix(in srgb, var(--noor-blush) 40%, transparent), transparent 30%),
+      var(--noor-ivory);
+  }
+
+  .desktop-contact-page__methods {
+    background:
+      radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--noor-beige) 44%, transparent), transparent 30%),
+      var(--noor-ivory);
+  }
+
+  .desktop-accreditations {
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-blush) 36%, transparent), transparent 26%),
+      var(--noor-ivory);
+  }
+
+  .desktop-accreditation-card__preview {
+    background: var(--noor-ivory);
+    box-shadow: 0 18px 46px rgb(43 43 43 / 0.06);
+  }
+
+  .desktop-accreditations__closing {
+    background:
+      radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--noor-blush) 42%, transparent), transparent 34%),
+      var(--noor-ivory);
+    box-shadow: 0 20px 54px rgb(43 43 43 / 0.05);
+  }
+
+  .noor-home-v3__metrics dd,
+  .desktop-work__hero-metrics dd,
+  .noor-home-v3__process li > span,
+  .noor-home-v3__archive-list span {
+    color: #6e6f52;
+  }
+
+  .noor-home-v3 .desktop-button--primary,
+  .noor-about-v3 .desktop-button--primary,
+  .noor-about-v4 .desktop-button--primary {
+    color: #fff;
+  }
+
+  .noor-global-footer-v3 {
+    color: #302c25;
+  }
+}
+
+@media (max-width: 900px) {
+  .m-menu__surface::after,
+  .m-home-hero::after,
+  .m-work-hero::after,
+  .m-about-entry::after,
+  .m-accreditations-hero::after,
+  .m-home-selected::after,
+  .m-home-point::after,
+  .m-about-thesis::after,
+  .m-home-services::after,
+  .m-services-hero::after,
+  .m-service-page::after,
+  .m-home-services::before,
+  .m-contact-methods::after,
+  .m-home-process::after,
+  .m-services-process::after,
+  .m-home-archive::after,
+  .m-home-contact::after,
+  .m-services-contact::after,
+  .m-contact-hero::after,
+  .m-about-closing::after,
+  .m-footer-page:not(.m-case-footer)::after {
+    content: none;
+  }
+
+  :is(.m-home, .m-about, .m-work, .m-services, .m-contact, .m-accreditations) .m-page::before {
+    opacity: 0.055;
+  }
+
+  .m-home-hero,
+  .m-work-hero,
+  .m-about-entry,
+  .m-accreditations-hero {
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-blush) 34%, transparent), transparent 27%),
+      var(--noor-ivory);
+  }
+
+  .m-home-hero__mark,
+  .m-work-hero__mark {
+    opacity: 0.07;
+    filter: none;
+  }
+
+  .m-home-hero .m-metrics,
+  .m-work-hero .m-metrics {
+    background: color-mix(in srgb, var(--noor-ivory) 96%, transparent);
+    box-shadow: 0 12px 28px rgb(43 43 43 / 0.04);
+    backdrop-filter: none;
+  }
+
+  .m-home-selected {
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-blush) 38%, transparent), transparent 29%),
+      var(--noor-ivory);
+  }
+
+  .m-selected-card {
+    box-shadow: 0 14px 34px rgb(43 43 43 / 0.08);
+  }
+
+  .m-home-point,
+  .m-about-thesis {
+    background:
+      radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--noor-sage) 16%, transparent), transparent 31%),
+      var(--noor-ivory);
+  }
+
+  .m-home-point__mark,
+  .m-about-entry__mark,
+  .m-about-closing__mark,
+  .m-home-contact__mark,
+  .m-contact-hero__mark {
+    opacity: 0.07;
+    filter: none;
+  }
+
+  .m-home-services,
+  .m-services-hero,
+  .m-service-page {
+    background:
+      radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--noor-beige) 42%, transparent), transparent 31%),
+      var(--noor-ivory);
+  }
+
+  .m-service-page__visual {
+    box-shadow: 0 14px 34px rgb(43 43 43 / 0.07);
+  }
+
+  .m-home-process,
+  .m-services-process {
+    background:
+      radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--noor-blush) 36%, transparent), transparent 29%),
+      var(--noor-ivory);
+  }
+
+  .m-home-archive--opening,
+  .m-work-filter,
+  .m-contact-methods,
+  .m-accreditation-details-page {
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-beige) 38%, transparent), transparent 28%),
+      var(--noor-ivory);
+  }
+
+  .m-home-contact,
+  .m-services-contact,
+  .m-contact-hero,
+  .m-about-closing {
+    background:
+      radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--noor-blush) 40%, transparent), transparent 31%),
+      var(--noor-ivory);
+  }
+
+  .m-about-principles--1,
+  .m-about-principles--2,
+  .m-about-understanding {
+    background:
+      radial-gradient(circle at 100% 100%, color-mix(in srgb, var(--noor-beige) 42%, transparent), transparent 30%),
+      var(--noor-ivory);
+  }
+
+  .m-about-rhythm {
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-blush) 28%, transparent), transparent 27%),
+      var(--noor-ivory);
+  }
+
+  .m-about-rhythm__words {
+    color: rgb(43 43 43 / 0.065);
+  }
+
+  .m-about-understanding__phrase {
+    opacity: 0.3;
+  }
+
+  .m-accreditation-document-page {
+    background:
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-blush) 34%, transparent), transparent 26%),
+      var(--noor-ivory);
+  }
+
+  .m-accreditation-document {
+    box-shadow: 0 16px 38px rgb(43 43 43 / 0.065);
+  }
+
+  .m-intro {
+    background:
+      radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--noor-blush) 30%, transparent), transparent 28%),
+      radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--noor-sage) 8%, transparent), transparent 22%),
+      var(--noor-ivory);
+  }
+
+  .m-intro__wash--rose {
+    background: radial-gradient(circle, color-mix(in srgb, var(--noor-blush) 30%, transparent), transparent 72%);
+  }
+
+  .m-intro__wash--sage {
+    background: radial-gradient(circle, color-mix(in srgb, var(--noor-sage) 10%, transparent), transparent 74%);
+  }
+
+  .m-intro__grain {
+    opacity: 0.055;
+  }
+
+  .m-metrics dd,
+  .m-service-index li > span,
+  .m-process-index li > span,
+  .m-services-toc li > span,
+  .m-rhythm-list li > span,
+  .m-principles article > span {
+    color: #6e6f52;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   :is(.noor-home-v3, .noor-about-atelier, .desktop-work, .desktop-contact-page, .desktop-accreditations, .m-home, .m-about, .m-work, .m-services, .m-contact, .m-accreditations) *,
   :is(.noor-home-v3, .noor-about-atelier, .desktop-work, .desktop-contact-page, .desktop-accreditations, .m-home, .m-about, .m-work, .m-services, .m-contact, .m-accreditations) *::before,
