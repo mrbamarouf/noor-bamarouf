@@ -26,6 +26,17 @@ const workHeroCopy = {
   },
 } as const;
 
+function requireProject(slug: string) {
+  const project = projects.find((item) => item.slug === slug);
+  if (!project) throw new Error(`Missing Work hero project: ${slug}`);
+  return project;
+}
+
+const workHeroMoments = [
+  { project: requireProject("matcha"), asset: "hero" as const, ratio: "landscape" as const, fit: "cover" as const },
+  { project: requireProject("wello"), asset: "cover" as const, ratio: "wide" as const, fit: "contain" as const },
+];
+
 export function WorkPage() {
   const { dictionary, language } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<CategoryKey>("all");
@@ -64,6 +75,26 @@ export function WorkPage() {
           </dl>
         </div>
         <div className="desktop-work__hero-identity" aria-hidden="true">
+          <ProjectVisual
+            className="desktop-work__hero-work desktop-work__hero-work--primary"
+            image={getProjectImageByAsset(workHeroMoments[0].project, workHeroMoments[0].asset)}
+            projectSlug={workHeroMoments[0].project.slug}
+            asset={workHeroMoments[0].asset}
+            ratio={workHeroMoments[0].ratio}
+            fit={workHeroMoments[0].fit}
+            preserveAspect={false}
+            loading="eager"
+          />
+          <ProjectVisual
+            className="desktop-work__hero-work desktop-work__hero-work--accent"
+            image={getProjectImageByAsset(workHeroMoments[1].project, workHeroMoments[1].asset)}
+            projectSlug={workHeroMoments[1].project.slug}
+            asset={workHeroMoments[1].asset}
+            ratio={workHeroMoments[1].ratio}
+            fit={workHeroMoments[1].fit}
+            preserveAspect={false}
+            loading="eager"
+          />
           <DecorativeNbLogo priority />
         </div>
       </section>

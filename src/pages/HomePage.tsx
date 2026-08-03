@@ -63,6 +63,19 @@ const selectedMoments: HomeProjectMoment[] = [
   { project: findProject("ansab-holding"), asset: "hero", ratio: "landscape", fit: "cover", tone: "quiet" },
 ];
 
+const heroMoments: HomeProjectMoment[] = [
+  { project: findProject("matcha"), asset: "hero", ratio: "landscape", fit: "cover", tone: "quiet" },
+  { project: findProject("wello"), asset: "cover", ratio: "wide", fit: "contain", tone: "color" },
+];
+
+const pointMoment: HomeProjectMoment = {
+  project: findProject("rahaba-space"),
+  asset: "gallery-8",
+  ratio: "portrait",
+  fit: "cover",
+  tone: "quiet",
+};
+
 const servicePreviewMoments: Record<ServiceKey, HomeProjectMoment> = {
   brandIdentity: { project: findProject("wemo-delights"), asset: "hero", ratio: "landscape", fit: "cover" },
   logoDesign: { project: findProject("ansab-holding"), asset: "hero", ratio: "landscape", fit: "cover" },
@@ -238,7 +251,28 @@ function SignatureHero() {
         </div>
       </div>
       <div className="noor-home-v3__hero-visual" aria-label={dictionary.hero.descriptor}>
+        <ProjectVisual
+          className="noor-home-v3__hero-work noor-home-v3__hero-work--primary"
+          image={getProjectImageByAsset(heroMoments[0].project, heroMoments[0].asset)}
+          projectSlug={heroMoments[0].project.slug}
+          asset={heroMoments[0].asset}
+          ratio={heroMoments[0].ratio}
+          fit={heroMoments[0].fit}
+          loading="eager"
+          preserveAspect={false}
+        />
+        <ProjectVisual
+          className="noor-home-v3__hero-work noor-home-v3__hero-work--accent"
+          image={getProjectImageByAsset(heroMoments[1].project, heroMoments[1].asset)}
+          projectSlug={heroMoments[1].project.slug}
+          asset={heroMoments[1].asset}
+          ratio={heroMoments[1].ratio}
+          fit={heroMoments[1].fit}
+          loading="eager"
+          preserveAspect={false}
+        />
         <DecorativeNbLogo priority className="noor-home-v3__hero-mark" />
+        <span className="noor-home-v3__hero-visual-caption">{copy.serviceLine}</span>
       </div>
       <dl className="noor-home-v3__metrics">
         {metrics.map((metric) => (
@@ -394,11 +428,23 @@ function FeaturedInterruption() {
 function PointOfView() {
   const { language } = useLanguage();
   const copy = homeCopy[language];
+  const pointTitle = getProjectDisplayTitle(pointMoment.project, language);
 
   return (
     <section className="noor-home-v3__point" aria-labelledby="noor-home-v3-point-title" data-reveal>
-      <div className="noor-home-v3__point-material" aria-hidden="true">
+      <div className="noor-home-v3__point-material">
+        <ProjectVisual
+          className="noor-home-v3__point-work"
+          image={getProjectImageByAsset(pointMoment.project, pointMoment.asset)}
+          projectSlug={pointMoment.project.slug}
+          asset={pointMoment.asset}
+          ratio={pointMoment.ratio}
+          fit={pointMoment.fit}
+          loading="lazy"
+          preserveAspect={false}
+        />
         <DecorativeNbLogo />
+        <span dir={getProjectTitleDirection(pointMoment.project, language)}>{pointTitle}</span>
       </div>
       <div className="noor-home-v3__point-copy desktop-section-flow">
         <span className="noor-home-v3__label">{copy.pointLabel}</span>

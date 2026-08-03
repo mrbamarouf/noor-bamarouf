@@ -30,12 +30,18 @@ export function AccreditationsPage() {
   return (
     <div className="desktop-page desktop-accreditations">
       <section className="desktop-accreditations__hero desktop-section-flow" aria-labelledby="accreditations-title" data-reveal>
-        <span className="desktop-kicker">{copy.label}</span>
-        <h1 id="accreditations-title">{copy.title}</h1>
-        <p>{copy.intro}</p>
-        <Link className="desktop-accreditations__jump" to="#certificate-01">
-          {copy.credibilityTitle}
-        </Link>
+        <div className="desktop-accreditations__hero-copy desktop-section-flow">
+          <span className="desktop-kicker">{copy.label}</span>
+          <h1 id="accreditations-title">{copy.title}</h1>
+          <p>{copy.intro}</p>
+          <Link className="desktop-accreditations__jump" to="#certificate-01">
+            {copy.credibilityTitle}
+          </Link>
+        </div>
+        <figure className="desktop-accreditations__hero-document">
+          <img src={accreditations[0].previewSrc} alt={accreditations[0].alt[language]} />
+          <figcaption>{accreditations[0].title[language]}</figcaption>
+        </figure>
       </section>
 
       <section className="desktop-accreditations__list" aria-label={copy.title}>
