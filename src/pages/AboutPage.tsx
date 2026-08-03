@@ -1,44 +1,7 @@
 import { Link } from "react-router-dom";
 import { DecorativeNbLogo } from "../components/DecorativeNbLogo";
-import { ProjectVisual, type ProjectVisualAsset } from "../components/ProjectVisual";
 import { useLanguage } from "../context/LanguageContext";
 import { aboutSharedContent } from "../data/aboutContent";
-import { getProjectImageByAsset } from "../data/projectPresentation";
-import { projects } from "../data/projects";
-import type { Project } from "../types";
-
-function findAboutProject(slug: string) {
-  const project = projects.find((item) => item.slug === slug);
-  if (!project) throw new Error(`Missing About visual project: ${slug}`);
-  return project;
-}
-
-interface AboutVisual {
-  project: Project;
-  asset: ProjectVisualAsset;
-  ratio: "portrait" | "landscape" | "square" | "wide";
-  fit: "contain" | "cover";
-}
-
-const aboutVisuals: Record<"entry" | "thesis" | "philosophy", AboutVisual> = {
-  entry: { project: findAboutProject("matcha"), asset: "hero", ratio: "landscape", fit: "cover" },
-  thesis: { project: findAboutProject("wello"), asset: "cover", ratio: "wide", fit: "contain" },
-  philosophy: { project: findAboutProject("rahaba-space"), asset: "gallery-8", ratio: "portrait", fit: "cover" },
-};
-
-function AboutProjectVisual({ visual, className }: { visual: AboutVisual; className: string }) {
-  return (
-    <ProjectVisual
-      className={className}
-      image={getProjectImageByAsset(visual.project, visual.asset)}
-      projectSlug={visual.project.slug}
-      asset={visual.asset}
-      ratio={visual.ratio}
-      fit={visual.fit}
-      preserveAspect={false}
-    />
-  );
-}
 
 const aboutAtelierCopy = {
   en: {
@@ -114,8 +77,7 @@ export function AboutPage() {
             <Arrow direction={direction} />
           </Link>
         </div>
-        <figure className="noor-about-atelier__entry-mark">
-          <AboutProjectVisual visual={aboutVisuals.entry} className="noor-about-atelier__entry-work" />
+        <figure className="noor-about-atelier__entry-mark" aria-hidden="true">
           <DecorativeNbLogo priority />
         </figure>
       </section>
@@ -130,9 +92,6 @@ export function AboutPage() {
             ))}
           </ul>
         </div>
-        <figure className="noor-about-atelier__thesis-work">
-          <AboutProjectVisual visual={aboutVisuals.thesis} className="noor-about-atelier__thesis-visual" />
-        </figure>
       </section>
 
       <section className="noor-about-atelier__materials" aria-labelledby="about-atelier-materials" data-reveal>
@@ -174,9 +133,6 @@ export function AboutPage() {
         <div className="noor-about-atelier__philosophy-phrase" aria-hidden="true">
           <span>{shared.philosophy.visualPhrase}</span>
         </div>
-        <figure className="noor-about-atelier__philosophy-work">
-          <AboutProjectVisual visual={aboutVisuals.philosophy} className="noor-about-atelier__philosophy-visual" />
-        </figure>
         <div className="noor-about-atelier__philosophy-copy">
           <h2 id="about-atelier-philosophy">{shared.philosophy.title}</h2>
           <p>{shared.philosophy.body}</p>

@@ -2,25 +2,12 @@ import { useMemo, useState } from "react";
 import { LogoAsset } from "../../components/LogoAsset";
 import { useLanguage } from "../../context/LanguageContext";
 import { categoryOrder } from "../../data/content";
-import { getProjectImageByAsset } from "../../data/projectPresentation";
 import { projects } from "../../data/projects";
 import type { CategoryKey } from "../../types";
 import { localizeMobileDigits, makeMobileChapters, MobileChapterController, MobileChapterSection } from "../MobileChapterSystem";
 import { MobileFooter } from "../MobileFooter";
 import { MobilePageCopy, MobileProjectSpread } from "../MobilePrimitives";
-import { MobileVisual } from "../MobileVisual";
 import { mobileWorkHeroCopy } from "../mobileCopy";
-
-function requireWorkProject(slug: string) {
-  const project = projects.find((item) => item.slug === slug);
-  if (!project) throw new Error(`Missing mobile Work hero project: ${slug}`);
-  return project;
-}
-
-const workHeroMoments = {
-  primary: { project: requireWorkProject("wemo-delights"), asset: "hero" as const },
-  accent: { project: requireWorkProject("ansab-holding"), asset: "cover" as const },
-};
 
 export function MobileWorkPage() {
   const { dictionary, language } = useLanguage();
@@ -46,25 +33,7 @@ export function MobileWorkPage() {
     <MobileChapterController chapters={chapters} className="m-work">
       <MobileChapterSection chapter={chapters[0]} index={0} total={chapters.length} className="m-work-hero">
         <MobilePageCopy label={copy.label} title={copy.title} body={copy.body} titleId={`${chapters[0].id}-title`} />
-        <div className="m-work-hero__art" aria-hidden="true">
-          <MobileVisual
-            className="m-work-hero__work m-work-hero__work--primary"
-            project={workHeroMoments.primary.project}
-            image={getProjectImageByAsset(workHeroMoments.primary.project, workHeroMoments.primary.asset)}
-            asset={workHeroMoments.primary.asset}
-            fit="cover"
-            loading="eager"
-          />
-          <MobileVisual
-            className="m-work-hero__work m-work-hero__work--accent"
-            project={workHeroMoments.accent.project}
-            image={getProjectImageByAsset(workHeroMoments.accent.project, workHeroMoments.accent.asset)}
-            asset={workHeroMoments.accent.asset}
-            fit="contain"
-            loading="eager"
-          />
-          <LogoAsset className="m-work-hero__mark" variant="hero" priority />
-        </div>
+        <LogoAsset className="m-work-hero__mark" variant="hero" priority />
         <dl className="m-metrics m-metrics--two">
           <div><dd>{localizeMobileDigits(String(projects.length), language)}</dd><dt>{copy.projectLabel}</dt></div>
           <div><dd>{localizeMobileDigits(String(categoryCount), language)}</dd><dt>{copy.categoryLabel}</dt></div>

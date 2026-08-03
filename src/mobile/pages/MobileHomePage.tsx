@@ -39,20 +39,6 @@ const selectedMoments: Array<{ slug: string; asset: PresentationAsset; fit?: "co
   { slug: "ansab-holding", asset: "hero", fit: "cover" },
 ];
 
-function requireMobileProject(slug: string) {
-  const project = projects.find((item) => item.slug === slug);
-  if (!project) throw new Error(`Missing mobile editorial project: ${slug}`);
-  return project;
-}
-
-const mobileEditorialMoments = {
-  heroPrimary: { project: requireMobileProject("matcha"), asset: "hero" as const, fit: "cover" as const },
-  heroAccent: { project: requireMobileProject("wello"), asset: "cover" as const, fit: "contain" as const },
-  point: { project: requireMobileProject("rahaba-space"), asset: "gallery-8" as const, fit: "cover" as const },
-  servicesOpening: { project: requireMobileProject("nirto-cold-brew"), asset: "hero" as const, fit: "cover" as const },
-  servicesClosing: { project: requireMobileProject("rahaba-space"), asset: "gallery-8" as const, fit: "cover" as const },
-};
-
 export function MobileHomePage() {
   const { dictionary, language } = useLanguage();
   const copy = mobileHomeCopy[language];
@@ -77,25 +63,7 @@ export function MobileHomePage() {
             <small>{accreditation.credibilityBody}</small>
           </Link>
         </MobilePageCopy>
-        <div className="m-home-hero__art">
-          <MobileVisual
-            className="m-home-hero__work m-home-hero__work--primary"
-            project={mobileEditorialMoments.heroPrimary.project}
-            image={getProjectImageByAsset(mobileEditorialMoments.heroPrimary.project, mobileEditorialMoments.heroPrimary.asset)}
-            asset={mobileEditorialMoments.heroPrimary.asset}
-            fit={mobileEditorialMoments.heroPrimary.fit}
-            loading="eager"
-          />
-          <MobileVisual
-            className="m-home-hero__work m-home-hero__work--accent"
-            project={mobileEditorialMoments.heroAccent.project}
-            image={getProjectImageByAsset(mobileEditorialMoments.heroAccent.project, mobileEditorialMoments.heroAccent.asset)}
-            asset={mobileEditorialMoments.heroAccent.asset}
-            fit={mobileEditorialMoments.heroAccent.fit}
-            loading="eager"
-          />
-          <LogoAsset className="m-home-hero__mark" variant="hero" priority />
-        </div>
+        <LogoAsset className="m-home-hero__mark" variant="hero" priority />
         <dl className="m-metrics">
           {metrics.map((value, index) => (
             <div key={copy.metrics[index]}>
@@ -135,27 +103,12 @@ export function MobileHomePage() {
       </MobileChapterSection>
 
       <MobileChapterSection chapter={chapters[3]} index={3} total={chapters.length} className="m-home-point">
-        <div className="m-home-point__art">
-          <MobileVisual
-            project={mobileEditorialMoments.point.project}
-            image={getProjectImageByAsset(mobileEditorialMoments.point.project, mobileEditorialMoments.point.asset)}
-            asset={mobileEditorialMoments.point.asset}
-            fit={mobileEditorialMoments.point.fit}
-          />
-          <LogoAsset className="m-home-point__mark" variant="hero" />
-        </div>
+        <LogoAsset className="m-home-point__mark" variant="hero" />
         <MobilePageCopy label={copy.pointLabel} title={copy.pointTitle} body={copy.pointBody} titleId={`${chapters[3].id}-title`} />
       </MobileChapterSection>
 
       <MobileChapterSection chapter={chapters[4]} index={4} total={chapters.length} className="m-home-services">
         <MobilePageCopy label={copy.capabilitiesLabel} title={copy.capabilitiesTitle} titleId={`${chapters[4].id}-title`} />
-        <MobileVisual
-          className="m-home-services__visual"
-          project={mobileEditorialMoments.servicesOpening.project}
-          image={getProjectImageByAsset(mobileEditorialMoments.servicesOpening.project, mobileEditorialMoments.servicesOpening.asset)}
-          asset={mobileEditorialMoments.servicesOpening.asset}
-          fit={mobileEditorialMoments.servicesOpening.fit}
-        />
         <ol className="m-service-index">
           {approvedMobileServices.slice(0, 3).map((service, index) => (
             <li key={service}>
@@ -168,13 +121,6 @@ export function MobileHomePage() {
 
       <MobileChapterSection chapter={chapters[5]} index={5} total={chapters.length} className="m-home-services m-home-services--continued">
         <MobilePageCopy label={copy.capabilitiesLabel} title={copy.capabilitiesContinuationTitle} titleId={`${chapters[5].id}-title`} />
-        <MobileVisual
-          className="m-home-services__visual"
-          project={mobileEditorialMoments.servicesClosing.project}
-          image={getProjectImageByAsset(mobileEditorialMoments.servicesClosing.project, mobileEditorialMoments.servicesClosing.asset)}
-          asset={mobileEditorialMoments.servicesClosing.asset}
-          fit={mobileEditorialMoments.servicesClosing.fit}
-        />
         <ol className="m-service-index" start={4}>
           {approvedMobileServices.slice(3).map((service, index) => (
             <li key={service}>
